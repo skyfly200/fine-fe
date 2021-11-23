@@ -1,0 +1,53 @@
+$breakpoints: (
+  "tablet": 1200px,
+  "mobile": 600px,
+) !default;
+
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+@mixin hover {
+  @media not all and (pointer: coarse) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@function v($propertyName: "", $argsFallbacks...) {
+  $fallbacksNb: length($argsFallbacks);
+
+  @if $fallbacksNb < 1 {
+    @return var(--#{$propertyName});
+  }
+  $fallbacks: nth($argsFallbacks, $fallbacksNb);
+  @if $fallbacksNb > 1 {
+    @for $index from $fallbacksNb - 1 through 1 {
+      $fallbacks: var(--#{nth($argsFallbacks, $index)}, #{$fallbacks});
+    }
+  }
+  @return var(--#{$propertyName}, $fallbacks);
+}
+
+$colors: (
+  "bg-grey-color": "#e2e3e5",
+  "bg-black-color": "#0a0a0a",
+  "white-color": "#fff",
+  "black-color": "#000",
+) !default;
+
+@function color($color: "") {
+  @if map-has-key($colors, $color) {
+    @return var(--#{$color}, map-get($colors, $color));
+  } @else {
+    @return var(--#{$color});
+  }
+}

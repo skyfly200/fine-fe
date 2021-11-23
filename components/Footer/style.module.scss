@@ -1,0 +1,7 @@
+@import "../../styles/mixins.scss";
+
+.footer {
+  height: 300px;
+  background-color: color(bg-black-color);
+  z-index: 3;
+}

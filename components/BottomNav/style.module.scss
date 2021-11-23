@@ -1,0 +1,34 @@
+@import "../../styles/mixins.scss";
+
+.nav {
+  width: 100%;
+  height: 2.8rem;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  background-color: color(white-color);
+  box-shadow: 0px -3px 6px 1px rgba(0, 0, 0, 0.03);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  .menu {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    .menuItem {
+      cursor: pointer;
+      text-transform: uppercase;
+      font-weight: 300;
+      @include hover {
+        opacity: 0.7;
+      }
+    }
+    .homeBtn {
+      margin-top: 0.1rem;
+    }
+  }
+}

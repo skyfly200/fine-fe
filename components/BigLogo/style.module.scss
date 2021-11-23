@@ -1,0 +1,33 @@
+@import "../../styles/mixins.scss";
+
+.logo {
+  display: flex;
+  padding: 1rem;
+  .f {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+  }
+  .ine {
+    margin-left: 196px;
+    margin-top: -1px;
+    z-index: 2;
+  }
+}
+
+.canvasContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: calc(25% - 0.25rem);
+  height: 300px;
+  background: hotpink;
+  canvas {
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    filter: grayscale(100%);
+    @include hover {
+      filter: grayscale(0%);
+    }
+  }
+}
