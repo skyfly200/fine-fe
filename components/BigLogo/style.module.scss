@@ -21,13 +21,8 @@
   left: 0;
   width: calc(25% - 0.25rem);
   height: 300px;
-  background: hotpink;
+  background: color(bg-grey-color);
   canvas {
     cursor: pointer;
-    transition: all 0.1s ease-in-out;
-    filter: grayscale(100%);
-    @include hover {
-      filter: grayscale(0%);
-    }
   }
 }

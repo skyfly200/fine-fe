@@ -1,10 +1,14 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import EventCarousel from "../components/EventCarousel";
 import Layout from "../components/Layout";
-
+import NewsCard from "../components/NewsCard";
+import PixelGallery from "../components/PixelGallery";
+import fixture from "../fixtures/home";
 import styles from "../styles/pages/Home.module.scss";
 
 const Home: NextPage = () => {
+  const { news, events } = fixture;
   return (
     <Layout greyBG showCanvas>
       <Head>
@@ -13,50 +17,32 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <section
-        style={{ height: "calc(95vh - 165px)", backgroundColor: "hotpink" }}
-      ></section>
+      <section className={styles.heroWrapper}>
+        <PixelGallery />
+      </section>
       <section className={styles.newsAndEventsWrapper}>
         <div className={styles.eventsWrapper}>
-          <article
-            style={{
-              height: "400px",
-              backgroundColor: "hotpink",
-              position: "sticky",
-              top: "1rem",
-            }}
-          >
-            <p>EVENTS</p>
-          </article>
+          <p>EVENTS</p>
+          <div className={styles.carouselWrapper}>
+            <EventCarousel events={events} />
+          </div>
         </div>
         <div className={styles.newsWrapper}>
           <p>NEWS</p>
-          <article style={{ height: "300px", backgroundColor: "hotpink" }}>
-            <h4>20/20/2020 </h4>
-            <h3>News Title </h3>
-          </article>
-          <article style={{ height: "300px", backgroundColor: "hotpink" }}>
-            <h4>20/20/2020 </h4>
-            <h3>News Title </h3>
-          </article>
-          <article style={{ height: "300px", backgroundColor: "hotpink" }}>
-            <h4>20/20/2020 </h4>
-            <h3>News Title </h3>
-          </article>
-          <article style={{ height: "300px", backgroundColor: "hotpink" }}>
-            <h4>20/20/2020 </h4>
-            <h3>News Title </h3>
-          </article>
-          <article style={{ height: "300px", backgroundColor: "hotpink" }}>
-            <h4>20/20/2020 </h4>
-            <h3>News Title </h3>
-          </article>
-          <article style={{ height: "300px", backgroundColor: "hotpink" }}>
-            <h4>20/20/2020 </h4>
-            <h3>News Title </h3>
-          </article>
+          <div className={styles.newsCardWrapper}>
+            {news.map((item, i) => (
+              <NewsCard
+                key={`${item.title}${i}`}
+                img={item.img}
+                alt={item.alt}
+                title={item.title}
+              />
+            ))}
+          </div>
         </div>
       </section>
+      <section style={{ height: "100vh", backgroundColor: "white" }}></section>
+      <section style={{ height: "100vh", backgroundColor: "black" }}></section>
     </Layout>
   );
 };
