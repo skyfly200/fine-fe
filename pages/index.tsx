@@ -10,6 +10,7 @@ import { useElementSize } from '../utils'
 
 const Home: NextPage = () => {
   const [email, setEmail] = useState('')
+  const [collectorsEmail, setCollectorsEmail] = useState('')
   const [squareRef, { width: FWidth }] = useElementSize()
   const handleSubscribe = () => console.log(email)
   return (
@@ -51,9 +52,9 @@ const Home: NextPage = () => {
           <article className={styles.whenWrapper}>
             <h3 className={styles.subheader}>When?</h3>
             <p className={styles.text}>
-              <strong>FINE</strong> is pleased to announce it will be launching its first season in
-              early 2022. Kindly subscribe to our newsletter to stay updated and receive details on
-              our upcoming launch:
+              FINE is pleased to announce it will be launching its first season in early 2022.
+              Kindly subscribe to our newsletter to stay updated and receive details on our upcoming
+              launch:
             </p>
             <form className={styles.inputWrapper} onSubmit={handleSubscribe}>
               <input
@@ -125,8 +126,8 @@ const Home: NextPage = () => {
                 <input
                   placeholder="Email"
                   type="text"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
+                  value={collectorsEmail}
+                  onChange={e => setCollectorsEmail(e.target.value)}
                 />
                 <button type="submit" className={styles.btn}>
                   SUBSCRIBE
