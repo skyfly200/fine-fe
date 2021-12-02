@@ -59,7 +59,7 @@ const Home: NextPage = () => {
             <form className={styles.inputWrapper} onSubmit={handleSubscribe}>
               <input
                 placeholder="Email"
-                type="text"
+                type="email"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
               />
@@ -99,7 +99,12 @@ const Home: NextPage = () => {
               </p>
               <p className={styles.text}>
                 Submit any submission questions <Icon icon="arrow-right" />{' '}
-                <a href="mailto:far@fine.digital" className={styles.link}>
+                <a
+                  href="mailto:far@fine.digital"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.link}
+                >
                   here.
                 </a>
               </p>
@@ -125,7 +130,7 @@ const Home: NextPage = () => {
               <form className={styles.inputWrapper} onSubmit={handleSubscribe}>
                 <input
                   placeholder="Email"
-                  type="text"
+                  type="email"
                   value={collectorsEmail}
                   onChange={e => setCollectorsEmail(e.target.value)}
                 />
