@@ -1,0 +1,119 @@
+@import '../mixins.scss';
+
+.logo {
+  font-weight: 900;
+  font-size: 24.8vw;
+  margin: 0;
+  line-height: 0.75;
+  display: inline;
+  &.f {
+    position: sticky;
+    top: -5.5vw;
+  }
+}
+
+.wrapper {
+  background-color: color(bg-grey-color);
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3vw;
+    padding: 0 3vw;
+
+    .text {
+      font-family: Lora;
+      line-height: 1.4;
+    }
+    .whatWeDo {
+      margin: 2rem 0;
+    }
+    .whenWrapper {
+      margin-bottom: 2rem;
+    }
+    .releaseWrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      margin-bottom: 2rem;
+      .early {
+        font-weight: 600;
+        font-size: 12.8vw;
+        margin: 0;
+        line-height: 0.5;
+      }
+      .year {
+        font-size: 12vw;
+        margin: 0;
+        line-height: 0.8;
+      }
+    }
+    .joinUsWrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      grid-column: span 2;
+      margin-bottom: 2rem;
+      .joinUsSection {
+        padding: 1.5vw;
+
+        &:first-child {
+          border-right: 2px solid;
+          border-bottom: 2px solid;
+        }
+        &:nth-child(2) {
+          border-bottom: 2px solid;
+        }
+        &:nth-child(3) {
+          border-right: 2px solid;
+        }
+      }
+    }
+  }
+}
+.subheader {
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: 400;
+}
+.link {
+  font-family: Syne;
+  text-decoration: underline;
+  font-weight: 600;
+  &.discordLink {
+    font-weight: 900;
+  }
+}
+
+.footer {
+  background: #000;
+  color: #fff;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  .footerContent {
+    padding: 0 3vw;
+  }
+}
+
+.inputWrapper {
+  display: flex;
+  gap: 0.5rem;
+  input {
+    border: 1px solid;
+    height: 45px;
+    background: transparent;
+    flex: 1;
+    padding: 0 0.5rem;
+    transition: all 0.15s ease-in;
+    &:focus {
+      background: #fff;
+      outline: none;
+    }
+  }
+  .btn {
+    border: none;
+    background: black;
+    color: white;
+    padding: 0 1rem;
+  }
+}
