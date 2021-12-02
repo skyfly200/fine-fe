@@ -10,6 +10,9 @@
     position: sticky;
     top: -5.5vw;
   }
+  @include respond-to('mobile') {
+    font-size: 24.5vw;
+  }
 }
 
 .wrapper {
@@ -19,7 +22,12 @@
     grid-template-columns: 1fr 1fr;
     gap: 3vw;
     padding: 0 3vw;
-
+    @include respond-to('tablet-sm') {
+      grid-template-columns: 100%;
+      .blank {
+        display: none;
+      }
+    }
     .text {
       font-family: Lora;
       line-height: 1.4;
@@ -35,6 +43,7 @@
       flex-direction: column;
       justify-content: flex-end;
       margin-bottom: 2rem;
+
       .early {
         font-weight: 600;
         font-size: 12.8vw;
@@ -45,6 +54,14 @@
         font-size: 12vw;
         margin: 0;
         line-height: 0.8;
+      }
+      @include respond-to('tablet-sm') {
+        .early {
+          font-size: 26vw;
+        }
+        .year {
+          font-size: 25vw;
+        }
       }
     }
     .joinUsWrapper {
@@ -67,6 +84,23 @@
           border-right: 2px solid;
         }
       }
+      @include respond-to('tablet-sm') {
+        grid-template-columns: 100%;
+        grid-template-rows: repeat(4, max-content);
+        grid-column: span 1;
+        .joinUsSection {
+          border-bottom: 2px solid;
+          &:first-child {
+            border-right: 0;
+          }
+          &:nth-child(3) {
+            border-right: 0;
+          }
+          &:last-child {
+            border-bottom: 0;
+          }
+        }
+      }
     }
   }
 }
@@ -74,6 +108,9 @@
   text-transform: uppercase;
   font-size: 2rem;
   font-weight: 400;
+  @include respond-to('mobile') {
+    font-size: 1.5rem;
+  }
 }
 .link {
   font-family: Syne;
@@ -102,7 +139,7 @@
     border: 1px solid;
     height: 45px;
     background: transparent;
-    flex: 1;
+    width: 100%;
     padding: 0 0.5rem;
     transition: all 0.15s ease-in;
     &:focus {

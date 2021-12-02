@@ -30,7 +30,7 @@ const Home: NextPage = () => {
         <h1 className={styles.logo}>INE</h1>
 
         <main className={styles.main} style={{ marginLeft: FWidth }}>
-          <article></article>
+          <article className={styles.blank} />
           <article className={styles.whatWeDo}>
             <p className={styles.text}>
               We are an <strong>artist-run platform</strong> supporting established artists in the
@@ -69,7 +69,7 @@ const Home: NextPage = () => {
           </article>
           <article className={styles.releaseWrapper}>
             <h4 className={styles.early}>early</h4>
-            <h4 className={styles.year}>2020</h4>
+            <h4 className={styles.year}>2022</h4>
           </article>
 
           <article className={styles.joinUsWrapper}>

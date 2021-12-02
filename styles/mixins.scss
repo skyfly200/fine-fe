@@ -1,6 +1,7 @@
 $breakpoints: (
-  "tablet": 1200px,
-  "mobile": 600px,
+  'tablet': 1200px,
+  'tablet-sm': 1000px,
+  'mobile': 600px
 ) !default;
 
 @mixin respond-to($breakpoint) {
@@ -22,7 +23,7 @@ $breakpoints: (
   }
 }
 
-@function v($propertyName: "", $argsFallbacks...) {
+@function v($propertyName: '', $argsFallbacks...) {
   $fallbacksNb: length($argsFallbacks);
 
   @if $fallbacksNb < 1 {
@@ -38,13 +39,13 @@ $breakpoints: (
 }
 
 $colors: (
-  "bg-grey-color": "#e2e3e5",
-  "bg-black-color": "#0a0a0a",
-  "white-color": "#fff",
-  "black-color": "#000",
+  'bg-grey-color': '#e2e3e5',
+  'bg-black-color': '#0a0a0a',
+  'white-color': '#fff',
+  'black-color': '#000'
 ) !default;
 
-@function color($color: "") {
+@function color($color: '') {
   @if map-has-key($colors, $color) {
     @return var(--#{$color}, map-get($colors, $color));
   } @else {
