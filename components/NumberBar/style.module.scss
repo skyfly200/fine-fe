@@ -1,0 +1,45 @@
+@import '../../styles/mixins.scss';
+
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  display: grid;
+  align-items: end;
+  background: transparent;
+  z-index: 2;
+  padding-bottom: 1rem;
+  .bar {
+    position: relative;
+    margin-left: 1.5rem;
+    @include respond-to('mobile') {
+      margin-left: 0.5rem;
+    }
+    ul {
+      padding: 0;
+    }
+  }
+}
+
+.line {
+  border-bottom: 2px solid color(black-color);
+  width: 15px;
+  height: 20px;
+  margin: 0;
+  transition: all 0.15s ease-in;
+  opacity: 0.8;
+}
+
+.openLine {
+  width: 30px;
+}
+
+.num {
+  font-size: 18px;
+  position: absolute;
+  top: 12px;
+  left: 2px;
+  transition: all 0.15s ease-in;
+  white-space: nowrap;
+}

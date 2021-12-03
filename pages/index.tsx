@@ -3,10 +3,13 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useState } from 'react'
 import Icon from '../components/Icon'
+import NumberBar from '../components/NumberBar'
 import SoonCanvas from '../components/SoonCanvas'
 
 import styles from '../styles/pages/Soon.module.scss'
 import { constants, useElementSize } from '../utils'
+
+const sections = ['what', 'when', 'artists', 'join us', 'be part']
 
 const Home: NextPage = () => {
   const [email, setEmail] = useState('')
@@ -24,6 +27,7 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <NumberBar sections={sections} />
       <div className={styles.wrapper} style={{ position: 'relative' }}>
         <h1 ref={squareRef} className={classNames(styles.logo, styles.f)}>
           F
@@ -32,7 +36,7 @@ const Home: NextPage = () => {
 
         <main className={styles.main} style={{ marginLeft: FWidth }}>
           <article className={styles.blank} />
-          <article className={styles.whatWeDo}>
+          <article className={styles.whatWeDo} id={sections[0]}>
             <p className={styles.text}>
               FINE is an artist-run platform supporting established and emerging artists in the NFT
               space. We view the blockchain both as a platform and as a medium.
@@ -45,7 +49,7 @@ const Home: NextPage = () => {
             </p>
           </article>
 
-          <article className={styles.whenWrapper}>
+          <article className={styles.whenWrapper} id={sections[1]}>
             <h3 className={styles.subheader}>When?</h3>
             <p className={styles.text}>
               FINE is pleased to announce it will be launching its first season in early 2022.
@@ -68,7 +72,7 @@ const Home: NextPage = () => {
             <h4 className={styles.year}>20</h4>
             <h4 className={styles.year}>22</h4>
           </article>
-          <article className={styles.artistsWrapper}>
+          <article className={styles.artistsWrapper} id={sections[2]}>
             <div className={styles.contentWrapper}>
               <h3 className={styles.subheader}>Artists Submissions</h3>
               <p className={styles.text}>
@@ -93,7 +97,7 @@ const Home: NextPage = () => {
               </p>
             </div>
           </article>
-          <article className={styles.joinUsWrapper}>
+          <article className={styles.joinUsWrapper} id={sections[3]}>
             <div className={styles.joinUsSection}>
               <h3 className={styles.subheader}>Investors</h3>
               <p className={styles.text}>
@@ -131,7 +135,7 @@ const Home: NextPage = () => {
             </div>
           </article>
         </main>
-        <footer className={styles.footer}>
+        <footer className={styles.footer} id={sections[4]}>
           <div style={{ marginLeft: FWidth }} className={styles.footerContent}>
             <h3 className={styles.subheader}>Join Our Team</h3>
             <p className={styles.text}>
