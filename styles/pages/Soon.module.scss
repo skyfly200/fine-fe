@@ -95,23 +95,32 @@
       grid-column: span 2;
       margin-bottom: 4rem;
       .joinUsSection {
-        padding: 1.5vw;
+        padding-bottom: 3rem;
         display: flex;
         align-items: flex-end;
         .subheader {
-          writing-mode: sideways-lr;
-          margin-left: 0;
+          transform: matrix(0, -1, 1, 0, 0, 18);
+          margin-top: 0;
+          max-width: 4rem;
+          @include respond-to('mobile') {
+            transform: matrix(0, -1, 1, 0, 0, 0);
+            max-width: 3rem;
+          }
         }
         &:first-child {
           .text {
             margin: 0;
           }
         }
+        &.blank {
+          padding-bottom: 0;
+        }
       }
       @include respond-to('tablet-sm') {
         grid-template-columns: 100%;
         grid-template-rows: repeat(4, max-content);
         grid-column: span 1;
+        padding-bottom: 1.5rem;
       }
     }
   }

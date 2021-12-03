@@ -111,8 +111,8 @@ const Home: NextPage = () => {
               </p>
             </div>
 
-            <div className={styles.joinUsSection} />
-            <div className={styles.joinUsSection} />
+            <div className={classNames(styles.joinUsSection, styles.blank)} />
+            <div className={classNames(styles.joinUsSection, styles.blank)} />
             <div className={styles.joinUsSection}>
               <h3 className={styles.subheader}>Collectors</h3>
               <div>
