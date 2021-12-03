@@ -34,6 +34,9 @@
     }
     .whenWrapper {
       margin-bottom: 2rem;
+      @include respond-to('tablet-sm') {
+        margin-bottom: 0;
+      }
     }
     .releaseWrapper {
       display: flex;
@@ -66,6 +69,7 @@
       min-height: 500px;
       background: white;
       border: none;
+      margin-bottom: 2rem;
       .contentWrapper {
         position: absolute;
         top: 0;
@@ -115,12 +119,17 @@
         &.blank {
           padding-bottom: 0;
         }
+        @include respond-to('tablet-sm') {
+          padding-bottom: 7rem;
+        }
+        @include respond-to('mobile') {
+          padding-bottom: 1.5rem;
+        }
       }
       @include respond-to('tablet-sm') {
         grid-template-columns: 100%;
         grid-template-rows: repeat(4, max-content);
         grid-column: span 1;
-        padding-bottom: 1.5rem;
       }
     }
   }
