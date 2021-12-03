@@ -28,10 +28,7 @@
         display: none;
       }
     }
-    .text {
-      font-family: Lora;
-      line-height: 1.4;
-    }
+
     .whatWeDo {
       margin: 2rem 0;
     }
@@ -43,25 +40,52 @@
       flex-direction: column;
       justify-content: flex-end;
       margin-bottom: 2rem;
-
-      .early {
-        font-weight: 600;
-        font-size: 12.8vw;
-        margin: 0;
-        line-height: 0.5;
-      }
       .year {
-        font-size: 12vw;
+        font-size: 16vw;
         margin: 0;
         line-height: 0.8;
+        font-weight: 800;
       }
       @include respond-to('tablet-sm') {
-        .early {
-          font-size: 26vw;
-        }
         .year {
-          font-size: 25vw;
+          font-size: 32vw;
         }
+      }
+    }
+    .artistsWrapper {
+      position: relative;
+      text-align: center;
+      grid-column: span 2;
+      width: 100%;
+      height: 0;
+      padding-bottom: 62%;
+      border-radius: 50%;
+      border: 1px solid;
+      display: flex;
+      align-items: center;
+      min-height: 500px;
+      background: white;
+      border: none;
+      .contentWrapper {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 5vw;
+        width: 100%;
+        align-items: center;
+
+        .text {
+          max-width: 500px;
+        }
+        .subheader {
+          font-weight: 900;
+        }
+      }
+      @include respond-to('tablet-sm') {
+        grid-column: span 1;
       }
     }
     .joinUsWrapper {
@@ -72,34 +96,22 @@
       margin-bottom: 2rem;
       .joinUsSection {
         padding: 1.5vw;
-
+        display: flex;
+        align-items: flex-end;
+        .subheader {
+          writing-mode: sideways-lr;
+          margin-left: 0;
+        }
         &:first-child {
-          border-right: 2px solid;
-          border-bottom: 2px solid;
-        }
-        &:nth-child(2) {
-          border-bottom: 2px solid;
-        }
-        &:nth-child(3) {
-          border-right: 2px solid;
+          .text {
+            margin: 0;
+          }
         }
       }
       @include respond-to('tablet-sm') {
         grid-template-columns: 100%;
         grid-template-rows: repeat(4, max-content);
         grid-column: span 1;
-        .joinUsSection {
-          border-bottom: 2px solid;
-          &:first-child {
-            border-right: 0;
-          }
-          &:nth-child(3) {
-            border-right: 0;
-          }
-          &:last-child {
-            border-bottom: 0;
-          }
-        }
       }
     }
   }
@@ -107,11 +119,20 @@
 .subheader {
   text-transform: uppercase;
   font-size: 2rem;
-  font-weight: 400;
+  font-weight: 500;
   @include respond-to('mobile') {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 }
+
+.text {
+  font-family: Lora;
+  line-height: 1.4;
+  @include respond-to('mobile') {
+    font-size: 0.8rem;
+  }
+}
+
 .link {
   font-family: Syne;
   text-decoration: underline;
@@ -129,6 +150,14 @@
   align-items: center;
   .footerContent {
     padding: 0 3vw;
+    display: flex;
+    gap: 2rem;
+    .subheader {
+      white-space: nowrap;
+    }
+    @include respond-to('tablet-sm') {
+      display: block;
+    }
   }
 }
 
@@ -145,6 +174,7 @@
     &:focus {
       background: #fff;
       outline: none;
+      border: none;
     }
   }
   .btn {

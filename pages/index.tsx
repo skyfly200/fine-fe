@@ -6,7 +6,7 @@ import Icon from '../components/Icon'
 import SoonCanvas from '../components/SoonCanvas'
 
 import styles from '../styles/pages/Soon.module.scss'
-import { useElementSize } from '../utils'
+import { constants, useElementSize } from '../utils'
 
 const Home: NextPage = () => {
   const [email, setEmail] = useState('')
@@ -34,18 +34,14 @@ const Home: NextPage = () => {
           <article className={styles.blank} />
           <article className={styles.whatWeDo}>
             <p className={styles.text}>
-              We are an <strong>artist-run platform</strong> supporting established artists in the
-              NFT space and artists entering the NFT space for the first time. We view the
-              blockchain as a tool to generate art and an object to leverage works conceptually. We
-              seek to share our expertise in working with on-chain technologies to support unique
-              projects.
+              FINE is an artist-run platform supporting established and emerging artists in the NFT
+              space. We view the blockchain both as a platform and as a medium.
             </p>
             <p className={styles.text}>
-              In launching on-chain projects that explore the use of the blockchain as a tool to
-              reshape limits of our collective culture, we work one-on-one with artists to develop
-              innovative projects and provide the tools and the knowledge necessary to it. We are
-              focused on building a diverse roster of artists aligned in their intention to create
-              experimental work and foster a rich dialogue within the art community.
+              We work one-on-one with artists to develop innovative projects and provide the tools
+              and the knowledge necessary to do so. We are focused on building a diverse roster of
+              artists aligned in their intention to create experimental work and foster a rich
+              dialogue within the contemporary visual culture.
             </p>
           </article>
 
@@ -69,24 +65,11 @@ const Home: NextPage = () => {
             </form>
           </article>
           <article className={styles.releaseWrapper}>
-            <h4 className={styles.early}>early</h4>
-            <h4 className={styles.year}>2022</h4>
+            <h4 className={styles.year}>20</h4>
+            <h4 className={styles.year}>22</h4>
           </article>
-
-          <article className={styles.joinUsWrapper}>
-            <div className={styles.joinUsSection}>
-              <h3 className={styles.subheader}>Investors</h3>
-              <p className={styles.text}>
-                If you are a strategic investor and would like to grow with us, we are looking for
-                long-term partnerships that are willing to be part of a cultural movement utilizing
-                blockchain technology.
-                <br /> <Icon icon="arrow-right" />{' '}
-                <a href="mailto:far@fine.digital" className={styles.link}>
-                  Contact us.
-                </a>
-              </p>
-            </div>
-            <div className={styles.joinUsSection}>
+          <article className={styles.artistsWrapper}>
+            <div className={styles.contentWrapper}>
               <h3 className={styles.subheader}>Artists Submissions</h3>
               <p className={styles.text}>
                 We are interested in submissions from artists all around the world who are focused
@@ -100,7 +83,7 @@ const Home: NextPage = () => {
               <p className={styles.text}>
                 Submit any submission questions <Icon icon="arrow-right" />{' '}
                 <a
-                  href="mailto:far@fine.digital"
+                  href={`mailto:${constants.contactEmail}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.link}
@@ -109,49 +92,56 @@ const Home: NextPage = () => {
                 </a>
               </p>
             </div>
+          </article>
+          <article className={styles.joinUsWrapper}>
             <div className={styles.joinUsSection}>
-              <h3 className={styles.subheader}>Join Our Team</h3>
+              <h3 className={styles.subheader}>Investors</h3>
               <p className={styles.text}>
-                If you are interested in being part of FINE and feel you have something unique to
-                contribute, we would like to hear from you. We are looking to collaborate with
-                Curators, Solidity Developers and others. <br />
-                <Icon icon="arrow-right" />{' '}
-                <a href="mailto:far@fine.digital" className={styles.link}>
+                If you are a strategic investor and would like to grow with us, we are looking for
+                long-term partnerships that are willing to be part of a cultural movement utilizing
+                blockchain technology.
+                <br /> <Icon icon="arrow-right" />{' '}
+                <a href={`mailto:${constants.contactEmail}`} className={styles.link}>
                   Contact us.
                 </a>
               </p>
             </div>
+
+            <div className={styles.joinUsSection} />
+            <div className={styles.joinUsSection} />
             <div className={styles.joinUsSection}>
               <h3 className={styles.subheader}>Collectors</h3>
-              <p className={styles.text}>
-                We are pleased to share upcoming artist projects, special programming and collectors
-                circle details. Kindly join our email list to stay updated:
-              </p>
-              <form className={styles.inputWrapper} onSubmit={handleSubscribe}>
-                <input
-                  placeholder="Email"
-                  type="email"
-                  value={collectorsEmail}
-                  onChange={e => setCollectorsEmail(e.target.value)}
-                />
-                <button type="submit" className={styles.btn}>
-                  SUBSCRIBE
-                </button>
-              </form>
+              <div>
+                <p className={styles.text}>
+                  We are pleased to share upcoming artist projects, special programming and
+                  collectors circle details. Kindly join our email list to stay updated:
+                </p>
+                <form className={styles.inputWrapper} onSubmit={handleSubscribe}>
+                  <input
+                    placeholder="Email"
+                    type="email"
+                    value={collectorsEmail}
+                    onChange={e => setCollectorsEmail(e.target.value)}
+                  />
+                  <button type="submit" className={styles.btn}>
+                    SUBSCRIBE
+                  </button>
+                </form>
+              </div>
             </div>
           </article>
         </main>
         <footer className={styles.footer}>
           <div style={{ marginLeft: FWidth }} className={styles.footerContent}>
-            <h3 className={styles.subheader}>
-              Join our community on <Icon icon="arrow-right" size="xl" />{' '}
-              <a
-                href="mailto:far@fine.digital"
-                className={classNames(styles.link, styles.discordLink)}
-              >
-                Discord.
+            <h3 className={styles.subheader}>Join Our Team</h3>
+            <p className={styles.text}>
+              If you are interested in being part of FINE and feel you have something unique to
+              contribute, we would like to hear from you. We are looking to collaborate with
+              Curators, Solidity Developers and others. <Icon icon="arrow-right" />{' '}
+              <a href={`mailto:${constants.contactEmail}`} className={styles.link}>
+                Contact us.
               </a>
-            </h3>
+            </p>
           </div>
         </footer>
       </div>
