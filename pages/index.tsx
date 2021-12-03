@@ -48,29 +48,30 @@ const Home: NextPage = () => {
               dialogue within the contemporary visual culture.
             </p>
           </article>
-
-          <article className={styles.whenWrapper} id={sections[1]}>
-            <h3 className={styles.subheader}>When?</h3>
-            <p className={styles.text}>
-              FINE is pleased to announce it will be launching its first season in early 2022.
-              Kindly subscribe to our newsletter to stay updated and receive details on our upcoming
-              launch:
-            </p>
-            <form className={styles.inputWrapper} onSubmit={handleSubscribe}>
-              <input
-                placeholder="Email"
-                type="email"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-              />
-              <button type="submit" className={styles.btn}>
-                SUBSCRIBE
-              </button>
-            </form>
-          </article>
-          <article className={styles.releaseWrapper}>
-            <h4 className={styles.year}>20</h4>
-            <h4 className={styles.year}>22</h4>
+          <article className={styles.releaseWrapper} id={sections[1]}>
+            <div className={styles.whenWrapper} id={sections[1]}>
+              <h3 className={styles.subheader}>When?</h3>
+              <p className={styles.text}>
+                FINE is pleased to announce it will be launching its first season in early 2022.
+                Kindly subscribe to our newsletter to stay updated and receive details on our
+                upcoming launch:
+              </p>
+              <form className={styles.inputWrapper} onSubmit={handleSubscribe}>
+                <input
+                  placeholder="Email"
+                  type="email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                />
+                <button type="submit" className={styles.btn}>
+                  SUBSCRIBE
+                </button>
+              </form>
+            </div>
+            <div className={styles.dateWrapper}>
+              <h4 className={styles.year}>20</h4>
+              <h4 className={styles.year}>22</h4>
+            </div>
           </article>
           <article className={styles.artistsWrapper} id={sections[2]}>
             <div className={styles.contentWrapper}>

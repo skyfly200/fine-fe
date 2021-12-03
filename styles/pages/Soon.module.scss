@@ -32,26 +32,36 @@
     .whatWeDo {
       margin: 2rem 0;
     }
-    .whenWrapper {
-      margin-bottom: 2rem;
-      @include respond-to('tablet-sm') {
-        margin-bottom: 0;
-      }
-    }
     .releaseWrapper {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      margin-bottom: 2rem;
-      .year {
-        font-size: 16vw;
-        margin: 0;
-        line-height: 0.8;
-        font-weight: 800;
-      }
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-column: span 2;
+      gap: 3vw;
       @include respond-to('tablet-sm') {
+        grid-template-columns: 1fr;
+        grid-column: span 1;
+      }
+      .whenWrapper {
+        margin-bottom: 2rem;
+        @include respond-to('tablet-sm') {
+          margin-bottom: 0;
+        }
+      }
+      .dateWrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        margin-bottom: 2rem;
         .year {
-          font-size: 32vw;
+          font-size: 16vw;
+          margin: 0;
+          line-height: 0.8;
+          font-weight: 800;
+        }
+        @include respond-to('tablet-sm') {
+          .year {
+            font-size: 32vw;
+          }
         }
       }
     }
@@ -70,6 +80,7 @@
       background: white;
       border: none;
       margin-bottom: 2rem;
+      min-height: 90vh;
       .contentWrapper {
         position: absolute;
         top: 0;
@@ -93,11 +104,13 @@
       }
     }
     .joinUsWrapper {
+      min-height: 60vh;
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
       grid-column: span 2;
       margin-bottom: 4rem;
+      align-content: center;
       .joinUsSection {
         padding-bottom: 3rem;
         display: flex;
@@ -175,6 +188,9 @@
     @include respond-to('tablet-sm') {
       display: block;
     }
+  }
+  @include respond-to('tablet-sm') {
+    min-height: 60vh;
   }
 }
 
