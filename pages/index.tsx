@@ -14,7 +14,7 @@ const sections = ['what', 'when', 'artists', 'join us', 'be part']
 const Home: NextPage = () => {
   const [email, setEmail] = useState('')
   const [collectorsEmail, setCollectorsEmail] = useState('')
-  const [squareRef, { width: FWidth }] = useElementSize()
+  const [squareRef, { width: FWidth, height: FHeight }] = useElementSize()
   const handleSubscribe = () => console.log(email)
   return (
     <>
@@ -34,19 +34,21 @@ const Home: NextPage = () => {
         </h1>
         <h1 className={styles.logo}>INE</h1>
 
-        <main className={styles.main} style={{ marginLeft: FWidth }}>
+        <main className={styles.main} style={{ marginLeft: FWidth, marginTop: -FHeight }}>
           <article className={styles.blank} />
           <article className={styles.whatWeDo} id={sections[0]}>
-            <p className={styles.text}>
-              FINE is an artist-run platform supporting established and emerging artists in the NFT
-              space. We view the blockchain both as a platform and as a medium.
-            </p>
-            <p className={styles.text}>
-              We work one-on-one with artists to develop innovative projects and provide the tools
-              and the knowledge necessary to do so. We are focused on building a diverse roster of
-              artists aligned in their intention to create experimental work and foster a rich
-              dialogue within the contemporary visual culture.
-            </p>
+            <div>
+              <p className={styles.text}>
+                FINE is an artist-run platform supporting established and emerging artists in the
+                NFT space. We view the blockchain both as a platform and as a medium.
+              </p>
+              <p className={styles.text}>
+                We work one-on-one with artists to develop innovative projects and provide the tools
+                and the knowledge necessary to do so. We are focused on building a diverse roster of
+                artists aligned in their intention to create experimental work and foster a rich
+                dialogue within the contemporary visual culture.
+              </p>
+            </div>
           </article>
           <article className={styles.releaseWrapper} id={sections[1]}>
             <div className={styles.whenWrapper} id={sections[1]}>
