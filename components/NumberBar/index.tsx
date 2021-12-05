@@ -27,10 +27,11 @@ const NumberBar: React.FC<NumberBarProps> = ({ sections }) => {
           currentClassName="is-current"
         >
           {sections.map((sec, i) => (
-            <div
-              key={sec + i}
-              className={classNames(style.line, { [style.openLine]: sec === activeSection })}
-            />
+            <a key={sec + i} href={`#${sec}`}>
+              <div
+                className={classNames(style.line, { [style.openLine]: sec === activeSection })}
+              />
+            </a>
           ))}
         </Scrollspy>
       </div>
