@@ -1,21 +1,21 @@
-import classNames from 'classnames'
+import { useState } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { useState } from 'react'
+import cn from 'classnames'
+
 import Icon from '../components/Icon'
 import NumberBar from '../components/NumberBar'
-import SoonCanvas from '../components/SoonCanvas'
+import { constants } from '../utils'
 
-import styles from '../styles/pages/Soon.module.scss'
-import { constants, useElementSize } from '../utils'
+import style from '../styles/pages/Soon.module.scss'
 
 const sections = ['what', 'when', 'artists', 'join us', 'be part']
 
 const Home: NextPage = () => {
   const [email, setEmail] = useState('')
   const [collectorsEmail, setCollectorsEmail] = useState('')
-  const [squareRef, { width: FWidth, height: FHeight }] = useElementSize()
   const handleSubscribe = () => console.log(email)
+
   return (
     <>
       <Head>
@@ -28,124 +28,124 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NumberBar sections={sections} />
-      <div className={styles.wrapper} style={{ position: 'relative' }}>
-        <h1 ref={squareRef} className={classNames(styles.logo, styles.f)}>
-          F
-        </h1>
-        <h1 className={styles.logo}>INE</h1>
 
-        <main className={styles.main} style={{ marginLeft: FWidth, marginTop: -FHeight }}>
-          <article className={styles.blank} />
-          <article className={styles.whatWeDo} id={sections[0]}>
+      <div className={style.pageWrapper}>
+        <h1 className={style.logo}>FINE</h1>
+        <h1 className={style.stickyF}>F</h1>
+        <section className={cn(style.what, style.FPadding)} id={sections[0]}>
+          <div className={style.blank} />
+          <div>
             <div>
-              <p className={styles.text}>
+              <p className={style.text}>
                 FINE is an artist-run platform supporting established and emerging artists in the
                 NFT space. We view the blockchain both as a platform and as a medium.
               </p>
-              <p className={styles.text}>
+              <p className={style.text}>
                 We work one-on-one with artists to develop innovative projects and provide the tools
                 and the knowledge necessary to do so. We are focused on building a diverse roster of
                 artists aligned in their intention to create experimental work and foster a rich
                 dialogue within the contemporary visual culture.
               </p>
             </div>
-          </article>
-          <article className={styles.releaseWrapper} id={sections[1]}>
-            <div className={styles.whenWrapper} id={sections[1]}>
-              <h3 className={styles.subheader}>When?</h3>
-              <p className={styles.text}>
-                FINE is pleased to announce it will be launching its first season in early 2022.
-                Kindly subscribe to our newsletter to stay updated and receive details on our
-                upcoming launch:
-              </p>
-              <form className={styles.inputWrapper} onSubmit={handleSubscribe}>
-                <input
-                  placeholder="Email"
-                  type="email"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                />
-                <button type="submit" className={styles.btn}>
-                  SUBSCRIBE
-                </button>
-              </form>
-            </div>
-            <div className={styles.dateWrapper}>
-              <h4 className={styles.year}>20</h4>
-              <h4 className={styles.year}>22</h4>
-            </div>
-          </article>
-          <article className={styles.artistsWrapper} id={sections[2]}>
-            <div className={styles.contentWrapper}>
-              <h3 className={styles.subheader}>Artists Submissions</h3>
-              <p className={styles.text}>
+          </div>
+        </section>
+        <section className={cn(style.when, style.FPadding)} id={sections[1]}>
+          <div className={style.whenWrapper}>
+            <h3 className={style.subheader}>When?</h3>
+            <p className={style.text}>
+              FINE is pleased to announce it will be launching its first season in early 2022.
+              Kindly subscribe to our newsletter to stay updated and receive details on our upcoming
+              launch:
+            </p>
+            <form className={style.inputWrapper} onSubmit={handleSubscribe}>
+              <input
+                placeholder="Email"
+                type="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+              />
+              <button type="submit" className={style.btn}>
+                SUBSCRIBE
+              </button>
+            </form>
+          </div>
+          <div className={style.dateWrapper}>
+            <h4 className={style.year}>20</h4>
+            <h4 className={style.year}>22</h4>
+          </div>
+        </section>
+        <section className={style.FPadding} id={sections[2]}>
+          <div className={style.artistsWrapper}>
+            <div className={style.contentWrapper}>
+              <h3 className={style.subheader}>Artists Submissions</h3>
+              <p className={style.text}>
                 We are interested in submissions from artists all around the world who are focused
                 on creating with on-chain technologies and would like to develop projects with us,
                 kindly submit your proposal <Icon icon="arrow-right" />{' '}
-                <a href="https://forms.gle/fJHnHrpvpXn8oA5B9" className={styles.link}>
+                <a href="https://forms.gle/fJHnHrpvpXn8oA5B9" className={style.link}>
                   here
                 </a>
                 .
               </p>
-              <p className={styles.text}>
+              <p className={style.text}>
                 Submit any submission questions <Icon icon="arrow-right" />{' '}
                 <a
                   href={`mailto:${constants.contactEmail}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={styles.link}
+                  className={style.link}
                 >
                   here.
                 </a>
               </p>
             </div>
-          </article>
-          <article className={styles.joinUsWrapper} id={sections[3]}>
-            <div className={styles.joinUsSection}>
-              <h3 className={styles.subheader}>Investors</h3>
-              <p className={styles.text}>
-                If you are a strategic investor and would like to grow with us, we are looking for
-                long-term partnerships that are willing to be part of a cultural movement utilizing
-                blockchain technology.
-                <br /> <Icon icon="arrow-right" />{' '}
-                <a href={`mailto:${constants.contactEmail}`} className={styles.link}>
-                  Contact us.
-                </a>
-              </p>
-            </div>
+          </div>
+        </section>
+        <section className={cn(style.joinUsWrapper, style.FPadding)} id={sections[3]}>
+          <div className={style.joinUsSection}>
+            <h3 className={style.subheader}>Investors</h3>
+            <p className={style.text}>
+              If you are a strategic investor and would like to grow with us, we are looking for
+              long-term partnerships that are willing to be part of a cultural movement utilizing
+              blockchain technology.
+              <br /> <Icon icon="arrow-right" />{' '}
+              <a href={`mailto:${constants.contactEmail}`} className={style.link}>
+                Contact us.
+              </a>
+            </p>
+          </div>
 
-            <div className={classNames(styles.joinUsSection, styles.blank)} />
-            <div className={classNames(styles.joinUsSection, styles.blank)} />
-            <div className={styles.joinUsSection}>
-              <h3 className={styles.subheader}>Collectors</h3>
-              <div>
-                <p className={styles.text}>
-                  We are pleased to share upcoming artist projects, special programming and
-                  collectors circle details. Kindly join our email list to stay updated:
-                </p>
-                <form className={styles.inputWrapper} onSubmit={handleSubscribe}>
-                  <input
-                    placeholder="Email"
-                    type="email"
-                    value={collectorsEmail}
-                    onChange={e => setCollectorsEmail(e.target.value)}
-                  />
-                  <button type="submit" className={styles.btn}>
-                    SUBSCRIBE
-                  </button>
-                </form>
-              </div>
+          <div className={cn(style.joinUsSection, style.blank)} />
+          <div className={cn(style.joinUsSection, style.blank)} />
+          <div className={style.joinUsSection}>
+            <h3 className={style.subheader}>Collectors</h3>
+            <div>
+              <p className={style.text}>
+                We are pleased to share upcoming artist projects, special programming and collectors
+                circle details. Kindly join our email list to stay updated:
+              </p>
+              <form className={style.inputWrapper} onSubmit={handleSubscribe}>
+                <input
+                  placeholder="Email"
+                  type="email"
+                  value={collectorsEmail}
+                  onChange={e => setCollectorsEmail(e.target.value)}
+                />
+                <button type="submit" className={style.btn}>
+                  SUBSCRIBE
+                </button>
+              </form>
             </div>
-          </article>
-        </main>
-        <footer className={styles.footer} id={sections[4]}>
-          <div style={{ marginLeft: FWidth }} className={styles.footerContent}>
-            <h3 className={styles.subheader}>Join Our Team</h3>
-            <p className={styles.text}>
+          </div>
+        </section>
+        <footer className={cn(style.footer, style.FPadding)} id={sections[4]}>
+          <div className={style.footerContent}>
+            <h3 className={style.subheader}>Join Our Team</h3>
+            <p className={style.text}>
               If you are interested in being part of FINE and feel you have something unique to
               contribute, we would like to hear from you. We are looking to collaborate with
               Curators, Solidity Developers and others. <Icon icon="arrow-right" />{' '}
-              <a href={`mailto:${constants.contactEmail}`} className={styles.link}>
+              <a href={`mailto:${constants.contactEmail}`} className={style.link}>
                 Contact us.
               </a>
             </p>

@@ -1,161 +1,40 @@
 @import '../mixins.scss';
 
-.logo {
+.logoLetters {
   font-weight: 900;
   font-size: 24.8vw;
   margin: 0;
   line-height: 0.75;
-  display: inline;
-  position: absolute;
-  top: 0;
-  right: 0;
-  &.f {
-    position: sticky;
-    top: -5.5vw;
-  }
   @include respond-to('mobile') {
     font-size: 24.5vw;
   }
 }
 
-.wrapper {
-  background-color: color(bg-grey-color);
-  .main {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3vw;
-    padding: 0 3vw;
-    @include respond-to('tablet-sm') {
-      grid-template-columns: 100%;
-      .blank {
-        display: none;
-      }
-    }
-
-    .whatWeDo {
-      margin: 2rem 0;
-      min-height: 90vh;
-      display: flex;
-      align-items: flex-end;
-    }
-    .releaseWrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-column: span 2;
-      gap: 3vw;
-      @include respond-to('tablet-sm') {
-        grid-template-columns: 1fr;
-        grid-column: span 1;
-      }
-      .whenWrapper {
-        margin-bottom: 1rem;
-        @include respond-to('tablet-sm') {
-          margin-bottom: 0;
-        }
-      }
-      .dateWrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        margin-bottom: 1rem;
-        @include respond-to('tablet-sm') {
-          margin-bottom: 0;
-        }
-        .year {
-          font-size: 16vw;
-          margin: 0;
-          line-height: 0.8;
-          font-weight: 800;
-        }
-        @include respond-to('tablet-sm') {
-          .year {
-            font-size: 32vw;
-          }
-        }
-      }
-    }
-    .artistsWrapper {
-      position: relative;
-      text-align: center;
-      grid-column: span 2;
-      width: 100%;
-      height: 0;
-      padding-bottom: 62%;
-      border-radius: 50%;
-      border: 1px solid;
-      display: flex;
-      align-items: center;
-      min-height: 500px;
-      background: white;
-      border: none;
-      margin-bottom: 2rem;
-      min-height: 90vh;
-      .contentWrapper {
-        position: absolute;
-        top: 0;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 5vw;
-        width: 100%;
-        align-items: center;
-
-        .text {
-          max-width: 500px;
-        }
-        .subheader {
-          font-weight: 900;
-        }
-      }
-      @include respond-to('tablet-sm') {
-        grid-column: span 1;
-      }
-    }
-    .joinUsWrapper {
-      min-height: 60vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      grid-column: span 2;
-      margin-bottom: 4rem;
-      align-content: center;
-      .joinUsSection {
-        padding-bottom: 3rem;
-        display: flex;
-        align-items: flex-end;
-        .subheader {
-          transform: matrix(0, -1, 1, 0, 0, 18);
-          margin-top: 0;
-          max-width: 4rem;
-          @include respond-to('mobile') {
-            transform: matrix(0, -1, 1, 0, 0, 0);
-            max-width: 3rem;
-          }
-        }
-        &:first-child {
-          .text {
-            margin: 0;
-          }
-        }
-        &.blank {
-          padding-bottom: 0;
-        }
-        @include respond-to('tablet-sm') {
-          padding-bottom: 7rem;
-        }
-        @include respond-to('mobile') {
-          padding-bottom: 1.5rem;
-        }
-      }
-      @include respond-to('tablet-sm') {
-        grid-template-columns: 100%;
-        grid-template-rows: repeat(4, max-content);
-        grid-column: span 1;
-      }
-    }
+.logo {
+  @extend .logoLetters;
+  display: inline-block;
+  top: 0;
+  right: 0;
+  position: absolute;
+  &::first-letter {
+    color: color(bg-grey-color);
   }
 }
+
+.stickyF {
+  @extend .logoLetters;
+  position: fixed;
+  top: 0;
+  left: 1vw;
+  color: black;
+  z-index: 3;
+}
+
+.FPadding {
+  padding: 1rem;
+  padding-left: 29%;
+}
+
 .subheader {
   text-transform: uppercase;
   font-size: 2rem;
@@ -166,7 +45,7 @@
 }
 
 .text {
-  font-family: Lora;
+  // font-family: Lora;
   line-height: 1.4;
   @include respond-to('mobile') {
     font-size: 0.8rem;
@@ -179,27 +58,6 @@
   font-weight: 600;
   &.discordLink {
     font-weight: 900;
-  }
-}
-
-.footer {
-  background: #fff;
-  height: 300px;
-  display: flex;
-  align-items: center;
-  .footerContent {
-    padding: 0 3vw;
-    display: flex;
-    gap: 2rem;
-    .subheader {
-      white-space: nowrap;
-    }
-    @include respond-to('tablet-sm') {
-      display: block;
-    }
-  }
-  @include respond-to('tablet-sm') {
-    min-height: 60vh;
   }
 }
 
@@ -224,5 +82,164 @@
     background: black;
     color: white;
     padding: 0 1rem;
+  }
+}
+
+.pageWrapper {
+  background-color: color(bg-grey-color);
+
+  @include respond-to('tablet-sm') {
+    grid-template-columns: 100%;
+    .blank {
+      display: none;
+    }
+  }
+
+  .what {
+    height: 100vh;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+    div {
+      flex: 1;
+    }
+  }
+
+  .when {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column: span 2;
+    gap: 3vw;
+    @include respond-to('tablet-sm') {
+      grid-template-columns: 1fr;
+      grid-column: span 1;
+    }
+    .whenWrapper {
+      margin-bottom: 1rem;
+      @include respond-to('tablet-sm') {
+        margin-bottom: 0;
+      }
+    }
+    .dateWrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      margin-bottom: 1rem;
+      @include respond-to('tablet-sm') {
+        margin-bottom: 0;
+      }
+      .year {
+        font-size: 16vw;
+        margin: 0;
+        line-height: 0.8;
+        font-weight: 800;
+      }
+      @include respond-to('tablet-sm') {
+        .year {
+          font-size: 32vw;
+        }
+      }
+    }
+  }
+  .artistsWrapper {
+    position: relative;
+    text-align: center;
+    grid-column: span 2;
+    height: 0;
+    padding-bottom: 62%;
+    border-radius: 50%;
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 500px;
+    background: white;
+    border: none;
+    margin-bottom: 2rem;
+    min-height: 90vh;
+    .contentWrapper {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5vw;
+      width: 100%;
+      align-items: center;
+
+      .text {
+        max-width: 500px;
+      }
+      .subheader {
+        font-weight: 900;
+      }
+    }
+    @include respond-to('tablet-sm') {
+      grid-column: span 1;
+    }
+  }
+  .joinUsWrapper {
+    min-height: 80vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-column: span 2;
+    margin-bottom: 4rem;
+    align-content: center;
+    .joinUsSection {
+      padding-bottom: 3rem;
+      display: flex;
+      align-items: flex-end;
+      .subheader {
+        transform: matrix(0, -1, 1, 0, 0, 18);
+        margin-top: 0;
+        max-width: 4rem;
+        @include respond-to('mobile') {
+          transform: matrix(0, -1, 1, 0, 0, 0);
+          max-width: 3rem;
+        }
+      }
+      &:first-child {
+        .text {
+          margin: 0;
+        }
+      }
+      &.blank {
+        padding-bottom: 0;
+      }
+      @include respond-to('tablet-sm') {
+        padding-bottom: 7rem;
+      }
+      @include respond-to('mobile') {
+        padding-bottom: 1.5rem;
+      }
+    }
+    @include respond-to('tablet-sm') {
+      grid-template-columns: 100%;
+      grid-template-rows: repeat(4, max-content);
+      grid-column: span 1;
+    }
+  }
+
+  .footer {
+    background: #fff;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    .footerContent {
+      padding: 0 3vw;
+      display: flex;
+      gap: 2rem;
+      .subheader {
+        white-space: nowrap;
+      }
+      @include respond-to('tablet-sm') {
+        display: block;
+      }
+    }
+    @include respond-to('tablet-sm') {
+      min-height: 60vh;
+    }
   }
 }
