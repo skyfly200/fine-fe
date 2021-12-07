@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import Script from 'next/script'
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import dynamic from 'next/dynamic'
 import cn from 'classnames'
 
 import Icon from '../components/Icon'
@@ -8,7 +10,8 @@ import NumberBar from '../components/NumberBar'
 import { constants } from '../utils'
 
 import style from '../styles/pages/Soon.module.scss'
-
+import SoonCanvas from '../components/SoonCanvas'
+const DynamicComponent = dynamic(() => import('../components/SoonCanvas'))
 const sections = ['what', 'when', 'artists', 'join us', 'be part']
 
 const Home: NextPage = () => {
@@ -27,11 +30,49 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NumberBar sections={sections} />
+      <Script id="vertexShader" type="x-shader/x-vertex">
+        {`
+          varying vec2 vUv;
+          void main() {
+            vUv = uv;
+            gl_Position = projectionMatrix 
+              * modelViewMatrix 
+              * vec4( position, 1.0 );
+          }
+      `}
+      </Script>
 
+      <Script id="fragmentShader" type="x-shader/x-fragment">
+        {`
+          uniform float amount;
+          uniform sampler2D tDiffuse;
+          varying vec2 vUv;
+
+          float random( vec2 p )
+          {
+            vec2 K1 = vec2(
+              23.14069263277926, // e^pi (Gelfond's constant)
+              2.665144142690225 // 2^sqrt(2) (Gelfondâ€“Schneider constant)
+            );
+            return fract( cos( dot(p,K1) ) * 12345.6789 );
+          }
+
+          void main() {
+
+            vec4 color = texture2D( tDiffuse, vUv );
+            vec2 uvRandom = vUv;
+            uvRandom.y *= random(vec2(uvRandom.y,amount));
+            color.rgb += random(uvRandom)*0.15;
+            gl_FragColor = vec4( color  );
+          }
+      `}
+      </Script>
+      <NumberBar sections={sections} />
+      <DynamicComponent />
       <div className={style.pageWrapper}>
         <h1 className={style.logo}>FINE</h1>
         <h1 className={style.stickyF}>F</h1>
+
         <section className={cn(style.what, style.FPadding)} id={sections[0]}>
           <div className={style.blank} />
           <div>

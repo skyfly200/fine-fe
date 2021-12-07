@@ -1,13 +1,13 @@
 import { useEffect, useRef } from 'react';
 import style from './style.module.scss';
-import { drawFine } from '../../utils';
+import { sceneSetup } from '../../utils';
 
 const SoonCanvas = () => {
   const canvasContainer = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      drawFine(canvasContainer);
+      sceneSetup(canvasContainer);
     }
   }, []);
 

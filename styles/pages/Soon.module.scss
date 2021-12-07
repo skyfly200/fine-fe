@@ -16,8 +16,9 @@
   top: 0;
   right: 0;
   position: absolute;
+
   &::first-letter {
-    color: color(bg-grey-color);
+    color: transparent;
   }
 }
 
@@ -155,7 +156,7 @@
     align-items: center;
     justify-content: center;
     min-height: 500px;
-    background: white;
+    background-color: color(white-color);
     border: none;
     margin-bottom: 2rem;
     min-height: 90vh;
