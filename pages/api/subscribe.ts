@@ -23,7 +23,9 @@ const subscribe = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(201).json({ error: '' })
   } catch (error) {
     let msg = 'Something went wrong. Try again later.'
+    // @ts-ignore
     if (error.response.error.text) {
+      // @ts-ignore
       msg = JSON.parse(error.response.error.text).title
     }
     return res.status(400).json({ error: msg })
