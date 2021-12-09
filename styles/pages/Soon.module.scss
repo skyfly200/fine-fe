@@ -165,6 +165,7 @@
       border-left: 1px solid #000;
       background-color: rgba(0, 0, 0, 0);
       transition: background-color 0.15s ease-in;
+      padding-top: 26vw;
       &:hover {
         background-color: rgba(0, 0, 0, 0.08);
       }
@@ -174,7 +175,6 @@
       @include respond-to('mobile') {
         min-width: 90vw;
         padding: 0.5rem;
-        padding-top: 26vw;
         padding-bottom: 3rem;
       }
     }

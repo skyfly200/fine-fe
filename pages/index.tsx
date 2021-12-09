@@ -149,7 +149,9 @@ const HomePage: NextPage = () => {
             <p className={style.text}>
               If you are interested in being part of FINE and feel you have something unique to
               contribute, we would like to hear from you. We are looking to collaborate with
-              Curators, Solidity Developers and others. <Icon icon="arrow-right" />{' '}
+              Curators, Solidity Developers and others. <br />
+              <br />
+              <Icon icon="arrow-right" />{' '}
               <a href={`mailto:${constants.contactEmail}`} className={style.link}>
                 Contact us.
               </a>
