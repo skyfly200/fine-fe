@@ -51,7 +51,7 @@ function Scene() {
         color={blobColor}
         roughness={0}
         metalness={0}
-        bumpScale={0.0005}
+        bumpScale={0.02}
         clearcoat={1}
         clearcoatRoughness={1}
         radius={1}
