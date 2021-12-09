@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
@@ -9,13 +9,41 @@ import Icon from '../components/Icon'
 import { constants } from '../utils'
 
 import style from '../styles/pages/Soon.module.scss'
+import Button from '../components/Button'
+import { ToastContext } from '../containers/ToastProvider'
 
-const DynamicSoonCanvas = dynamic(() => import('../components/SoonCanvas'))
+const DynamicSoonCanvas = dynamic(() => import('../components/SoonCanvas2'))
 
 const HomePage: NextPage = () => {
   const [email, setEmail] = useState<string>('')
-  const [collectorsEmail, setCollectorsEmail] = useState<string>('')
-  const handleSubscribe = () => console.log(email)
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+  const { notify } = useContext(ToastContext)
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    const res = await fetch('/api/subscribe', {
+      body: JSON.stringify({
+        email
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST'
+    })
+
+    const { error } = await res.json()
+    if (error) {
+      console.log(error)
+      notify('error', error)
+      setIsSubmitting(false)
+      return
+    }
+    notify('success', 'Success! 🎉 You are now subscribed to the newsletter.')
+
+    setEmail('')
+    setIsSubmitting(false)
+  }
 
   return (
     <>
@@ -65,9 +93,7 @@ const HomePage: NextPage = () => {
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                 />
-                <button type="submit" className={style.btn}>
-                  SUBSCRIBE
-                </button>
+                <Button type="submit" text="SUBSCRIBE" loading={isSubmitting} overBlack />
               </form>
             </div>
             <div className={style.dateWrapper}>
@@ -130,12 +156,10 @@ const HomePage: NextPage = () => {
                   <input
                     placeholder="Email"
                     type="email"
-                    value={collectorsEmail}
-                    onChange={e => setCollectorsEmail(e.target.value)}
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
                   />
-                  <button type="submit" className={style.btn}>
-                    SUBSCRIBE
-                  </button>
+                  <Button type="submit" text="SUBSCRIBE" loading={isSubmitting} />
                 </form>
               </div>
             </div>

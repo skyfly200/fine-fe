@@ -1,8 +1,13 @@
-import "../styles/main.scss";
-import type { AppProps } from "next/app";
+import '../styles/main.scss'
+import type { AppProps } from 'next/app'
+import ToastProvider from '../containers/ToastProvider'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <ToastProvider>
+      <Component {...pageProps} />
+    </ToastProvider>
+  )
 }
 
-export default MyApp;
+export default MyApp
