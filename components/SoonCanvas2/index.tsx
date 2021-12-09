@@ -14,7 +14,7 @@ import style from './style.module.scss'
 
 const colors = ['#ffbe0b', '#fb5607', '#ff006e', '#8338ec', '#3a86ff', '#fafafa']
 // @ts-ignore
-function MainSphere({ material, onPointerEnter }) {
+function MainSphere({ material, onPointerEnter, onClick }) {
   const main = useRef(null)
 
   useFrame(({ clock, mouse }) => {
@@ -33,6 +33,7 @@ function MainSphere({ material, onPointerEnter }) {
       material={material}
       position={[0, 0, 0]}
       onPointerEnter={onPointerEnter}
+      onClick={onClick}
     />
   )
 }
@@ -56,7 +57,7 @@ function Scene() {
         color={blobColor}
         roughness={0}
         metalness={0}
-        bumpScale={0.02}
+        bumpScale={0.005}
         clearcoat={1}
         clearcoatRoughness={1}
         radius={1}
@@ -66,6 +67,7 @@ function Scene() {
         <MainSphere
           material={material}
           onPointerEnter={() => setBlobColor(colors[Math.floor(Math.random() * colors.length)])}
+          onClick={() => setBlobColor(colors[Math.floor(Math.random() * colors.length)])}
         />
       )}
     </>
