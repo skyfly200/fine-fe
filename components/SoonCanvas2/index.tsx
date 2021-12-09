@@ -13,13 +13,17 @@ import {
 import style from './style.module.scss'
 
 const colors = ['#ffbe0b', '#fb5607', '#ff006e', '#8338ec', '#3a86ff', '#fafafa']
-
+// @ts-ignore
 function MainSphere({ material, onPointerEnter }) {
-  const main = useRef()
-  // main sphere rotates following the mouse position
+  const main = useRef(null)
+
   useFrame(({ clock, mouse }) => {
+    if (main.current === null) return
+    // @ts-ignore
     main.current.rotation.z = clock.getElapsedTime()
+    // @ts-ignore
     main.current.rotation.y = THREE.MathUtils.lerp(main.current.rotation.y, mouse.x * Math.PI, 0.1)
+    // @ts-ignore
     main.current.rotation.x = THREE.MathUtils.lerp(main.current.rotation.x, mouse.y * Math.PI, 0.1)
   })
   return (
@@ -44,6 +48,7 @@ function Scene() {
 
   return (
     <>
+      {/*@ts-ignore */}
       <MeshDistortMaterial
         ref={set}
         envMap={envMap}
