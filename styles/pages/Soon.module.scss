@@ -1,4 +1,5 @@
 @import '../mixins.scss';
+@import '../components.scss';
 
 .logoLetters {
   font-weight: 900;
@@ -16,41 +17,20 @@
   top: 0;
   right: 0;
   position: absolute;
-
-  &::first-letter {
-    color: transparent;
-  }
 }
 
 .stickyF {
   @extend .logoLetters;
   position: fixed;
   top: 0;
-  left: 1vw;
+  left: 0.4vw;
   color: black;
   z-index: 3;
 }
 
 .FPadding {
   padding: 1rem;
-  padding-left: 29%;
-}
-
-.subheader {
-  text-transform: uppercase;
-  font-size: 2rem;
-  font-weight: 500;
-  @include respond-to('mobile') {
-    font-size: 1rem;
-  }
-}
-
-.text {
-  // font-family: Lora;
-  line-height: 1.4;
-  @include respond-to('mobile') {
-    font-size: 0.8rem;
-  }
+  padding-left: 29vw;
 }
 
 .link {
@@ -65,6 +45,7 @@
 .inputWrapper {
   display: flex;
   gap: 0.5rem;
+  max-width: 400px;
   input {
     border: 1px solid;
     height: 45px;
@@ -84,41 +65,58 @@
     color: white;
     padding: 0 1rem;
   }
+  &.overBlack {
+    input {
+      color: color(bg-grey-color);
+      background-color: rgba(255, 255, 255, 0.03);
+    }
+    .btn {
+      background-color: transparent;
+      border: 1px solid color(bg-grey-color);
+    }
+  }
 }
 
-.pageWrapper {
+.home {
   background-color: color(bg-grey-color);
-
-  @include respond-to('tablet-sm') {
-    grid-template-columns: 100%;
-    .blank {
-      display: none;
-    }
-  }
-
-  .what {
-    height: 100vh;
+  .hero {
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
     display: flex;
-    gap: 1rem;
     align-items: flex-end;
-    div {
+    .content {
       flex: 1;
+      z-index: 2;
+      .textXL {
+        font-size: 2rem;
+        @include respond-to('tablet-sm') {
+          font-size: 1.5rem;
+        }
+      }
     }
   }
-
   .when {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column: span 2;
     gap: 3vw;
-    min-height: 70vh;
+    background-color: black;
+    color: color(bg-grey-color);
     align-items: end;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
     @include respond-to('tablet-sm') {
       grid-template-columns: 1fr;
       grid-column: span 1;
     }
+    overflow: hidden;
     .whenWrapper {
-      margin-bottom: 1rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
       @include respond-to('tablet-sm') {
         margin-bottom: 0;
       }
@@ -127,7 +125,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      margin-bottom: 1rem;
+
       @include respond-to('tablet-sm') {
         margin-bottom: 0;
       }
@@ -136,6 +134,9 @@
         margin: 0;
         line-height: 0.8;
         font-weight: 800;
+        &:first-child {
+          line-height: 0.5;
+        }
       }
       @include respond-to('tablet-sm') {
         .year {
@@ -144,105 +145,89 @@
       }
     }
   }
-  .artistsWrapper {
+  .joinUs {
     position: relative;
-    text-align: center;
-    grid-column: span 2;
-    height: 0;
-    padding-bottom: 62%;
-    border-radius: 50%;
-    border: 1px solid;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 500px;
-    background-color: color(white-color);
-    border: none;
-    margin-bottom: 2rem;
-    min-height: 90vh;
-    .contentWrapper {
-      position: absolute;
-      top: 0;
-      height: 100%;
+    height: 100%;
+    padding-left: 50vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    flex-flow: row nowrap;
+    @include respond-to('tablet-sm') {
+      padding-left: 30vw;
+    }
+    .joinUsSection {
+      min-width: 50vw;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      padding: 5vw;
-      width: 100%;
-      align-items: center;
-
-      .text {
-        max-width: 500px;
+      justify-content: space-between;
+      padding: 2rem;
+      padding-bottom: 6rem;
+      border-left: 1px solid #000;
+      background-color: rgba(0, 0, 0, 0);
+      transition: background-color 0.15s ease-in;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.08);
       }
-      .subheader {
-        font-weight: 900;
-      }
-    }
-    @include respond-to('tablet-sm') {
-      grid-column: span 1;
-    }
-  }
-  .joinUsWrapper {
-    min-height: 80vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-column: span 2;
-    margin-bottom: 4rem;
-    align-content: center;
-    .joinUsSection {
-      padding-bottom: 3rem;
-      display: flex;
-      align-items: flex-end;
-      .subheader {
-        transform: matrix(0, -1, 1, 0, 0, 18);
-        margin-top: 0;
-        max-width: 4rem;
-        @include respond-to('mobile') {
-          transform: matrix(0, -1, 1, 0, 0, 0);
-          max-width: 3rem;
-        }
-      }
-      &:first-child {
-        .text {
-          margin: 0;
-        }
-      }
-      &.blank {
-        padding-bottom: 0;
-      }
-      @include respond-to('tablet-sm') {
-        padding-bottom: 7rem;
+      &:last-child {
+        border-right: 1px solid #000;
       }
       @include respond-to('mobile') {
-        padding-bottom: 1.5rem;
+        min-width: 90vw;
+        padding: 0.5rem;
+        padding-top: 26vw;
+        padding-bottom: 3rem;
       }
-    }
-    @include respond-to('tablet-sm') {
-      grid-template-columns: 100%;
-      grid-template-rows: repeat(4, max-content);
-      grid-column: span 1;
     }
   }
 
-  .footer {
-    background: #fff;
-    min-height: 70vh;
-    display: flex;
-    align-items: center;
-    .footerContent {
-      padding: 0 3vw;
-      display: flex;
-      gap: 2rem;
-      .subheader {
-        white-space: nowrap;
-      }
-      @include respond-to('tablet-sm') {
-        display: block;
-      }
+  .blank {
+    flex: 1;
+    @include respond-to('tablet-sm') {
+      display: none;
+    }
+  }
+}
+
+.container {
+  padding: 0 0.4vw;
+  @include respond-to('tablet-sm') {
+    padding: 0 0.5rem;
+  }
+}
+
+.text {
+  font-size: 1.25rem;
+  line-height: 1.25;
+  @include respond-to('tablet-sm') {
+    font-size: 1rem;
+  }
+}
+.subheader {
+  font-size: 2.5rem;
+  margin-top: 0;
+  @include respond-to('tablet-sm') {
+    font-size: 1.5rem;
+  }
+}
+
+.footer {
+  background: #fff;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  @extend .FPadding;
+  .footerContent {
+    padding: 0 3vw;
+
+    .subheader {
+      white-space: nowrap;
     }
     @include respond-to('tablet-sm') {
-      min-height: 60vh;
+      display: block;
     }
+  }
+  @include respond-to('tablet-sm') {
+    min-height: 60vh;
+    padding: 0;
   }
 }

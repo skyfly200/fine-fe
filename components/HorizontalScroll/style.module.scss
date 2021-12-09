@@ -1,0 +1,18 @@
+.TallOuterContainer {
+  position: relative;
+  width: 100%;
+}
+
+.StickyInnerContainer {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.HorizontalTranslateContainer {
+  position: absolute;
+  height: 100%;
+  will-change: transform;
+}
