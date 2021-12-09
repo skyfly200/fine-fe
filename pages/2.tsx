@@ -10,7 +10,7 @@ import { constants } from '../utils'
 
 import style from '../styles/pages/Soon.module.scss'
 
-const DynamicSoonCanvas = dynamic(() => import('../components/SoonCanvas'))
+const DynamicSoonCanvas = dynamic(() => import('../components/SoonCanvas2'))
 
 const HomePage: NextPage = () => {
   const [email, setEmail] = useState<string>('')
