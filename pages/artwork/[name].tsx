@@ -1,21 +1,22 @@
-import type { NextPage } from "next";
-import { useEffect, useRef } from "react";
-import Layout from "../../components/Layout";
-import { sceneSetup, useWindowSize } from "../../utils";
+import type { NextPage } from 'next'
+import { useEffect, useRef } from 'react'
+import Layout from '../../components/Layout'
+import { bigGrainyShape } from '../../components/Draws'
 
-import style from "../../styles/pages/artwork.module.scss";
+import { useWindowSize } from '../../utils'
+import style from '../../styles/pages/artwork.module.scss'
 
 const pieceConfig = {
   height: 400,
-  width: 280,
-};
+  width: 280
+}
 
 const ArtworkPage: NextPage = () => {
-  const canvasContainer = useRef<HTMLDivElement>(null);
-  const { height, width } = useWindowSize();
+  const canvasContainer = useRef<HTMLDivElement>(null)
+  const { height, width } = useWindowSize()
   useEffect(() => {
-    sceneSetup(canvasContainer);
-  }, []);
+    bigGrainyShape(canvasContainer)
+  }, [])
 
   return (
     <Layout hideLogo>
@@ -29,7 +30,7 @@ const ArtworkPage: NextPage = () => {
               width: pieceConfig.width,
               top: (height - pieceConfig.height) / 2,
               left: (width - pieceConfig.width) / 2,
-              marginBottom: (height - pieceConfig.height) / 2,
+              marginBottom: (height - pieceConfig.height) / 2
             }}
           />
           <div style={{ height: `${(height - pieceConfig.height) / 2}px` }} />
@@ -37,7 +38,7 @@ const ArtworkPage: NextPage = () => {
         </div>
       </div>
     </Layout>
-  );
-};
+  )
+}
 
-export default ArtworkPage;
+export default ArtworkPage
