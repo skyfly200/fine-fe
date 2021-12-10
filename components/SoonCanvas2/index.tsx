@@ -46,7 +46,7 @@ function Scene() {
     path: '/cube/'
   })
   // We use `useResource` to be able to delay rendering the spheres until the material is ready
-  const [material, set] = useState()
+  const [material, setMaterial] = useState()
   const [blobColor, setBlobColor] = useState(colors[colors.length - 1])
   const handleSelectColor = () => setBlobColor(pickRandomItem(colors, colors.indexOf(blobColor)))
 
@@ -54,7 +54,7 @@ function Scene() {
     <>
       {/*@ts-ignore */}
       <MeshDistortMaterial
-        ref={set}
+        ref={setMaterial}
         envMap={envMap}
         bumpMap={bumpMap}
         color={blobColor}

@@ -11,6 +11,7 @@ import { constants } from '../utils'
 import style from '../styles/pages/Soon.module.scss'
 import Button from '../components/Button'
 import { ToastContext } from '../containers/ToastProvider'
+import Link from '../components/Link'
 
 const DynamicSoonCanvas = dynamic(() => import('../components/SoonCanvas2'))
 
@@ -62,7 +63,18 @@ const HomePage: NextPage = () => {
           <DynamicSoonCanvas />
           <h1 className={style.logoLetters}>INE</h1>
           <div className={style.heroContent}>
-            <div className={style.blank} />
+            <div className={cn(style.ctaContainer, style.blank)}>
+              <div className={style.rotateCTA}>
+                <Link href="#artists">
+                  <button className={style.heroCTA}>
+                    <Icon icon="arrow-left" size="xl" />
+                    <h5>
+                      Artist <br /> submissions
+                    </h5>
+                  </button>
+                </Link>
+              </div>
+            </div>
             <div className={cn(style.content, style.container)}>
               <p className={style.textXL}>
                 FINE is an artist-run platform supporting established and emerging artists in the
@@ -77,36 +89,36 @@ const HomePage: NextPage = () => {
             </div>
           </div>
         </div>
-        <div>
-          <section className={cn(style.when, style.FPadding)}>
-            <div className={style.whenWrapper}>
-              <div>
-                <h3 className={style.subheader}>When?</h3>
-                <p className={style.text}>
-                  FINE is pleased to announce it will be launching its first season in early 2022.
-                  Kindly subscribe to our newsletter to stay updated and receive details on our
-                  upcoming launch:
-                </p>
-              </div>
-              <form className={cn(style.inputWrapper, style.overBlack)} onSubmit={handleSubscribe}>
-                <input
-                  placeholder="Email"
-                  type="email"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                />
-                <Button type="submit" text="SUBSCRIBE" loading={isSubmitting} overBlack />
-              </form>
+
+        <section className={cn(style.when, style.FPadding)}>
+          <div className={style.whenWrapper}>
+            <div>
+              <h3 className={style.subheader}>When?</h3>
+              <p className={style.text}>
+                FINE is pleased to announce it will be launching its first season in early 2022.
+                Kindly subscribe to our newsletter to stay updated and receive details on our
+                upcoming launch:
+              </p>
             </div>
-            <div className={style.dateWrapper}>
-              <h4 className={style.year}>20</h4>
-              <h4 className={style.year}>22</h4>
-            </div>
-          </section>
-        </div>
+            <form className={cn(style.inputWrapper, style.overBlack)} onSubmit={handleSubscribe}>
+              <input
+                placeholder="Email"
+                type="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+              />
+              <Button type="submit" text="SUBSCRIBE" loading={isSubmitting} overBlack />
+            </form>
+          </div>
+          <div className={style.dateWrapper}>
+            <h4 className={style.year}>20</h4>
+            <h4 className={style.year}>22</h4>
+          </div>
+        </section>
+
         <HorizontalScroll>
           <div className={style.joinUs}>
-            <div className={style.joinUsSection}>
+            <div className={style.joinUsSection} id="artists">
               <div className={style.cardTitle}>
                 <h3 className={style.subheader}>
                   Artists <br /> Submissions
