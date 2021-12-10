@@ -1,5 +1,6 @@
 import cn from 'classnames'
 import { ButtonHTMLAttributes } from 'react'
+import Spinner from '../Spinner'
 import style from './style.module.scss'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -16,7 +17,7 @@ const Button: React.FC<ButtonProps> = ({ overBlack, text, loading, ...buttonProp
     })}
     disabled={loading || buttonProps.disabled}
   >
-    {loading ? '...' : text}
+    {loading ? <Spinner /> : text}
   </button>
 )
 

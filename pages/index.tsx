@@ -60,19 +60,21 @@ const HomePage: NextPage = () => {
         <h1 className={style.stickyF}>F</h1>
         <div className={style.hero}>
           <DynamicSoonCanvas />
-          <h1 className={style.logo}>INE</h1>
-          <div className={style.blank} />
-          <div className={cn(style.content, style.container)}>
-            <p className={style.textXL}>
-              FINE is an artist-run platform supporting established and emerging artists in the NFT
-              space. We view the blockchain both as a platform and as a medium.
-            </p>
-            <p className={style.textXL}>
-              We work one-on-one with artists to develop innovative projects and provide the tools
-              and the knowledge necessary to do so. We are focused on building a diverse roster of
-              artists aligned in their intention to create experimental work and foster a rich
-              dialogue within the contemporary visual culture.
-            </p>
+          <h1 className={style.logoLetters}>INE</h1>
+          <div className={style.heroContent}>
+            <div className={style.blank} />
+            <div className={cn(style.content, style.container)}>
+              <p className={style.textXL}>
+                FINE is an artist-run platform supporting established and emerging artists in the
+                NFT space. We view the blockchain both as a platform and as a medium.
+              </p>
+              <p className={style.textXL}>
+                We work one-on-one with artists to develop innovative projects and provide the tools
+                and the knowledge necessary to do so. We are focused on building a diverse roster of
+                artists aligned in their intention to create experimental work and foster a rich
+                dialogue within the contemporary visual culture.
+              </p>
+            </div>
           </div>
         </div>
         <div>
@@ -105,10 +107,12 @@ const HomePage: NextPage = () => {
         <HorizontalScroll>
           <div className={style.joinUs}>
             <div className={style.joinUsSection}>
-              <h3 className={style.subheader}>
-                Artists <br /> Submissions
-              </h3>
-              <div>
+              <div className={style.cardTitle}>
+                <h3 className={style.subheader}>
+                  Artists <br /> Submissions
+                </h3>
+              </div>
+              <div className={style.cardContent}>
                 <p className={style.text}>
                   We are interested in submissions from artists all around the world who are focused
                   on creating with on-chain technologies and would like to develop projects with us,
@@ -133,21 +137,27 @@ const HomePage: NextPage = () => {
               </div>
             </div>
             <div className={style.joinUsSection}>
-              <h3 className={style.subheader}>Investors</h3>
-              <p className={style.text}>
-                If you are a strategic investor and would like to grow with us, we are looking for
-                long-term partnerships that are willing to be part of a cultural movement utilizing
-                blockchain technology.
-                <br />
-                <br /> <Icon icon="arrow-right" />{' '}
-                <a href={`mailto:${constants.contactEmail}`} className={style.link}>
-                  Contact us.
-                </a>
-              </p>
+              <div className={style.cardTitle}>
+                <h3 className={style.subheader}>Investors</h3>
+              </div>
+              <div className={style.cardContent}>
+                <p className={style.text}>
+                  If you are a strategic investor and would like to grow with us, we are looking for
+                  long-term partnerships that are willing to be part of a cultural movement
+                  utilizing blockchain technology.
+                  <br />
+                  <br /> <Icon icon="arrow-right" />{' '}
+                  <a href={`mailto:${constants.contactEmail}`} className={style.link}>
+                    Contact us.
+                  </a>
+                </p>
+              </div>
             </div>
             <div className={style.joinUsSection}>
-              <h3 className={style.subheader}>Collectors</h3>
-              <div>
+              <div className={style.cardTitle}>
+                <h3 className={style.subheader}>Collectors</h3>
+              </div>
+              <div className={style.cardContent}>
                 <p className={style.text}>
                   We are pleased to share upcoming artist projects, special programming and
                   collectors circle details. Kindly join our email list to stay updated:

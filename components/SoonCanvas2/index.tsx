@@ -11,6 +11,8 @@ import {
 } from '@react-three/drei'
 
 import style from './style.module.scss'
+import { pickRandomItem } from '../../utils'
+import Spinner from '../Spinner'
 
 const colors = ['#ffbe0b', '#fb5607', '#ff006e', '#8338ec', '#3a86ff', '#fafafa']
 // @ts-ignore
@@ -45,7 +47,8 @@ function Scene() {
   })
   // We use `useResource` to be able to delay rendering the spheres until the material is ready
   const [material, set] = useState()
-  const [blobColor, setBlobColor] = useState('#fafafa')
+  const [blobColor, setBlobColor] = useState(colors[colors.length - 1])
+  const handleSelectColor = () => setBlobColor(pickRandomItem(colors, colors.indexOf(blobColor)))
 
   return (
     <>
@@ -66,8 +69,8 @@ function Scene() {
       {material && (
         <MainSphere
           material={material}
-          onPointerEnter={() => setBlobColor(colors[Math.floor(Math.random() * colors.length)])}
-          onClick={() => setBlobColor(colors[Math.floor(Math.random() * colors.length)])}
+          onPointerEnter={handleSelectColor}
+          onClick={handleSelectColor}
         />
       )}
     </>
@@ -86,7 +89,15 @@ const SoonCanvas2 = () => {
           depth: false
         }}
       >
-        <Suspense fallback={<Html center>Loading.</Html>}>
+        <Suspense
+          fallback={
+            <Html center>
+              <div className={style.loaderCircle}>
+                <Spinner />
+              </div>
+            </Html>
+          }
+        >
           <Scene />
         </Suspense>
         <EffectComposer multisampling={0} disableNormalPass={true}>
