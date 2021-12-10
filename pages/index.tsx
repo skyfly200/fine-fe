@@ -9,7 +9,6 @@ import HorizontalScroll from '../components/HorizontalScroll'
 import Icon from '../components/Icon'
 import Button from '../components/Button'
 import Link from '../components/Link'
-import iconF from '../assets/icons/f.svg'
 
 import { constants } from '../utils'
 import style from '../styles/pages/Soon.module.scss'
@@ -55,6 +54,10 @@ const HomePage: NextPage = () => {
           name="description"
           content="artist-run platform supporting established artists in the NFT space and
             artists entering the NFT space for the first time"
+        />
+        <meta
+          property="og:image"
+          content="https://res.cloudinary.com/dhrwv7wvb/image/upload/v1639149533/fine/fine-meta-image_g1tndh.png"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
