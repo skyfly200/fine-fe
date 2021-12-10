@@ -1,17 +1,17 @@
-import { useEffect, useRef } from 'react';
-import style from './style.module.scss';
-import { sceneSetup } from '../../utils';
+import { useEffect, useRef } from 'react'
+import { marchingCube } from '../Draws'
+import style from './style.module.scss'
 
 const SoonCanvas = () => {
-  const canvasContainer = useRef<HTMLDivElement>(null);
+  const canvasContainer = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      sceneSetup(canvasContainer);
+      marchingCube(canvasContainer)
     }
-  }, []);
+  }, [])
 
-  return <div ref={canvasContainer} className={style.canvasContainer} />;
-};
+  return <div ref={canvasContainer} className={style.canvasContainer} />
+}
 
-export default SoonCanvas;
+export default SoonCanvas

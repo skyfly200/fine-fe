@@ -1,5 +1,3 @@
-export { default as sceneSetup } from './sceneSetup'
-export { default as sceneSetup2 } from './sceneSetup2'
 export { default as useWindowSize } from './useWindowSize'
 export { default as useElementSize } from './useElementSize'
 export { default as drawFine } from './drawFine'

@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import React, { Suspense, useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { EffectComposer, DepthOfField, Bloom, Noise, Vignette } from '@react-three/postprocessing'
+import { EffectComposer, Noise } from '@react-three/postprocessing'
 import {
   Html,
   Icosahedron,
@@ -11,8 +11,8 @@ import {
 } from '@react-three/drei'
 
 import style from './style.module.scss'
-import { pickRandomItem } from '../../utils'
-import Spinner from '../Spinner'
+import Spinner from '../../Spinner'
+import { pickRandomItem } from '../../../utils'
 
 const colors = ['#ffbe0b', '#fb5607', '#ff006e', '#8338ec', '#3a86ff', '#fafafa']
 // @ts-ignore
