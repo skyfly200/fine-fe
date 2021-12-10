@@ -4,14 +4,15 @@ import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import cn from 'classnames'
 
+import { ToastContext } from '../containers/ToastProvider'
 import HorizontalScroll from '../components/HorizontalScroll'
 import Icon from '../components/Icon'
-import { constants } from '../utils'
-
-import style from '../styles/pages/Soon.module.scss'
 import Button from '../components/Button'
-import { ToastContext } from '../containers/ToastProvider'
 import Link from '../components/Link'
+import iconF from '../assets/icons/f.svg'
+
+import { constants } from '../utils'
+import style from '../styles/pages/Soon.module.scss'
 
 const DynamicSoonCanvas = dynamic(() => import('../components/SoonCanvas2'))
 
@@ -58,7 +59,7 @@ const HomePage: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={style.home}>
-        <h1 className={style.stickyF}>F</h1>
+        <Icon icon="f-logo" size="F" className={style.stickyF} />
         <div className={style.hero}>
           <DynamicSoonCanvas />
           <h1 className={style.logoLetters}>INE</h1>

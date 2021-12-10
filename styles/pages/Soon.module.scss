@@ -12,10 +12,9 @@
 }
 
 .stickyF {
-  @extend .logoLetters;
   position: fixed;
-  top: 0;
-  left: 0.4vw;
+  top: 1.5vw;
+  left: 1.5vw;
   color: black;
   z-index: 3;
 }
@@ -118,7 +117,7 @@
         .textXL {
           font-size: 1.8rem;
           @include respond-to('tablet-sm') {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
           }
         }
       }
