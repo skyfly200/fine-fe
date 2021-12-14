@@ -12,7 +12,7 @@ let effectController = {
 
   speed: 0.35,
   numBlobs: 12,
-  resolution: 56,
+  resolution: 46,
   isolation: 111,
 
   floor: false,
