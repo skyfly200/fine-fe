@@ -1,8 +1,8 @@
-import type { NextPage } from "next";
-import Layout from "../../components/Layout";
+import type { NextPage } from 'next'
+import Layout from '../../containers/Layout'
 
 const ArtistsPage: NextPage = () => {
-  return <Layout>Artists page</Layout>;
-};
+  return <Layout>Artists page</Layout>
+}
 
-export default ArtistsPage;
+export default ArtistsPage

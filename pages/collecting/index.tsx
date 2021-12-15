@@ -1,8 +1,8 @@
-import type { NextPage } from "next";
-import Layout from "../../components/Layout";
+import type { NextPage } from 'next'
+import Layout from '../../containers/Layout'
 
 const CollectingPage: NextPage = () => {
-  return <Layout>test</Layout>;
-};
+  return <Layout>test</Layout>
+}
 
-export default CollectingPage;
+export default CollectingPage

@@ -11,7 +11,7 @@ const LogoCanvas = () => {
   }, [])
 
   return (
-    <Link href="/artwork/test" passHref>
+    <Link href="/artwork/1" passHref>
       <div ref={canvasContainer} className={style.canvasContainer} />
     </Link>
   )

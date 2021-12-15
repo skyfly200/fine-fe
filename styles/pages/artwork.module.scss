@@ -1,18 +1,39 @@
-@import "../mixins.scss";
+@import '../mixins.scss';
 
 .artwork {
   position: relative;
   .gallery {
-    height: calc(200vh - 2.8rem);
+    min-height: calc(200vh - 2.8rem);
     background-color: color(white-color);
   }
 
   .canvasWrapper {
     position: sticky;
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   .details {
     height: calc(100vh);
     background: color(black-color);
+    color: color(white-color);
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    .title {
+      font-size: 2.5rem;
+    }
+    .text {
+      font-size: 1.2rem;
+      line-height: 1.5;
+      font-weight: 400;
+    }
+    .artist,
+    .blank,
+    .about {
+      flex: 1;
+    }
   }
 }
