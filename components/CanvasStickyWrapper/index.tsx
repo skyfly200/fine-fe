@@ -29,8 +29,6 @@ const CanvasStickyWrapper: React.FC<CanvasStickyWrapperProps> = ({ children, siz
     if (isMobile) {
       const w = windowW - 32
       const h = (artH * w) / artW
-      console.log(artW, artH)
-      console.log(w, h)
       s.height = h
       s.width = w
       s.top = (windowH - h) / 2

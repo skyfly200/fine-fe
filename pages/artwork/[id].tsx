@@ -5,13 +5,12 @@ import { Artist, Artwork, IParams } from '../../types'
 import Layout from '../../containers/Layout'
 import CanvasIframe from '../../components/CanvasIframe'
 
-import { useWindowSize } from '../../utils'
 import artworks from '../../fixtures/artworks'
 import artists from '../../fixtures/artists'
-import style from '../../styles/pages/Artwork.module.scss'
 import Link from '../../components/Link'
 import Icon from '../../components/Icon'
 import CanvasStickyWrapper from '../../components/CanvasStickyWrapper'
+import style from '../../styles/pages/Artwork.module.scss'
 
 interface PiecePageProps {
   artwork: Artwork
