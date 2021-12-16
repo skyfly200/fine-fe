@@ -9,6 +9,11 @@ export interface Img {
   width?: number
 }
 
+export type Size = {
+  height: number
+  width: number
+}
+
 export interface News {
   title: string
   img: string
@@ -40,6 +45,7 @@ export interface Artwork {
   src: SrcType
   tokenData: TokenData
   script: string
+  size: Size
 }
 
 export type Artist = {

@@ -18,6 +18,10 @@ const artworks: Artwork[] = [
       { ['Fluidity']: ' Medium' },
       { ['Body']: ' Heavy' }
     ],
+    size: {
+      height: 400,
+      width: 400
+    },
     about: [
       'In efficitur arcu et urna efficitur, non placerat mi dignissim. Donec eget ante ut enim auctor sollicitudin at eu lectus. Aenean finibus massa lectus, vel suscipit lectus dictum vel. Etiam eu eros dui. Nullam at ullamcorper odio. Sed eu cursus est. Etiam elementum lectus sed justo tincidunt, eget gravida mi vulputate.'
     ],
@@ -36,6 +40,10 @@ const artworks: Artwork[] = [
     artistId: 'adamFerris',
     previewImg: {
       src: 'https://freight.cargo.site/w/1040/i/146412d1a936e15e8b41a1df0563d021e2b3b7af1c29d2742a4d364ba6f31dcb/nze.jpg'
+    },
+    size: {
+      height: 400,
+      width: 280
     },
     about: [
       'In efficitur arcu et urna efficitur, non placerat mi dignissim. Donec eget ante ut enim auctor sollicitudin at eu lectus. Aenean finibus massa lectus, vel suscipit lectus dictum vel. Etiam eu eros dui. Nullam at ullamcorper odio. Sed eu cursus est. Etiam elementum lectus sed justo tincidunt, eget gravida mi vulputate.'

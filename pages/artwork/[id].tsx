@@ -11,41 +11,25 @@ import artists from '../../fixtures/artists'
 import style from '../../styles/pages/Artwork.module.scss'
 import Link from '../../components/Link'
 import Icon from '../../components/Icon'
+import CanvasStickyWrapper from '../../components/CanvasStickyWrapper'
 
 interface PiecePageProps {
   artwork: Artwork
   artist: Artist
 }
 
-const pieceConfig = {
-  height: 400,
-  width: 280
-}
-
 const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist }) => {
-  const { height, width } = useWindowSize()
-
   return (
     <Layout hideLogo>
       <div className={style.artwork}>
         <div className={style.gallery}>
-          <div
-            className={style.canvasWrapper}
-            style={{
-              height: pieceConfig.height,
-              width: pieceConfig.width,
-              top: (height - pieceConfig.height) / 2,
-              left: (width - pieceConfig.width) / 2,
-              marginBottom: (height - pieceConfig.height) / 2
-            }}
-          >
+          <CanvasStickyWrapper size={artwork.size}>
             <CanvasIframe
               baseCode={artwork.src}
               draw={artwork.script}
               tokenData={artwork.tokenData}
             />
-          </div>
-          <div style={{ height: `${(height - pieceConfig.height) / 2}px` }} />
+          </CanvasStickyWrapper>
           <div className={style.details}>
             <div className={style.artist}>
               <div className={style.contentWrapper}>
