@@ -10,7 +10,7 @@ import artists from '../../fixtures/artists'
 import Link from '../../components/Link'
 import Icon from '../../components/Icon'
 import CanvasStickyWrapper from '../../components/CanvasStickyWrapper'
-import style from '../../styles/pages/Artwork.module.scss'
+import style from '../../styles/pages/artwork.module.scss'
 
 interface PiecePageProps {
   artwork: Artwork
