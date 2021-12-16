@@ -3,11 +3,21 @@ import { Artwork } from '../types'
 const artworks: Artwork[] = [
   {
     id: '1',
-    name: 'piece-1',
+    name: 'SLKXN-1',
     artistId: 'adamFerris',
     previewImg: {
       src: 'https://freight.cargo.site/w/1040/i/146412d1a936e15e8b41a1df0563d021e2b3b7af1c29d2742a4d364ba6f31dcb/nze.jpg'
     },
+    attributes: [
+      { Base: 'Metacity' },
+      { ['Type of Painting']: ' Abstraction' },
+      { ['Augmentation Type']: ' Landscape' },
+      { ['Residual Style']: 'Still-Life' },
+      { ['Base Speed']: 0.06 },
+      { ['Noise Scale']: 4.2 },
+      { ['Fluidity']: ' Medium' },
+      { ['Body']: ' Heavy' }
+    ],
     about: [
       'In efficitur arcu et urna efficitur, non placerat mi dignissim. Donec eget ante ut enim auctor sollicitudin at eu lectus. Aenean finibus massa lectus, vel suscipit lectus dictum vel. Etiam eu eros dui. Nullam at ullamcorper odio. Sed eu cursus est. Etiam elementum lectus sed justo tincidunt, eget gravida mi vulputate.'
     ],
@@ -22,13 +32,20 @@ const artworks: Artwork[] = [
   },
   {
     id: '2',
-    name: 'piece-2',
+    name: 'CRYPTO_SAAX00',
     artistId: 'adamFerris',
     previewImg: {
       src: 'https://freight.cargo.site/w/1040/i/146412d1a936e15e8b41a1df0563d021e2b3b7af1c29d2742a4d364ba6f31dcb/nze.jpg'
     },
     about: [
       'In efficitur arcu et urna efficitur, non placerat mi dignissim. Donec eget ante ut enim auctor sollicitudin at eu lectus. Aenean finibus massa lectus, vel suscipit lectus dictum vel. Etiam eu eros dui. Nullam at ullamcorper odio. Sed eu cursus est. Etiam elementum lectus sed justo tincidunt, eget gravida mi vulputate.'
+    ],
+    attributes: [
+      { Base: 'Metacity' },
+      { ['Type of Painting']: ' Abstraction' },
+      { ['Augmentation Type']: ' Landscape' },
+      { ['Fluidity']: ' Medium' },
+      { ['Body']: ' Heavy' }
     ],
     src: 'p5',
     tokenData: {
