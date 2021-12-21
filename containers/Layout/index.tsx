@@ -10,7 +10,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ greyBG, children, hideLogo }) => {
   useEffect(() => {
-    document.body.style.backgroundColor = 'var(--grey-color, #e2e3e5)'
+    if (greyBG) document.body.style.backgroundColor = 'var(--grey-color, #e2e3e5)'
   }, [greyBG])
 
   return (

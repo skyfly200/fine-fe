@@ -9,24 +9,31 @@ interface PixelHeroProps {
   items: PartialArtwork[]
 }
 
+type GridPosition = {
+  gridColumn: number
+  gridRow: number
+}
+
 const PixelHero: React.FC<PixelHeroProps> = ({ items }) => {
   const ref = useRef<HTMLDivElement>(null)
   const { width } = useWindowSize()
   const [openItems, setOpenItems] = useState<string[]>([])
-  const [gridPosition, setGridPosition] = useState<number[]>([])
+  const [gridPosition, setGridPosition] = useState<GridPosition[]>([])
   const [isPlaying, setPlaying] = useState<boolean>(true)
   const q = items.length * 0.2 > 20 ? items.length * 2 : 10
 
   useEffect(() => {
     if (!ref.current) return
-    const { cellsCount, columnCount } = getGridData(ref.current)
-    const pos: number[] = []
+    const { cellsCount, columnCount, rowCount } = getGridData(ref.current)
+    console.log(columnCount, rowCount)
+    const pos: GridPosition[] = []
     for (let index = 0; index < items.length; index++) {
       const num = getRandomNumber(0, cellsCount, pos)
-      const row = num / columnCount
-      const column = num % columnCount
-      console.log(row, column)
+      const row = (num + 1) % rowCount
+      const column = (num + 1) % columnCount
+      pos.push({ gridColumn: column, gridRow: row })
     }
+    console.log(pos.length, items.length, pos)
     setGridPosition(pos)
   }, [items, width])
 
@@ -42,8 +49,8 @@ const PixelHero: React.FC<PixelHeroProps> = ({ items }) => {
 
   return (
     <div className={style.wrapper} ref={ref}>
-      {items.map(el => (
-        <div key={el.id} className={style.item}>
+      {items.map((el, i) => (
+        <div key={el.id} className={style.item} style={gridPosition[i]}>
           <div
             className={cn(style.imageWrapper, { [style.open]: openItems.includes(el.id) })}
             onMouseEnter={() => setPlaying(false)}

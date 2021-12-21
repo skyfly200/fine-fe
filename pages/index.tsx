@@ -1,8 +1,9 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
+import cn from 'classnames'
 
-import { Event, News } from '../types'
+import { Event, News, Project } from '../types'
 import EventCarousel from '../components/EventCarousel'
 import Layout from '../containers/Layout'
 import NewsCard from '../components/NewsCard'
@@ -10,16 +11,18 @@ import NewsCard from '../components/NewsCard'
 import fixture from '../fixtures/home'
 import projects from '../fixtures/projects'
 import styles from '../styles/pages/Home.module.scss'
+import Icon from '../components/Icon'
 
 interface HomeProps {
   news: News[]
   events: Event[]
+  project: Project
 }
 
 const DynamicPixelHero = dynamic(() => import('../components/PixelHero'))
 
-const Home: NextPage<HomeProps> = ({ news, events }) => {
-  const items = projects[0].artworks?.slice(0, 100) || []
+const Home: NextPage<HomeProps> = ({ news, events, project }) => {
+  const items = project.artworks?.slice(0, 100) || []
   return (
     <Layout greyBG>
       <Head>
@@ -28,6 +31,16 @@ const Home: NextPage<HomeProps> = ({ news, events }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <section className={styles.heroWrapper}>
+        <div className={styles.content}>
+          <div className={styles.rotateSubtitle}>
+            <div className={styles.heroSubtitle}>
+              <h5>NEW PROJECT</h5>
+            </div>
+          </div>
+
+          <h2 className={styles.projectName}>{project.name}</h2>
+        </div>
+
         <DynamicPixelHero items={items} />
       </section>
       <section className={styles.newsAndEventsWrapper}>
@@ -59,7 +72,11 @@ const Home: NextPage<HomeProps> = ({ news, events }) => {
 
 export async function getStaticProps() {
   return {
-    props: fixture,
+    props: {
+      news: fixture.news,
+      events: fixture.events,
+      project: projects[0]
+    },
     revalidate: 60 * 60 * 24 // TODO: currently set to 1 day. Update if required
   }
 }
