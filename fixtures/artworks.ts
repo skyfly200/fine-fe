@@ -3,6 +3,7 @@ import { Artwork } from '../types'
 const artworks: Artwork[] = [
   {
     id: '1',
+    minted: true,
     name: 'SLKXN-1',
     artistId: 'adamFerris',
     project: { id: '1', name: 'name' },
@@ -37,6 +38,7 @@ const artworks: Artwork[] = [
   },
   {
     id: '2',
+    minted: false,
     name: 'CRYPTO_SAAX00',
     artistId: 'adamFerris',
     previewImg: {
