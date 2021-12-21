@@ -1,9 +1,11 @@
+@import '../mixins.scss';
+
 .leftPadding {
   padding-left: 13.5vw;
 }
 
 .heroWrapper {
-  height: calc(100vh - 44px);
+  height: calc(100vh - 40px);
   position: relative;
   .content {
     position: absolute;
@@ -29,6 +31,9 @@
         transform: rotate(-90deg) translateY(100%);
         font-weight: 400;
         width: 50px;
+        @include respond-to('mobile') {
+          width: 25px;
+        }
         .heroSubtitle {
           display: flex;
           text-align: left;
@@ -43,6 +48,9 @@
             margin: 0;
             font-weight: 400;
             white-space: nowrap;
+            @include respond-to('mobile') {
+              font-size: 1rem;
+            }
           }
         }
       }
@@ -56,9 +64,15 @@
       z-index: 2;
       .buttonWrapper {
         margin-left: calc(63px + 1rem);
+        @include respond-to('mobile') {
+          margin-left: calc(35px + 1rem);
+        }
       }
       .artistName {
         font-size: 5vw;
+        @include respond-to('mobile') {
+          font-size: 6vw;
+        }
         font-weight: 500;
         padding-right: 1rem;
       }
@@ -67,9 +81,9 @@
 }
 
 .newsAndEventsWrapper {
+  background-color: color(white-color);
   @extend .leftPadding;
-  padding-right: 1rem;
-  padding-bottom: 1rem;
+  padding: 2rem 1rem;
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 1rem;

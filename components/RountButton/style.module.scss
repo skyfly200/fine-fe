@@ -1,3 +1,5 @@
+@import '../../styles/mixins.scss';
+
 .buttonWrapper {
   display: flex;
   align-items: center;
@@ -7,13 +9,19 @@
   border: 1px solid currentColor;
   border-radius: 999px;
   padding: 0.3rem 0.5rem;
-
+  cursor: pointer;
+  &:hover {
+    background-color: color(white-color);
+  }
   &.xl {
     border-width: 2px;
   }
 }
 .xl {
   font-size: 2rem;
+  @include respond-to('mobile') {
+    font-size: 1.5rem;
+  }
 }
 .line {
   background-color: currentColor;
