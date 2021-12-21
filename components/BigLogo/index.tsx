@@ -10,7 +10,7 @@ const BigLogo: React.FC = () => (
     <Link href="/" passHref>
       <>
         <span className={style.f}>F</span>
-        {/* <span className={style.ine}>INE</span> */}
+        <span className={style.ine}>INE</span>
       </>
     </Link>
   </div>
