@@ -66,8 +66,8 @@ export type PartialArtwork = {
 
 export type Project = {
   id: string
-  total: number
   name: string
+  total?: number
   artworks?: PartialArtwork[]
   about?: string[]
 }
