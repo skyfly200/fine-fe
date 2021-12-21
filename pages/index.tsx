@@ -12,6 +12,8 @@ import fixture from '../fixtures/home'
 import projects from '../fixtures/projects'
 import styles from '../styles/pages/Home.module.scss'
 import Icon from '../components/Icon'
+import RoundButton from '../components/RountButton'
+import Link from '../components/Link'
 
 interface HomeProps {
   news: News[]
@@ -32,13 +34,22 @@ const Home: NextPage<HomeProps> = ({ news, events, project }) => {
       </Head>
       <section className={styles.heroWrapper}>
         <div className={styles.content}>
-          <div className={styles.rotateSubtitle}>
-            <div className={styles.heroSubtitle}>
-              <h5>NEW PROJECT</h5>
+          <div className={styles.main}>
+            <div className={styles.rotateSubtitle}>
+              <div className={styles.heroSubtitle}>
+                <h5>NEW PROJECT</h5>
+              </div>
             </div>
+            <h2 className={styles.projectName}>{project.name}</h2>
           </div>
-
-          <h2 className={styles.projectName}>{project.name}</h2>
+          <div className={styles.bottom}>
+            <div className={styles.buttonWrapper}>
+              <Link href={`/project/${project.id}`}>
+                <RoundButton size="xl">GO</RoundButton>
+              </Link>
+            </div>
+            <div className={styles.artistName}>By Adam Ferris</div>
+          </div>
         </div>
 
         <DynamicPixelHero items={items} />

@@ -1,0 +1,25 @@
+.buttonWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.button {
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding: 0.3rem 0.5rem;
+
+  &.xl {
+    border-width: 2px;
+  }
+}
+.xl {
+  font-size: 2rem;
+}
+.line {
+  background-color: currentColor;
+  height: 1px;
+}
+.xl + .line {
+  width: 30px;
+  height: 2px;
+}
