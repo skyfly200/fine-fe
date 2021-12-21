@@ -1,21 +1,21 @@
 import { useEffect } from 'react'
-import BigLogo, { BigLogoProps } from '../../components/BigLogo'
+import BigLogo from '../../components/BigLogo'
 import BottomNav from '../../components/BottomNav'
 import Footer from '../../components/Footer'
 
-interface LayoutProps extends BigLogoProps {
+interface LayoutProps {
   greyBG?: boolean
   hideLogo?: boolean
 }
 
-const Layout: React.FC<LayoutProps> = ({ greyBG, children, showCanvas, hideLogo }) => {
+const Layout: React.FC<LayoutProps> = ({ greyBG, children, hideLogo }) => {
   useEffect(() => {
-    document.body.style.backgroundColor = 'var(--bg-grey-color, #e2e3e5)'
+    document.body.style.backgroundColor = 'var(--grey-color, #e2e3e5)'
   }, [greyBG])
 
   return (
     <>
-      {!hideLogo && <BigLogo showCanvas={showCanvas} />}
+      {!hideLogo && <BigLogo />}
       {children}
       <BottomNav />
       <Footer />

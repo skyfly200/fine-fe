@@ -7,8 +7,6 @@
   mask-repeat: no-repeat;
   mask-size: contain;
   mask-position: center;
-  height: 1rem;
-  width: 1rem;
 }
 
 .xl {
@@ -26,6 +24,11 @@
   width: 0.8rem;
 }
 
+.md {
+  height: 1rem;
+  width: 1rem;
+}
+
 .F {
   width: 25.25vw;
   height: 16.03vw;
@@ -39,4 +42,7 @@
 }
 .f-logo {
   mask-image: url(../../assets/icons/f.svg);
+}
+.eth {
+  mask-image: url(../../assets/icons/eth.svg);
 }

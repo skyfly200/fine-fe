@@ -1,0 +1,65 @@
+@import '../../styles/mixins.scss';
+
+.wrapper {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-rows: repeat(auto-fill, 100px);
+  @include respond-to('tablet-sm') {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    grid-template-rows: repeat(auto-fill, 70px);
+  }
+  @include respond-to('mobile') {
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    grid-template-rows: repeat(auto-fill, 50px);
+  }
+}
+.item {
+  width: 100%;
+  overflow: hidden;
+  &:nth-child(4n + 1) {
+    .imageWrapper {
+      transform: translate3d(-100%, 0, 0);
+      &.open {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+  }
+  &:nth-child(4n + 2) {
+    .imageWrapper {
+      transform: translate3d(0, -100%, 0);
+      &.open {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+  }
+  &:nth-child(4n + 3) {
+    .imageWrapper {
+      transform: translate3d(0, 100%, 0);
+      &.open {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+  }
+  &:nth-child(4n + 4) {
+    .imageWrapper {
+      transform: translate3d(100%, 0, 0);
+      &.open {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+  }
+}
+.imageWrapper {
+  transition: all 0.2s ease-in;
+  opacity: 0;
+  mix-blend-mode: luminosity;
+  &:hover {
+    mix-blend-mode: normal;
+  }
+}
+.open {
+  opacity: 1;
+}

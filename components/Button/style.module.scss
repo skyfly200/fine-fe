@@ -3,12 +3,12 @@
 .btn {
   border: none;
   background: black;
-  color: color(bg-grey-color);
+  color: color(grey-color);
   padding: 0 1rem;
   cursor: pointer;
   &.overBlack {
     background-color: black;
-    border: 1px solid color(bg-grey-color);
+    border: 1px solid color(grey-color);
     &:hover {
       background-color: rgba(255, 255, 255, 0.03);
     }

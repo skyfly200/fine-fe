@@ -5,6 +5,7 @@ const artworks: Artwork[] = [
     id: '1',
     name: 'SLKXN-1',
     artistId: 'adamFerris',
+    project: { id: '1', name: 'name' },
     previewImg: {
       src: 'https://freight.cargo.site/w/1040/i/146412d1a936e15e8b41a1df0563d021e2b3b7af1c29d2742a4d364ba6f31dcb/nze.jpg'
     },
@@ -41,6 +42,7 @@ const artworks: Artwork[] = [
     previewImg: {
       src: 'https://freight.cargo.site/w/1040/i/146412d1a936e15e8b41a1df0563d021e2b3b7af1c29d2742a4d364ba6f31dcb/nze.jpg'
     },
+    project: { id: '1', name: 'name' },
     size: {
       height: 400,
       width: 280

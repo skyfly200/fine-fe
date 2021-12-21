@@ -5,6 +5,7 @@ import style from './style.module.scss'
 
 interface CanvasStickyWrapperProps {
   size: Size
+  wrapperWidth: number
 }
 
 type WrapperStyle = {
@@ -15,19 +16,25 @@ type WrapperStyle = {
   marginBottom?: number | string
 }
 
-const CanvasStickyWrapper: React.FC<CanvasStickyWrapperProps> = ({ children, size }) => {
+const gap = 16
+
+const CanvasStickyWrapper: React.FC<CanvasStickyWrapperProps> = ({
+  children,
+  size,
+  wrapperWidth
+}) => {
   const { height: artH, width: artW } = size
-  const { height: windowH, width: windowW } = useWindowSize()
+  const { height: windowH } = useWindowSize()
   const [wrapperStyle, setStyle] = useState<WrapperStyle>()
   const [dummyH, setDummyH] = useState<number | string>()
 
-  const isMobile = windowW < 1000
+  const isMobile = wrapperWidth < 1000
 
   useEffect(() => {
     const s: WrapperStyle = {}
 
     if (isMobile) {
-      const w = windowW - 32
+      const w = wrapperWidth - gap * 2
       const h = (artH * w) / artW
       s.height = h
       s.width = w
@@ -35,17 +42,17 @@ const CanvasStickyWrapper: React.FC<CanvasStickyWrapperProps> = ({ children, siz
       s.marginBottom = (windowH - h) / 2
       setDummyH(windowH - 44.8)
     } else {
-      const w = (windowW - 64) / 3
+      const w = (wrapperWidth - 4 * gap) / 3
       const h = (artH * w) / artW
       s.height = h
       s.width = w
       s.top = (windowH - h) / 2
-      s.left = (windowW - 48) / 3
+      s.left = w + 2 * gap
       s.marginBottom = (windowH - h) / 2
       setDummyH((windowH - h) / 2)
     }
     setStyle(s)
-  }, [windowW, windowH, artW, artH, isMobile])
+  }, [wrapperWidth, windowH, artW, artH, isMobile])
 
   return (
     <>

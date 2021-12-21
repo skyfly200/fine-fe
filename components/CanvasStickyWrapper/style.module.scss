@@ -1,6 +1,13 @@
 @import '../../styles/mixins.scss';
 .canvasStickyWrapper {
   position: sticky;
+  display: flex;
+  padding: 1rem;
+  .blank,
+  .canvasWrapper {
+    flex: 1;
+    gap: 1rem;
+  }
   @include respond-to('tablet-sm') {
     position: absolute;
     margin-left: 16px;

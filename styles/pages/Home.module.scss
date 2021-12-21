@@ -1,10 +1,9 @@
 .leftPadding {
-  padding-left: calc(25% + 0.75rem);
+  padding-left: 13.5vw;
 }
 
 .heroWrapper {
-  height: calc(95vh - 165px);
-  @extend .leftPadding;
+  height: calc(100vh - 44px);
 }
 
 .newsAndEventsWrapper {

@@ -58,18 +58,18 @@
   }
   &.overBlack {
     input {
-      color: color(bg-grey-color);
+      color: color(grey-color);
       background-color: rgba(255, 255, 255, 0.03);
     }
     .btn {
       background-color: transparent;
-      border: 1px solid color(bg-grey-color);
+      border: 1px solid color(grey-color);
     }
   }
 }
 
 .home {
-  background-color: color(bg-grey-color);
+  background-color: color(grey-color);
   .hero {
     width: 100%;
     min-height: 100vh;
@@ -130,7 +130,7 @@
     grid-column: span 2;
     gap: 3vw;
     background-color: black;
-    color: color(bg-grey-color);
+    color: color(grey-color);
     align-items: end;
     padding-top: 4rem;
     padding-bottom: 4rem;

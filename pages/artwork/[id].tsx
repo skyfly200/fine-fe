@@ -1,5 +1,6 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import cn from 'classnames'
+import useDimensions from 'react-cool-dimensions'
 
 import { Artist, Artwork, IParams } from '../../types'
 import Layout from '../../containers/Layout'
@@ -18,11 +19,12 @@ interface PiecePageProps {
 }
 
 const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist }) => {
+  const { observe, width } = useDimensions<HTMLDivElement>()
   return (
     <Layout hideLogo>
       <div className={style.artwork}>
-        <div className={style.gallery}>
-          <CanvasStickyWrapper size={artwork.size}>
+        <div className={style.gallery} ref={observe}>
+          <CanvasStickyWrapper size={artwork.size} wrapperWidth={width}>
             <CanvasIframe
               baseCode={artwork.src}
               draw={artwork.script}
@@ -43,9 +45,9 @@ const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist }) => {
             <div className={style.blank} />
             <div className={style.about}>
               <h3 className={style.title}>{artwork.name}</h3>
-              <Link href="/">
+              <Link href={`/project/${artwork.project.id}`}>
                 <p className={cn(style.subtitle, style.backButton)}>
-                  <Icon icon="arrow-left" /> Collection X
+                  <Icon icon="arrow-left" /> {artwork.project.name}
                 </p>
               </Link>
               {artwork.about.map((p, i) => (

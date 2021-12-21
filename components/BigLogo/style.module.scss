@@ -1,28 +1,36 @@
-@import "../../styles/mixins.scss";
+@import '../../styles/mixins.scss';
 
 .logo {
   display: flex;
-  padding: 1rem;
+  font-size: 11vw;
+  font-weight: 900;
+  margin: 0;
+  line-height: 0.7;
+
   .f {
     position: fixed;
     top: 1rem;
     left: 1rem;
-  }
-  .ine {
-    margin-left: 196px;
-    margin-top: -1px;
     z-index: 2;
   }
-}
-
-.canvasContainer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: calc(25% - 0.25rem);
-  height: 300px;
-  background: color(bg-grey-color);
-  canvas {
-    cursor: pointer;
+  .ine {
+    position: absolute;
+    top: 1rem;
+    left: 13.5vw;
+    z-index: 2;
+  }
+  @include respond-to('tablet-sm') {
+    .ine {
+      left: 14.8vw;
+    }
+  }
+  @include respond-to('mobile') {
+    .f {
+      top: 0.5rem;
+      left: 0.5rem;
+    }
+    .ine {
+      top: 0.5rem;
+    }
   }
 }

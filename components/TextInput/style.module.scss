@@ -1,0 +1,13 @@
+.input {
+  &.simple {
+    border: none;
+    border-bottom: 1px solid #757575;
+    opacity: 0.3;
+    transition: all 0.15s ease-in;
+    width: 100%;
+    &:focus {
+      opacity: 1;
+      outline: none;
+    }
+  }
+}

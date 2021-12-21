@@ -37,6 +37,7 @@ export interface Attribute {
 }
 export interface Artwork {
   id: string
+  minted: boolean
   name: string
   artistId: string
   attributes: Attribute[]
@@ -46,6 +47,7 @@ export interface Artwork {
   tokenData: TokenData
   script: string
   size: Size
+  project: Project
 }
 
 export type Artist = {
@@ -54,11 +56,20 @@ export type Artist = {
   bio: string[]
 }
 
-export type Collection = {
+export type PartialArtwork = {
   id: string
+  previewImg: Img
   name: string
-  artworks: string[]
-  about: string[]
+  minted: boolean
+  mintedPrice: number
+}
+
+export type Project = {
+  id: string
+  total: number
+  name: string
+  artworks?: PartialArtwork[]
+  about?: string[]
 }
 
 export type ToastType = 'success' | 'info' | 'error' | 'warning'

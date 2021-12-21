@@ -9,9 +9,9 @@
 
   .details {
     min-height: 100vh;
-    background: color(black-color);
-    color: color(bg-lightgrey-color);
-    padding: 1rem;
+    background: color(darkgrey-color);
+    color: color(lightgrey-color);
+    padding: 3rem 1rem;
     display: flex;
     gap: 1rem;
     @include respond-to('tablet-sm') {
