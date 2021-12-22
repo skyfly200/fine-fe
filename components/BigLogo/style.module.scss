@@ -2,6 +2,7 @@
 
 .logo {
   display: flex;
+  overflow: hidden;
   cursor: pointer;
   .f {
     position: fixed;
@@ -21,7 +22,8 @@
       position: absolute;
       transform: translate3d(0, 0, 0);
       opacity: 1;
-      left: 24vw;
+      right: 0.5rem;
+      left: auto;
     }
     &:hover {
       transform: translate3d(0, 0, 0);
