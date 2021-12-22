@@ -36,6 +36,10 @@
     height: 12px;
     border-radius: 8px;
     content: '';
+    @include respond-to('mobile') {
+      width: 10px;
+      height: 10px;
+    }
   }
   &.selected:after {
     background-color: color(darkgrey-color);

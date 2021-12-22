@@ -25,13 +25,18 @@
     }
   }
   .date {
-    font-size: 0.75rem;
     font-weight: 400;
     margin: 1rem 0 0.75rem;
+    @include respond-to('mobile') {
+      margin: 0.5rem 0 0.5rem;
+    }
   }
   .title {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 1.75rem;
     font-weight: 500;
+    @include respond-to('mobile') {
+      font-size: 1.5rem;
+    }
   }
 }
