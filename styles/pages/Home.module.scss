@@ -1,7 +1,10 @@
 @import '../mixins.scss';
 
 .leftPadding {
-  padding-left: 13.5vw;
+  padding-left: calc(11vw + 2rem);
+  @include respond-to('mobile') {
+    padding-left: calc(11vw + 1rem);
+  }
 }
 
 .heroWrapper {
@@ -23,36 +26,9 @@
       gap: 2rem;
       .projectName {
         font-size: 10vw;
+        margin-bottom: 2vw;
         font-weight: 400;
         text-transform: uppercase;
-      }
-      .rotateSubtitle {
-        transform-origin: bottom left;
-        transform: rotate(-90deg) translateY(100%);
-        font-weight: 400;
-        width: 50px;
-        @include respond-to('mobile') {
-          width: 25px;
-        }
-        .heroSubtitle {
-          display: flex;
-          text-align: left;
-          align-items: center;
-          gap: 1rem;
-          font-size: 1.5rem;
-          padding: 1rem;
-          width: max-content;
-          cursor: pointer;
-          h5 {
-            font-size: 1.6rem;
-            margin: 0;
-            font-weight: 400;
-            white-space: nowrap;
-            @include respond-to('mobile') {
-              font-size: 1rem;
-            }
-          }
-        }
       }
     }
     .bottom {
@@ -81,24 +57,58 @@
 }
 
 .newsAndEventsWrapper {
-  background-color: color(white-color);
+  padding-top: 2rem;
   @extend .leftPadding;
-  padding: 2rem 1rem;
+  background-color: color(white-color);
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 1rem;
   position: relative;
+  @include respond-to('mobile') {
+    grid-template-columns: 1fr;
+  }
+  .carouselWrapper {
+    position: sticky;
+    top: 1rem;
+    left: 0;
+    @include respond-to('mobile') {
+      margin-bottom: 2rem;
+    }
+  }
+  .newsWrapper {
+    .newsCardWrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
 }
 
-.carouselWrapper {
-  position: sticky;
-  top: 1rem;
-  left: 0;
-}
-.newsWrapper {
-  .newsCardWrapper {
+.rotatedWrapper {
+  transform-origin: bottom left;
+  transform: rotate(-90deg) translateY(100%);
+  font-weight: 400;
+  width: 50px;
+  @include respond-to('mobile') {
+    width: 25px;
+  }
+  .rotatedSubtitle {
     display: flex;
-    flex-direction: column;
+    text-align: left;
+    align-items: center;
     gap: 1rem;
+    font-size: 1.5rem;
+    padding: 1rem;
+    width: max-content;
+    cursor: pointer;
+    h5 {
+      font-size: 1.6rem;
+      margin: 0;
+      font-weight: 400;
+      white-space: nowrap;
+      @include respond-to('mobile') {
+        font-size: 1rem;
+      }
+    }
   }
 }

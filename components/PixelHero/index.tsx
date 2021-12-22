@@ -25,7 +25,6 @@ const PixelHero: React.FC<PixelHeroProps> = ({ items }) => {
   useEffect(() => {
     if (!ref.current) return
     const { cellsCount, columnCount, rowCount } = getGridData(ref.current)
-    console.log(columnCount, rowCount)
     const pos: GridPosition[] = []
     for (let index = 0; index < items.length; index++) {
       const num = getRandomNumber(0, cellsCount, pos)
@@ -33,7 +32,6 @@ const PixelHero: React.FC<PixelHeroProps> = ({ items }) => {
       const column = (num + 1) % columnCount
       pos.push({ gridColumn: column, gridRow: row })
     }
-    console.log(pos.length, items.length, pos)
     setGridPosition(pos)
   }, [items, width])
 

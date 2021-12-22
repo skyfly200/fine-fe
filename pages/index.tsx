@@ -35,8 +35,8 @@ const Home: NextPage<HomeProps> = ({ news, events, project }) => {
       <section className={styles.heroWrapper}>
         <div className={styles.content}>
           <div className={styles.main}>
-            <div className={styles.rotateSubtitle}>
-              <div className={styles.heroSubtitle}>
+            <div className={styles.rotatedWrapper}>
+              <div className={styles.rotatedSubtitle}>
                 <h5>NEW PROJECT</h5>
               </div>
             </div>
@@ -56,13 +56,11 @@ const Home: NextPage<HomeProps> = ({ news, events, project }) => {
       </section>
       <section className={styles.newsAndEventsWrapper}>
         <div className={styles.eventsWrapper}>
-          <p>EVENTS</p>
           <div className={styles.carouselWrapper}>
             <EventCarousel events={events} />
           </div>
         </div>
         <div className={styles.newsWrapper}>
-          <p>NEWS</p>
           <div className={styles.newsCardWrapper}>
             {news?.map((item, i) => (
               <NewsCard

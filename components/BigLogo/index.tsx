@@ -4,16 +4,15 @@ import Image from 'next/image'
 import classNames from 'classnames'
 
 import style from './style.module.scss'
+import Icon from '../Icon'
 
 const BigLogo: React.FC = () => (
-  <div className={style.logo}>
-    <Link href="/" passHref>
-      <>
-        <span className={style.f}>F</span>
-        <span className={style.ine}>INE</span>
-      </>
-    </Link>
-  </div>
+  <Link href="/">
+    <div className={style.logo}>
+      <Icon icon="f-logo" size="sm-F" className={style.f} />
+      <Icon icon="ine-logo" size="sm-INE" className={style.ine} />
+    </div>
+  </Link>
 )
 
 export default BigLogo
