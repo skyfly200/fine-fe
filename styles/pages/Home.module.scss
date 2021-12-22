@@ -3,7 +3,7 @@
 .leftPadding {
   padding-left: calc(11vw + 2rem);
   @include respond-to('mobile') {
-    padding-left: calc(11vw + 1rem);
+    padding-left: 0.5rem;
   }
 }
 

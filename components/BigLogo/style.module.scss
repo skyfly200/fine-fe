@@ -17,6 +17,12 @@
     transition: all 0.3s ease-in;
     transform: translate3d(-100%, 0, 0);
     opacity: 0;
+    @include respond-to('mobile') {
+      position: absolute;
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+      left: 24vw;
+    }
     &:hover {
       transform: translate3d(0, 0, 0);
       opacity: 1;
@@ -26,11 +32,7 @@
     transform: translate3d(0, 0, 0);
     opacity: 1;
   }
-  @include respond-to('tablet-sm') {
-    .ine {
-      left: 14.8vw;
-    }
-  }
+
   @include respond-to('mobile') {
     .f {
       top: 0.5rem;
