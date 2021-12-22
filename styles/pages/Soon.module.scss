@@ -72,7 +72,7 @@
   background-color: color(grey-color);
   .hero {
     width: 100%;
-    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -253,7 +253,7 @@
 
 .footer {
   background: #fff;
-  min-height: 80vh;
+  min-height: calc(var(--vh, 1vh) * 80);
   display: flex;
   align-items: center;
   @extend .FPadding;
@@ -273,7 +273,7 @@
     }
   }
   @include respond-to('tablet-sm') {
-    min-height: 60vh;
+    min-height: calc(var(--vh, 1vh) * 60);
     padding: 0;
   }
 }

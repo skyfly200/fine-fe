@@ -3,12 +3,12 @@
 .artwork {
   position: relative;
   .gallery {
-    min-height: calc(200vh - 2.8rem);
+    min-height: calc(var(--vh, 1vh) * 200 - 2.8rem);
     background-color: color(white-color);
   }
 
   .details {
-    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
     background: color(darkgrey-color);
     color: color(lightgrey-color);
     padding: 3rem 1rem;
