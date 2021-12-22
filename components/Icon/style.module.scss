@@ -63,6 +63,10 @@
 }
 
 .sm-INE {
-  width: 80vw;
-  height: 16vw;
+  width: 30vw;
+  height: 7vw;
+  @include respond-to('mobile') {
+    width: 80vw;
+    height: 16vw;
+  }
 }
