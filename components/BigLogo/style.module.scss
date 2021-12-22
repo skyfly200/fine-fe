@@ -18,16 +18,19 @@
     transition: all 0.3s ease-in;
     transform: translate3d(-100%, 0, 0);
     opacity: 0;
-    @include respond-to('mobile') {
-      position: absolute;
-      transform: translate3d(0, 0, 0);
-      opacity: 1;
-      right: 0.5rem;
-      left: auto;
-    }
     &:hover {
       transform: translate3d(0, 0, 0);
       opacity: 1;
+    }
+    @include respond-to('mobile') {
+      position: absolute;
+      transform: none;
+      opacity: 1;
+      right: 0.5rem;
+      left: auto;
+      &:hover {
+        transform: none;
+      }
     }
   }
   .f:hover + .ine {
