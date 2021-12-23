@@ -20,6 +20,11 @@
   .wallet {
     display: flex;
     align-items: center;
+    .connect {
+      @include respond-to('mobile') {
+        display: none;
+      }
+    }
     .outerCircle {
       margin-right: 0.5rem;
       width: 20px;

@@ -16,7 +16,7 @@ const BottomNav = () => {
         <div className={style.outerCircle}>
           <span className={style.innerCircle} />
         </div>{' '}
-        CONNECT WALLET
+        <div className={style.connect}>CONNECT WALLET</div>
       </div>
       <div className={style.logo}></div>
       <ul className={style.menu}>
