@@ -12,7 +12,8 @@ const BottomNav = () => {
   return (
     <div className={style.nav}>
       {/* TODO: Connect Wallet */}
-      <div className={style.wallet}>{'  '}</div>
+      <div className={style.wallet}>CONNECT WALLET</div>
+      <div className={style.logo}>FINE</div>
       <ul className={style.menu}>
         {navLinks.map(link => (
           <Link key={link.name} href={link.path} passHref>
@@ -22,11 +23,6 @@ const BottomNav = () => {
         <li className={style.menuItem} onClick={handleContactClick}>
           Contact
         </li>
-        <Link href="/" passHref>
-          <li className={cn(style.menuItem, style.homeBtn)}>
-            <Icon icon="f-logo" size="xl" />
-          </li>
-        </Link>
       </ul>
     </div>
   )

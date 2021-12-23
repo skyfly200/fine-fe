@@ -1,7 +1,7 @@
 import style from './style.module.scss'
 
 interface RotatedTextProps {
-  removeWidth: boolean
+  removeWidth?: boolean
 }
 
 const RotatedText: React.FC<RotatedTextProps> = ({ children, removeWidth }) => (
