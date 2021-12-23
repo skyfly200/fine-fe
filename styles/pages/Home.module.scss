@@ -105,6 +105,31 @@
     }
   }
 }
+.circle {
+  height: calc(var(--vh, 1vh) * 100 - 44px);
+  background-color: color(darkgrey-color);
+  color: color(white-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .shape {
+    padding: 1rem;
+    border: 1px solid color(white-color);
+    border-radius: 50%;
+    height: calc(var(--vh, 1vh) * 70);
+    width: 80%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .content {
+      font-size: 5vw;
+      font-weight: 500;
+      margin: 0;
+    }
+  }
+}
 
 .rotatedWrapper {
   transform-origin: bottom left;

@@ -20,6 +20,22 @@
   .wallet {
     display: flex;
     align-items: center;
+    .outerCircle {
+      margin-left: 0.5rem;
+      width: 20px;
+      height: 20px;
+      border: 1px solid color(grey-color);
+      border-radius: 99px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .innerCircle {
+        background: radial-gradient(#e66465, #9198e5);
+        width: 16px;
+        height: 16px;
+        border-radius: 99px;
+      }
+    }
   }
   .logo {
     display: flex;

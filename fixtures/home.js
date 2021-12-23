@@ -52,7 +52,7 @@ const fixture = {
   upcoming: {
     title: 'Large Project Name',
     artist: {
-      name: 'Other Camus'
+      name: 'Other Artist'
     },
     dropDate: 'Tue Nov 23 2021 13:24:54 GMT+0000 (Western European Standard Time)',
     overview: [
