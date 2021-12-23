@@ -9,7 +9,7 @@
   min-height: calc(var(--vh, 1vh) * 100 - 100px);
   .col {
     flex: 1;
-    padding-top: calc(100px + 1rem);
+    padding-top: calc(240px + 1rem);
   }
   .firstCol {
     position: relative;
@@ -39,6 +39,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    padding-top: 100px;
     .artworkCard {
       position: relative;
       height: 100%;

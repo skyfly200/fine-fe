@@ -1,0 +1,95 @@
+@import '../../styles/mixins.scss';
+
+.wrapper {
+  height: calc(var(--vh, 1vh) * 100 - 44px);
+  background: color(white-color);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  @include respond-to('mobile') {
+    padding: 0.5rem;
+  }
+  .top {
+    width: 100%;
+    flex: 5;
+    gap: 1rem;
+    display: flex;
+    @include respond-to('mobile') {
+      flex-direction: column-reverse;
+      gap: 0.5rem;
+      flex: 10;
+    }
+    .headers {
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      .rotatedWrapper {
+        width: calc(11vw + 1rem);
+      }
+      @include respond-to('mobile') {
+        padding-top: 0;
+        align-items: flex-start;
+        .rotatedWrapper {
+          display: none;
+        }
+      }
+      .subtitle {
+        font-size: 1.5rem;
+        font-weight: 400;
+      }
+      .titles {
+        height: 100%;
+        .title {
+          font-size: 5vw;
+          font-weight: 400;
+          margin: 0;
+          margin-top: -1vw;
+          @include respond-to('mobile') {
+            font-size: 10vw;
+            margin-top: 0;
+          }
+        }
+        .artist {
+          font-size: 2rem;
+          @include respond-to('mobile') {
+            font-size: 6vw;
+            margin-top: 0;
+          }
+          margin: 0;
+        }
+      }
+    }
+    .imageWrapper {
+      position: relative;
+      flex: 1;
+      height: 100%;
+      width: 100%;
+      @include respond-to('mobile') {
+        flex: 3;
+      }
+    }
+  }
+  .bottom {
+    flex: 2;
+    display: flex;
+    align-items: flex-end;
+    .dateWrapper {
+      flex: 3;
+      .drop {
+        margin-bottom: -2vw;
+      }
+      .date {
+        font-size: 10vw;
+        font-weight: bold;
+        margin-top: -50px;
+      }
+    }
+    .overview {
+      flex: 1;
+      @include respond-to('mobile') {
+        display: none;
+      }
+    }
+  }
+}

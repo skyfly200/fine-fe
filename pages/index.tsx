@@ -3,7 +3,7 @@ import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import cn from 'classnames'
 
-import { Event, News, Project } from '../types'
+import { Event, News, Project, UpcomingProject } from '../types'
 import EventCarousel from '../components/EventCarousel'
 import Layout from '../containers/Layout'
 import NewsCard from '../components/NewsCard'
@@ -14,16 +14,19 @@ import styles from '../styles/pages/Home.module.scss'
 import Icon from '../components/Icon'
 import RoundButton from '../components/RountButton'
 import Link from '../components/Link'
+import UpcomingBanner from '../components/UpcomingBanner'
+import RotatedText from '../components/RotatedText'
 
 interface HomeProps {
   news: News[]
   events: Event[]
+  upcoming: UpcomingProject
   project: Project
 }
 
 const DynamicPixelHero = dynamic(() => import('../components/PixelHero'))
 
-const Home: NextPage<HomeProps> = ({ news, events, project }) => {
+const Home: NextPage<HomeProps> = ({ news, events, project, upcoming }) => {
   const items = project.artworks?.slice(0, 100) || []
   return (
     <Layout greyBG>
@@ -55,6 +58,9 @@ const Home: NextPage<HomeProps> = ({ news, events, project }) => {
         <DynamicPixelHero items={items} />
       </section>
       <section className={styles.newsAndEventsWrapper}>
+        <div className={styles.subtitleWrapper}>
+          <RotatedText>NEWS & EVENTS</RotatedText>
+        </div>
         <div className={styles.eventsWrapper}>
           <div className={styles.carouselWrapper}>
             <EventCarousel events={events} />
@@ -73,7 +79,7 @@ const Home: NextPage<HomeProps> = ({ news, events, project }) => {
           </div>
         </div>
       </section>
-      <section style={{ height: '100vh', backgroundColor: 'white' }}></section>
+      <UpcomingBanner project={upcoming} />
       <section style={{ height: '100vh', backgroundColor: 'black' }}></section>
     </Layout>
   )
@@ -84,7 +90,8 @@ export async function getStaticProps() {
     props: {
       news: fixture.news,
       events: fixture.events,
-      project: projects[0]
+      project: projects[0],
+      upcoming: fixture.upcoming
     },
     revalidate: 60 * 60 * 24 // TODO: currently set to 1 day. Update if required
   }

@@ -9,7 +9,6 @@
 
 .heroWrapper {
   height: calc(var(--vh, 1vh) * 100 - 44px);
-
   position: relative;
   .content {
     position: absolute;
@@ -61,18 +60,30 @@
 }
 
 .newsAndEventsWrapper {
-  padding-top: 1rem;
-  padding-right: 1rem;
-  @extend .leftPadding;
+  padding: 2rem;
+  padding-left: 0;
   background-color: color(white-color);
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: calc(11vw + 1rem) 2fr 1fr;
   gap: 1rem;
   position: relative;
   @include respond-to('mobile') {
     grid-template-columns: 1fr;
-    padding-top: 0.5rem;
-    padding-right: 0.5rem;
+    padding: 0.5rem;
+  }
+  .subtitleWrapper {
+    position: sticky;
+    top: 1rem;
+    left: 1rem;
+    height: calc(var(--vh, 1vh) * 100 - 2rem);
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    margin: 0;
+    font-weight: 400;
+    @include respond-to('mobile') {
+      display: none;
+    }
   }
   .carouselWrapper {
     position: sticky;

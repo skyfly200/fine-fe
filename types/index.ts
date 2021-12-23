@@ -72,6 +72,14 @@ export type Project = {
   about?: string[]
 }
 
+export type UpcomingProject = {
+  title: string
+  artist: Partial<Artist>
+  dropDate: string
+  overview: string[]
+  image: Img
+}
+
 export type ToastType = 'success' | 'info' | 'error' | 'warning'
 
 export interface IParams extends ParsedUrlQuery {
