@@ -16,6 +16,7 @@
   list-style: none;
   justify-content: center;
   padding-top: 10px;
+  gap: 1rem;
 }
 .emblaDot {
   background-color: transparent;
@@ -24,20 +25,21 @@
   padding: 0;
   outline: 0;
   border: 0;
-  width: 30px;
+  width: 40px;
   height: 30px;
-  margin-right: 7.5px;
-  margin-left: 7.5px;
   display: flex;
   align-items: center;
+  @include respond-to('mobile') {
+    width: 30px;
+  }
   &:after {
     background-color: color(grey-color);
-    width: 12px;
-    height: 12px;
+    width: 40px;
+    height: 8px;
     border-radius: 8px;
     content: '';
     @include respond-to('mobile') {
-      width: 10px;
+      width: 20px;
       height: 10px;
     }
   }
