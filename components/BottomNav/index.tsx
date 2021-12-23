@@ -12,8 +12,8 @@ const BottomNav = () => {
   return (
     <div className={style.nav}>
       {/* TODO: Connect Wallet */}
-      <div className={style.wallet}>CONNECT WALLET</div>
-      <div className={style.logo}>FINE</div>
+      <div className={style.wallet}>CONNECT</div>
+      <div className={style.logo}></div>
       <ul className={style.menu}>
         {navLinks.map(link => (
           <Link key={link.name} href={link.path} passHref>
