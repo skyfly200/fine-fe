@@ -13,10 +13,10 @@ const BottomNav = () => {
     <div className={style.nav}>
       {/* TODO: Connect Wallet */}
       <div className={style.wallet}>
-        CONNECT WALLET{' '}
         <div className={style.outerCircle}>
           <span className={style.innerCircle} />
-        </div>
+        </div>{' '}
+        CONNECT WALLET
       </div>
       <div className={style.logo}></div>
       <ul className={style.menu}>
