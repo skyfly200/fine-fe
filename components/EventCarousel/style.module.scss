@@ -35,12 +35,12 @@
   &:after {
     background-color: color(grey-color);
     width: 40px;
-    height: 8px;
+    height: 5px;
     border-radius: 8px;
     content: '';
     @include respond-to('mobile') {
       width: 20px;
-      height: 10px;
+      height: 5px;
     }
   }
   &.selected:after {
