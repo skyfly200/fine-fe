@@ -48,7 +48,7 @@
         }
       }
       .artistName {
-        font-size: 2rem;
+        font-size: 6vw;
         @include respond-to('mobile') {
           font-size: 1.2rem;
         }
