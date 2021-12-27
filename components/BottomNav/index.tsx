@@ -18,7 +18,7 @@ const BottomNav = () => {
         </div>{' '}
         <div className={style.connect}>CONNECT WALLET</div>
       </div>
-      <div className={style.logo}></div>
+
       <ul className={style.menu}>
         {navLinks.map(link => (
           <Link key={link.name} href={link.path} passHref>

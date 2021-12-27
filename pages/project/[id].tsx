@@ -8,25 +8,168 @@ import Link from '../../components/Link'
 import Icon from '../../components/Icon'
 import TextInput from '../../components/TextInput'
 import { useDebounce } from '../../utils'
-import { IParams, Project } from '../../types'
+import { Artist, Artwork, Img, IParams, Project } from '../../types'
 
-import style from '../../styles/pages/Project.module.scss'
+import style from './Project.module.scss'
 
 import projects from '../../fixtures/projects'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import Spinner from '../../components/Spinner'
+import RoundedButton from '../../components/RoundedButton'
+import artists from '../../fixtures/artists'
 
 interface ProjectPageProps {
   project: Project
+  artist: Artist
 }
 
-type HoverActions = 'enter' | 'leave'
+interface TitleProps {
+  title: string
+  name: string
+  hideOnDesktop?: boolean
+  hideOnMobile?: boolean
+}
 
-const ProjectPage: NextPage<ProjectPageProps> = ({ project }) => {
-  const [limit, setLimit] = useState<number>(10)
-  const [search, setSearch] = useState<string>('')
+const Title = ({ title, name, hideOnDesktop, hideOnMobile }: TitleProps) => (
+  <div
+    className={cn(style.title, {
+      [style.hideOnDesktop]: hideOnDesktop,
+      [style.hideOnMobile]: hideOnMobile
+    })}
+  >
+    <div className={style.content}>
+      <h1>{title}</h1>
+      <h2>by {name}</h2>
+      <div className={style.buttonWrapper}>
+        <RoundedButton>MINT</RoundedButton>
+        #68
+      </div>
+    </div>
+  </div>
+)
+
+interface AboutProps {
+  about: string[]
+  bio: string[]
+  image?: Img
+}
+
+const About = ({ about, bio, image }: AboutProps) => (
+  <div className={style.about} id="about">
+    {about?.map((p, i) => (
+      <p key={`about-paragraph-${i}`}>{p}</p>
+    ))}
+    {bio.length && (
+      <div className={style.bio}>
+        <h3>About the artist</h3>
+
+        {image?.src && (
+          <div className={style.avatar}>
+            <Image
+              layout="responsive"
+              src={image?.src}
+              height={image?.height}
+              width={image?.width}
+              alt={image?.alt}
+            />
+          </div>
+        )}
+
+        {bio.map((p, i) => (
+          <p key={`bio-paragraph-${i}`}>{p}</p>
+        ))}
+      </div>
+    )}
+  </div>
+)
+
+const Display = ({ id, previewImg }: Partial<Artwork>) => (
+  <div className={style.display} id="display">
+    <div className={style.pieceWrapper}>
+      <Link href={`/artwork/${id}`}>
+        {previewImg && (
+          <Image
+            src={previewImg.src}
+            height={200}
+            width={200}
+            layout="responsive"
+            alt="latest-mint-piece"
+          />
+        )}
+      </Link>
+    </div>
+  </div>
+)
+
+const Details = () => (
+  <div className={style.details} id="details">
+    <table>
+      <tr>
+        <td>Library</td>
+        <td>Three.js</td>
+      </tr>
+      <tr>
+        <td>Price</td>
+        <td>
+          1.1 <Icon icon="eth" />
+        </td>
+      </tr>
+    </table>
+  </div>
+)
+
+interface GalleryProps {
+  items: Array<Partial<Artwork>>
+}
+
+const pageQuantity = 20
+const Gallery = ({ items }: GalleryProps) => {
+  const [limit, setLimit] = useState<number>(pageQuantity)
+  if (!items.length) return <></>
+  return (
+    <>
+      <InfiniteScroll
+        dataLength={items.slice(0, limit).length}
+        next={() => setLimit(old => old + pageQuantity)}
+        hasMore={limit < items.length}
+        loader={
+          <div className={style.spinnerWrapper}>
+            <Spinner />
+          </div>
+        }
+        endMessage={<h4>Nothing more to show</h4>}
+        className={style.gallery}
+      >
+        {items.slice(0, limit).map((item, i) => (
+          <Link
+            key={`${item.name}-${i}`}
+            href={`/artwork/${item.id}`}
+            id={i === 0 ? 'gallery' : ''}
+          >
+            {item.previewImg && (
+              <Image
+                src={item.previewImg.src}
+                height={200}
+                width={200}
+                layout="responsive"
+                alt={`${item.name}-${i}`}
+              />
+            )}
+          </Link>
+        ))}
+      </InfiniteScroll>
+    </>
+  )
+}
+
+const ProjectPage: NextPage<ProjectPageProps> = ({ project, artist }) => {
+  const { name, about, artworks } = project
+  const { image, bio } = artist
+
+  const [search, setSearch] = useState<string>('') // Backup for search input
   const debouncedValue = useDebounce<string>(search, 500)
 
-  const filteredArtworks = useMemo((): Array<any> => {
+  const filteredArtworks = useMemo((): Array<Partial<Artwork>> => {
     if (!debouncedValue && project.artworks) return project.artworks
     const filtered = project.artworks?.filter(proj =>
       proj.name.toLowerCase().includes(debouncedValue.toLowerCase())
@@ -38,86 +181,28 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ project }) => {
   return (
     <Layout>
       <div className={style.pageWrapper}>
-        <div className={cn(style.firstCol, style.col)}>
-          <div className={style.contentWrapper}>
-            <h1 className={style.title}>{project.name}</h1>
-            <div className={style.searchWrapper}>
-              <TextInput placeholder="Search..." onChange={e => setSearch(e.target.value)} />
-            </div>
-            <strong>250/500 minted</strong>
-            {/* <div className={style.miniGallery}>
-              {filteredArtworks?.map((item, i) => (
-                <Link key={`${project.name}-${i}`} href={`#anchor-${item.id}`}>
-                  <Image
-                    src={item.previewImg.src}
-                    height={25}
-                    width={25}
-                    layout="fixed"
-                    alt={`${project.name}-${i}`}
-                  />
-                </Link>
-              ))}
-            </div> */}
-          </div>
+        <Title title={name} name={artist.name} hideOnDesktop />
+        <div className={style.menu}>
+          <Link href="#display">
+            <Icon icon="canvas" size="lg" />
+          </Link>
+
+          <Link href="#about">about</Link>
+
+          <Link href="#details">meta</Link>
+
+          <Link href="#gallery">
+            <Icon icon="gallery" size="lg" />
+          </Link>
         </div>
-        <div className={cn(style.secondCol, style.col)}>
-          {filteredArtworks?.length ? (
-            <InfiniteScroll
-              dataLength={filteredArtworks.slice(0, limit).length}
-              next={() => {
-                console.log('+10')
-                console.log(limit < filteredArtworks.length)
-                setLimit(old => old + 10)
-              }}
-              hasMore={limit < filteredArtworks.length}
-              loader={<h3> Loading...</h3>}
-              endMessage={<h4>Nothing more to show</h4>}
-            >
-              {filteredArtworks.slice(0, limit).map((item, i) => (
-                <div
-                  key={`${project.name}-${i}`}
-                  id={`anchor-${item.id}`}
-                  className={style.artworkCard}
-                >
-                  <div className={style.cardImage}>
-                    <Link href={`/artwork/${item.id}`}>
-                      <Image
-                        src={item.previewImg.src}
-                        height={500}
-                        width={500}
-                        layout="responsive"
-                        alt={`${project.name}-${i}`}
-                      />
-                    </Link>
-                  </div>
-                  <div className={cn(style.cardContent, style.open)}>
-                    <div>
-                      <h3 className={style.artworkName}>{item.name}</h3>
-                      <p>
-                        by <strong>Adam Ferris</strong>
-                      </p>
-                      {item.minted && (
-                        <span className={style.price}>
-                          <Icon icon="eth" size="md" />
-                          {item.mintedPrice}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </InfiniteScroll>
-          ) : (
-            'no items'
-          )}
+        <div className={style.columnsLayout}>
+          <About about={about} bio={bio} image={image} />
+          <Title title={name} name={artist.name} hideOnMobile />
+          <Display id={filteredArtworks[0].id} previewImg={filteredArtworks[0].previewImg} />
+          <Details />
+          <Gallery items={filteredArtworks} />
         </div>
-        <div className={cn(style.lastCol, style.col)}>
-          <div className={style.aboutContent}>
-            {project.about?.map((item, i) => (
-              <p key={`about-paragraph-${i}`}>{item}</p>
-            ))}
-          </div>
-        </div>
+        <div className={style.blank} />
       </div>
     </Layout>
   )
@@ -126,13 +211,14 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ project }) => {
 export const getStaticProps: GetStaticProps = async context => {
   const { id } = context.params as IParams
   const project = projects.find(item => item.id === id)
+  const artist = artists[0]
   if (!project) {
     return {
       notFound: true
     }
   }
   return {
-    props: { project },
+    props: { project, artist },
     revalidate: 10 // TODO: currently set to 1 day. Update if required
   }
 }

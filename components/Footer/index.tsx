@@ -1,6 +1,6 @@
 import React from 'react'
 import Icon from '../Icon'
-import RoundButton from '../RountButton'
+import RoundButton from '../RoundedButton'
 import style from './style.module.scss'
 
 const Footer = () => {
@@ -20,13 +20,8 @@ const Footer = () => {
             </button>
           </div>
         </div>
-        <div className={style.bottom}>
-          <div className={style.line} />
-          <div className={style.logoWrapper}>
-            <span className={style.logo}>FINE</span>
-            <p>Copyright FINE © 2021</p>
-          </div>
-        </div>
+
+        <p className={style.copyright}>Copyright FINE © 2021</p>
       </div>
     </div>
   )

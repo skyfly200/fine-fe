@@ -47,13 +47,14 @@ export interface Artwork {
   tokenData: TokenData
   script: string
   size: Size
-  project: Project
+  project: Partial<Project>
 }
 
 export type Artist = {
   id: string
   name: string
   bio: string[]
+  image?: Img
 }
 
 export type PartialArtwork = {
@@ -69,7 +70,7 @@ export type Project = {
   name: string
   total?: number
   artworks?: PartialArtwork[]
-  about?: string[]
+  about: string[]
 }
 
 export type UpcomingProject = {

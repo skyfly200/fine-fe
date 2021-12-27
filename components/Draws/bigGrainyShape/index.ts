@@ -91,22 +91,24 @@ const sceneSetup = (container: React.RefObject<HTMLDivElement>) => {
   }).observe(wrapper)
 
   //RENDER LOOP
-  const loader = new GLTFLoader().setPath('/')
-  loader.load('shape.glb', function (gltf) {
-    scene.add(gltf.scene)
-    const material = new THREE.MeshLambertMaterial({ color: 0xe2e3e5 })
-    const directionalLight = new THREE.DirectionalLight(0xccccbb, 1)
-    directionalLight.castShadow = false
-    directionalLight.position.set(-2, 4, -2)
-    directionalLight.target = gltf.scene
-    renderer.setClearColor(0xffffff, 0)
-    scene.add(directionalLight)
-    scene.traverse(function (child) {
-      // @ts-ignore
-      child.material = material
-    })
-    render()
-  })
+  const loader = new GLTFLoader()
+  loader.load(
+    'https://ipfs.io/ipfs/QmUTQ2C1GigXYq64oZvaJ16twuUxUteU3nY4dHbWiABBWu',
+    function (gltf) {
+      scene.add(gltf.scene)
+      const material = new THREE.MeshLambertMaterial({ color: 0xe2e3e5 })
+      const directionalLight = new THREE.DirectionalLight(0xccccbb, 1)
+      directionalLight.castShadow = false
+      directionalLight.position.set(-2, 4, -2)
+      directionalLight.target = gltf.scene
+      renderer.setClearColor(0xffffff, 0)
+      scene.add(directionalLight)
+      scene.traverse(function (child) {
+        ;(child as THREE.Mesh).material = material
+      })
+      render()
+    }
+  )
 
   function render() {
     var timer = Date.now() * 0.0002

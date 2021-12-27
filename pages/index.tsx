@@ -1,21 +1,20 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
-import cn from 'classnames'
 
 import { Event, News, Project, UpcomingProject } from '../types'
 import EventCarousel from '../components/EventCarousel'
 import Layout from '../containers/Layout'
 import NewsCard from '../components/NewsCard'
-
-import fixture from '../fixtures/home'
-import projects from '../fixtures/projects'
-import styles from '../styles/pages/Home.module.scss'
-import Icon from '../components/Icon'
-import RoundButton from '../components/RountButton'
+import RoundButton from '../components/RoundedButton'
 import Link from '../components/Link'
 import UpcomingBanner from '../components/UpcomingBanner'
 import RotatedText from '../components/RotatedText'
+
+import fixture from '../fixtures/home'
+import projects from '../fixtures/projects'
+
+import styles from './Home.module.scss'
 
 interface HomeProps {
   news: News[]

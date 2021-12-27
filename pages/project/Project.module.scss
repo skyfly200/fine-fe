@@ -1,0 +1,171 @@
+@import '../../styles/mixins.scss';
+
+.pageWrapper {
+  padding: 1rem;
+  background: color(grey-color);
+  @include respond-to('tablet-sm') {
+    padding: 0rem;
+  }
+  .menu {
+    display: none;
+    font-weight: bold;
+    @include respond-to('tablet-sm') {
+      margin-left: calc(25vw + 1.5rem);
+      margin-right: 0.5rem;
+      display: flex;
+      position: sticky;
+      justify-content: space-between;
+      top: 1rem;
+      z-index: 5;
+      text-transform: uppercase;
+    }
+    @include respond-to('mobile') {
+      top: 0.5rem;
+    }
+  }
+  .columnsLayout {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 500px auto;
+    gap: 1rem;
+    @include respond-to('tablet-sm') {
+      grid-template-columns: 100%;
+      grid-template-rows: repeat(4, auto);
+    }
+    .about,
+    .title {
+      grid-row-end: span 2;
+      @include respond-to('tablet-sm') {
+        grid-row-end: span 1;
+      }
+    }
+
+    .about {
+      padding-top: calc(var(--vh, 1vh) * 50);
+      line-height: 1.25;
+      @include respond-to('tablet-sm') {
+        padding: 0.5rem;
+        grid-column: 1;
+        grid-row: 2 / span 1;
+      }
+      .bio {
+        margin-top: 4rem;
+
+        .avatar {
+          width: 50px;
+          height: 50px;
+          border-radius: 555px;
+          border: 1px solid color(darkgrey-color);
+          overflow: hidden;
+          margin-bottom: 1rem;
+        }
+      }
+    }
+
+    .details {
+      @include respond-to('tablet-sm') {
+        padding: 0.5rem;
+      }
+      table {
+        width: 100%;
+        max-width: 400px;
+        border-collapse: collapse;
+        tr {
+          border-bottom: 1px solid color(darkgrey-color);
+          &:last-child {
+            border: none;
+          }
+          td {
+            padding: 0.5rem 0;
+            &:nth-child(2) {
+              text-align: right;
+            }
+          }
+        }
+      }
+    }
+
+    .display {
+      background-color: color(white-color);
+      grid-column-end: span 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .pieceWrapper {
+        width: 50%;
+      }
+      @include respond-to('tablet-sm') {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        padding: 0.5rem;
+        .pieceWrapper {
+          width: 100%;
+        }
+      }
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 1fr;
+      gap: 1rem;
+      @include respond-to('tablet-sm') {
+        padding: 0.5rem;
+        gap: 0.5rem;
+      }
+    }
+  }
+  .blank {
+    display: none;
+    @include respond-to('tablet-sm') {
+      display: block;
+      height: 100px;
+      width: 100vw;
+      z-index: 4;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: color(grey-color);
+    }
+    @include respond-to('mobile') {
+      height: 20vw;
+    }
+  }
+}
+.title {
+  position: relative;
+  @include respond-to('tablet-sm') {
+    padding: 0.5rem;
+    padding-top: calc(15.5vw + 2rem);
+    margin-bottom: 2rem;
+  }
+  .content {
+    position: sticky;
+    top: 1rem;
+    .buttonWrapper {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+.spinnerWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hideOnDesktop {
+  display: none;
+  @include respond-to('tablet-sm') {
+    display: block;
+  }
+}
+.hideOnMobile {
+  display: block;
+  @include respond-to('tablet-sm') {
+    display: none;
+  }
+}

@@ -7,6 +7,8 @@ export type Icons =
   | 'instagram'
   | 'twitter'
   | 'discord'
+  | 'gallery'
+  | 'canvas'
 
 export type IconSize = 'sm' | 'md' | 'lg' | 'xl' | 'sm-F' | 'sm-INE' | 'F'
 
