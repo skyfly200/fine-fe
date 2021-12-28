@@ -81,14 +81,15 @@ const HomePage: NextPage = () => {
             </div>
             <div className={cn(style.content, style.container)}>
               <p className={style.textXL}>
-                FINE is an artist-run platform supporting established and emerging artists in the
-                NFT space. We view the blockchain both as a platform and as a medium.
+                FINE is an artist-run platform supporting established and emerging artists within
+                the NFT space and metaverse(s).
               </p>
               <p className={style.textXL}>
-                We work one-on-one with artists to develop innovative projects and provide the tools
-                and the knowledge necessary to do so. We are focused on building a diverse roster of
-                artists aligned in their intention to create experimental work and foster a rich
-                dialogue within the contemporary visual culture.
+                We view the blockchain both as a platform and a medium. We work one-on-one with
+                artists to develop projects -- providing the tools and knowledge necessary not only
+                to create and educate, but also to innovate. We are focused on building a diverse
+                roster of artists aligned in their intention to create experimental work and foster
+                a rich dialogue within the contemporary visual culture.
               </p>
             </div>
           </div>
