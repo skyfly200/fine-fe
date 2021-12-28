@@ -103,6 +103,7 @@ const Display = ({ id, previewImg }: Partial<Artwork>) => (
 
 const Details = () => (
   <div className={style.details} id="details">
+    <h3>Meta</h3>
     <table>
       <tr>
         <td>Library</td>
@@ -127,7 +128,8 @@ const Gallery = ({ items }: GalleryProps) => {
   const [limit, setLimit] = useState<number>(pageQuantity)
   if (!items.length) return <></>
   return (
-    <>
+    <div className={style.galleryWrapper} id="gallery">
+      <h3>Latest tokens</h3>
       <InfiniteScroll
         dataLength={items.slice(0, limit).length}
         next={() => setLimit(old => old + pageQuantity)}
@@ -141,11 +143,7 @@ const Gallery = ({ items }: GalleryProps) => {
         className={style.gallery}
       >
         {items.slice(0, limit).map((item, i) => (
-          <Link
-            key={`${item.name}-${i}`}
-            href={`/artwork/${item.id}`}
-            id={i === 0 ? 'gallery' : ''}
-          >
+          <Link key={`${item.name}-${i}`} href={`/artwork/${item.id}`}>
             {item.previewImg && (
               <Image
                 src={item.previewImg.src}
@@ -158,7 +156,7 @@ const Gallery = ({ items }: GalleryProps) => {
           </Link>
         ))}
       </InfiniteScroll>
-    </>
+    </div>
   )
 }
 
@@ -202,7 +200,6 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ project, artist }) => {
           <Details />
           <Gallery items={filteredArtworks} />
         </div>
-        <div className={style.blank} />
       </div>
     </Layout>
   )
