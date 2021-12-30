@@ -1,14 +1,13 @@
-import { useCallback, useEffect, useState } from 'react'
+import { ReactNode, useCallback, useEffect, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
-import EventCard, { EventCardProps } from '../EventCard'
 import style from './style.module.scss'
 import DotButton from './DotButton'
 
-interface EventCarouselProps {
-  events: EventCardProps[]
+interface CarouselProps {
+  items: ReactNode[]
 }
 
-const EventCarousel: React.FC<EventCarouselProps> = ({ events }) => {
+const Carousel: React.FC<CarouselProps> = ({ items }) => {
   const [emblaRef, embla] = useEmblaCarousel({ skipSnaps: false })
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
   const [selectedIndex, setSelectedIndex] = useState<number>(0)
@@ -29,14 +28,14 @@ const EventCarousel: React.FC<EventCarouselProps> = ({ events }) => {
     setScrollSnaps(embla.scrollSnapList())
     embla.on('select', onSelect)
   }, [embla, setScrollSnaps, onSelect])
-
+  console.log(items)
   return (
     <>
       <div ref={emblaRef} className={style.embla}>
         <div className={style.emblaContainer}>
-          {events.map((e, i) => (
-            <div key={e.title + i} className={style.emblaSlide}>
-              <EventCard {...e} />
+          {items.map((e, i) => (
+            <div key={`slide-${i}`} className={style.emblaSlide}>
+              {e}
             </div>
           ))}
         </div>
@@ -54,4 +53,4 @@ const EventCarousel: React.FC<EventCarouselProps> = ({ events }) => {
   )
 }
 
-export default EventCarousel
+export default Carousel

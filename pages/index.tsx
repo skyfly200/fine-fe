@@ -3,7 +3,7 @@ import Head from 'next/head'
 import dynamic from 'next/dynamic'
 
 import { Event, News, Project, UpcomingProject } from '../types'
-import EventCarousel from '../components/EventCarousel'
+import Carousel from '../components/Carousel'
 import Layout from '../containers/Layout'
 import NewsCard from '../components/NewsCard'
 import RoundButton from '../components/RoundedButton'
@@ -15,6 +15,7 @@ import fixture from '../fixtures/home'
 import projects from '../fixtures/projects'
 
 import styles from './Home.module.scss'
+import EventCard from '../components/EventCard'
 
 interface HomeProps {
   news: News[]
@@ -27,6 +28,11 @@ const DynamicPixelHero = dynamic(() => import('../components/PixelHero'))
 
 const Home: NextPage<HomeProps> = ({ news, events, project, upcoming }) => {
   const items = project.artworks?.slice(0, 100) || []
+  const carouselItems = events.map((ev, i) => (
+    <Link key={`eventcard-${i}`} href={`/event/${ev.id}`}>
+      <EventCard {...ev} />
+    </Link>
+  ))
   return (
     <Layout greyBG>
       <Head>
@@ -62,7 +68,7 @@ const Home: NextPage<HomeProps> = ({ news, events, project, upcoming }) => {
         </div>
         <div className={styles.eventsWrapper}>
           <div className={styles.carouselWrapper}>
-            <EventCarousel events={events} />
+            <Carousel items={carouselItems} />
           </div>
         </div>
         <div className={styles.newsWrapper}>

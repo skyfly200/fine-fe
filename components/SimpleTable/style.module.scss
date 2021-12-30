@@ -1,0 +1,21 @@
+@import '../../styles/mixins.scss';
+.simpleTable {
+  width: 100%;
+
+  border-collapse: collapse;
+  .row {
+    border-bottom: 1px solid color(darkgrey-color);
+    &:last-child {
+      border: none;
+    }
+    .cell {
+      padding: 0.5rem 0;
+      &:nth-child(2) {
+        text-align: right;
+      }
+    }
+  }
+}
+.maxWidth {
+  max-width: 400px;
+}

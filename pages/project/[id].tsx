@@ -17,6 +17,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import Spinner from '../../components/Spinner'
 import RoundedButton from '../../components/RoundedButton'
 import artists from '../../fixtures/artists'
+import SimpleTable from '../../components/SimpleTable'
 
 interface ProjectPageProps {
   project: Project
@@ -101,23 +102,28 @@ const Display = ({ id, previewImg }: Partial<Artwork>) => (
   </div>
 )
 
-const Details = () => (
-  <div className={style.details} id="details">
-    <h3>Meta</h3>
-    <table>
-      <tr>
-        <td>Library</td>
-        <td>Three.js</td>
-      </tr>
-      <tr>
-        <td>Price</td>
-        <td>
+const Details = () => {
+  const items = [
+    {
+      title: 'Library',
+      detail: 'Three.js'
+    },
+    {
+      title: 'Price',
+      detail: (
+        <>
           1.1 <Icon icon="eth" />
-        </td>
-      </tr>
-    </table>
-  </div>
-)
+        </>
+      )
+    }
+  ]
+  return (
+    <div className={style.details} id="details">
+      <h3>Meta</h3>
+      <SimpleTable rows={items} maxWidth />
+    </div>
+  )
+}
 
 interface GalleryProps {
   items: Array<Partial<Artwork>>
@@ -227,4 +233,5 @@ export const getStaticPaths: GetStaticPaths = async () => {
     fallback: false
   }
 }
+
 export default ProjectPage

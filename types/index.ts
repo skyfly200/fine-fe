@@ -19,11 +19,21 @@ export interface News {
   img: string
   alt?: string
 }
+
+export type EventDetail = {
+  title: string
+  detail: string
+}
 export interface Event {
+  id: string
   date: string
   title: string
-  img: string
-  alt?: string
+  subtitle?: string
+  images: Img[]
+  body?: string[]
+  dates?: EventDetail[]
+  contacts?: EventDetail[]
+  locations?: EventDetail[]
 }
 
 export type SrcType = 'three' | 'p5'

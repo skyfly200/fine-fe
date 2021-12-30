@@ -5,11 +5,12 @@
   z-index: 3;
 
   .container {
+    min-height: 100px;
     height: 100%;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     display: flex;
   }
   .social {
