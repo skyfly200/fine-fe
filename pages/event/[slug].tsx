@@ -22,6 +22,7 @@ type MenuItems = 'date' | 'contact' | 'location'
 interface GalleryImgProps {
   img: SanityImage
 }
+
 const GalleryImg = ({ img }: GalleryImgProps) => {
   const imageProps = useNextSanityImage(client, img)
 
@@ -34,27 +35,26 @@ const GalleryImg = ({ img }: GalleryImgProps) => {
 
 const EventPage: NextPage<EventPageProps> = ({ event }) => {
   const [activeDetail, setDetail] = useState<MenuItems>('date')
-  const { title, subtitle, body, gallery, contacts, locations, dates } = event
 
-  const formattedDates = dates?.map(el => ({
+  const formattedDates = event?.dates?.map(el => ({
     name: el.eventName,
     date: <FormattedDate value={el.date} year="numeric" month="long" day="2-digit" />
   }))
-  const formattedContacts = contacts?.map(el => ({
+  const formattedContacts = event?.contacts?.map(el => ({
     name: el.contactName,
     detail: el.contactDetail
   }))
-  const formattedLocaitons = locations?.map(el => ({
+  const formattedLocaitons = event?.locations?.map(el => ({
     name: el.locationName,
     detail: el.locationDetail
   }))
 
   const menuItems: MenuItems[] = []
-  if (dates) {
+  if (event?.dates) {
     menuItems.push('date')
   }
-  if (contacts) menuItems.push('contact')
-  if (locations) menuItems.push('location')
+  if (event?.contacts) menuItems.push('contact')
+  if (event?.locations) menuItems.push('location')
   //@ts-ignore
   const cleanTableDataFromSanity = arr => arr.map(({ _key, _type, ...attr }) => attr)
   const displayedTable = useMemo(() => {
@@ -65,7 +65,7 @@ const EventPage: NextPage<EventPageProps> = ({ event }) => {
     }[activeDetail]
   }, [activeDetail, formattedDates, formattedContacts, formattedLocaitons])
 
-  const carouselItems = gallery.images.map((img, i) => (
+  const carouselItems = event?.gallery.images?.map((img, i) => (
     <GalleryImg img={img} key={`galler-img-${i}`} />
   ))
 
@@ -80,7 +80,7 @@ const EventPage: NextPage<EventPageProps> = ({ event }) => {
 
         <div className={style.content}>
           <div className={style.top}>
-            <h1 className={style.title}>{title}</h1>
+            <h1 className={style.title}>{event?.title}</h1>
             <div className={style.details}>
               <ul className={style.localMenu}>
                 {menuItems.map(item => (
@@ -96,15 +96,17 @@ const EventPage: NextPage<EventPageProps> = ({ event }) => {
                 {displayedTable && <SimpleTable rows={displayedTable} />}
               </div>
             </div>
-            <h3 className={style.subtitle}>{subtitle}</h3>
+            <h3 className={style.subtitle}>{event?.subtitle}</h3>
           </div>
           <div className={style.bottom}>
             <div className="sanity-body">
-              <BlockContent
-                blocks={body}
-                imageOptions={{ w: 680, fit: 'max' }}
-                {...client.config()}
-              />
+              {event?.body && (
+                <BlockContent
+                  blocks={event.body}
+                  imageOptions={{ w: 680, fit: 'max' }}
+                  {...client.config()}
+                />
+              )}
             </div>
           </div>
         </div>

@@ -15,9 +15,8 @@ interface NewsPageProps {
   entry: News
 }
 const News: NextPage<NewsPageProps> = ({ entry }) => {
-  const { title, mainImage, subtitle, publishedAt, body } = entry
-  const imageProps = useNextSanityImage(client, mainImage)
-  console.log(imageProps)
+  const imageProps = useNextSanityImage(client, entry.mainImage)
+
   return (
     <Layout>
       <div className={style.pageWrapper}>
@@ -31,11 +30,11 @@ const News: NextPage<NewsPageProps> = ({ entry }) => {
           />
         </div>
         <div className={style.content}>
-          <h1 className={style.title}>{title}</h1>
-          <h2 className={style.subtitle}>{subtitle}</h2>
+          <h1 className={style.title}>{entry.title}</h1>
+          <h2 className={style.subtitle}>{entry.subtitle}</h2>
           <div className="sanity-body">
             <BlockContent
-              blocks={body}
+              blocks={entry.body}
               imageOptions={{ w: 680, fit: 'max' }}
               {...client.config()}
             />
@@ -43,7 +42,7 @@ const News: NextPage<NewsPageProps> = ({ entry }) => {
         </div>
         <div className={style.date}>
           <RotatedText>
-            <FormattedDate value={publishedAt} year="numeric" month="long" day="2-digit" />
+            <FormattedDate value={entry.publishedAt} year="numeric" month="long" day="2-digit" />
           </RotatedText>
         </div>
       </div>
