@@ -28,7 +28,7 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
     setScrollSnaps(embla.scrollSnapList())
     embla.on('select', onSelect)
   }, [embla, setScrollSnaps, onSelect])
-  console.log(items)
+
   return (
     <>
       <div ref={emblaRef} className={style.embla}>

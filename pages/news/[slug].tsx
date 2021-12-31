@@ -17,7 +17,7 @@ interface NewsPageProps {
 const News: NextPage<NewsPageProps> = ({ entry }) => {
   const { title, mainImage, subtitle, publishedAt, body } = entry
   const imageProps = useNextSanityImage(client, mainImage)
-
+  console.log(imageProps)
   return (
     <Layout>
       <div className={style.pageWrapper}>
@@ -33,7 +33,7 @@ const News: NextPage<NewsPageProps> = ({ entry }) => {
         <div className={style.content}>
           <h1 className={style.title}>{title}</h1>
           <h2 className={style.subtitle}>{subtitle}</h2>
-          <div className={style.body}>
+          <div className="sanity-body">
             <BlockContent
               blocks={body}
               imageOptions={{ w: 680, fit: 'max' }}

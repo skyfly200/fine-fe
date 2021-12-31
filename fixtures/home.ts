@@ -1,7 +1,6 @@
-import { events, news } from '.'
+import { events } from '.'
 
 const fixture = {
-  news: news,
   events: events,
   upcoming: {
     title: 'Large Project Name',

@@ -1,9 +1,9 @@
-import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import groq from 'groq'
 
-import { Event, IParams, News, Project, UpcomingProject } from '../types'
+import { Event, News, Project, UpcomingProject } from '../types'
 import Carousel from '../components/Carousel'
 import Layout from '../containers/Layout'
 import NewsCard from '../components/NewsCard'
@@ -29,7 +29,6 @@ interface HomeProps {
 const DynamicPixelHero = dynamic(() => import('../components/PixelHero'))
 
 const Home: NextPage<HomeProps> = ({ news, events, project, upcoming }) => {
-  console.log(news)
   const items = project.artworks?.slice(0, 100) || []
   const carouselItems = events.map((ev, i) => (
     <Link key={`eventcard-${i}`} href={`/event/${ev.id}`}>
