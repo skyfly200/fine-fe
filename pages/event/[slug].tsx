@@ -56,7 +56,7 @@ const EventPage: NextPage<EventPageProps> = ({ event }) => {
   if (event?.contacts) menuItems.push('contact')
   if (event?.locations) menuItems.push('location')
   //@ts-ignore
-  const cleanTableDataFromSanity = arr => arr.map(({ _key, _type, ...attr }) => attr)
+  const cleanTableDataFromSanity = arr => arr?.map(({ _key, _type, ...attr }) => attr)
   const displayedTable = useMemo(() => {
     return {
       date: cleanTableDataFromSanity(formattedDates),
@@ -133,7 +133,7 @@ export const getStaticProps: GetStaticProps = async context => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await client.fetch(`*[_type == "event" && defined(slug.current)][].slug.current`)
-
+  console.log('Event-PATHS:::', paths)
   return {
     paths: paths.map((slug: string) => ({ params: { slug } })),
     fallback: true
