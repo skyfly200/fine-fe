@@ -65,7 +65,7 @@ const EventPage: NextPage<EventPageProps> = ({ event }) => {
     }[activeDetail]
   }, [activeDetail, formattedDates, formattedContacts, formattedLocaitons])
 
-  const carouselItems = event?.gallery.images?.map((img, i) => (
+  const carouselItems = event?.gallery?.images?.map((img, i) => (
     <GalleryImg img={img} key={`galler-img-${i}`} />
   ))
 
@@ -74,7 +74,7 @@ const EventPage: NextPage<EventPageProps> = ({ event }) => {
       <div className={style.eventPage}>
         <aside className={style.aside}>
           <div className={style.carousel}>
-            <Carousel items={carouselItems} />
+            {carouselItems && <Carousel items={carouselItems} />}
           </div>
         </aside>
 
@@ -132,10 +132,16 @@ export const getStaticProps: GetStaticProps = async context => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await client.fetch(`*[_type == "event" && defined(slug.current)][].slug.current`)
-  console.log('Event-PATHS:::', paths)
+  const fetchedPaths = await client.fetch(
+    `*[_type == "event" && defined(slug.current)][].slug.current`
+  )
+  const paths = fetchedPaths.length
+    ? fetchedPaths.map((slug: string) => ({ params: { slug } }))
+    : []
+
+  console.log('EVENTS _ PATHS:::', paths)
   return {
-    paths: paths.map((slug: string) => ({ params: { slug } })),
+    paths,
     fallback: true
   }
 }
