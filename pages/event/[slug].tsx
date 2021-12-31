@@ -5,44 +5,68 @@ import Image from 'next/image'
 import { FormattedDate } from 'react-intl'
 
 import Layout from '../../containers/Layout'
-import { events } from '../../fixtures'
-import { Event, IParams } from '../../types'
+import { Event, IParams, SanityImage } from '../../types'
 
 import style from './Event.module.scss'
 import SimpleTable from '../../components/SimpleTable'
 import Carousel from '../../components/Carousel'
+import client from '../../client'
+import { useNextSanityImage } from 'next-sanity-image'
+import BlockContent from '@sanity/block-content-to-react'
 
 interface EventPageProps {
   event: Event
 }
 
 type MenuItems = 'date' | 'contact' | 'location'
+interface GalleryImgProps {
+  img: SanityImage
+}
+const GalleryImg = ({ img }: GalleryImgProps) => {
+  const imageProps = useNextSanityImage(client, img)
+
+  return (
+    <div className={style.imageWrapper}>
+      <Image layout="fill" objectFit="cover" {...imageProps} alt="gallery image" />
+    </div>
+  )
+}
 
 const EventPage: NextPage<EventPageProps> = ({ event }) => {
   const [activeDetail, setDetail] = useState<MenuItems>('date')
-  const { title, subtitle, body, images, contacts, locations, dates } = event
+  const { title, subtitle, body, gallery, contacts, locations, dates } = event
+
   const formattedDates = dates?.map(el => ({
-    ...el,
-    detail: <FormattedDate value={el.detail} year="numeric" month="long" day="2-digit" />
+    name: el.eventName,
+    date: <FormattedDate value={el.date} year="numeric" month="long" day="2-digit" />
+  }))
+  const formattedContacts = contacts?.map(el => ({
+    name: el.contactName,
+    detail: el.contactDetail
+  }))
+  const formattedLocaitons = locations?.map(el => ({
+    name: el.locationName,
+    detail: el.locationDetail
   }))
 
   const menuItems: MenuItems[] = []
-  if (dates) menuItems.push('date')
+  if (dates) {
+    menuItems.push('date')
+  }
   if (contacts) menuItems.push('contact')
   if (locations) menuItems.push('location')
-
+  //@ts-ignore
+  const cleanTableDataFromSanity = arr => arr.map(({ _key, _type, ...attr }) => attr)
   const displayedTable = useMemo(() => {
     return {
-      date: formattedDates,
-      contact: contacts,
-      location: locations
+      date: cleanTableDataFromSanity(formattedDates),
+      contact: cleanTableDataFromSanity(formattedContacts),
+      location: cleanTableDataFromSanity(formattedLocaitons)
     }[activeDetail]
-  }, [activeDetail, formattedDates, contacts, locations])
+  }, [activeDetail, formattedDates, formattedContacts, formattedLocaitons])
 
-  const carouselItems = images?.map((el, i) => (
-    <div key={`event-images-${i}`} className={style.imageWrapper}>
-      <Image layout="fill" objectFit="cover" src={el.src} alt={el.alt} />
-    </div>
+  const carouselItems = gallery.images.map((img, i) => (
+    <GalleryImg img={img} key={`galler-img-${i}`} />
   ))
 
   return (
@@ -75,9 +99,13 @@ const EventPage: NextPage<EventPageProps> = ({ event }) => {
             <h3 className={style.subtitle}>{subtitle}</h3>
           </div>
           <div className={style.bottom}>
-            {body?.map((p, i) => (
-              <p key={`event-body-${i}`}>{p}</p>
-            ))}
+            <div className="sanity-body">
+              <BlockContent
+                blocks={body}
+                imageOptions={{ w: 680, fit: 'max' }}
+                {...client.config()}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -86,8 +114,13 @@ const EventPage: NextPage<EventPageProps> = ({ event }) => {
 }
 
 export const getStaticProps: GetStaticProps = async context => {
-  const { id } = context.params as IParams
-  const event = events.find(item => item.id === id)
+  const { slug } = context.params as IParams
+  const event = await client.fetch(
+    `
+      *[_type == "event" && slug.current == $slug][0]
+    `,
+    { slug }
+  )
   return {
     props: {
       event
@@ -97,10 +130,11 @@ export const getStaticProps: GetStaticProps = async context => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = events.map(({ id }) => ({ params: { id } }))
+  const paths = await client.fetch(`*[_type == "event" && defined(slug.current)][].slug.current`)
+
   return {
-    paths,
-    fallback: false
+    paths: paths.map((slug: string) => ({ params: { slug } })),
+    fallback: true
   }
 }
 

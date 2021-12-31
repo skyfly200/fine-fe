@@ -31,7 +31,7 @@ const DynamicPixelHero = dynamic(() => import('../components/PixelHero'))
 const Home: NextPage<HomeProps> = ({ news, events, project, upcoming }) => {
   const items = project.artworks?.slice(0, 100) || []
   const carouselItems = events.map((ev, i) => (
-    <Link key={`eventcard-${i}`} href={`/event/${ev.id}`}>
+    <Link key={`eventcard-${i}`} href={`/event/${ev.slug.current}`}>
       <EventCard {...ev} />
     </Link>
   ))
@@ -96,13 +96,18 @@ const Home: NextPage<HomeProps> = ({ news, events, project, upcoming }) => {
 
 export const getStaticProps: GetStaticProps = async context => {
   const news = await client.fetch(groq`
-    *[_type == "post" && publishedAt < now()] | order(publishedAt desc)
+    *[_type == "post" && publishedAt < now()] | order(publishedAt desc) {
+      title, mainImage, slug
+    }[0...5]
+  `)
+  const events = await client.fetch(groq`
+    *[_type == "event" && publishedAt < now()] | order(publishedAt desc) [0...3]
   `)
 
   return {
     props: {
       news,
-      events: fixture.events,
+      events,
       project: projects[0],
       upcoming: fixture.upcoming
     },

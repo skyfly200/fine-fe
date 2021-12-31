@@ -24,9 +24,21 @@
       }
     }
   }
+  .dateWrapper {
+    display: flex;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    gap: 1rem;
+  }
   .date {
     font-weight: 400;
     margin: 1rem 0 0.75rem;
+    padding-right: 1rem;
+    border-right: 1px solid color(grey-color);
+    &:last-child {
+      padding-right: 0;
+      border-right: none;
+    }
     @include respond-to('mobile') {
       margin: 0.5rem 0 0.5rem;
     }

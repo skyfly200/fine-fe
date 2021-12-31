@@ -22,21 +22,34 @@ export interface News {
   body: string[]
   slug: SanitySlug
 }
-
-export type EventDetail = {
-  title: string
-  detail: string
+export type EventDate = {
+  date: string
+  eventName: string
+}
+export type EventLocation = {
+  locationDetail: string
+  locationName: string
+}
+export type EventContact = {
+  contactDetail: string
+  contactName: string
+}
+export type SanityGallery = {
+  _type: string
+  images: SanityImage[]
 }
 export interface Event {
   id: string
+  slug: SanitySlug
   date: string
   title: string
   subtitle?: string
-  images: Img[]
+  mainImage: SanityImage
+  gallery: SanityGallery
   body?: string[]
-  dates?: EventDetail[]
-  contacts?: EventDetail[]
-  locations?: EventDetail[]
+  dates?: EventDate[]
+  contacts?: EventContact[]
+  locations?: EventLocation[]
 }
 
 export type SrcType = 'three' | 'p5'

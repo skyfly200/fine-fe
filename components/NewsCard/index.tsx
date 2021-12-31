@@ -15,14 +15,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ title, mainImage }) => {
   return (
     <div className={style.newsCard}>
       <div className={style.imgWrapper}>
-        <Image
-          src={imageProps.src}
-          loader={imageProps.loader}
-          alt="News card image"
-          layout="fill"
-          objectFit="cover"
-          className={style.img}
-        />
+        <Image alt="News card image" layout="responsive" className={style.img} {...imageProps} />
       </div>
 
       <h3 className={style.title}>{title}</h3>

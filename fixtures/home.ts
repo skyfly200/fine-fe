@@ -1,7 +1,4 @@
-import { events } from '.'
-
 const fixture = {
-  events: events,
   upcoming: {
     title: 'Large Project Name',
     artist: {
