@@ -73,13 +73,10 @@ const Home: NextPage<HomeProps> = ({ news, events, project, upcoming }) => {
         </div>
         <div className={styles.newsWrapper}>
           <div className={styles.newsCardWrapper}>
-            {news?.map((item, i) => (
-              <NewsCard
-                key={`${item.title}${i}`}
-                img={item.img}
-                alt={item.alt}
-                title={item.title}
-              />
+            {news?.map((n, i) => (
+              <Link href={`/news/${n.slug}`} key={`${n.title}${i}`}>
+                <NewsCard {...n} />
+              </Link>
             ))}
           </div>
         </div>

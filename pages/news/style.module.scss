@@ -1,0 +1,45 @@
+@import '../../styles/mixins.scss';
+
+.pageWrapper {
+  padding: 1rem;
+  background-color: color(grey-color);
+  min-height: calc(var(--vh, 1vh) * 100 - 44px);
+  position: relative;
+  @include respond-to('mobile') {
+    padding: 0.5rem;
+  }
+  .imgWrapper {
+    position: relative;
+    height: calc(var(--vh, 1vh) * 60 - 44px);
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  .date {
+    position: sticky;
+    bottom: calc(1rem + 44px);
+    left: 1rem;
+  }
+  .content {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    .title,
+    .subtitle,
+    .paragraph {
+      max-width: 680px;
+      width: 100%;
+    }
+    .subtitle {
+      font-weight: 400;
+    }
+    .subtitle,
+    .paragraph {
+      line-height: 1.5;
+    }
+    .paragraph {
+      font-family: Lato;
+      font-size: 1.1rem;
+    }
+  }
+}

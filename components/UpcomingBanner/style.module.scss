@@ -87,6 +87,9 @@
     }
     .overview {
       flex: 1;
+      font-size: 1.1rem;
+      line-height: 1.5;
+      font-family: Lato;
       @include respond-to('mobile') {
         display: none;
       }

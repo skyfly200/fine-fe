@@ -1,0 +1,233 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/components.scss';
+
+.logoLetters {
+  font-weight: 900;
+  font-size: 24.8vw;
+  margin: 0;
+  line-height: 0.75;
+  @include respond-to('mobile') {
+    font-size: 24.5vw;
+  }
+}
+
+.stickyF {
+  position: fixed;
+  top: 1.5vw;
+  left: 1.5vw;
+  color: black;
+  z-index: 3;
+}
+
+.FPadding {
+  padding: 1rem;
+  padding-left: 29vw;
+}
+
+.link {
+  font-family: Syne;
+  text-decoration: underline;
+  font-weight: 600;
+  &.discordLink {
+    font-weight: 900;
+  }
+}
+
+.inputWrapper {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 400px;
+  input {
+    border: 1px solid;
+    height: 45px;
+    background: transparent;
+    width: 100%;
+    padding: 0 0.5rem;
+    transition: all 0.15s ease-in;
+    &:focus {
+      background: #fff;
+      outline: none;
+      border: none;
+    }
+  }
+  .btn {
+    border: none;
+    background: black;
+    color: white;
+    padding: 0 1rem;
+  }
+  &.overBlack {
+    input {
+      color: color(grey-color);
+      background-color: rgba(255, 255, 255, 0.03);
+    }
+    .btn {
+      background-color: transparent;
+      border: 1px solid color(grey-color);
+    }
+  }
+}
+
+.home {
+  background-color: color(grey-color);
+  .hero {
+    width: 100%;
+    min-height: calc(var(--vh, 1vh) * 100 - 44px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    .ctaContainer {
+      display: flex;
+      align-items: flex-end;
+      padding: 1.8rem;
+      z-index: 2;
+      @include respond-to('tablet-sm') {
+        flex: 0;
+        width: 100px;
+      }
+      @include respond-to('mobile') {
+        align-items: flex-start;
+        padding-top: 36vw;
+      }
+      .rotateCTA {
+        transform-origin: bottom left;
+        left: 0;
+        bottom: 0;
+        transform: rotate(-90deg) translateY(100%);
+        .heroCTA {
+          display: flex;
+          text-align: left;
+          align-items: center;
+          gap: 1rem;
+          font-size: 1.5rem;
+          cursor: pointer;
+          h5 {
+            margin: 0;
+            font-weight: 400;
+          }
+        }
+      }
+    }
+    .heroContent {
+      display: flex;
+      .content {
+        flex: 1;
+        z-index: 2;
+        .textXL {
+          font-size: 1.8rem;
+          @include respond-to('tablet-sm') {
+            font-size: 1.3rem;
+          }
+        }
+      }
+    }
+  }
+
+  .joinUs {
+    position: relative;
+    height: 100%;
+    padding-left: 50vw;
+    display: grid;
+    background-color: color(darkgrey-color);
+    color: color(grey-color);
+    grid-template-columns: repeat(3, 1fr);
+    flex-flow: row nowrap;
+    overflow-y: hidden;
+    @include respond-to('tablet-sm') {
+      padding-left: 30vw;
+    }
+    .joinUsSection {
+      min-width: 50vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2rem;
+      border-left: 1px solid #000;
+      background-color: rgba(0, 0, 0, 0);
+      transition: background-color 0.15s ease-in;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.08);
+      }
+      &:last-child {
+        border-right: 1px solid #000;
+      }
+      @include respond-to('mobile') {
+        min-width: 90vw;
+        padding: 0.5rem;
+        padding-bottom: 3rem;
+      }
+      .cardTitle {
+        display: flex;
+        align-items: flex-end;
+      }
+      .cardTitle,
+      .cardContent {
+        flex: 1;
+        .text {
+          font-size: 1.5rem;
+          @include respond-to('mobile') {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+
+  .blank {
+    flex: 1;
+    @include respond-to('tablet-sm') {
+      display: none;
+    }
+  }
+}
+
+.container {
+  padding: 0 0.4vw;
+  @include respond-to('tablet-sm') {
+    padding: 0 0.5rem;
+  }
+}
+
+.text {
+  font-size: 1.25rem;
+  line-height: 1.25;
+  @include respond-to('tablet-sm') {
+    font-size: 1rem;
+  }
+}
+.subheader {
+  font-size: 2.5rem;
+  margin-top: 0;
+  @include respond-to('tablet-sm') {
+    font-size: 1.5rem;
+  }
+}
+
+.footer {
+  background: #fff;
+  min-height: calc(var(--vh, 1vh) * 100 - 44px);
+  display: flex;
+  align-items: center;
+  @extend .FPadding;
+  .footerContent {
+    padding: 0 3vw;
+    .text {
+      font-size: 1.5rem;
+      @include respond-to('mobile') {
+        font-size: 1rem;
+      }
+    }
+    .subheader {
+      white-space: nowrap;
+    }
+    @include respond-to('tablet-sm') {
+      display: block;
+    }
+  }
+  @include respond-to('tablet-sm') {
+    min-height: calc(var(--vh, 1vh) * 60);
+    padding: 0;
+  }
+}

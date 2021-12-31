@@ -16,8 +16,11 @@ export type Size = {
 
 export interface News {
   title: string
-  img: string
-  alt?: string
+  mainImage: Img
+  subtitle: string
+  createdAt: string
+  body: string[]
+  slug: string
 }
 
 export type EventDetail = {

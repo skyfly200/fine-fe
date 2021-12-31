@@ -1,33 +1,7 @@
-import { events } from '.'
+import { events, news } from '.'
 
 const fixture = {
-  news: [
-    {
-      title: 'Infinites AI+IRL+WOW',
-      img: 'https://res.cloudinary.com/dhrwv7wvb/image/upload/v1640168939/fine/fine-timesquare_r0zcj6.jpg',
-      alt: 'news image'
-    },
-    {
-      title: 'Infinites AI+IRL+WOW',
-      img: 'https://res.cloudinary.com/dhrwv7wvb/image/upload/v1640168939/fine/fine-timesquare_r0zcj6.jpg',
-      alt: 'news image'
-    },
-    {
-      title: 'Infinites AI+IRL+WOW',
-      img: 'https://res.cloudinary.com/dhrwv7wvb/image/upload/v1640168939/fine/fine-timesquare_r0zcj6.jpg',
-      alt: 'news image'
-    },
-    {
-      title: 'Infinites AI+IRL+WOW',
-      img: 'https://res.cloudinary.com/dhrwv7wvb/image/upload/v1640168939/fine/fine-timesquare_r0zcj6.jpg',
-      alt: 'news image'
-    },
-    {
-      title: 'Infinites AI+IRL+WOW',
-      img: 'https://res.cloudinary.com/dhrwv7wvb/image/upload/v1640168939/fine/fine-timesquare_r0zcj6.jpg',
-      alt: 'news image'
-    }
-  ],
+  news: news,
   events: events,
   upcoming: {
     title: 'Large Project Name',
