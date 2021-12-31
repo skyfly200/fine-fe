@@ -16,11 +16,11 @@ export type Size = {
 
 export interface News {
   title: string
-  mainImage: Img
+  mainImage: SanityImage
   subtitle: string
-  createdAt: string
+  publishedAt: string
   body: string[]
-  slug: string
+  slug: SanitySlug
 }
 
 export type EventDetail = {
@@ -98,4 +98,19 @@ export type ToastType = 'success' | 'info' | 'error' | 'warning'
 
 export interface IParams extends ParsedUrlQuery {
   id: string
+}
+
+export type SanityAsset = {
+  _ref: string
+  _type: string
+}
+
+export type SanityImage = {
+  asset: SanityAsset
+  type: string
+}
+
+export type SanitySlug = {
+  current: string
+  _type: string
 }

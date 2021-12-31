@@ -1,5 +1,4 @@
 export { default as events } from './events'
-export { default as news } from './news'
 export { default as artists } from './artists'
 export { default as projects } from './projects'
 export { default as artworks } from './artworks'

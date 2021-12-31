@@ -1,8 +1,9 @@
-import type { NextPage } from 'next'
+import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
+import groq from 'groq'
 
-import { Event, News, Project, UpcomingProject } from '../types'
+import { Event, IParams, News, Project, UpcomingProject } from '../types'
 import Carousel from '../components/Carousel'
 import Layout from '../containers/Layout'
 import NewsCard from '../components/NewsCard'
@@ -16,6 +17,7 @@ import projects from '../fixtures/projects'
 
 import styles from './Home.module.scss'
 import EventCard from '../components/EventCard'
+import client from '../client'
 
 interface HomeProps {
   news: News[]
@@ -27,6 +29,7 @@ interface HomeProps {
 const DynamicPixelHero = dynamic(() => import('../components/PixelHero'))
 
 const Home: NextPage<HomeProps> = ({ news, events, project, upcoming }) => {
+  console.log(news)
   const items = project.artworks?.slice(0, 100) || []
   const carouselItems = events.map((ev, i) => (
     <Link key={`eventcard-${i}`} href={`/event/${ev.id}`}>
@@ -74,8 +77,8 @@ const Home: NextPage<HomeProps> = ({ news, events, project, upcoming }) => {
         <div className={styles.newsWrapper}>
           <div className={styles.newsCardWrapper}>
             {news?.map((n, i) => (
-              <Link href={`/news/${n.slug}`} key={`${n.title}${i}`}>
-                <NewsCard {...n} />
+              <Link href={`/news/${n.slug.current}`} key={`${n.title}${i}`}>
+                <NewsCard title={n.title} mainImage={n.mainImage} />
               </Link>
             ))}
           </div>
@@ -92,10 +95,14 @@ const Home: NextPage<HomeProps> = ({ news, events, project, upcoming }) => {
   )
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async context => {
+  const news = await client.fetch(groq`
+    *[_type == "post" && publishedAt < now()] | order(publishedAt desc)
+  `)
+
   return {
     props: {
-      news: fixture.news,
+      news,
       events: fixture.events,
       project: projects[0],
       upcoming: fixture.upcoming
