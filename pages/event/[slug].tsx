@@ -139,7 +139,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     ? fetchedPaths.map((slug: string) => ({ params: { slug } }))
     : []
 
-  console.log('EVENTS _ PATHS:::', paths)
   return {
     paths,
     fallback: true

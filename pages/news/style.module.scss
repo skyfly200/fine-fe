@@ -23,7 +23,7 @@
     left: 1rem;
     @include respond-to('mobile') {
       left: 0.5rem;
-      top: calc(var(--vh, 1vh) * 25 - 44px);
+      top: calc(var(--vh, 1vh) * 47 - 44px);
       position: absolute;
     }
   }

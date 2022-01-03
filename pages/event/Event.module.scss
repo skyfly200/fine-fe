@@ -7,11 +7,15 @@
   min-height: calc(var(--vh, 1vh) * 100 - 44px);
   background-color: color(grey-color);
   position: relative;
+  @include respond-to('mobile') {
+    display: block;
+    padding: 0.5rem;
+  }
   .aside {
     flex: 1;
     padding-left: calc(11vw + 1rem);
     @include respond-to('mobile') {
-      padding-left: 0.5rem;
+      padding-left: 0;
     }
     .carousel {
       flex: 1;
@@ -35,11 +39,18 @@
       flex-direction: column;
       justify-content: space-between;
       min-height: calc(var(--vh, 1vh) * 70);
+      @include respond-to('mobile') {
+        display: block;
+      }
       .details {
         flex: 1;
         position: sticky;
         bottom: calc(1rem + 44px);
-
+        @include respond-to('mobile') {
+          position: relative;
+          bottom: auto;
+          margin-bottom: 1rem;
+        }
         .localMenu {
           list-style: none;
           padding: 0;
