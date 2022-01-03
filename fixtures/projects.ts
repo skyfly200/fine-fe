@@ -3,6 +3,7 @@ import { Project } from '../types'
 const projects: Project[] = [
   {
     id: '1',
+    src: 'three',
     name: 'Squares and triangles',
     total: 500,
     about: [

@@ -9,6 +9,8 @@ export type Icons =
   | 'discord'
   | 'gallery'
   | 'canvas'
+  | 'details'
+  | 'about'
 
 export type IconSize = 'sm' | 'md' | 'lg' | 'xl' | 'sm-F' | 'sm-INE' | 'F'
 

@@ -147,7 +147,7 @@
       border-left: 1px solid #000;
       background-color: rgba(0, 0, 0, 0);
       transition: background-color 0.15s ease-in;
-      &:hover {
+      @include hover {
         background-color: rgba(0, 0, 0, 0.08);
       }
       &:last-child {

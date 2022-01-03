@@ -21,7 +21,7 @@ const BottomNav = () => {
 
       <ul className={style.menu}>
         {navLinks.map(link => (
-          <Link key={link.name} href={link.path} passHref>
+          <Link key={link.name} href={link.path} passHref scroll>
             <li className={style.menuItem}>{link.name}</li>
           </Link>
         ))}

@@ -57,6 +57,7 @@ interface AboutProps {
 
 const About = ({ about, bio, image }: AboutProps) => (
   <div className={style.about} id="about">
+    <h3>About the project</h3>
     {about?.map((p, i) => (
       <p key={`about-paragraph-${i}`}>{p}</p>
     ))}
@@ -119,7 +120,7 @@ const Details = () => {
   ]
   return (
     <div className={style.details} id="details">
-      <h3>Meta</h3>
+      <h3>Details</h3>
       <SimpleTable rows={items} maxWidth />
     </div>
   )
@@ -191,9 +192,13 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ project, artist }) => {
             <Icon icon="canvas" size="lg" />
           </Link>
 
-          <Link href="#about">about</Link>
+          <Link href="#about">
+            <Icon icon="about" size="lg" />
+          </Link>
 
-          <Link href="#details">meta</Link>
+          <Link href="#details">
+            <Icon icon="details" size="lg" />
+          </Link>
 
           <Link href="#gallery">
             <Icon icon="gallery" size="lg" />

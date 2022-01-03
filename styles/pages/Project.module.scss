@@ -52,7 +52,7 @@
         flex: 1;
         transition: all 0.15s ease-in;
         cursor: pointer;
-        &:hover {
+        @include hover {
           box-shadow: 0 4px 25px -9px #000;
         }
       }

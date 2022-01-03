@@ -52,7 +52,7 @@ export interface Event {
   locations?: EventLocation[]
 }
 
-export type SrcType = 'three' | 'p5'
+export type SrcType = 'three' | 'p5' | 'glb'
 
 export type TokenData = {
   tokenId: string
@@ -97,6 +97,7 @@ export type Project = {
   total?: number
   artworks?: PartialArtwork[]
   about: string[]
+  src: SrcType
 }
 
 export type UpcomingProject = {

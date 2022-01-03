@@ -1,14 +1,14 @@
 import { useEffect } from 'react'
 
 const StyleProvider: React.FC = ({ children }) => {
-  const addVar = () =>
+  const addVH = () =>
     document.documentElement.style.setProperty('--vh', `${window.innerHeight / 100}px`)
 
   useEffect(() => {
     if (typeof window === undefined) return
-    addVar()
-    window.addEventListener('resize', addVar)
-    return () => window.removeEventListener('resize', addVar)
+    addVH()
+    window.addEventListener('resize', addVH)
+    return () => window.removeEventListener('resize', addVH)
   }, [])
   return <>{children}</>
 }

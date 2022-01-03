@@ -86,6 +86,7 @@
   }
   .carouselWrapper {
     position: sticky;
+    max-width: calc(100vw - 1rem); // TODO: FIND A BETTER SOLUTION
     top: 1rem;
     left: 0;
     @include respond-to('mobile') {

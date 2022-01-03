@@ -18,7 +18,7 @@
     transition: all 0.15s ease-in;
     transform: translate3d(0, -100%, 0);
     opacity: 0;
-    &:hover {
+    @include hover {
       transform: translate3d(0, 0, 0);
       opacity: 1;
     }
@@ -28,7 +28,7 @@
       opacity: 1;
       right: 0.5rem;
       left: auto;
-      &:hover {
+      @include hover {
         transform: none;
       }
     }
