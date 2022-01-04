@@ -1,5 +1,5 @@
 import React from 'react'
-import baseCodes from '../../assets/baseCodes'
+
 import { SrcType, TokenData } from '../../types'
 
 interface CanvasIframeProps {
@@ -19,7 +19,7 @@ const CanvasIframe: React.FC<CanvasIframeProps> = ({ baseCode, draw, tokenData }
                 <head>
                     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
                     <meta charset="utf-8"/>
-                    ${baseCodes[baseCode]}
+                    
                     ${
                       tokenData &&
                       `
