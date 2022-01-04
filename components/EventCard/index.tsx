@@ -22,8 +22,8 @@ const EventCard: React.FC<Event> = ({ title, mainImage, dates }) => {
       </div>
       {dates && dates[0] && (
         <div className={style.dateWrapper}>
-          {dates.slice(0, 3).map(d => (
-            <h5 className={style.date} key={d.date}>
+          {dates.slice(0, 3).map((d, i) => (
+            <h5 className={style.date} key={`${d.date}${i}`}>
               <FormattedDate value={d.date} year="numeric" month="long" day="2-digit" />
             </h5>
           ))}

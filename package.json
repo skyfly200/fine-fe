@@ -16,7 +16,7 @@
     "@sanity/client": "^2.23.2",
     "@sanity/image-url": "^1.0.1",
     "@types/react-scrollspy": "^3.3.5",
-    "@types/three": "^0.134.0",
+    "@types/three": "^0.136.0",
     "axios": "^0.24.0",
     "classnames": "^2.3.1",
     "embla-carousel-react": "^6.0.2",
@@ -32,7 +32,8 @@
     "react-scrollspy": "^3.4.3",
     "react-toastify": "^8.1.0",
     "sass": "^1.43.4",
-    "three": "^0.134.0"
+    "three": "^0.134.0",
+    "three-stdlib": "^2.6.4"
   },
   "devDependencies": {
     "@types/node": "16.11.7",

@@ -52,7 +52,7 @@ export interface Event {
   locations?: EventLocation[]
 }
 
-export type SrcType = 'three' | 'p5' | 'glb'
+export type SrcType = 'iframe' | 'glb'
 
 export type TokenData = {
   tokenId: string
@@ -66,13 +66,12 @@ export interface Artwork {
   minted: boolean
   name: string
   artistId: string
-  attributes: Attribute[]
-  previewImg: Img
+  attributes: Attribute
+  image: Img
   about: string[]
-  src: SrcType
-  tokenData: TokenData
-  script: string
+  type: SrcType
   size: Size
+  src?: string
   project: Partial<Project>
 }
 
@@ -83,21 +82,22 @@ export type Artist = {
   image?: Img
 }
 
-export type PartialArtwork = {
-  id: string
-  previewImg: Img
-  name: string
-  minted: boolean
-  mintedPrice: number
-}
-
 export type Project = {
   id: string
+  slug: string
   name: string
-  total?: number
-  artworks?: PartialArtwork[]
   about: string[]
-  src: SrcType
+  projectDetails: Attribute
+  artist: Partial<Artist>
+  image: Img
+}
+
+export type ProjectDetails = {
+  id: string
+  invocations: number
+  minted: number
+  type: SrcType
+  artworks: Artwork[]
 }
 
 export type UpcomingProject = {

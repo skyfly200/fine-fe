@@ -1,12 +1,12 @@
 import cn from 'classnames'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
-import { PartialArtwork } from '../../types'
+import { Artwork } from '../../types'
 import { getGridData, getRandomNumber, useInterval, useWindowSize } from '../../utils'
 import style from './style.module.scss'
 
 interface PixelHeroProps {
-  items: PartialArtwork[]
+  items: Artwork[]
 }
 
 type GridPosition = {
@@ -48,16 +48,16 @@ const PixelHero: React.FC<PixelHeroProps> = ({ items }) => {
   return (
     <div className={style.wrapper} ref={ref}>
       {items.map((el, i) => (
-        <div key={el.id} className={style.item} style={gridPosition[i]}>
+        <div key={`something-${i}`} className={style.item} style={gridPosition[i]}>
           <div
             className={cn(style.imageWrapper, { [style.open]: openItems.includes(el.id) })}
             onMouseEnter={() => setPlaying(false)}
             onMouseOut={() => setPlaying(true)}
           >
             <Image
-              src={el.previewImg.src}
+              src={el.image.src}
               layout="responsive"
-              alt={el.previewImg.alt}
+              alt={el.image.alt}
               height={300}
               width={300}
             />

@@ -3,7 +3,7 @@ import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import groq from 'groq'
 
-import { Event, News, Project, UpcomingProject } from '../types'
+import { Event, News, Project, ProjectDetails, UpcomingProject } from '../types'
 import Carousel from '../components/Carousel'
 import Layout from '../containers/Layout'
 import NewsCard from '../components/NewsCard'
@@ -12,24 +12,24 @@ import Link from '../components/Link'
 import UpcomingBanner from '../components/UpcomingBanner'
 import RotatedText from '../components/RotatedText'
 
-import fixture from '../fixtures/home'
-import projects from '../fixtures/projects'
-
 import styles from './Home.module.scss'
 import EventCard from '../components/EventCard'
 import client from '../client'
+import { projectsDetails, projects, home as fixture } from '../fixtures'
 
 interface HomeProps {
   news: News[]
   events: Event[]
   upcoming: UpcomingProject
   project: Project
+  projectDetails: ProjectDetails
 }
 
 const DynamicPixelHero = dynamic(() => import('../components/PixelHero'))
 
-const Home: NextPage<HomeProps> = ({ news, events, project, upcoming }) => {
-  const items = project.artworks?.slice(0, 100) || []
+const Home: NextPage<HomeProps> = ({ news, events, project, upcoming, projectDetails }) => {
+  console.log(projectDetails.artworks)
+  const items = projectDetails.artworks.slice(0, 100) || []
   const carouselItems = events.map((ev, i) => (
     <Link key={`eventcard-${i}`} href={`/event/${ev.slug.current}`}>
       <EventCard {...ev} />
@@ -58,7 +58,7 @@ const Home: NextPage<HomeProps> = ({ news, events, project, upcoming }) => {
                 <RoundButton size="xl">GO</RoundButton>
               </Link>
             </div>
-            <div className={styles.artistName}>By Adam Ferris</div>
+            <div className={styles.artistName}>By {project.artist.name}</div>
           </div>
         </div>
 
@@ -109,6 +109,7 @@ export const getStaticProps: GetStaticProps = async context => {
       news,
       events,
       project: projects[0],
+      projectDetails: projectsDetails[0],
       upcoming: fixture.upcoming
     },
     revalidate: 60 * 60 * 24 // TODO: currently set to 1 day. Update if required
