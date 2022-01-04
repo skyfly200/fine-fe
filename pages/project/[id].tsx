@@ -1,6 +1,8 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { SetStateAction, useMemo, useState } from 'react'
+import { SetStateAction, useState } from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
+
 import cn from 'classnames'
 
 import Layout from '../../containers/Layout'
@@ -96,6 +98,7 @@ const Gallery = ({ items, setActive, active }: GalleryProps) => {
 
 type Menu = 'canvas' | 'about' | 'details' | 'gallery'
 const ProjectPage: NextPage<ProjectPageProps> = ({ project, projectDetails }) => {
+  const router = useRouter()
   const {
     name,
     about,
@@ -103,7 +106,6 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ project, projectDetails }) =>
   } = project
   const { artworks } = projectDetails
   const [active, setActive] = useState<Artwork>(artworks[0])
-
   const menu: Menu[] = ['canvas', 'about', 'details', 'gallery']
   const details = [
     {
@@ -162,6 +164,11 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ project, projectDetails }) =>
           <div className={style.display} id="canvas">
             <div className={style.pieceWrapper}>
               <ArtPreviewer artwork={active} />
+              <div className={style.buttonWrapper}>
+                <RoundedButton onClick={() => router.push(`/artwork/${active.id}`)}>
+                  VIEW DETAILS
+                </RoundedButton>
+              </div>
             </div>
           </div>
           <div className={style.details} id="details">

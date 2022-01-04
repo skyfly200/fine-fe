@@ -96,6 +96,12 @@
       .pieceWrapper {
         width: calc(100% - 2rem);
         height: calc(100% - 2rem);
+        position: relative;
+        .buttonWrapper {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+        }
       }
       @include respond-to('tablet-sm') {
         grid-column: 1 / 2;
