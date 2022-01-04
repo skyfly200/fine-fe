@@ -50,10 +50,11 @@ const Title = ({ title, name, hideOnDesktop, hideOnMobile }: TitleProps) => (
 interface GalleryProps {
   items: Array<Artwork>
   setActive: React.Dispatch<SetStateAction<Artwork>>
+  active: Artwork
 }
 
 const pageQuantity = 20
-const Gallery = ({ items, setActive }: GalleryProps) => {
+const Gallery = ({ items, setActive, active }: GalleryProps) => {
   const [limit, setLimit] = useState<number>(pageQuantity)
   if (!items.length) return <></>
   return (
@@ -73,7 +74,7 @@ const Gallery = ({ items, setActive }: GalleryProps) => {
       >
         {items.slice(0, limit).map((item, i) => (
           <button
-            className={style.imageWrapper}
+            className={cn(style.imageWrapper, { [style.activePiece]: item.id === active.id })}
             key={`${item.name}-${i}`}
             onClick={() => setActive(item)}
           >
@@ -167,7 +168,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ project, projectDetails }) =>
             <h3>Details</h3>
             <SimpleTable rows={details} maxWidth />
           </div>
-          {artworks && <Gallery items={artworks} setActive={setActive} />}
+          {artworks && <Gallery items={artworks} setActive={setActive} active={active} />}
         </div>
       </div>
     </Layout>

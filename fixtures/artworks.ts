@@ -13,7 +13,7 @@ export const solids: Artwork[] = Array.from({ length: 30 }, (_, i) => i + 1).map
     minted: true,
     name: 'SLKXN-1',
     artistId: 'far',
-    project: { id: '1', name: 'name' },
+    project: { id: '1', name: 'Solids' },
     image: {
       src: `https://res.cloudinary.com/dhrwv7wvb/image/upload/v1641324878/fine/solid-${ni}_fine.png`
     },

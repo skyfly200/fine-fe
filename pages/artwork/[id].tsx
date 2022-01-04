@@ -44,7 +44,7 @@ const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist }) => {
               <h3 className={style.title}>{artwork.name}</h3>
               <Link href={`/project/${artwork.project.id}`}>
                 <p className={cn(style.subtitle, style.backButton)}>
-                  <Icon icon="arrow-left" /> {artwork.project.name}
+                  <Icon icon="arrow-left" /> back to {artwork.project.name}
                 </p>
               </Link>
               {artwork.about.map((p, i) => (
