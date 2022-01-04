@@ -12,6 +12,7 @@ import Link from '../../components/Link'
 import Icon from '../../components/Icon'
 import CanvasStickyWrapper from '../../components/CanvasStickyWrapper'
 import style from './Artwork.module.scss'
+import ArtPreviewer from '../../components/ArtPreviewer'
 
 interface PiecePageProps {
   artwork: Artwork
@@ -25,11 +26,7 @@ const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist }) => {
       <div className={style.artwork}>
         <div className={style.gallery} ref={observe}>
           <CanvasStickyWrapper size={artwork.size} wrapperWidth={width}>
-            <CanvasIframe
-              baseCode={artwork.src}
-              draw={artwork.script}
-              tokenData={artwork.tokenData}
-            />
+            <ArtPreviewer artwork={artwork} />
           </CanvasStickyWrapper>
           <div className={style.details}>
             <div className={style.artist}>
@@ -57,9 +54,9 @@ const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist }) => {
               ))}
               <h4 className={style.subtitle}>Attributes:</h4>
               <ul>
-                {artwork.attributes.map((att, i) => (
+                {Object.keys(artwork.attributes).map((key, i) => (
                   <li key={`about-paragraph-${i}`} className={style.text}>
-                    {Object.keys(att)[0]}: {att[Object.keys(att)[0]]}
+                    {key}: {artwork.attributes[key]}
                   </li>
                 ))}
               </ul>

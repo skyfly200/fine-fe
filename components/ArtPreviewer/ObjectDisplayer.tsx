@@ -39,7 +39,7 @@ const Model: React.FC<ObjectDisplayerProps> = ({ url }) => {
   return (
     <>
       {model && <primitive object={model.scene} ref={ref} />}
-      <OrbitControls autoRotate screenSpacePanning maxZoom={45} />
+      <OrbitControls screenSpacePanning maxZoom={45} />
     </>
   )
 }

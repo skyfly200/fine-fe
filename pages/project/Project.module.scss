@@ -119,6 +119,9 @@
         @include respond-to('tablet-sm') {
           gap: 0.5rem;
         }
+        .imageWrapper {
+          cursor: pointer;
+        }
       }
     }
   }

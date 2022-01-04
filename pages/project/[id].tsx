@@ -72,7 +72,11 @@ const Gallery = ({ items, setActive }: GalleryProps) => {
         className={style.gallery}
       >
         {items.slice(0, limit).map((item, i) => (
-          <button key={`${item.name}-${i}`} onClick={() => setActive(item)}>
+          <button
+            className={style.imageWrapper}
+            key={`${item.name}-${i}`}
+            onClick={() => setActive(item)}
+          >
             {item.image && (
               <Image
                 src={item.image.src}
