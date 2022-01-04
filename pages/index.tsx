@@ -28,7 +28,6 @@ interface HomeProps {
 const DynamicPixelHero = dynamic(() => import('../components/PixelHero'))
 
 const Home: NextPage<HomeProps> = ({ news, events, project, upcoming, projectDetails }) => {
-  console.log(projectDetails.artworks)
   const items = projectDetails.artworks.slice(0, 100) || []
   const carouselItems = events.map((ev, i) => (
     <Link key={`eventcard-${i}`} href={`/event/${ev.slug.current}`}>

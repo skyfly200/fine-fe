@@ -33,7 +33,6 @@ const Model: React.FC<ObjectDisplayerProps> = ({ url }) => {
   }, [glb])
 
   useEffect(() => {
-    console.log('test')
     camera.position.z = zoom
   }, [camera, zoom])
   return (
