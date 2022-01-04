@@ -30,7 +30,7 @@
     gap: 1rem;
     @include respond-to('tablet-sm') {
       grid-template-columns: 100%;
-      grid-template-rows: repeat(4, auto);
+      grid-template-rows: 400px repeat(3, auto);
     }
     .about,
     .title {
