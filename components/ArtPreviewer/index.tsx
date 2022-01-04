@@ -5,7 +5,7 @@ import style from './style.module.scss'
 // import ObjectDisplayer from './ObjectDisplayer'
 
 interface ArtPreviewerProps {
-  artwork: Partial<Artwork>
+  artwork: Artwork
 }
 
 const ObjectDisplayer = dynamic(() => import('./ObjectDisplayer'), {

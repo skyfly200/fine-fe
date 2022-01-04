@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { useMemo, useState } from 'react'
+import { SetStateAction, useMemo, useState } from 'react'
 import Image from 'next/image'
 import cn from 'classnames'
 
@@ -48,11 +48,12 @@ const Title = ({ title, name, hideOnDesktop, hideOnMobile }: TitleProps) => (
 )
 
 interface GalleryProps {
-  items: Array<Partial<Artwork>>
+  items: Array<Artwork>
+  setActive: React.Dispatch<SetStateAction<Artwork>>
 }
 
 const pageQuantity = 20
-const Gallery = ({ items }: GalleryProps) => {
+const Gallery = ({ items, setActive }: GalleryProps) => {
   const [limit, setLimit] = useState<number>(pageQuantity)
   if (!items.length) return <></>
   return (
@@ -71,7 +72,7 @@ const Gallery = ({ items }: GalleryProps) => {
         className={style.gallery}
       >
         {items.slice(0, limit).map((item, i) => (
-          <Link key={`${item.name}-${i}`} href={`/artwork/${item.id}`}>
+          <button key={`${item.name}-${i}`} onClick={() => setActive(item)}>
             {item.image && (
               <Image
                 src={item.image.src}
@@ -81,7 +82,7 @@ const Gallery = ({ items }: GalleryProps) => {
                 alt={`${item.name}-${i}`}
               />
             )}
-          </Link>
+          </button>
         ))}
       </InfiniteScroll>
     </div>
@@ -96,6 +97,8 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ project, projectDetails }) =>
     artist: { image, bio }
   } = project
   const { artworks } = projectDetails
+  const [active, setActive] = useState<Artwork>(artworks[0])
+
   const menu: Menu[] = ['canvas', 'about', 'details', 'gallery']
   const details = [
     {
@@ -153,14 +156,14 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ project, projectDetails }) =>
           <Title title={name} name={project.artist.name} hideOnMobile />
           <div className={style.display} id="canvas">
             <div className={style.pieceWrapper}>
-              <ArtPreviewer artwork={artworks[0]} />
+              <ArtPreviewer artwork={active} />
             </div>
           </div>
           <div className={style.details} id="details">
             <h3>Details</h3>
             <SimpleTable rows={details} maxWidth />
           </div>
-          {artworks && <Gallery items={artworks} />}
+          {artworks && <Gallery items={artworks} setActive={setActive} />}
         </div>
       </div>
     </Layout>
