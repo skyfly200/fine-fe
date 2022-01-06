@@ -69,18 +69,6 @@ const HomePage: NextPage = () => {
           <DynamicSoonCanvas />
           <h1 className={style.logoLetters}>INE</h1>
           <div className={style.heroContent}>
-            <div className={cn(style.ctaContainer, style.blank)}>
-              <div className={style.rotateCTA}>
-                <Link href="#artists">
-                  <button className={style.heroCTA}>
-                    <Icon icon="arrow-left" size="xl" />
-                    <h5>
-                      Artist <br /> submissions
-                    </h5>
-                  </button>
-                </Link>
-              </div>
-            </div>
             <div className={cn(style.content, style.container)}>
               <p className={style.textXL}>
                 FINE is an artist-run platform supporting established and emerging artists in the

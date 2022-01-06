@@ -163,7 +163,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ project, projectDetails }) =>
           <Title title={name} name={project.artist.name} hideOnMobile />
           <div className={style.display} id="canvas">
             <div className={style.pieceWrapper}>
-              <ArtPreviewer artwork={active} />
+              <ArtPreviewer artwork={active} withZoom />
               <div className={style.buttonWrapper}>
                 <RoundedButton onClick={() => router.push(`/artwork/${active.id}`)}>
                   VIEW DETAILS

@@ -2,21 +2,23 @@ import * as THREE from 'three'
 import { Canvas, useThree } from '@react-three/fiber'
 import { OrbitControls, useGLTF } from '@react-three/drei'
 
-import { SetStateAction, Suspense, useEffect, useRef, useState } from 'react'
+import { Suspense, useEffect, useRef, useState } from 'react'
 import { GLTF } from 'three-stdlib'
+import style from './style.module.scss'
 
 interface ObjectDisplayerProps {
   url: string
+  withZoom?: boolean
 }
 
-const Model: React.FC<ObjectDisplayerProps> = ({ url }) => {
+const Model: React.FC<ObjectDisplayerProps> = ({ url, withZoom = false }) => {
   const [model, setModel] = useState<GLTF>()
   const [zoom, setZoom] = useState<number>(0)
-
   const ref = useRef()
   // @ts-ignore
   const glb = useGLTF(url)
   const { camera } = useThree()
+
   useEffect(() => {
     if (glb) {
       // Center Model
@@ -25,7 +27,7 @@ const Model: React.FC<ObjectDisplayerProps> = ({ url }) => {
       const center = box.getCenter(new THREE.Vector3())
       const model = { ...glb }
       model.scene.position.x += model.scene.position.x - center.x
-      model.scene.position.y += model.scene.position.y - center.y
+      model.scene.position.y = 0
       model.scene.position.z += model.scene.position.z - center.z
       setModel(model)
       setZoom(size)
@@ -34,23 +36,27 @@ const Model: React.FC<ObjectDisplayerProps> = ({ url }) => {
 
   useEffect(() => {
     camera.position.z = zoom
+    camera.position.y = 10
   }, [camera, zoom])
+
   return (
     <>
       {model && <primitive object={model.scene} ref={ref} />}
-      <OrbitControls autoRotate screenSpacePanning maxZoom={45} />
+      <OrbitControls screenSpacePanning={false} maxPolarAngle={Math.PI / 2} enableZoom={withZoom} />
     </>
   )
 }
 
-const ObjectDisplayer: React.FC<ObjectDisplayerProps> = ({ url }) => {
+const ObjectDisplayer: React.FC<ObjectDisplayerProps> = props => {
   return (
-    <Canvas>
+    <Canvas className={style.canvas}>
       <ambientLight intensity={0.6} />
       <directionalLight intensity={0.5} />
       <Suspense fallback={null}>
-        <Model url={url} />
+        <Model {...props} />
       </Suspense>
+      <gridHelper args={[1000, 750]} />
+      <fog attach="fog" args={['#f0f0f0', 30, 200]} />
     </Canvas>
   )
 }
