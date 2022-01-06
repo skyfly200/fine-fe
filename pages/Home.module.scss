@@ -25,7 +25,7 @@
       align-items: center;
       gap: 2rem;
       .projectName {
-        font-size: 10vw;
+        font-size: 15vw;
         margin-bottom: 2vw;
         font-weight: 400;
         text-transform: uppercase;
@@ -134,7 +134,7 @@
 
 .rotatedWrapper {
   transform-origin: bottom left;
-  transform: rotate(-90deg) translateY(100%);
+  transform: rotate(-90deg) translateY(100%) translateX(-100%);
   font-weight: 400;
   width: 50px;
   @include respond-to('mobile') {

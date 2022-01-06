@@ -1,18 +1,22 @@
 import type { AppProps } from 'next/app'
-import ToastProvider from '../containers/ToastProvider'
-import Intl from '../containers/Intl'
+import DappProvider from '../containers/DappProvider'
+import IntlProvider from '../containers/IntlProvider'
 import StyleProvider from '../containers/StyleProvider'
+import ToastProvider from '../containers/ToastProvider'
+
 import '../styles/main.scss'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Intl>
-      <ToastProvider>
-        <StyleProvider>
-          <Component {...pageProps} />
-        </StyleProvider>
-      </ToastProvider>
-    </Intl>
+    <DappProvider>
+      <IntlProvider>
+        <ToastProvider>
+          <StyleProvider>
+            <Component {...pageProps} />
+          </StyleProvider>
+        </ToastProvider>
+      </IntlProvider>
+    </DappProvider>
   )
 }
 
