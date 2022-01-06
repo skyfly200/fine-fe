@@ -26,9 +26,9 @@
 .line {
   background-color: currentColor;
   height: 1px;
+  width: 1rem;
 }
 .md + .line {
-  width: 1rem;
   height: 1px;
 }
 .xl + .line {

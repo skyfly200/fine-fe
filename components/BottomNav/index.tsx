@@ -4,6 +4,7 @@ import navLinks from './navLinks'
 import style from './style.module.scss'
 import cn from 'classnames'
 import Icon from '../Icon'
+import ConnectWalletButton from './ConnectWalletButton'
 
 const BottomNav = () => {
   const handleContactClick = () =>
@@ -12,12 +13,7 @@ const BottomNav = () => {
   return (
     <div className={style.nav}>
       {/* TODO: Connect Wallet */}
-      <div className={style.wallet}>
-        <div className={style.outerCircle}>
-          <span className={style.innerCircle} />
-        </div>{' '}
-        <div className={style.connect}>CONNECT WALLET</div>
-      </div>
+      <ConnectWalletButton />
 
       <ul className={style.menu}>
         {navLinks.map(link => (

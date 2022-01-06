@@ -11,6 +11,8 @@ export type Icons =
   | 'canvas'
   | 'details'
   | 'about'
+  | 'chevron-up'
+  | 'chevron-down'
 
 export type IconSize = 'sm' | 'md' | 'lg' | 'xl' | 'sm-F' | 'sm-INE' | 'F'
 
