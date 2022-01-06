@@ -50,13 +50,13 @@ const ConnectWalletButton = () => {
             <div className={style.content}>
               {account && (
                 <div>
-                  <h4 className={style.panelSubheader}>Account:</h4>{' '}
+                  <h4 className={style.panelSubheader}>ACCOUNT</h4>{' '}
                   <div className={style.number}>{account}</div>
                 </div>
               )}
               {etherBalance && (
                 <div>
-                  <h4 className={style.panelSubheader}>Balance:</h4>
+                  <h4 className={style.panelSubheader}>BALANCE</h4>
 
                   <div className={style.number}>
                     <Icon icon="eth" /> {formatEther(etherBalance)}
