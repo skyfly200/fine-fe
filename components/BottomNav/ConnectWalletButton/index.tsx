@@ -13,7 +13,7 @@ const ConnectWalletButton = () => {
   const { activateBrowserWallet, account, deactivate } = useEthers()
   const etherBalance = useEtherBalance(account)
   const [isPanelOpen, setPanelState] = useState(false)
-  const panelRef = useRef(null)
+  const clickOutSideRef = useRef(null)
   const btnRef = useRef(null)
   const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (account) {
@@ -27,14 +27,13 @@ const ConnectWalletButton = () => {
     deactivate()
     setPanelState(false)
   }
-  useOnClickOutside(panelRef, () => setPanelState(false))
+  useOnClickOutside(clickOutSideRef, () => setPanelState(false))
 
   return (
-    <div className={style.wallet}>
+    <div className={style.wallet} ref={clickOutSideRef}>
       <AnimatePresence>
         {isPanelOpen && (
           <motion.div
-            ref={panelRef}
             className={cn(style.panel)}
             initial={{ opacity: 0, y: '100%' }}
             animate={{ opacity: 1, y: 0 }}
