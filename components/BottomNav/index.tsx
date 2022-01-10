@@ -5,13 +5,16 @@ import style from './style.module.scss'
 import cn from 'classnames'
 import Icon from '../Icon'
 import ConnectWalletButton from './ConnectWalletButton'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ThreeDots from './ThreeDots'
 
 const BottomNav = () => {
   const [open, setOpen] = useState(false)
   const handleContactClick = () =>
     window?.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : 'unset'
+  }, [open])
 
   return (
     <div className={cn(style.navWrapper, { [style.open]: open })}>
