@@ -1,8 +1,9 @@
 import cn from 'classnames'
+import Icon from '../Icon'
 
 import style from './style.module.scss'
 
-type Styles = 'simple'
+type Styles = 'simple' | 'search'
 
 interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name?: string
@@ -16,9 +17,10 @@ const TextInput: React.FC<TextInputProps> = ({
   styleType = 'simple',
   ...inputProps
 }) => (
-  <div>
+  <div className={style.wrapper}>
     {label && <label htmlFor={name}>{label}</label>}
     <input id={name} {...inputProps} className={cn(style.input, style[styleType])} />
+    {styleType === 'search' && <Icon icon="search" size="xxl" className={style.searchIcon} />}
   </div>
 )
 

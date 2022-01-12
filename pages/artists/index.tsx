@@ -1,8 +1,41 @@
 import type { NextPage } from 'next'
+import Link from '../../components/Link'
+import RoundedButton from '../../components/RoundedButton'
 import Layout from '../../containers/Layout'
+import SideSearch from '../../containers/Layout/SideSearch'
+
+import style from './style.module.scss'
 
 const ArtistsPage: NextPage = () => {
-  return <Layout>Artists page</Layout>
+  return (
+    <Layout greyBG>
+      <div className={style.topBanner}>
+        <h4 className={style.bannerTitle}>Artists Submissions</h4>
+        <div className={style.line} />
+        <div className={style.bannerSection}>
+          <div>Kindly submit your proposal here:</div>
+          <RoundedButton lineSide="left">SUBMIT</RoundedButton>
+        </div>
+        <div className={style.line} />
+        <div className={style.bannerSection}>
+          <div>For any submission questions</div>
+          <RoundedButton lineSide="left">CONTACT</RoundedButton>
+        </div>
+      </div>
+      <SideSearch title="ARTISTS">
+        <div className={style.contentWrapper}>
+          {Array.from({ length: 30 }).map((el, i) => (
+            <div key={i} className={style.cardWrapper}>
+              <Link href={`/artists/${i}`}>
+                <div className={style.artistCard} />
+              </Link>
+              <span className={style.artistName}>some name</span>
+            </div>
+          ))}
+        </div>
+      </SideSearch>
+    </Layout>
+  )
 }
 
 export default ArtistsPage

@@ -1,0 +1,68 @@
+@import '../../styles/mixins.scss';
+
+.topBanner {
+  position: absolute;
+  top: 1rem;
+  left: calc(11vw + 2rem);
+  width: calc(100% - 11vw - 3rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 2;
+  .bannerTitle {
+    margin-bottom: 0;
+  }
+  .bannerSection {
+    display: flex;
+    align-items: center;
+  }
+  .line {
+    background: #000;
+    height: 1px;
+    flex: 1;
+  }
+}
+
+.contentWrapper {
+  padding-top: 31vh;
+  padding-bottom: 3rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-rows: auto;
+  .cardWrapper {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    .artistName {
+      font-weight: 500;
+    }
+  }
+}
+
+.artistCard {
+  height: 100px;
+  width: 100px;
+  background-color: hotpink;
+  border-radius: 999px;
+  position: relative;
+  &::before {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    background-color: color(white-color);
+    z-index: -1;
+    border-radius: 999px;
+    transition: transform 0.2s ease-in;
+  }
+  @include hover {
+    &::before {
+      transform: scale(2);
+    }
+  }
+}
