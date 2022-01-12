@@ -11,7 +11,7 @@ interface ObjectDisplayerProps {
   withZoom?: boolean
 }
 
-const Model: React.FC<ObjectDisplayerProps> = ({ url, withZoom = false }) => {
+export const GLBModel: React.FC<ObjectDisplayerProps> = ({ url, withZoom = false }) => {
   const [model, setModel] = useState<GLTF>()
   const [zoom, setZoom] = useState<number>(0)
   const ref = useRef()
@@ -53,7 +53,7 @@ const ObjectDisplayer: React.FC<ObjectDisplayerProps> = props => {
       <ambientLight intensity={0.6} />
       <directionalLight intensity={0.5} />
       <Suspense fallback={null}>
-        <Model {...props} />
+        <GLBModel {...props} />
       </Suspense>
       <gridHelper args={[1000, 750]} />
       <fog attach="fog" args={['#f0f0f0', 30, 200]} />
