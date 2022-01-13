@@ -10,19 +10,7 @@ import style from './style.module.scss'
 const ArtistsPage: NextPage = () => {
   return (
     <Layout greyBG>
-      <div className={style.topBanner}>
-        <h4 className={style.bannerTitle}>Artists Submissions</h4>
-        <div className={style.line} />
-        <div className={style.bannerSection}>
-          <div>Kindly submit your proposal here:</div>
-          <RoundedButton lineSide="left">SUBMIT</RoundedButton>
-        </div>
-        <div className={style.line} />
-        <div className={style.bannerSection}>
-          <div>For any submission questions</div>
-          <RoundedButton lineSide="left">CONTACT</RoundedButton>
-        </div>
-      </div>
+      <TopBanner />
       <SideSearch title="ARTISTS">
         <div className={style.contentWrapper}>
           {Array.from({ length: 30 }).map((el, i) => (
@@ -33,5 +21,21 @@ const ArtistsPage: NextPage = () => {
     </Layout>
   )
 }
+
+const TopBanner = () => (
+  <div className={style.topBanner}>
+    <h4 className={style.bannerTitle}>Artists Submissions</h4>
+    <div className={style.line} />
+    <div className={style.bannerSection}>
+      <div>Kindly submit your proposal here:</div>
+      <RoundedButton lineSide="left">SUBMIT</RoundedButton>
+    </div>
+    <div className={style.line} />
+    <div className={style.bannerSection}>
+      <div>For any submission questions</div>
+      <RoundedButton lineSide="left">CONTACT</RoundedButton>
+    </div>
+  </div>
+)
 
 export default ArtistsPage

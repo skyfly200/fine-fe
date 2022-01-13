@@ -16,6 +16,7 @@
   .bannerSection {
     display: flex;
     align-items: center;
+    font-size: 0.9rem;
   }
   .line {
     background: #000;
@@ -31,27 +32,4 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-auto-rows: auto;
-}
-
-.artistCard {
-  height: 100px;
-  width: 100px;
-  background-color: hotpink;
-  border-radius: 999px;
-  position: relative;
-  &::before {
-    position: absolute;
-    content: '';
-    height: 100%;
-    width: 100%;
-    background-color: color(white-color);
-    z-index: -1;
-    border-radius: 999px;
-    transition: transform 0.2s ease-in;
-  }
-  @include hover {
-    &::before {
-      transform: scale(2);
-    }
-  }
 }

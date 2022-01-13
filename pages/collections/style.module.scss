@@ -1,0 +1,28 @@
+.collectionsPage {
+  min-height: calc(var(--vh, 1vh) * 100 - 44px);
+  position: relative;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: calc(11vw + 2rem) 5fr;
+  .leftCol {
+    position: sticky;
+    top: 1rem;
+    height: calc(var(--vh, 1vh) * 100 - 44px - 2rem);
+    display: flex;
+    align-items: flex-end;
+    .pageTitle {
+      font-weight: 400;
+      font-size: 1.6rem;
+      text-transform: uppercase;
+    }
+  }
+
+  .header {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    font-size: 0.9rem;
+  }
+  .searchWrapper {
+    grid-column-start: 4;
+  }
+}
