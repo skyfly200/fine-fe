@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import ArtistCard from '../../components/ArtistCard'
 import Link from '../../components/Link'
 import RoundedButton from '../../components/RoundedButton'
 import Layout from '../../containers/Layout'
@@ -25,12 +26,7 @@ const ArtistsPage: NextPage = () => {
       <SideSearch title="ARTISTS">
         <div className={style.contentWrapper}>
           {Array.from({ length: 30 }).map((el, i) => (
-            <div key={i} className={style.cardWrapper}>
-              <Link href={`/artists/${i}`}>
-                <div className={style.artistCard} />
-              </Link>
-              <span className={style.artistName}>some name</span>
-            </div>
+            <ArtistCard key={`artistcard-${i}`} name="some name" id={`${i}`} slug={`${i}`} />
           ))}
         </div>
       </SideSearch>
