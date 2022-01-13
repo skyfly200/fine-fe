@@ -1,5 +1,5 @@
 const navLinks = [
-  { name: 'Collections', path: '/collections' },
+  { name: 'Collection', path: '/collection' },
   {
     name: 'Artists',
     path: '/artists'

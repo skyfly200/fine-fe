@@ -1,9 +1,9 @@
-.collectionsPage {
+.collectionPage {
   min-height: calc(var(--vh, 1vh) * 100 - 44px);
   position: relative;
   padding: 1rem;
   display: grid;
-  grid-template-columns: calc(11vw + 2rem) 5fr;
+  grid-template-columns: calc(11vw + 2rem) 1fr;
   .leftCol {
     position: sticky;
     top: 1rem;
@@ -21,8 +21,21 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     font-size: 0.9rem;
+    height: max-content;
+    margin-bottom: 1rem;
   }
+
   .searchWrapper {
     grid-column-start: 4;
+  }
+
+  .body {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: auto;
+    margin-bottom: 4rem;
+    .desktopBlank {
+      aspect-ratio: 1;
+    }
   }
 }
