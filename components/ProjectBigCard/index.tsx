@@ -3,7 +3,7 @@ import Image from 'next/image'
 import cn from 'classnames'
 
 import { Project, ProjectDetails } from '../../types'
-import { useInterval } from '../../utils'
+import { getRandomNumber, useInterval } from '../../utils'
 import style from './style.module.scss'
 
 interface Item extends Project, ProjectDetails {}
@@ -15,18 +15,10 @@ type ProjectBigCardProps = {
 const ProjectBigCard: React.FC<ProjectBigCardProps> = ({ item }) => {
   const { name, artist, artworks } = item
   const [openItems, setOpenItems] = useState<number[]>([])
-  useEffect(() => {
-    updateOpenItems()
-  }, [])
-  useEffect(() => {
-    console.log(openItems)
-  }, [openItems])
-  const updateOpenItems = () => {
-    setOpenItems([randomNumber(0, 3), randomNumber(0, 3)])
-  }
-  function randomNumber(min: number, max: number) {
-    return Math.floor(Math.random() * (max - min) + min)
-  }
+
+  const updateOpenItems = () => setOpenItems([getRandomNumber(0, 3), getRandomNumber(0, 3)])
+
+  useEffect(updateOpenItems, [])
   useInterval(updateOpenItems, 2000)
 
   return (
