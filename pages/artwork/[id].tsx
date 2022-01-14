@@ -31,8 +31,8 @@ const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist }) => {
           <div className={style.details}>
             <div className={style.artist}>
               <div className={style.contentWrapper}>
-                <h3 className={cn(style.title)}>{artist.name}</h3>
-                {artist.bio.map((p, i) => (
+                <h3 className={cn(style.title)}>{artist?.name}</h3>
+                {artist?.bio?.map((p, i) => (
                   <p key={`bio-paragraph-${i}`} className={style.text}>
                     {p}
                   </p>
@@ -76,7 +76,9 @@ export const getStaticProps: GetStaticProps = async context => {
       notFound: true
     }
   }
-  const artist = artists.find(item => item.id === artwork.artistId)
+  const artist = artists.find(item => item.id === artwork.artistId) ?? {}
+
+  console.log(artwork, artist)
   return {
     props: { artwork, artist },
     revalidate: 10 // TODO: currently set to 1 day. Update if required

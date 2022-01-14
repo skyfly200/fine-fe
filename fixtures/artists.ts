@@ -27,6 +27,6 @@ export const AdamFerris: Artist = {
   }
 }
 
-const artists: Artist[] = [Far]
+const artists: Artist[] = [Far, AdamFerris]
 
 export default artists
