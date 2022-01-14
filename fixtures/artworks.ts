@@ -1,7 +1,7 @@
 import { Artwork } from '../types'
 import { getArrayWithSequence } from '../utils'
 
-export const solids: Artwork[] = getArrayWithSequence(30, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).map(
+export const solids: Artwork[] = getArrayWithSequence(10, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).map(
   (i, index) => {
     return {
       id: `${i}-${index}`,
