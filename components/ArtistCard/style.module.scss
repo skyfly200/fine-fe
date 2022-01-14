@@ -33,5 +33,9 @@
         transform: scale(2);
       }
     }
+    @include respond-to('tablet-sm') {
+      height: 85px;
+      width: 85px;
+    }
   }
 }
