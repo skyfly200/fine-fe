@@ -36,7 +36,7 @@ export const solids: Artwork[] = getArrayWithSequence(10, [1, 2, 3, 4, 5, 6, 7, 
 )
 
 export const dummy: Artwork[] = getArrayWithSequence(30, [1, 2, 3]).map((i, index) => ({
-  id: `SQR&TR-${index}`,
+  id: `SQRANDTR-${index}`,
   minted: true,
   name: `SQR&TR-${index}`,
   artistId: 'adamFerris',
