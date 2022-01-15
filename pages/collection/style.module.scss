@@ -1,9 +1,16 @@
+@import '../../styles/mixins.scss';
+
 .collectionPage {
   min-height: calc(var(--vh, 1vh) * 100 - 44px);
   position: relative;
   padding: 1rem;
   display: grid;
   grid-template-columns: calc(11vw + 2rem) 1fr;
+  @include respond-to('mobile') {
+    padding: 0.5rem;
+    grid-template-columns: calc(11vw + 1rem) 1fr;
+  }
+
   .leftCol {
     position: sticky;
     top: 1rem;
@@ -14,6 +21,7 @@
       font-weight: 400;
       font-size: 1.6rem;
       text-transform: uppercase;
+      margin-bottom: 0;
     }
   }
 
@@ -23,10 +31,28 @@
     font-size: 0.9rem;
     height: max-content;
     margin-bottom: 1rem;
+    @include respond-to('tablet-sm') {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include respond-to('mobile') {
+      grid-template-columns: repeat(2, 1fr);
+      position: absolute;
+      gap: 1rem;
+      top: 21vw;
+      padding: 0.5rem;
+      right: 0;
+      width: 100%;
+    }
   }
 
   .searchWrapper {
     grid-column-start: 4;
+    @include respond-to('tablet-sm') {
+      grid-column-start: 3;
+    }
+    @include respond-to('mobile') {
+      grid-column-start: 2;
+    }
   }
 
   .body {
@@ -34,8 +60,16 @@
     grid-template-columns: repeat(5, 1fr);
     grid-auto-rows: auto;
     margin-bottom: 4rem;
+    @include respond-to('mobile') {
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: calc(var(--vh, 1vh) * 50);
+    }
+
     .desktopBlank {
       aspect-ratio: 1;
+      @include respond-to('mobile') {
+        display: none;
+      }
     }
   }
 }

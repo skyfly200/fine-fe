@@ -1,4 +1,5 @@
 import { GetStaticProps, NextPage } from 'next'
+import { Fragment } from 'react'
 import ProjectBigCard from '../../components/ProjectBigCard'
 
 import RotatedText from '../../components/RotatedText'
@@ -37,7 +38,7 @@ const Collection: NextPage<CollectionProps> = ({ items }) => (
         </div>
         <div className={style.body}>
           {items.map((item, i) => (
-            <>
+            <Fragment key={item.id}>
               {!(i % 2) ? (
                 <>
                   <div className={style.desktopBlank} />
@@ -45,7 +46,7 @@ const Collection: NextPage<CollectionProps> = ({ items }) => (
                 </>
               ) : null}
 
-              <ProjectBigCard key={item.id} item={item} />
+              <ProjectBigCard item={item} />
               {i % 2 ? (
                 <>
                   <div className={style.desktopBlank} />
@@ -53,7 +54,7 @@ const Collection: NextPage<CollectionProps> = ({ items }) => (
                   <div className={style.desktopBlank} />
                 </>
               ) : null}
-            </>
+            </Fragment>
           ))}
         </div>
       </div>

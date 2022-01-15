@@ -1,3 +1,5 @@
+@import '../../styles/mixins.scss';
+
 .rect {
   aspect-ratio: 1;
   overflow: hidden;
@@ -48,6 +50,11 @@
   grid-row: span 2;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
+  @include respond-to('mobile') {
+    margin-bottom: 2rem;
+    grid-column: span 3;
+    grid-row: span 3;
+  }
 }
 
 .details {
@@ -55,5 +62,10 @@
   padding-right: 1rem;
   .projectName {
     margin-bottom: 0.5rem;
+  }
+  @include respond-to('mobile') {
+    text-align: left;
+    grid-column: span 3;
+    aspect-ratio: auto;
   }
 }

@@ -78,7 +78,6 @@ export const getStaticProps: GetStaticProps = async context => {
   }
   const artist = artists.find(item => item.id === artwork.artistId) ?? {}
 
-  console.log(artwork, artist)
   return {
     props: { artwork, artist },
     revalidate: 10 // TODO: currently set to 1 day. Update if required
