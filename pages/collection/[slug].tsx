@@ -21,7 +21,6 @@ import ArtPreviewer from '../../components/ArtPreviewer'
 
 interface ProjectPageProps {
   project: Project
-  projectDetails: ProjectDetails
 }
 
 interface TitleProps {
@@ -97,14 +96,14 @@ const Gallery = ({ items, setActive, active }: GalleryProps) => {
 }
 
 type Menu = 'canvas' | 'about' | 'details' | 'gallery'
-const ProjectPage: NextPage<ProjectPageProps> = ({ project, projectDetails }) => {
+const ProjectPage: NextPage<ProjectPageProps> = ({ project }) => {
   const router = useRouter()
   const {
     name,
     about,
-    artist: { image, bio }
+    artist: { image, bio },
+    artworks
   } = project
-  const { artworks } = projectDetails
   const [active, setActive] = useState<Artwork>(artworks[0])
   const menu: Menu[] = ['canvas', 'about', 'details', 'gallery']
   const details = [
@@ -183,9 +182,8 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ project, projectDetails }) =>
 }
 
 export const getStaticProps: GetStaticProps = async context => {
-  const { id } = context.params as IParams
-  const project = projects.find(item => item.id === id)
-  const projectDetails = projectsDetails.find(item => item.id === id)
+  const { slug } = context.params as IParams
+  const project = projects.find(item => item.slug === slug)
 
   if (!project) {
     return {
@@ -193,13 +191,13 @@ export const getStaticProps: GetStaticProps = async context => {
     }
   }
   return {
-    props: { project, projectDetails },
+    props: { project },
     revalidate: 10 // TODO: currently set to 1 day. Update if required
   }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = projects.map(({ id }) => ({ params: { id } }))
+  const paths = projects.map(({ slug }) => ({ params: { slug } }))
   return {
     paths,
     fallback: false

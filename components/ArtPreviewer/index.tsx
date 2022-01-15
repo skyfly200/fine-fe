@@ -20,8 +20,18 @@ const ObjectDisplayer = dynamic(() => import('./ObjectDisplayer'), {
 
 const ArtPreviewer: React.FC<ArtPreviewerProps> = ({ artwork, withZoom }) => {
   const { type } = artwork
-
-  return <>{artwork.src && <ObjectDisplayer url={artwork.src} withZoom={withZoom} />}</>
+  if (!artwork.src) return <></>
+  return (
+    <>
+      {artwork.type === 'glb' ? (
+        <ObjectDisplayer url={artwork.src} withZoom={withZoom} />
+      ) : (
+        <div>
+          <strong> TODO:</strong> <br /> Create Iframe displayer for three/p5 tokens
+        </div>
+      )}
+    </>
+  )
 }
 
 export default ArtPreviewer

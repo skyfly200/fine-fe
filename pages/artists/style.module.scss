@@ -1,0 +1,124 @@
+@import '../../styles/mixins.scss';
+
+.DesktopTopBanner {
+  position: absolute;
+  top: 1rem;
+  left: calc(11vw + 2rem);
+  width: calc(100% - 11vw - 3rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 2;
+  @include respond-to('tablet-sm') {
+    display: none;
+  }
+}
+.bannerTitle {
+  margin-bottom: 0;
+}
+.bannerSection {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+.line {
+  background: #000;
+  height: 1px;
+  flex: 1;
+}
+
+.MobileTopBanner {
+  display: none;
+  @include respond-to('tablet-sm') {
+    display: block;
+    margin: calc(11vw + 4rem) 0 2rem;
+    padding: 0 0.5rem;
+  }
+  .accordionSubmission {
+    padding: 2rem 0;
+  }
+  .bannerSection {
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+}
+
+.pageWrapper {
+  min-height: calc(var(--vh, 1vh) * 100 - 44px);
+  position: relative;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-gap: 1rem;
+  gap: 1rem;
+  @include respond-to('tablet-sm') {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    padding: 0.5rem;
+  }
+
+  .firstCol {
+    position: sticky;
+    top: 1rem;
+    height: calc(var(--vh, 1vh) * 100 - 44px - 2rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    margin: 0;
+    font-weight: 400;
+    @include respond-to('tablet-sm') {
+      position: static;
+
+      height: max-content;
+      flex-direction: row-reverse;
+      margin-bottom: 2rem;
+      align-items: flex-end;
+    }
+
+    .blank {
+      min-height: 11vw;
+      @include respond-to('tablet-sm') {
+        display: none;
+      }
+    }
+
+    .subtitle {
+      font-weight: 400;
+      text-transform: uppercase;
+      @include respond-to('tablet-sm') {
+        font-size: 1.6rem;
+      }
+    }
+
+    .rotatedWrapper {
+      @include respond-to('tablet-sm') {
+        width: calc(11vw + 2rem);
+        margin-bottom: -1.8rem;
+      }
+    }
+    .searchWrapper {
+      @include respond-to('tablet-sm') {
+        flex: 1;
+      }
+    }
+    .pageTitle {
+      font-weight: 400;
+      font-size: 1.6rem;
+    }
+  }
+  .contentWrapper {
+    padding-top: 31vh;
+    padding-bottom: 3rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-auto-rows: auto;
+    @include respond-to('tablet-sm') {
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      padding-top: 0;
+    }
+  }
+}

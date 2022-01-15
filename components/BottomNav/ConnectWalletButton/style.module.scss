@@ -6,9 +6,7 @@
   position: relative;
   .btn {
     cursor: pointer;
-    @include respond-to('mobile') {
-      display: none;
-    }
+
     .btnContent {
       display: flex;
       gap: 0.5rem;
@@ -54,6 +52,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    @include respond-to('mobile') {
+      min-width: 0;
+    }
     .panelHeader {
       display: flex;
       justify-content: space-between;
@@ -76,6 +77,9 @@
     }
     .number {
       font-family: Lato;
+      @include respond-to('mobile') {
+        font-size: 0.7rem;
+      }
     }
   }
 }

@@ -3,7 +3,7 @@ import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import groq from 'groq'
 
-import { Event, News, Project, ProjectDetails, UpcomingProject } from '../types'
+import client from '../client'
 import Carousel from '../components/Carousel'
 import Layout from '../containers/Layout'
 import NewsCard from '../components/NewsCard'
@@ -11,11 +11,11 @@ import RoundButton from '../components/RoundedButton'
 import Link from '../components/Link'
 import UpcomingBanner from '../components/UpcomingBanner'
 import RotatedText from '../components/RotatedText'
-
-import styles from './Home.module.scss'
 import EventCard from '../components/EventCard'
-import client from '../client'
+
 import { projectsDetails, projects, home as fixture } from '../fixtures'
+import { Event, News, Project, ProjectDetails, UpcomingProject } from '../types'
+import styles from './Home.module.scss'
 
 interface HomeProps {
   news: News[]
@@ -53,7 +53,7 @@ const Home: NextPage<HomeProps> = ({ news, events, project, upcoming, projectDet
           </div>
           <div className={styles.bottom}>
             <div className={styles.buttonWrapper}>
-              <Link href={`/project/${project.id}`} scroll>
+              <Link href={`/collection/${project.slug}`} scroll>
                 <RoundButton size="xl">GO</RoundButton>
               </Link>
             </div>

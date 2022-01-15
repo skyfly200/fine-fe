@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 
-import Layout from '../../containers/Layout'
+import Layout from '../../../containers/Layout'
 
 const ArtistPage: NextPage = () => {
   return (

@@ -11,6 +11,10 @@
   mask-position: center;
 }
 
+.xxl {
+  height: 1.8rem;
+  width: 1.8rem;
+}
 .xl {
   height: 1.4rem;
   width: 1.4rem;
@@ -66,6 +70,9 @@
 }
 .about {
   mask-image: url(../../assets/icons/about.svg);
+}
+.search {
+  mask-image: url(../../assets/icons/search.svg);
 }
 .chevron-up {
   mask-image: url(../../assets/icons/chevron-up.svg);

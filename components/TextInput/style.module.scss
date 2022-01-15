@@ -1,13 +1,39 @@
-.input {
-  &.simple {
-    border: none;
-    border-bottom: 1px solid #757575;
-    opacity: 0.3;
-    transition: all 0.15s ease-in;
+@import '../../styles/mixins.scss';
+
+.wrapper {
+  position: relative;
+  .input {
     width: 100%;
-    &:focus {
-      opacity: 1;
-      outline: none;
+
+    &.simple {
+      border: none;
+      border-bottom: 1px solid #757575;
+      opacity: 0.3;
+      transition: all 0.15s ease-in;
+      &:focus {
+        opacity: 1;
+        outline: none;
+      }
     }
+    &.search {
+      height: 44px;
+      border-radius: 999px;
+      padding-left: 1rem;
+      padding-right: 50px;
+      background-color: transparent;
+      border: 1px solid black;
+      transition: all 0.15s ease-in;
+      &:focus,
+      &:active {
+        background: color(white-color);
+        opacity: 1;
+        outline: none;
+      }
+    }
+  }
+  .searchIcon {
+    position: absolute;
+    right: 0.8rem;
+    top: 0.3rem;
   }
 }

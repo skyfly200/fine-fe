@@ -1,0 +1,41 @@
+@import '../../styles/mixins.scss';
+.cardWrapper {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  .artistName {
+    font-weight: 500;
+  }
+
+  .artistCard {
+    height: 100px;
+    width: 100px;
+    background-color: hotpink;
+    border-radius: 999px;
+    position: relative;
+    cursor: pointer;
+    &::before {
+      position: absolute;
+      content: '';
+      height: 100%;
+      width: 100%;
+      background-color: color(white-color);
+      z-index: -1;
+      border-radius: 999px;
+      transition: transform 0.2s ease-in;
+    }
+    @include hover {
+      &::before {
+        transform: scale(2);
+      }
+    }
+    @include respond-to('tablet-sm') {
+      height: 85px;
+      width: 85px;
+    }
+  }
+}

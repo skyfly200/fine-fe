@@ -15,7 +15,7 @@
     top: 1rem;
     left: 13.5vw;
     z-index: 4;
-    transition: all 0.15s ease-in;
+    transition: all 0.15s ease-out;
     transform: translate3d(0, -100%, 0);
     opacity: 0;
     @include hover {
