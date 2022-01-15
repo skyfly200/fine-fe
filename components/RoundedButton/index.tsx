@@ -6,16 +6,18 @@ type Side = 'right' | 'left'
 interface RoundedButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: Size
   lineSide?: Side
+  white?: boolean
 }
 
 const RoundedButton: React.FC<RoundedButtonProps> = ({
   children,
   size = 'md',
   lineSide = 'right',
+  white,
   ...buttonProps
 }) => {
   return (
-    <div className={style.buttonWrapper}>
+    <div className={cn(style.buttonWrapper, { [style.white]: white })}>
       {lineSide === 'left' && <span className={style.line} />}
       <button className={cn(style.button, style[size])} {...buttonProps}>
         {children}
