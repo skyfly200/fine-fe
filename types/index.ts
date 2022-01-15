@@ -90,6 +90,10 @@ export type Project = {
   projectDetails: Attribute
   artist: Partial<Artist>
   image: Img
+  invocations: number
+  minted: number
+  type: SrcType
+  artworks: Artwork[]
 }
 
 export type ProjectDetails = {

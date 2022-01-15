@@ -5,6 +5,7 @@ import ProjectBigCard from '../../components/ProjectBigCard'
 import RotatedText from '../../components/RotatedText'
 import TextInput from '../../components/TextInput'
 import Layout from '../../containers/Layout'
+import { projects as items } from '../../fixtures'
 
 import { AdamFerris, Far } from '../../fixtures/artists'
 import { dummy, solids } from '../../fixtures/artworks'
@@ -65,26 +66,6 @@ const Collection: NextPage<CollectionProps> = ({ items }) => (
 export const getStaticProps: GetStaticProps = () => {
   // TODO: Replace fixture
 
-  const items = [
-    {
-      id: '1',
-      invocations: 500,
-      minted: 250,
-      type: 'glb',
-      artworks: solids,
-      name: 'SOLIDS',
-      artist: Far
-    },
-    {
-      id: '2',
-      invocations: 500,
-      minted: 250,
-      type: 'glb',
-      artworks: dummy,
-      name: 'Squares and Triangles',
-      artist: AdamFerris
-    }
-  ]
   return {
     props: { items },
     revalidate: 10 // TODO: currently set to 1 day. Update if required

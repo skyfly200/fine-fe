@@ -61,7 +61,7 @@ export const dummy: Artwork[] = getArrayWithSequence(30, [1, 2, 3]).map((i, inde
   about: [
     'In efficitur arcu et urna efficitur, non placerat mi dignissim. Donec eget ante ut enim auctor sollicitudin at eu lectus. Aenean finibus massa lectus, vel suscipit lectus dictum vel. Etiam eu eros dui. Nullam at ullamcorper odio. Sed eu cursus est. Etiam elementum lectus sed justo tincidunt, eget gravida mi vulputate.'
   ],
-  type: 'glb',
+  type: 'iframe',
   src: `/solids/${i}.glb`
 }))
 
