@@ -36,7 +36,8 @@
     "react-toastify": "^8.1.0",
     "sass": "^1.43.4",
     "three": "^0.134.0",
-    "three-stdlib": "^2.6.4"
+    "three-stdlib": "^2.6.4",
+    "use-cannon": "^0.5.3"
   },
   "devDependencies": {
     "@types/node": "16.11.7",

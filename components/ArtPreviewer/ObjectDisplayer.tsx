@@ -9,15 +9,19 @@ import style from './style.module.scss'
 interface ObjectDisplayerProps {
   url: string
   withZoom?: boolean
+  removeOrbit?: boolean
 }
 
-export const GLBModel: React.FC<ObjectDisplayerProps> = ({ url, withZoom = false }) => {
+export const GLBModel: React.FC<ObjectDisplayerProps> = ({
+  url,
+  withZoom = false,
+  removeOrbit
+}) => {
   const [model, setModel] = useState<GLTF>()
-  const [zoom, setZoom] = useState<number>(0)
+
   const ref = useRef()
   // @ts-ignore
   const glb = useGLTF(url)
-  const { camera } = useThree()
 
   useEffect(() => {
     if (glb) {
@@ -30,19 +34,19 @@ export const GLBModel: React.FC<ObjectDisplayerProps> = ({ url, withZoom = false
       model.scene.position.y = 0
       model.scene.position.z += model.scene.position.z - center.z
       setModel(model)
-      setZoom(size)
     }
   }, [glb])
 
-  useEffect(() => {
-    camera.position.z = zoom
-    camera.position.y = 10
-  }, [camera, zoom])
-
   return (
     <>
-      {model && <primitive object={model.scene} ref={ref} />}
-      <OrbitControls screenSpacePanning={false} maxPolarAngle={Math.PI / 2} enableZoom={withZoom} />
+      {model && <primitive object={model.scene} ref={ref} castShadow />}
+      {!removeOrbit && (
+        <OrbitControls
+          screenSpacePanning={false}
+          maxPolarAngle={Math.PI / 2}
+          enableZoom={withZoom}
+        />
+      )}
     </>
   )
 }

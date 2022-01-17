@@ -1,13 +1,16 @@
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Environment } from '@react-three/drei'
-import { Debug, Physics, useCylinder, usePlane } from '@react-three/cannon'
-import type { CylinderArgs, CylinderProps, PlaneProps } from '@react-three/cannon'
+import { Environment } from '@react-three/drei'
+import { Debug, Physics, usePlane } from '@react-three/cannon'
+import type { PlaneProps } from '@react-three/cannon'
 import { Suspense } from 'react'
 import { GLBModel } from '../ArtPreviewer/ObjectDisplayer'
+import Player from './Player'
+import Camera from './Camera'
+import Ground from './Ground'
 
 const colors = {
-  enviroment: '#EBC546',
-  floor: '#EB7446'
+  enviroment: '#FEFEFE',
+  floor: '#CCC'
 }
 
 function Plane(props: PlaneProps) {
@@ -30,18 +33,24 @@ const FineVerse = () => {
       <ambientLight intensity={0.1} />
       <spotLight position={[20, 20, 20]} angle={0.5} intensity={1} castShadow penumbra={1} />
 
+      <Camera />
       <Physics
-        broadphase="SAP"
-        defaultContactMaterial={{ contactEquationRelaxation: 4, friction: 1e-3 }}
-        allowSleep
+        // broadphase="SAP"
+        // defaultContactMaterial={{ contactEquationRelaxation: 4, friction: 1e-3 }}
+        // allowSleep
+        gravity={[0, -30, 0]}
       >
-        <Plane rotation={[-Math.PI / 2, 0, 0]} userData={{ id: 'floor' }} />
-        <GLBModel url="/solids/1.glb" withZoom />
+        <Debug color="black" scale={1.1}>
+          <Ground />
+          <Player />
+          {/* <Plane rotation={[-Math.PI / 2, 0, 0]} userData={{ id: 'floor' }} /> */}
+          <GLBModel url="/solids/1.glb" removeOrbit />
+        </Debug>
       </Physics>
 
-      <Suspense fallback={null}>
+      {/* <Suspense fallback={null}>
         <Environment preset="dawn" />
-      </Suspense>
+      </Suspense> */}
     </Canvas>
   )
 }

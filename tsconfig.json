@@ -15,6 +15,12 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "components/FineVerse/PointerLockControls.jsx",
+    "components/FineVerse/Player.jsx"
+  ],
   "exclude": ["node_modules"]
 }
