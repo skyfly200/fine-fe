@@ -1,4 +1,4 @@
-import type { NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import Accordion from '../../components/Accordion'
 import ArtistCard from '../../components/ArtistCard'
 import Link from '../../components/Link'
@@ -6,10 +6,16 @@ import RotatedText from '../../components/RotatedText'
 import RoundedButton from '../../components/RoundedButton'
 import TextInput from '../../components/TextInput'
 import Layout from '../../containers/Layout'
+import { artists } from '../../fixtures'
+import { Artist, IParams } from '../../types'
 
 import style from './style.module.scss'
 
-const ArtistsPage: NextPage = () => {
+interface ArtistsPageProps {
+  artists: Artist[]
+}
+
+const ArtistsPage: NextPage<ArtistsPageProps> = ({ artists }) => {
   return (
     <Layout greyBG>
       <div className={style.DesktopTopBanner}>
@@ -56,14 +62,20 @@ const ArtistsPage: NextPage = () => {
         </div>
         <div className={style.childrenWrapper}>
           <div className={style.contentWrapper}>
-            {Array.from({ length: 30 }).map((el, i) => (
-              <ArtistCard key={`artistcard-${i}`} name="some name" id={`${i}`} slug={`${i}`} />
+            {artists.map((artist, i) => (
+              <ArtistCard key={artist.id} {...artist} />
             ))}
           </div>{' '}
         </div>
       </div>
     </Layout>
   )
+}
+export const getStaticProps: GetStaticProps = async context => {
+  return {
+    props: { artists },
+    revalidate: 10 // TODO: currently set to 1 day. Update if required
+  }
 }
 
 export default ArtistsPage

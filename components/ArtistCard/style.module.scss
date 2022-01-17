@@ -14,10 +14,18 @@
   .artistCard {
     height: 100px;
     width: 100px;
-    background-color: hotpink;
-    border-radius: 999px;
+    background-color: transparent;
     position: relative;
     cursor: pointer;
+    .imageWrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      border-radius: 999px;
+      overflow: hidden;
+    }
     &::before {
       position: absolute;
       content: '';

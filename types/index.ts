@@ -77,6 +77,7 @@ export interface Artwork {
 
 export type Artist = {
   id: string
+  slug: string
   name: string
   bio: string[]
   image?: Img
