@@ -27,7 +27,7 @@ function Plane(props: PlaneProps) {
 
 const FineVerse = () => {
   return (
-    <Canvas shadows camera={{ position: [0, 5, 15], fov: 50 }}>
+    <Canvas shadows gl={{ alpha: false }}>
       <fog attach="fog" args={[colors.enviroment, 40, 200]} />
       <color attach="background" args={[colors.enviroment]} />
       <ambientLight intensity={0.1} />

@@ -17,20 +17,15 @@ const Player = props => {
     ...props
   }))
 
-  useEffect(() => {
-    console.log(camera)
-  }, [camera])
-
   const velocity = useRef([0, 0, 0])
   useEffect(() => {
     api.velocity.subscribe(v => {
-      console.log(v)
       return (velocity.current = v)
     })
   }, [])
 
   useFrame(state => {
-    state.camera.position.copy(ref.current.position)
+    camera.position.copy(ref.current.position)
 
     const direction = new Vector3()
     const frontVector = new Vector3(0, 0, Number(moveBackward) - Number(moveForward))
