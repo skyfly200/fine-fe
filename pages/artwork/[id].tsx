@@ -1,22 +1,20 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import useDimensions from 'react-cool-dimensions'
 
 import { Artist, Artwork, IParams, Project } from '../../types'
 import Layout from '../../containers/Layout'
 
-import artworks from '../../fixtures/artworks'
-import artists from '../../fixtures/artists'
 import Link from '../../components/Link'
 import CanvasStickyWrapper from '../../components/CanvasStickyWrapper'
-import style from './Artwork.module.scss'
 import ArtPreviewer from '../../components/ArtPreviewer'
 import SimpleTable from '../../components/SimpleTable'
-import { projects } from '../../fixtures'
 import ArtistFullCard from '../../components/ArtistFullCard'
-import Carousel from '../../components/Carousel'
 import RoundedButton from '../../components/RoundedButton'
-import { useRouter } from 'next/router'
+
+import { projects, artists, artworks } from '../../fixtures'
+import style from './Artwork.module.scss'
 
 interface PiecePageProps {
   artwork: Artwork
@@ -31,10 +29,23 @@ const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist, project }) => 
     <Layout>
       <div className={style.artwork}>
         <div className={style.gallery} ref={observe}>
-          <CanvasStickyWrapper size={artwork.size} wrapperWidth={width}>
+          <CanvasStickyWrapper
+            size={artwork.size}
+            wrapperWidth={width}
+            controls={
+              <div className={style.controls}>
+                <Link href="#details">
+                  <RoundedButton lineSide="none">view details</RoundedButton>
+                </Link>
+                <RoundedButton lineSide="none" disabled>
+                  full screen
+                </RoundedButton>
+              </div>
+            }
+          >
             <ArtPreviewer artwork={artwork} />
           </CanvasStickyWrapper>
-          <div className={style.details}>
+          <div className={style.details} id="details">
             <div className={style.artist}>
               <div className={style.contentWrapper}>
                 <div className={style.aboutArtwork}>
@@ -65,10 +76,13 @@ const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist, project }) => 
             <div className={style.blank} />
             <div className={style.attributes}>
               <div className={style.contentWrapper}>
-                <h4 className={style.subtitle}>Attributes:</h4>
-                <SimpleTable rows={artwork.attributes} white />
+                <div>
+                  <h4 className={style.subtitle}>Attributes:</h4>
+                  <SimpleTable rows={artwork.attributes} white />
+                </div>
                 <div className={style.carouselWrapper}>
                   <h4 className={style.subtitle}>Other artworks from the collection</h4>
+                  <br />
                   {project.artworks?.map((item, i) => (
                     <Link key={`artwork-${i}`} href={`/artwork/${item.id}`}>
                       <div className={style.imageWrapper}>

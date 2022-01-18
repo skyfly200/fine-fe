@@ -2,7 +2,7 @@ import cn from 'classnames'
 import style from './style.module.scss'
 
 type Size = 'sm' | 'md' | 'lg' | 'xl'
-type Side = 'right' | 'left'
+type Side = 'right' | 'left' | 'none'
 interface RoundedButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: Size
   lineSide?: Side

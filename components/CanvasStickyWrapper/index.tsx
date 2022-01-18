@@ -6,6 +6,7 @@ import style from './style.module.scss'
 interface CanvasStickyWrapperProps {
   size: Size
   wrapperWidth: number
+  controls?: React.ReactNode
 }
 
 type WrapperStyle = {
@@ -21,7 +22,8 @@ const gap = 16
 const CanvasStickyWrapper: React.FC<CanvasStickyWrapperProps> = ({
   children,
   size,
-  wrapperWidth
+  wrapperWidth,
+  controls
 }) => {
   const { height: artH, width: artW } = size
   const { height: windowH } = useWindowSize()
@@ -59,7 +61,10 @@ const CanvasStickyWrapper: React.FC<CanvasStickyWrapperProps> = ({
       <div className={style.canvasStickyWrapper} style={wrapperStyle}>
         {children}
       </div>
-      <div style={{ height: dummyH }} />
+      <div style={{ height: dummyH }} className={style.controlsWrapper}>
+        {' '}
+        {controls && <div className={style.controls}>{controls}</div>}
+      </div>
     </>
   )
 }

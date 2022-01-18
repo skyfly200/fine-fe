@@ -19,3 +19,11 @@
     height: 100%;
   }
 }
+
+.controlsWrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  .controls {
+    grid-column: 2;
+  }
+}
