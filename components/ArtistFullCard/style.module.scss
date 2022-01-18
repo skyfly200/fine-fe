@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  .avatarWrapper {
+    height: 100px;
+    width: 100px;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .artistName {
+    margin-bottom: 0.5rem;
+  }
+}

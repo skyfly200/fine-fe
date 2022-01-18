@@ -6,22 +6,22 @@ export const solids: Artwork[] = getArrayWithSequence(10, [1, 2, 3, 4, 5, 6, 7, 
     return {
       id: `${i}-${index}`,
       minted: true,
-      name: 'SLKXN-1',
+      name: `SLKXN-${index}`,
       artistId: 'far',
       project: { id: '1', name: 'Solids' },
       image: {
         src: `https://res.cloudinary.com/dhrwv7wvb/image/upload/v1641324878/fine/solid-${i}_fine.png`
       },
-      attributes: {
-        Base: 'Metacity',
-        ['Type of Painting']: ' Abstraction',
-        ['Augmentation Type']: ' Landscape',
-        ['Residual Style']: 'Still-Life',
-        ['Base Speed']: 0.06,
-        ['Noise Scale']: 4.2,
-        ['Fluidity']: ' Medium',
-        ['Body']: ' Heavy'
-      },
+      attributes: [
+        { title: 'Base', description: 'Metacity' },
+        { title: 'Type of Painting', description: ' Abstraction' },
+        { title: 'Augmentation Type', description: ' Landscape' },
+        { title: 'Residual Style', description: 'Still-Life' },
+        { title: 'Base Speed', description: 0.06 },
+        { title: 'Noise Scale', description: 4.2 },
+        { title: 'Fluidity', description: ' Medium' },
+        { title: 'Body', description: ' Heavy' }
+      ],
       size: {
         height: 400,
         width: 400
@@ -44,16 +44,16 @@ export const dummy: Artwork[] = getArrayWithSequence(30, [1, 2, 3]).map((i, inde
   image: {
     src: `https://res.cloudinary.com/dhrwv7wvb/image/upload/v1642157278/fine/adamFerris-${i}.png`
   },
-  attributes: {
-    Base: 'Metacity',
-    ['Type of Painting']: ' Abstraction',
-    ['Augmentation Type']: ' Landscape',
-    ['Residual Style']: 'Still-Life',
-    ['Base Speed']: 0.06,
-    ['Noise Scale']: 4.2,
-    ['Fluidity']: ' Medium',
-    ['Body']: ' Heavy'
-  },
+  attributes: [
+    { title: 'Base', description: 'Metacity' },
+    { title: 'Type of Painting', description: ' Abstraction' },
+    { title: 'Augmentation Type', description: ' Landscape' },
+    { title: 'Residual Style', description: 'Still-Life' },
+    { title: 'Base Speed', description: 0.06 },
+    { title: 'Noise Scale', description: 4.2 },
+    { title: 'Fluidity', description: ' Medium' },
+    { title: 'Body', description: ' Heavy' }
+  ],
   size: {
     height: 400,
     width: 400

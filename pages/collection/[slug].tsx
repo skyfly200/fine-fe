@@ -42,7 +42,7 @@ const Title = ({ title, name, hideOnDesktop, hideOnMobile }: TitleProps) => (
       <h2>by {name}</h2>
       <div className={style.buttonWrapper}>
         <RoundedButton>MINT</RoundedButton>
-        #68
+        <span className={style.number}>#68 / 500</span>
       </div>
     </div>
   </div>

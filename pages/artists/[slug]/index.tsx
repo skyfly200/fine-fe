@@ -1,5 +1,6 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
+import ArtistFullCard from '../../../components/ArtistFullCard'
 import ProjectBigCard from '../../../components/ProjectBigCard'
 import SocialNetworksList from '../../../components/SocialNetworksList'
 
@@ -19,23 +20,7 @@ const ArtistPage: NextPage<ArtistPageProps> = ({ artist, projects }) => {
       <div className={style.pageWrapper}>
         <div className={style.leftCol}>
           <div className={style.header}>
-            <div className={style.headerTop}>
-              <div className={style.avatarWrapper}>
-                {artist.image && (
-                  <Image
-                    src={artist.image.src}
-                    width={100}
-                    height={100}
-                    layout="responsive"
-                    alt={`${artist.name}-avatar`}
-                  />
-                )}
-              </div>
-              <div>
-                <h1 className={style.artistName}>{artist.name}</h1>
-                <SocialNetworksList socialNetworks={artist.socialNetworks} size="xl" />
-              </div>
-            </div>
+            <ArtistFullCard artist={artist} />
           </div>
         </div>
 

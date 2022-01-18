@@ -9,7 +9,7 @@ const fixture = {
       'In efficitur arcu et urna efficitur, non placerat mi dignissim. Donec eget ante ut enim auctor sollicitudin at eu lectus. Aenean finibus massa lectus, vel suscipit lectus dictum vel. Etiam eu eros dui. '
     ],
     image: {
-      src: 'https://res.cloudinary.com/dhrwv7wvb/image/upload/v1639734260/fine/adamFerris-2_vistmx.jpg',
+      src: 'https://res.cloudinary.com/dhrwv7wvb/image/upload/v1639734260/fine/adamFerris-2.jpg',
       alt: 'artwork-image'
     }
   }

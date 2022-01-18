@@ -66,7 +66,7 @@ export interface Artwork {
   minted: boolean
   name: string
   artistId: string
-  attributes: Attribute
+  attributes: Attribute[]
   image: Img
   about: string[]
   type: SrcType

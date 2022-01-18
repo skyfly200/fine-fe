@@ -20,12 +20,18 @@
     .title {
       font-size: 2.5rem;
     }
+    .projectButton {
+      margin-bottom: 1rem;
+      &Text {
+        font-size: 1rem;
+        text-transform: uppercase;
+      }
+    }
     .subtitle {
       font-weight: 400;
       font-size: 1.5rem;
     }
     .text {
-      font-size: 1.1rem;
       line-height: 1.5;
       font-weight: 400;
     }
@@ -34,17 +40,33 @@
       margin-bottom: 8rem;
       text-decoration: underline;
     }
+
     .artist,
     .blank,
-    .about {
+    .attributes {
       flex: 1;
     }
-    .artist {
+    .artistCard {
+      margin: 3rem 0 3rem;
+    }
+    .attributes {
       position: relative;
       .contentWrapper {
         position: sticky;
         top: 1rem;
         left: 0;
+        .carouselWrapper {
+          position: relative;
+          width: 100%;
+          display: flex;
+          gap: 1rem;
+          flex-wrap: wrap;
+          margin-top: 2rem;
+          .imageWrapper {
+            aspect-ratio: 1;
+            width: 100px;
+          }
+        }
       }
     }
   }

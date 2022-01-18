@@ -1,28 +1,34 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import cn from 'classnames'
+import Image from 'next/image'
 import useDimensions from 'react-cool-dimensions'
 
-import { Artist, Artwork, IParams } from '../../types'
+import { Artist, Artwork, IParams, Project } from '../../types'
 import Layout from '../../containers/Layout'
-import CanvasIframe from '../../components/CanvasIframe'
 
 import artworks from '../../fixtures/artworks'
 import artists from '../../fixtures/artists'
 import Link from '../../components/Link'
-import Icon from '../../components/Icon'
 import CanvasStickyWrapper from '../../components/CanvasStickyWrapper'
 import style from './Artwork.module.scss'
 import ArtPreviewer from '../../components/ArtPreviewer'
+import SimpleTable from '../../components/SimpleTable'
+import { projects } from '../../fixtures'
+import ArtistFullCard from '../../components/ArtistFullCard'
+import Carousel from '../../components/Carousel'
+import RoundedButton from '../../components/RoundedButton'
+import { useRouter } from 'next/router'
 
 interface PiecePageProps {
   artwork: Artwork
   artist: Artist
+  project: Partial<Project>
 }
 
-const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist }) => {
+const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist, project }) => {
   const { observe, width } = useDimensions<HTMLDivElement>()
+  const router = useRouter()
   return (
-    <Layout hideLogo>
+    <Layout>
       <div className={style.artwork}>
         <div className={style.gallery} ref={observe}>
           <CanvasStickyWrapper size={artwork.size} wrapperWidth={width}>
@@ -31,7 +37,24 @@ const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist }) => {
           <div className={style.details}>
             <div className={style.artist}>
               <div className={style.contentWrapper}>
-                <h3 className={cn(style.title)}>{artist?.name}</h3>
+                <div className={style.aboutArtwork}>
+                  <h3 className={style.title}>{artwork.name}</h3>{' '}
+                  <RoundedButton
+                    lineSide="left"
+                    onClick={() => router.push(`/collection/${project.slug}`)}
+                  >
+                    <span className={style.projectButtonText}>
+                      <strong>{project.name}</strong>
+                    </span>
+                  </RoundedButton>
+                  <div className={style.projectButton}></div>
+                  {project.about?.map((p, i) => (
+                    <p key={`project-paragraph-${i}`} className={style.text}>
+                      {p}
+                    </p>
+                  ))}
+                </div>
+                <ArtistFullCard artist={artist} className={style.artistCard} />
                 {artist?.bio?.map((p, i) => (
                   <p key={`bio-paragraph-${i}`} className={style.text}>
                     {p}
@@ -40,26 +63,27 @@ const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist }) => {
               </div>
             </div>
             <div className={style.blank} />
-            <div className={style.about}>
-              <h3 className={style.title}>{artwork.name}</h3>
-              <Link href={`/project/${artwork.project.id}`}>
-                <p className={cn(style.subtitle, style.backButton)}>
-                  <Icon icon="arrow-left" /> back to {artwork.project.name}
-                </p>
-              </Link>
-              {artwork.about.map((p, i) => (
-                <p key={`about-paragraph-${i}`} className={style.text}>
-                  {p}
-                </p>
-              ))}
-              <h4 className={style.subtitle}>Attributes:</h4>
-              <ul>
-                {Object.keys(artwork.attributes).map((key, i) => (
-                  <li key={`about-paragraph-${i}`} className={style.text}>
-                    {key}: {artwork.attributes[key]}
-                  </li>
-                ))}
-              </ul>
+            <div className={style.attributes}>
+              <div className={style.contentWrapper}>
+                <h4 className={style.subtitle}>Attributes:</h4>
+                <SimpleTable rows={artwork.attributes} white />
+                <div className={style.carouselWrapper}>
+                  <h4 className={style.subtitle}>Other artworks from the collection</h4>
+                  {project.artworks?.map((item, i) => (
+                    <Link key={`artwork-${i}`} href={`/artwork/${item.id}`}>
+                      <div className={style.imageWrapper}>
+                        <Image
+                          src={item.image.src}
+                          height={200}
+                          width={200}
+                          layout="responsive"
+                          alt={`${item.name}-${i}`}
+                        />
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -71,15 +95,23 @@ const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist }) => {
 export const getStaticProps: GetStaticProps = async context => {
   const { id } = context.params as IParams
   const artwork = artworks.find(item => item.id === id)
-  if (!artwork) {
+  const artist = artists.find(item => item.id === artwork?.artistId) ?? {}
+  const fullProject = projects.find(proj => proj.id === artwork?.project.id)
+  const project = fullProject && {
+    name: fullProject.name,
+    about: fullProject.about,
+    slug: fullProject.slug,
+    artworks: fullProject.artworks.slice(0, 5)
+  }
+
+  if (!artwork || !artist || !project) {
     return {
       notFound: true
     }
   }
-  const artist = artists.find(item => item.id === artwork.artistId) ?? {}
 
   return {
-    props: { artwork, artist },
+    props: { artwork, artist, project },
     revalidate: 10 // TODO: currently set to 1 day. Update if required
   }
 }
