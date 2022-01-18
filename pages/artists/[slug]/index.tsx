@@ -1,6 +1,7 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
 import ProjectBigCard from '../../../components/ProjectBigCard'
+import SocialNetworksList from '../../../components/SocialNetworksList'
 
 import Layout from '../../../containers/Layout'
 import { artists, projects } from '../../../fixtures'
@@ -30,9 +31,11 @@ const ArtistPage: NextPage<ArtistPageProps> = ({ artist, projects }) => {
                   />
                 )}
               </div>
-              <h1>{artist.name}</h1>
+              <div>
+                <h1 className={style.artistName}>{artist.name}</h1>
+                <SocialNetworksList socialNetworks={artist.socialNetworks} size="xl" />
+              </div>
             </div>
-            <div>social networks</div>
           </div>
         </div>
 

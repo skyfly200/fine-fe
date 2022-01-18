@@ -75,12 +75,19 @@ export interface Artwork {
   project: Partial<Project>
 }
 
+export type SocialNetwork = 'instagram' | 'discord' | 'twitter'
+export type SocialNetworkInfo = {
+  url?: string
+}
+
+export type SocialNetworks = Record<SocialNetwork, SocialNetworkInfo>
 export type Artist = {
   id: string
   slug: string
   name: string
   bio: string[]
   image?: Img
+  socialNetworks: SocialNetworks
 }
 
 export type Project = {
