@@ -12,15 +12,15 @@ interface ObjectDisplayerProps {
 }
 
 const colors = {
-  enviroment: '#d5d5e2',
-  floor: '#CCC'
+  enviroment: '#FEFEFE',
+  floor: '#FEFEFE'
 }
 
 const Ground = () => {
   return (
     <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
       <planeBufferGeometry attach="geometry" args={[1009, 1000]} />
-      <meshStandardMaterial attach="material" color="#ccc" />
+      <meshStandardMaterial attach="material" color={colors.floor} />
     </mesh>
   )
 }
@@ -40,14 +40,11 @@ const Model: React.FC<ObjectDisplayerProps> = ({ url, withZoom = false }) => {
       const center = box.getCenter(new THREE.Vector3())
       const model = { ...glb }
       model.scene.position.x += model.scene.position.x - center.x
-      model.scene.position.y = 0
+      model.scene.position.y = 0.01 // avoid blinking
       model.scene.position.z += model.scene.position.z - center.z
       // @ts-ignore
-      Object.values(model.nodes).forEach(
-        // @ts-ignore
-        obj => obj.type === 'Mesh' && Object.assign(obj, { castShadow: true, receiveShadow: true })
-      ),
-        console.log(model)
+      model.scene.children.map(el => ({ ...el, castShadow: true }))
+      console.log(model)
       setModel(model)
       setZoom(size)
     }
@@ -61,6 +58,7 @@ const Model: React.FC<ObjectDisplayerProps> = ({ url, withZoom = false }) => {
   return (
     <>
       {model && <primitive object={model.scene} ref={ref} dispose={null} />}
+
       <OrbitControls screenSpacePanning={false} maxPolarAngle={Math.PI / 2} enableZoom={withZoom} />
     </>
   )
@@ -72,7 +70,7 @@ const ObjectDisplayer: React.FC<ObjectDisplayerProps> = props => {
       <fog attach="fog" args={[colors.enviroment, 30, 200]} />
       <color attach="background" args={[colors.enviroment]} />
       <ambientLight intensity={0.1} />
-      <spotLight position={[20, 20, 20]} angle={0.5} intensity={1} castShadow penumbra={1} />
+      <spotLight position={[10, 30, -10]} angle={0.5} intensity={1} castShadow penumbra={1} />
       <Suspense fallback={null}>
         <Model {...props} />
       </Suspense>
