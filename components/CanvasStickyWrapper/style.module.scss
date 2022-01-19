@@ -26,6 +26,10 @@
   }
   .controls {
     grid-column: 2;
+    @include respond-to('mobile') {
+      grid-column: 1;
+      margin-bottom: 1rem;
+    }
   }
 }
 
