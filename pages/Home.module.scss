@@ -108,7 +108,13 @@
 }
 .circle {
   height: calc(var(--vh, 1vh) * 100 - 44px);
-  background-color: color(darkgrey-color);
+  background: rgb(60, 60, 60);
+  background: radial-gradient(
+    closest-side,
+    rgba(30, 30, 30, 1) 0%,
+    rgba(20, 20, 20, 1) 10%,
+    color(darkgrey-color) 100%
+  );
   color: color(white-color);
   display: flex;
   align-items: center;

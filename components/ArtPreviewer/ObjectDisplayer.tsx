@@ -42,9 +42,6 @@ const Model: React.FC<ObjectDisplayerProps> = ({ url, withZoom = false }) => {
       model.scene.position.x += model.scene.position.x - center.x
       model.scene.position.y = 0.01 // avoid blinking
       model.scene.position.z += model.scene.position.z - center.z
-      // @ts-ignore
-      model.scene.children.map(el => ({ ...el, castShadow: true }))
-      console.log(model)
       setModel(model)
       setZoom(size)
     }

@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -15,6 +16,7 @@ import RoundedButton from '../../components/RoundedButton'
 
 import { projects, artists, artworks } from '../../fixtures'
 import style from './Artwork.module.scss'
+import cn from 'classnames'
 
 interface PiecePageProps {
   artwork: Artwork
@@ -23,33 +25,40 @@ interface PiecePageProps {
 }
 
 const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist, project }) => {
+  const [fullScreen, setFullScreen] = useState(false)
   const { observe, width } = useDimensions<HTMLDivElement>()
   const router = useRouter()
+  useEffect(() => {
+    fullScreen && window?.scrollTo({ top: 0, behavior: 'smooth' })
+    document.body.style.overflow = fullScreen ? 'hidden' : 'unset'
+  }, [fullScreen])
   return (
     <Layout>
       <div className={style.artwork}>
-        <div className={style.gallery} ref={observe}>
+        <div className={cn(style.gallery, { [style.fullScreen]: fullScreen })} ref={observe}>
           <CanvasStickyWrapper
             size={artwork.size}
             wrapperWidth={width}
+            fullScreen={fullScreen}
+            setFullScreen={setFullScreen}
             controls={
               <div className={style.controls}>
                 <Link href="#details">
                   <RoundedButton lineSide="none">view details</RoundedButton>
                 </Link>
-                <RoundedButton lineSide="none" disabled>
+                <RoundedButton lineSide="none" onClick={() => setFullScreen(true)}>
                   full screen
                 </RoundedButton>
               </div>
             }
           >
-            <ArtPreviewer artwork={artwork} />
+            <ArtPreviewer artwork={artwork} withZoom={fullScreen} />
           </CanvasStickyWrapper>
           <div className={style.details} id="details">
-            <div className={style.artist}>
-              <div className={style.contentWrapper}>
-                <div className={style.aboutArtwork}>
-                  <h3 className={style.title}>{artwork.name}</h3>{' '}
+            <div className={style.about}>
+              <h3 className={style.title}>{artwork.name}</h3>{' '}
+              <div>
+                <div className={style.projectButton}>
                   <RoundedButton
                     lineSide="left"
                     onClick={() => router.push(`/collection/${project.slug}`)}
@@ -58,46 +67,56 @@ const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist, project }) => 
                       <strong>{project.name}</strong>
                     </span>
                   </RoundedButton>
-                  <div className={style.projectButton}></div>
-                  {project.about?.map((p, i) => (
-                    <p key={`project-paragraph-${i}`} className={style.text}>
-                      {p}
-                    </p>
-                  ))}
                 </div>
-                <ArtistFullCard artist={artist} className={style.artistCard} />
-                {artist?.bio?.map((p, i) => (
-                  <p key={`bio-paragraph-${i}`} className={style.text}>
+                {project.about?.map((p, i) => (
+                  <p key={`project-paragraph-${i}`} className={style.text}>
                     {p}
                   </p>
                 ))}
               </div>
             </div>
+
             <div className={style.blank} />
             <div className={style.attributes}>
               <div className={style.contentWrapper}>
-                <div>
-                  <h4 className={style.subtitle}>Attributes:</h4>
+                <div className={style.tableWrapper}>
+                  <h4 className={style.subtitle}>Attributes</h4>
                   <SimpleTable rows={artwork.attributes} white />
                 </div>
-                <div className={style.carouselWrapper}>
+                <div>
                   <h4 className={style.subtitle}>Other artworks from the collection</h4>
-                  <br />
-                  {project.artworks?.map((item, i) => (
-                    <Link key={`artwork-${i}`} href={`/artwork/${item.id}`}>
-                      <div className={style.imageWrapper}>
-                        <Image
-                          src={item.image.src}
-                          height={200}
-                          width={200}
-                          layout="responsive"
-                          alt={`${item.name}-${i}`}
-                        />
-                      </div>
-                    </Link>
-                  ))}
+
+                  <div className={style.carouselWrapper}>
+                    {project.artworks?.map((item, i) => (
+                      <Link key={`artwork-${i}`} href={`/artwork/${item.id}`}>
+                        <div className={style.imageWrapper}>
+                          <Image
+                            src={item.image.src}
+                            height={200}
+                            width={200}
+                            layout="responsive"
+                            alt={`${item.name}-${i}`}
+                          />
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+        <div className={style.artist}>
+          <div className={style.blank} />
+          <div className={style.artistContent}>
+            <h4 className={style.subtitle}>About the artist</h4>
+            <ArtistFullCard artist={artist} className={style.artistCard} />
+            <div className={style.bio}>
+              {artist?.bio?.map((p, i) => (
+                <p key={`bio-paragraph-${i}`} className={style.text}>
+                  {p}
+                </p>
+              ))}
             </div>
           </div>
         </div>
@@ -115,7 +134,7 @@ export const getStaticProps: GetStaticProps = async context => {
     name: fullProject.name,
     about: fullProject.about,
     slug: fullProject.slug,
-    artworks: fullProject.artworks.slice(0, 5)
+    artworks: fullProject.artworks.slice(0, 10)
   }
 
   if (!artwork || !artist || !project) {

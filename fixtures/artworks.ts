@@ -6,7 +6,7 @@ export const solids: Artwork[] = getArrayWithSequence(10, [1, 2, 3, 4, 5, 6, 7, 
     return {
       id: `${i}-${index}`,
       minted: true,
-      name: `SLKXN-${index}`,
+      name: `SOLID #${i}`,
       artistId: 'far',
       project: { id: '1', name: 'Solids' },
       image: {

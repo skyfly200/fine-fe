@@ -34,34 +34,37 @@
         text-transform: uppercase;
       }
     }
-    .subtitle {
-      font-weight: 400;
-      font-size: 1.5rem;
-    }
-    .text {
-      line-height: 1.5;
-      font-weight: 400;
-    }
+
     .backButton {
       margin-top: -1.5rem;
       margin-bottom: 8rem;
       text-decoration: underline;
     }
 
-    .artist,
+    .about,
     .blank,
     .attributes {
       flex: 1;
     }
-    .artist,
+    .about,
     .attributes {
       z-index: 6;
+      max-width: 340px;
+      @include respond-to('mobile') {
+        max-width: 100%;
+      }
+    }
+    .about {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     .artistCard {
       margin: 3rem 0 3rem;
     }
     .attributes {
       position: relative;
+
       .contentWrapper {
         position: sticky;
         top: 1rem;
@@ -69,20 +72,59 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        min-height: calc(var(--vh, 1vh) * 100 - 44px - 3rem);
-        .carouselWrapper {
-          position: relative;
-          width: 100%;
-          display: flex;
-          gap: 1rem;
-          flex-wrap: wrap;
-          margin-top: 2rem;
-          .imageWrapper {
-            aspect-ratio: 1;
-            width: 70px;
-          }
+        height: 100%;
+        .tableWrapper {
+          margin-bottom: 2rem;
+        }
+      }
+      .carouselWrapper {
+        position: relative;
+        width: 100%;
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+        .imageWrapper {
+          aspect-ratio: 1;
+          width: 60px;
         }
       }
     }
   }
+
+  .artist {
+    background: rgb(60, 60, 60);
+    background: radial-gradient(
+      closest-side,
+      rgba(30, 30, 30, 1) 0%,
+      rgba(20, 20, 20, 1) 10%,
+      color(darkgrey-color) 100%
+    );
+    color: color(lightgrey-color);
+    padding: 3rem 1rem;
+    display: grid;
+    grid-template-columns: 1fr minmax(340px, 600px) 1fr;
+    grid-template-rows: 1fr;
+    justify-content: end;
+    align-items: start;
+    gap: 1rem;
+    @include respond-to('mobile') {
+      padding: 3rem 0rem;
+    }
+
+    .artistContent {
+      max-width: 600px;
+      .bio {
+        margin-top: 4rem;
+      }
+    }
+  }
+}
+.subtitle {
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+.text {
+  line-height: 1.7;
+  font-weight: 400;
 }
