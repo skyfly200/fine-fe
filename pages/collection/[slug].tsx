@@ -57,6 +57,13 @@ interface GalleryProps {
 const pageQuantity = 20
 const Gallery = ({ items, setActive, active }: GalleryProps) => {
   const [limit, setLimit] = useState<number>(pageQuantity)
+  const handleSelection = (item: Artwork) => {
+    setActive(item)
+
+    document?.querySelector('canvas')?.scrollIntoView({
+      behavior: 'smooth'
+    })
+  }
   if (!items.length) return <></>
   return (
     <div className={style.galleryWrapper} id="gallery">
@@ -77,7 +84,7 @@ const Gallery = ({ items, setActive, active }: GalleryProps) => {
           <button
             className={cn(style.imageWrapper, { [style.activePiece]: item.id === active.id })}
             key={`${item.name}-${i}`}
-            onClick={() => setActive(item)}
+            onClick={() => handleSelection(item)}
           >
             {item.image && (
               <Image
@@ -85,7 +92,7 @@ const Gallery = ({ items, setActive, active }: GalleryProps) => {
                 height={200}
                 width={200}
                 layout="responsive"
-                alt={`${item.name}-${i}`}
+                alt={item.image.alt}
               />
             )}
           </button>
