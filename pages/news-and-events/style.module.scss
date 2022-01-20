@@ -109,6 +109,7 @@
         grid-column: span 2;
         margin: 0 2rem;
         @include respond-to('mobile') {
+          margin: 0;
           grid-column: span 1;
         }
       }
