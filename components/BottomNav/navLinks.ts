@@ -4,6 +4,7 @@ const navLinks = [
     name: 'Artists',
     path: '/artists'
   },
+  { name: 'News & Events', path: '/news-and-events' },
   {
     name: 'About us',
     path: '/about-us'

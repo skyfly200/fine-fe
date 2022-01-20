@@ -29,11 +29,18 @@
         opacity: 1;
         outline: none;
       }
+      @include respond-to('mobile') {
+        height: 38px;
+      }
     }
   }
   .searchIcon {
     position: absolute;
     right: 0.8rem;
     top: 0.3rem;
+    @include respond-to('mobile') {
+      top: 0.1rem;
+      right: 0.5rem;
+    }
   }
 }
