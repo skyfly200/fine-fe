@@ -19,12 +19,7 @@ const data = [
     title: 'Some event on some date. Radical Gaming – Immersion. Simulation. Subversion',
     date: 'Tue Nov 23 2022 13:24:54 GMT+0000 (Western European Standard Time)'
   },
-  {
-    img: 'https://res.cloudinary.com/dhrwv7wvb/image/upload/v1640168939/fine/fine-timesquare_r0zcj6.jpg',
-    type: 'news',
-    title: 'Very insteresting article',
-    date: 'Tue Nov 23 2022 13:24:54 GMT+0000 (Western European Standard Time)'
-  },
+
   {
     img: 'https://res.cloudinary.com/dhrwv7wvb/image/upload/v1640168939/fine/fine-timesquare_r0zcj6.jpg',
     type: 'news',
@@ -67,6 +62,7 @@ const EventsAndNewsPage: NextPage<EventsAndNewsPageProps> = () => {
   }, [showNews, showEvents])
 
   const activeFilter = (showNews && !showEvents) || (!showNews && showEvents)
+
   return (
     <Layout>
       <div className={style.pageWrapper}>
@@ -110,7 +106,7 @@ const EventsAndNewsPage: NextPage<EventsAndNewsPageProps> = () => {
                     <FormattedDate value={el.date} year="numeric" month="long" day="2-digit" />
                   </div>
 
-                  <h2 className={style.cardTitle}>{el.title}</h2>
+                  <h3 className={style.cardTitle}>{el.title}</h3>
                 </div>
                 {el.type === 'event' && (
                   <div className={cn(style.blank, { [style.activeFilter]: activeFilter })} />
