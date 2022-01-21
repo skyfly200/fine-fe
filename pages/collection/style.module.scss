@@ -30,7 +30,6 @@
     grid-template-columns: repeat(4, 1fr);
     font-size: 0.9rem;
     height: max-content;
-    margin-bottom: 1rem;
     @include respond-to('tablet-sm') {
       grid-template-columns: repeat(3, 1fr);
     }
@@ -60,6 +59,7 @@
     grid-template-columns: repeat(5, 1fr);
     grid-auto-rows: auto;
     margin-bottom: 4rem;
+    padding-top: calc(var(--vh, 1vh) * 25 - 44px);
     @include respond-to('mobile') {
       grid-template-columns: repeat(3, 1fr);
       margin-top: calc(var(--vh, 1vh) * 50);

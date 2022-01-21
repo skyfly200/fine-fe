@@ -1,11 +1,28 @@
 import Image from 'next/image'
 import { FormattedDate } from 'react-intl'
-import { Event } from '../../types'
+import { Event, EventDate } from '../../types'
 
 import fallbackImg from '../../assets/images/fallback.png'
 
 import style from './style.module.scss'
 import { urlFor } from '../../utils'
+
+interface EventDatesProps {
+  dates: EventDate[]
+}
+
+export const EventDates: React.FC<EventDatesProps> = ({ dates }) => (
+  <div className={style.dateWrapper}>
+    <h5 className={style.date}>
+      <strong>Dates:</strong>
+    </h5>
+    {dates.slice(0, 3).map((d, i) => (
+      <h5 className={style.date} key={`${d.date}${i}`}>
+        <FormattedDate value={d.date} year="numeric" month="long" day="2-digit" />
+      </h5>
+    ))}
+  </div>
+)
 
 const EventCard: React.FC<Event> = ({ title, mainImage, dates }) => {
   const imgSrc = urlFor(mainImage).url()
@@ -20,15 +37,7 @@ const EventCard: React.FC<Event> = ({ title, mainImage, dates }) => {
           }}
         />
       </div>
-      {dates && dates[0] && (
-        <div className={style.dateWrapper}>
-          {dates.slice(0, 3).map((d, i) => (
-            <h5 className={style.date} key={`${d.date}${i}`}>
-              <FormattedDate value={d.date} year="numeric" month="long" day="2-digit" />
-            </h5>
-          ))}
-        </div>
-      )}
+      {dates && dates[0] && <EventDates dates={dates} />}
       <h3 className={style.title}>{title}</h3>
     </div>
   )

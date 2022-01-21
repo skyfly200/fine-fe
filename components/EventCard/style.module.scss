@@ -24,31 +24,33 @@
       }
     }
   }
-  .dateWrapper {
-    display: flex;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    gap: 1rem;
-  }
-  .date {
-    font-weight: 400;
-    margin: 1rem 0 0.75rem;
-    padding-right: 1rem;
-    border-right: 1px solid color(grey-color);
-    &:last-child {
-      padding-right: 0;
-      border-right: none;
-    }
-    @include respond-to('mobile') {
-      margin: 0.5rem 0 0.5rem;
-    }
-  }
+
   .title {
     margin: 0;
     font-size: 1.75rem;
     font-weight: 500;
     @include respond-to('mobile') {
       font-size: 1.5rem;
+    }
+  }
+}
+
+.dateWrapper {
+  display: flex;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  gap: 1rem;
+  .date {
+    font-weight: 400;
+    margin: 0.5rem 0 0.5rem;
+    padding-right: 1rem;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    &:last-child {
+      padding-right: 0;
+      border-right: none;
+    }
+    @include respond-to('mobile') {
+      margin: 0.5rem 0 0.5rem;
     }
   }
 }

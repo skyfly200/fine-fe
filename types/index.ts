@@ -15,6 +15,7 @@ export type Size = {
 }
 
 export interface News {
+  _type: 'post'
   title: string
   mainImage: SanityImage
   subtitle: string
@@ -39,6 +40,7 @@ export type SanityGallery = {
   images: SanityImage[]
 }
 export interface Event {
+  _type: 'event'
   id: string
   slug: SanitySlug
   date: string
@@ -50,6 +52,7 @@ export interface Event {
   dates?: EventDate[]
   contacts?: EventContact[]
   locations?: EventLocation[]
+  publishedAt: string
 }
 
 export type SrcType = 'iframe' | 'glb'

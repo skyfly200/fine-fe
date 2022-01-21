@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import type { NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import { Fragment, useMemo, useState } from 'react'
 import Image from 'next/image'
 
@@ -10,61 +10,37 @@ import Layout from '../../containers/Layout'
 
 import style from './style.module.scss'
 import { FormattedDate } from 'react-intl'
+import client from '../../client'
+import groq from 'groq'
+import { News, Event } from '../../types'
+import { getEnvironmentData } from 'worker_threads'
+import { urlFor } from '../../utils'
+import { EventDates } from '../../components/EventCard'
+import InfiniteScroll from 'react-infinite-scroll-component'
+import Spinner from '../../components/Spinner'
 
-interface EventsAndNewsPageProps {}
-const data = [
-  {
-    img: 'https://res.cloudinary.com/dhrwv7wvb/image/upload/v1640787269/fine/event-1_xihxng.jpg',
-    type: 'event',
-    title: 'Some event on some date. Radical Gaming – Immersion. Simulation. Subversion',
-    date: 'Tue Nov 23 2022 13:24:54 GMT+0000 (Western European Standard Time)'
-  },
+interface EventsAndNewsPageProps {
+  items: Items
+}
+type Items = Array<Event | News>
+const itemsPerPage = 10
 
-  {
-    img: 'https://res.cloudinary.com/dhrwv7wvb/image/upload/v1640168939/fine/fine-timesquare_r0zcj6.jpg',
-    type: 'news',
-    title: 'Very insteresting article',
-    date: 'Tue Nov 23 2022 13:24:54 GMT+0000 (Western European Standard Time)'
-  },
-  {
-    img: 'https://res.cloudinary.com/dhrwv7wvb/image/upload/v1640168939/fine/fine-timesquare_r0zcj6.jpg',
-    type: 'news',
-    title: 'Very insteresting article',
-    date: 'Tue Nov 23 2022 13:24:54 GMT+0000 (Western European Standard Time)'
-  },
-  {
-    img: 'https://res.cloudinary.com/dhrwv7wvb/image/upload/v1640787269/fine/event-1_xihxng.jpg',
-    type: 'event',
-    title: 'Some event on some date. Radical Gaming – Immersion. Simulation. Subversion',
-    date: 'Tue Nov 23 2022 13:24:54 GMT+0000 (Western European Standard Time)'
-  },
-  {
-    img: 'https://res.cloudinary.com/dhrwv7wvb/image/upload/v1640168939/fine/fine-timesquare_r0zcj6.jpg',
-    type: 'news',
-    title: 'Very insteresting article',
-    date: 'Tue Nov 23 2022 13:24:54 GMT+0000 (Western European Standard Time)'
-  },
-  {
-    img: 'https://res.cloudinary.com/dhrwv7wvb/image/upload/v1640787269/fine/event-1_xihxng.jpg',
-    type: 'event',
-    title: 'Some event on some date. Radical Gaming – Immersion. Simulation. Subversion',
-    date: 'Tue Nov 23 2022 13:24:54 GMT+0000 (Western European Standard Time)'
-  }
-]
-const EventsAndNewsPage: NextPage<EventsAndNewsPageProps> = () => {
+const EventsAndNewsPage: NextPage<EventsAndNewsPageProps> = ({ items }) => {
   const [showNews, setShowNews] = useState(true)
   const [showEvents, setShowEvents] = useState(true)
+  const [count, setCount] = useState(itemsPerPage)
 
-  const filteredList = useMemo(() => {
-    if (!showEvents && showNews) return data.filter(el => el.type === 'news')
-    if (!showNews && showEvents) return data.filter(el => el.type === 'event')
-    return data
-  }, [showNews, showEvents])
+  const filteredList: Items = useMemo(() => {
+    const newItems = [...items.slice(0, count)]
+    if (!showEvents && showNews) return newItems.filter(el => el._type === 'post')
+    if (!showNews && showEvents) return newItems.filter(el => el._type === 'event')
+    return newItems
+  }, [showNews, showEvents, items, count])
 
   const activeFilter = (showNews && !showEvents) || (!showNews && showEvents)
 
   return (
-    <Layout>
+    <Layout greyBG>
       <div className={style.pageWrapper}>
         <div className={style.firstCol}>
           <RotatedText>
@@ -91,33 +67,68 @@ const EventsAndNewsPage: NextPage<EventsAndNewsPageProps> = () => {
             <span className={style.separator} />
             <TextInput styleType="search" placeholder="Search..." />
           </div>
-          <div className={style.list}>
+
+          <InfiniteScroll
+            dataLength={count}
+            next={() => setCount(state => state + itemsPerPage)}
+            hasMore={count < items.length}
+            loader={
+              <div className={style.spinnerWrapper}>
+                <Spinner />
+              </div>
+            }
+            className={style.list}
+          >
             {filteredList.map((el, i) => (
               <Fragment key={`${i}${el.title}`}>
-                {el.type === 'event' && (
-                  <div className={cn(style.blank, { [style.activeFilter]: activeFilter })} />
-                )}
-                <div className={cn(style.card, { [style.event]: el.type === 'event' })}>
+                <div className={cn(style.card, { [style.event]: el._type === 'event' })}>
                   <div className={style.imageWrapper}>
-                    <Image src={el.img} layout="fill" alt={el.title} objectFit="cover" />
+                    <Image
+                      src={urlFor(el.mainImage).url()}
+                      layout="fill"
+                      alt={el.title}
+                      objectFit="cover"
+                    />
                   </div>
-
-                  <div>
-                    <FormattedDate value={el.date} year="numeric" month="long" day="2-digit" />
-                  </div>
+                  {el._type === 'post' ? (
+                    <div className={style.dates}>
+                      <FormattedDate
+                        value={el.publishedAt}
+                        year="numeric"
+                        month="long"
+                        day="2-digit"
+                      />
+                    </div>
+                  ) : el.dates ? (
+                    <EventDates dates={el.dates} />
+                  ) : null}
 
                   <h3 className={style.cardTitle}>{el.title}</h3>
                 </div>
-                {el.type === 'event' && (
-                  <div className={cn(style.blank, { [style.activeFilter]: activeFilter })} />
-                )}
               </Fragment>
             ))}
-          </div>
+          </InfiniteScroll>
         </div>
       </div>
     </Layout>
   )
+}
+
+const query = groq`
+  *[_type in ["event", "post"] && publishedAt < now()] | order(publishedAt desc){
+    title, mainImage, slug, _type, publishedAt, dates
+  } 
+`
+
+export const getStaticProps: GetStaticProps = async () => {
+  const items: Items = await client.fetch(query)
+
+  return {
+    props: {
+      items
+    },
+    revalidate: 10 // TODO: currently set to 1 day. Update if required
+  }
 }
 
 export default EventsAndNewsPage
