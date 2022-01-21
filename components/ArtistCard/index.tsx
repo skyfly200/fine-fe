@@ -1,35 +1,30 @@
-import Image from 'next/image'
+import { useNextSanityImage } from 'next-sanity-image'
+import NextImage from 'next/image'
 import Link from 'next/link'
-import { Img } from '../../types'
+import client from '../../client'
+import { Artist } from '../../types'
 
 import style from './style.module.scss'
 
 interface ArtistCardProp {
-  slug: string
-  id: string
-  name: string
-  image?: Img
+  artist: Artist
 }
 
-const ArtistCard: React.FC<ArtistCardProp> = ({ slug, name, image }) => (
-  <div className={style.cardWrapper}>
-    <Link href={`/artists/${slug}`} passHref>
-      <div className={style.artistCard}>
-        <div className={style.imageWrapper}>
-          {image && (
-            <Image
-              src={image.src}
-              width={100}
-              height={100}
-              layout="responsive"
-              alt={`${name}-avatar`}
-            />
-          )}
+const ArtistCard: React.FC<ArtistCardProp> = ({ artist }) => {
+  const { slug, name, image } = artist
+  const imageProps = useNextSanityImage(client, image)
+  return (
+    <div className={style.cardWrapper}>
+      <Link href={`/artists/${slug.current}`} passHref>
+        <div className={style.artistCard}>
+          <div className={style.imageWrapper}>
+            <NextImage layout="responsive" alt={`${name}-avatar`} {...imageProps} />
+          </div>
         </div>
-      </div>
-    </Link>
-    <span className={style.artistName}>{name}</span>
-  </div>
-)
+      </Link>
+      <span className={style.artistName}>{name}</span>
+    </div>
+  )
+}
 
 export default ArtistCard

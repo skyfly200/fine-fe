@@ -86,17 +86,20 @@ export type SocialNetworkInfo = {
 export type SocialNetworks = Record<SocialNetwork, SocialNetworkInfo>
 export type Artist = {
   id: string
-  slug: string
+  slug: SanitySlug
   name: string
   bio: string[]
-  image?: Img
-  socialNetworks: SocialNetworks
+  image: SanityImage
+  discord?: string
+  instagram?: string
+  twitter?: string
 }
 
 export type Project = {
   id: string
-  slug: string
-  name: string
+  _id: string
+  slug: SanitySlug
+  title: string
   about: string[]
   projectDetails: Attribute
   artist: Partial<Artist>
@@ -105,6 +108,7 @@ export type Project = {
   minted: number
   type: SrcType
   artworks: Artwork[]
+  galleryImages: SanityImage[]
 }
 
 export type ProjectDetails = {

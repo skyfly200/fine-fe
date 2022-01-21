@@ -1,6 +1,9 @@
 import cn from 'classnames'
+import { useNextSanityImage } from 'next-sanity-image'
 import Image from 'next/image'
+import client from '../../client'
 import { Artist } from '../../types'
+import Icon from '../Icon'
 import SocialNetworksList from '../SocialNetworksList'
 import style from './style.module.scss'
 
@@ -10,22 +13,32 @@ interface ArtistFullCardProps {
 }
 
 const ArtistFullCard: React.FC<ArtistFullCardProps> = ({ artist, className }) => {
+  const { name, image } = artist
+  const imageProps = useNextSanityImage(client, image)
   return (
     <div className={cn(style.wrapper, className)}>
       <div className={style.avatarWrapper}>
-        {artist.image && (
-          <Image
-            src={artist.image.src}
-            width={100}
-            height={100}
-            layout="responsive"
-            alt={`${artist.name}-avatar`}
-          />
-        )}
+        {artist.image && <Image {...imageProps} layout="responsive" alt={`${name}-avatar`} />}
       </div>
       <div>
-        <h1 className={style.artistName}>{artist.name}</h1>
-        <SocialNetworksList socialNetworks={artist.socialNetworks} size="xl" />
+        <h1 className={style.artistName}>{name}</h1>
+        <div className={style.socialNetworks}>
+          {artist.discord && (
+            <a href={artist.discord}>
+              <Icon icon="discord" size="xl" />
+            </a>
+          )}
+          {artist.instagram && (
+            <a href={artist.instagram}>
+              <Icon icon="instagram" size="xl" />
+            </a>
+          )}
+          {artist.twitter && (
+            <a href={artist.twitter}>
+              <Icon icon="twitter" size="xl" />
+            </a>
+          )}
+        </div>
       </div>
     </div>
   )
