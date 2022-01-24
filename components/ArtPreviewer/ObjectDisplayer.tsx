@@ -61,17 +61,55 @@ const Model: React.FC<ObjectDisplayerProps> = ({ url, withZoom = false }) => {
   )
 }
 
+function Model2({ ...props }: ObjectDisplayerProps) {
+  const group = useRef()
+  // @ts-ignore
+  const { nodes, materials } = useGLTF('/solids/1.glb')
+  return (
+    <>
+      <group ref={group} {...props} dispose={null}>
+        <group scale={100}>
+          <mesh
+            geometry={nodes.Ramps.geometry}
+            material={nodes.Ramps.material}
+            castShadow
+            receiveShadow
+          />
+          <mesh
+            geometry={nodes.Ramps_2.geometry}
+            material={nodes.Ramps_2.material}
+            castShadow
+            receiveShadow
+          />
+          <mesh
+            geometry={nodes.Solids.geometry}
+            material={materials['1 (4)']}
+            castShadow
+            receiveShadow
+          />
+        </group>
+      </group>
+      <OrbitControls
+        screenSpacePanning={false}
+        maxPolarAngle={Math.PI / 2}
+        enableZoom={props.withZoom}
+      />
+    </>
+  )
+}
+
 const ObjectDisplayer: React.FC<ObjectDisplayerProps> = props => {
   return (
     <Canvas className={style.canvas}>
       <fog attach="fog" args={[colors.enviroment, 30, 200]} />
       <color attach="background" args={[colors.enviroment]} />
       <ambientLight intensity={0.1} />
-      <spotLight position={[10, 30, -10]} angle={0.5} intensity={1} castShadow penumbra={1} />
+      <spotLight position={[10, 30, -50]} angle={0.5} intensity={1} castShadow penumbra={1} />
+
+      <Ground />
       <Suspense fallback={null}>
         <Model {...props} />
       </Suspense>
-      <Ground />
       <Suspense fallback={null}>
         <Environment preset="sunset" />
       </Suspense>

@@ -64,7 +64,7 @@ const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist, project }) => 
                     onClick={() => router.push(`/collection/${project.slug}`)}
                   >
                     <span className={style.projectButtonText}>
-                      <strong>{project.name}</strong>
+                      <strong>{project.title}</strong>
                     </span>
                   </RoundedButton>
                 </div>
@@ -86,7 +86,7 @@ const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist, project }) => 
                 <div>
                   <h4 className={style.subtitle}>Other artworks from the collection</h4>
 
-                  <div className={style.carouselWrapper}>
+                  {/* <div className={style.carouselWrapper}>
                     {project.artworks?.map((item, i) => (
                       <Link key={`artwork-${i}`} href={`/artwork/${item.id}`}>
                         <div className={style.imageWrapper}>
@@ -100,7 +100,7 @@ const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist, project }) => 
                         </div>
                       </Link>
                     ))}
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -131,7 +131,7 @@ export const getStaticProps: GetStaticProps = async context => {
   const artist = artists.find(item => item.id === artwork?.artistId) ?? {}
   const fullProject = projects.find(proj => proj.id === artwork?.project.id)
   const project = fullProject && {
-    name: fullProject.name,
+    title: fullProject.title,
     about: fullProject.about,
     slug: fullProject.slug,
     artworks: fullProject.artworks.slice(0, 10)
