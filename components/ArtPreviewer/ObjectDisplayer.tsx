@@ -42,6 +42,8 @@ const Model: React.FC<ObjectDisplayerProps> = ({ url, withZoom = false }) => {
       model.scene.position.x += model.scene.position.x - center.x
       model.scene.position.y = 0.01 // avoid blinking
       model.scene.position.z += model.scene.position.z - center.z
+      // @ts-ignore
+      Object.values(model.nodes).forEach(obj => Object.assign(obj, { castShadow: true }))
       setModel(model)
       setZoom(size)
     }
@@ -61,50 +63,12 @@ const Model: React.FC<ObjectDisplayerProps> = ({ url, withZoom = false }) => {
   )
 }
 
-function Model2({ ...props }: ObjectDisplayerProps) {
-  const group = useRef()
-  // @ts-ignore
-  const { nodes, materials } = useGLTF('/solids/1.glb')
-  return (
-    <>
-      <group ref={group} {...props} dispose={null}>
-        <group scale={100}>
-          <mesh
-            geometry={nodes.Ramps.geometry}
-            material={nodes.Ramps.material}
-            castShadow
-            receiveShadow
-          />
-          <mesh
-            geometry={nodes.Ramps_2.geometry}
-            material={nodes.Ramps_2.material}
-            castShadow
-            receiveShadow
-          />
-          <mesh
-            geometry={nodes.Solids.geometry}
-            material={materials['1 (4)']}
-            castShadow
-            receiveShadow
-          />
-        </group>
-      </group>
-      <OrbitControls
-        screenSpacePanning={false}
-        maxPolarAngle={Math.PI / 2}
-        enableZoom={props.withZoom}
-      />
-    </>
-  )
-}
-
 const ObjectDisplayer: React.FC<ObjectDisplayerProps> = props => {
   return (
-    <Canvas className={style.canvas}>
+    <Canvas className={style.canvas} shadows>
       <fog attach="fog" args={[colors.enviroment, 30, 200]} />
       <color attach="background" args={[colors.enviroment]} />
-      <ambientLight intensity={0.1} />
-      <spotLight position={[10, 30, -50]} angle={0.5} intensity={1} castShadow penumbra={1} />
+      <spotLight position={[10, 50, -40]} angle={0.5} intensity={1} castShadow penumbra={0.3} />
 
       <Ground />
       <Suspense fallback={null}>
