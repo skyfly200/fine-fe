@@ -1,5 +1,5 @@
 import { useNextSanityImage } from 'next-sanity-image'
-import NextImage from 'next/image'
+import Image from 'next/image'
 import Link from 'next/link'
 import client from '../../client'
 import { Artist } from '../../types'
@@ -18,7 +18,7 @@ const ArtistCard: React.FC<ArtistCardProp> = ({ artist }) => {
       <Link href={`/artists/${slug.current}`} passHref>
         <div className={style.artistCard}>
           <div className={style.imageWrapper}>
-            <NextImage layout="responsive" alt={`${name}-avatar`} {...imageProps} />
+            <Image layout="responsive" alt={`${name}-avatar`} {...imageProps} />
           </div>
         </div>
       </Link>

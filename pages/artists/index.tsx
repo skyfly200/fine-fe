@@ -80,7 +80,7 @@ const query = groq`
 
 export const getStaticProps: GetStaticProps = async context => {
   const artists = await client.fetch(query)
-  console.log(artists)
+
   return {
     props: { artists },
     revalidate: 10 // TODO: currently set to 1 day. Update if required
