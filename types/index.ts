@@ -76,7 +76,6 @@ export interface Artwork {
   size: Size
   src?: string
   project: Partial<Project>
-  slug: SanitySlug
 }
 
 export type SocialNetwork = 'instagram' | 'discord' | 'twitter'
