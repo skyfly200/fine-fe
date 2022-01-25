@@ -1,14 +1,11 @@
 import BlockContent from '@sanity/block-content-to-react'
 import groq from 'groq'
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import Image from 'next/image'
+
 import client from '../../../client'
 import ArtistFullCard from '../../../components/ArtistFullCard'
 import ProjectBigCard from '../../../components/ProjectBigCard'
-import SocialNetworksList from '../../../components/SocialNetworksList'
-
 import Layout from '../../../containers/Layout'
-import { artists, projects } from '../../../fixtures'
 import { Artist, IParams, Project } from '../../../types'
 
 import style from './style.module.scss'

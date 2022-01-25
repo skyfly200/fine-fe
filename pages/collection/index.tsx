@@ -7,11 +7,7 @@ import ProjectBigCard from '../../components/ProjectBigCard'
 import RotatedText from '../../components/RotatedText'
 import TextInput from '../../components/TextInput'
 import Layout from '../../containers/Layout'
-import { projects as items } from '../../fixtures'
-
-import { AdamFerris, Far } from '../../fixtures/artists'
-import { dummy, solids } from '../../fixtures/artworks'
-import { Project, ProjectDetails } from '../../types'
+import { Project } from '../../types'
 
 import style from './style.module.scss'
 

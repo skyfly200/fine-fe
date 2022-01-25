@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
+import BlockContent from '@sanity/block-content-to-react'
 import useDimensions from 'react-cool-dimensions'
+import cn from 'classnames'
+import groq from 'groq'
 
 import { Artist, Artwork, IParams, Project } from '../../types'
 import Layout from '../../containers/Layout'
-
 import Link from '../../components/Link'
 import CanvasStickyWrapper from '../../components/CanvasStickyWrapper'
 import ArtPreviewer from '../../components/ArtPreviewer'
@@ -14,12 +15,9 @@ import SimpleTable from '../../components/SimpleTable'
 import ArtistFullCard from '../../components/ArtistFullCard'
 import RoundedButton from '../../components/RoundedButton'
 
-import { projects, artists, artworks } from '../../fixtures'
+import { artworks } from '../../fixtures'
 import style from './Artwork.module.scss'
-import cn from 'classnames'
-import groq from 'groq'
 import client from '../../client'
-import BlockContent from '@sanity/block-content-to-react'
 
 interface PiecePageProps {
   artwork: Artwork
@@ -119,7 +117,6 @@ const artistQuery = groq`*[_type == "artist" && slug.current == $slug][0]`
 export const getStaticProps: GetStaticProps = async context => {
   const { id } = context.params as IParams
   const artwork = artworks.find(item => item.id === id)
-  console.log(artwork?.artist.slug?.current)
   if (!artwork?.artist.slug?.current || !artwork?.project.slug?.current) {
     return {
       notFound: true
@@ -127,9 +124,7 @@ export const getStaticProps: GetStaticProps = async context => {
   }
 
   const project = await client.fetch(projectQuery, { slug: artwork.project.slug.current })
-  console.log(project)
   const artist = await client.fetch(artistQuery, { slug: artwork.artist.slug.current })
-  console.log(artist)
 
   if (!project || !artist) {
     return {
