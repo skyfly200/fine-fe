@@ -17,23 +17,23 @@ const ArtistFullCard: React.FC<ArtistFullCardProps> = ({ artist, className }) =>
   return (
     <div className={cn(style.wrapper, className)}>
       <div className={style.avatarWrapper}>
-        {artist.image && <Image {...imageProps} layout="responsive" alt={`${name}-avatar`} />}
+        {artist?.image && <Image {...imageProps} layout="responsive" alt={`${name}-avatar`} />}
       </div>
       <div>
-        <h1 className={style.artistName}>{artist.name}</h1>
+        <h1 className={style.artistName}>{artist?.name}</h1>
         <div className={style.socialNetworks}>
-          {artist.discord && (
+          {artist?.discord && (
             <a href={artist.discord}>
               <Icon icon="discord" size="xl" />
             </a>
           )}
-          {artist.instagram && (
-            <a href={artist.instagram}>
+          {artist?.instagram && (
+            <a href={artist?.instagram}>
               <Icon icon="instagram" size="xl" />
             </a>
           )}
-          {artist.twitter && (
-            <a href={artist.twitter}>
+          {artist?.twitter && (
+            <a href={artist?.twitter}>
               <Icon icon="twitter" size="xl" />
             </a>
           )}
