@@ -26,7 +26,7 @@ const ArtistPage: NextPage<ArtistPageProps> = ({ artist, projects }) => {
 
         <div className={style.body}>
           <div className={style.about}>
-            {artist.bio && (
+            {artist?.bio && (
               <div className="sanity-body">
                 <BlockContent
                   blocks={artist.bio}
@@ -59,7 +59,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths: paths.map((slug: string) => ({ params: { slug } })),
-    fallback: true
+    fallback: false
   }
 }
 

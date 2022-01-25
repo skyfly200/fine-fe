@@ -13,15 +13,14 @@ interface ArtistFullCardProps {
 }
 
 const ArtistFullCard: React.FC<ArtistFullCardProps> = ({ artist, className }) => {
-  const { name, image } = artist
-  const imageProps = useNextSanityImage(client, image)
+  const imageProps = useNextSanityImage(client, artist.image)
   return (
     <div className={cn(style.wrapper, className)}>
       <div className={style.avatarWrapper}>
         {artist.image && <Image {...imageProps} layout="responsive" alt={`${name}-avatar`} />}
       </div>
       <div>
-        <h1 className={style.artistName}>{name}</h1>
+        <h1 className={style.artistName}>{artist.name}</h1>
         <div className={style.socialNetworks}>
           {artist.discord && (
             <a href={artist.discord}>
