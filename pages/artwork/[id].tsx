@@ -14,10 +14,10 @@ import ArtPreviewer from '../../components/ArtPreviewer'
 import SimpleTable from '../../components/SimpleTable'
 import ArtistFullCard from '../../components/ArtistFullCard'
 import RoundedButton from '../../components/RoundedButton'
+import client from '../../client'
 
 import { artworks } from '../../fixtures'
 import style from './Artwork.module.scss'
-import client from '../../client'
 
 interface PiecePageProps {
   artwork: Artwork
@@ -29,10 +29,12 @@ const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist, project }) => 
   const [fullScreen, setFullScreen] = useState(false)
   const { observe, width } = useDimensions<HTMLDivElement>()
   const router = useRouter()
+
   useEffect(() => {
     fullScreen && window?.scrollTo({ top: 0, behavior: 'smooth' })
     document.body.style.overflow = fullScreen ? 'hidden' : 'unset'
   }, [fullScreen])
+
   return (
     <Layout>
       <div className={style.artwork}>
@@ -57,35 +59,39 @@ const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist, project }) => 
           </CanvasStickyWrapper>
           <div className={style.details} id="details">
             <div className={style.about}>
-              <h3 className={style.title}>{artwork.name}</h3>{' '}
+              <h3 className={style.title}>{artwork?.name}</h3>{' '}
               <div>
                 <div className={style.projectButton}>
                   <RoundedButton
                     lineSide="left"
-                    onClick={() => router.push(`/collection/${project.slug?.current}`)}
+                    onClick={() => router.push(`/collection/${project?.slug?.current}`)}
                   >
                     <span className={style.projectButtonText}>
-                      <strong>{project.title}</strong>
+                      <strong>{project?.title}</strong>
                     </span>
                   </RoundedButton>
                 </div>
-                <div className="sanity-body">
-                  <BlockContent
-                    blocks={project?.body}
-                    imageOptions={{ w: 680, fit: 'max' }}
-                    {...client.config()}
-                  />
-                </div>
+                {project?.body && (
+                  <div className="sanity-body">
+                    <BlockContent
+                      blocks={project.body}
+                      imageOptions={{ w: 680, fit: 'max' }}
+                      {...client.config()}
+                    />
+                  </div>
+                )}
               </div>
             </div>
 
             <div className={style.blank} />
             <div className={style.attributes}>
               <div className={style.contentWrapper}>
-                <div className={style.tableWrapper}>
-                  <h4 className={style.subtitle}>Attributes</h4>
-                  <SimpleTable rows={artwork.attributes} white />
-                </div>
+                {artwork?.attributes && (
+                  <div className={style.tableWrapper}>
+                    <h4 className={style.subtitle}>Attributes</h4>
+                    <SimpleTable rows={artwork.attributes} white />
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -95,15 +101,17 @@ const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist, project }) => 
           <div className={style.artistContent}>
             <h4 className={style.subtitle}>About the artist</h4>
             <ArtistFullCard artist={artist} className={style.artistCard} />
-            <div className={style.bio}>
-              <div className="sanity-body">
-                <BlockContent
-                  blocks={artist?.bioSummary}
-                  imageOptions={{ w: 680, fit: 'max' }}
-                  {...client.config()}
-                />
+            {artist?.bioSummary && (
+              <div className={style.bio}>
+                <div className="sanity-body">
+                  <BlockContent
+                    blocks={artist.bioSummary}
+                    imageOptions={{ w: 680, fit: 'max' }}
+                    {...client.config()}
+                  />
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
@@ -116,7 +124,7 @@ const artistQuery = groq`*[_type == "artist" && slug.current == $slug][0]`
 
 export const getStaticProps: GetStaticProps = async context => {
   const { id } = context.params as IParams
-  const artwork = artworks.find(item => item.id === id)
+  const artwork = artworks.find(item => item.id === id) // TODO: update with web3 BE
   if (!artwork?.artist.slug?.current || !artwork?.project.slug?.current) {
     return {
       notFound: true

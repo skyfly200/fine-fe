@@ -1,7 +1,5 @@
 import { ParsedUrlQuery } from 'querystring'
 
-// TODO: update with rich text schema
-
 export interface Img {
   src: string | StaticImageData
   alt?: string

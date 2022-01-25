@@ -202,7 +202,7 @@ const query = groq`
 export const getStaticProps: GetStaticProps = async context => {
   const { slug } = context.params as IParams
   const resp = await client.fetch(query, { slug })
-  const prj = projects.find(item => item.slug.current === slug)
+  const prj = projects.find(item => item.slug.current === slug) // TODO: update with web3 BE
 
   if (!resp || !prj?.artworks) {
     return {
