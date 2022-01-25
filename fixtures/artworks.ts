@@ -8,8 +8,8 @@ export const solids: Artwork[] = Array.from({ length: 100 }, (_, i) => i + 1).ma
     id: `solid-${i}`,
     minted: true,
     name: `SOLID #${i}`,
-    artistId: 'far',
-    project: { id: '1', name: 'Solids' },
+    artist: { slug: { current: 'far', _type: 'slug' } },
+    project: { slug: { current: 'solids', _type: 'slug' }, name: 'Solids' },
     image: {
       src: `https://res.cloudinary.com/dhrwv7wvb/image/upload/v1641324878/fine/solid-${num}_fine.png`,
       alt: `solid-${num}`
@@ -40,8 +40,11 @@ export const dummy: Artwork[] = getArrayWithSequence(30, [1, 2, 3]).map((i, inde
   id: `SQRANDTR-${index}`,
   minted: true,
   name: `SQR&TR-${index}`,
-  artistId: 'adamFerris',
-  project: { id: '2', name: 'Squares and Triangles' },
+  artist: { slug: { current: 'cool-artist', _type: 'slug' } },
+  project: {
+    slug: { current: 'squares-and-triagles', _type: 'slug' },
+    name: 'Squares and Triangles'
+  },
   image: {
     src: `https://res.cloudinary.com/dhrwv7wvb/image/upload/v1642157278/fine/adamFerris-${i}.png`
   },

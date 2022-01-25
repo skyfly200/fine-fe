@@ -68,7 +68,7 @@ export interface Artwork {
   id: string
   minted: boolean
   name: string
-  artistId: string
+  artist: Partial<Artist>
   attributes: Attribute[]
   image: Img
   about: string[]
@@ -76,6 +76,7 @@ export interface Artwork {
   size: Size
   src?: string
   project: Partial<Project>
+  slug: SanitySlug
 }
 
 export type SocialNetwork = 'instagram' | 'discord' | 'twitter'
@@ -89,7 +90,8 @@ export type Artist = {
   id: string
   slug: SanitySlug
   name: string
-  bio: string[]
+  bioSummary: any
+  body: any
   image: SanityImage
   discord?: string
   instagram?: string
