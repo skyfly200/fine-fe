@@ -90,7 +90,7 @@ export type Artist = {
   slug: SanitySlug
   name: string
   bioSummary: any
-  body: any
+  bio: any
   image: SanityImage
   discord?: string
   instagram?: string

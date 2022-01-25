@@ -8,7 +8,7 @@ export const Far: Artist = {
     _type: 'slug'
   },
   name: 'Far',
-  body: {},
+  bio: {},
   bioSummary: {},
   discord: 'discord.com',
   instagram: 'instagram.com',
@@ -30,7 +30,7 @@ export const AdamFerris: Artist = {
     _type: 'slug'
   },
   name: 'cool artist ',
-  body: {},
+  bio: {},
   bioSummary: {},
   instagram: 'instagram.com',
   twitter: 'twitter.com',
