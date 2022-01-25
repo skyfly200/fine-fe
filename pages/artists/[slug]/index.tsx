@@ -26,13 +26,15 @@ const ArtistPage: NextPage<ArtistPageProps> = ({ artist, projects }) => {
 
         <div className={style.body}>
           <div className={style.about}>
-            <div className="sanity-body">
-              <BlockContent
-                blocks={artist.bio}
-                imageOptions={{ w: 680, fit: 'max' }}
-                {...client.config()}
-              />
-            </div>
+            {artist.bio && (
+              <div className="sanity-body">
+                <BlockContent
+                  blocks={artist.bio}
+                  imageOptions={{ w: 680, fit: 'max' }}
+                  {...client.config()}
+                />
+              </div>
+            )}
           </div>
           <div className={style.gallery}>
             {projects?.length &&
