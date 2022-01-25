@@ -55,7 +55,7 @@ const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist, project }) => 
             <ArtPreviewer artwork={artwork} withZoom={fullScreen} />
           </CanvasStickyWrapper>
           <div className={style.details} id="details">
-            <div className={style.about}>
+            {/* <div className={style.about}>
               <h3 className={style.title}>{artwork.name}</h3>{' '}
               <div>
                 <div className={style.projectButton}>
@@ -74,7 +74,7 @@ const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist, project }) => 
                   </p>
                 ))}
               </div>
-            </div>
+            </div> */}
 
             <div className={style.blank} />
             <div className={style.attributes}>
@@ -108,7 +108,7 @@ const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist, project }) => 
         </div>
         <div className={style.artist}>
           <div className={style.blank} />
-          <div className={style.artistContent}>
+          {/* <div className={style.artistContent}>
             <h4 className={style.subtitle}>About the artist</h4>
             <ArtistFullCard artist={artist} className={style.artistCard} />
             <div className={style.bio}>
@@ -118,7 +118,7 @@ const ArtworkPage: NextPage<PiecePageProps> = ({ artwork, artist, project }) => 
                 </p>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </Layout>
@@ -130,21 +130,21 @@ export const getStaticProps: GetStaticProps = async context => {
   const artwork = artworks.find(item => item.id === id)
   const artist = artists.find(item => item.id === artwork?.artistId) ?? {}
   const fullProject = projects.find(proj => proj.id === artwork?.project.id)
-  const project = fullProject && {
-    title: fullProject.title,
-    about: fullProject.about,
-    slug: fullProject.slug,
-    artworks: fullProject.artworks.slice(0, 10)
-  }
+  // const project = fullProject && {
+  //   title: fullProject.title,
+  //   about: fullProject.about,
+  //   slug: fullProject.slug,
+  //   artworks: fullProject.artworks.slice(0, 10)
+  // }
 
-  if (!artwork || !artist || !project) {
+  if (!artwork || !artist) {
     return {
       notFound: true
     }
   }
 
   return {
-    props: { artwork, artist, project },
+    props: { artwork, artist },
     revalidate: 10 // TODO: currently set to 1 day. Update if required
   }
 }

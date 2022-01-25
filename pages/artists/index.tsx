@@ -65,7 +65,7 @@ const ArtistsPage: NextPage<ArtistsPageProps> = ({ artists }) => {
         <div className={style.childrenWrapper}>
           <div className={style.contentWrapper}>
             {artists.map((artist, i) => (
-              <ArtistCard key={artist.id} artist={artist} />
+              <ArtistCard key={artist._id} artist={artist} />
             ))}
           </div>{' '}
         </div>

@@ -1,4 +1,5 @@
 import BlockContent from '@sanity/block-content-to-react'
+import groq from 'groq'
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
 import client from '../../../client'
@@ -63,26 +64,22 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
+const artistQuery = groq`
+*[_type == "artist" && slug.current == $slug][0]
+`
+const projectQuery = groq`
+*[_type == "project" && artist._ref in *[_type=="artist" && name==$artist.name]._id ]{ title, galleryImages, slug, _id }
+`
 export const getStaticProps: GetStaticProps = async context => {
   const { slug } = context.params as IParams
-  const artist = await client.fetch(
-    `
-  *[_type == "artist" && slug.current == $slug][0]
-`,
-    { slug }
-  )
+  const artist = await client.fetch(artistQuery, { slug })
   if (!artist) {
     return {
       notFound: true
     }
   }
 
-  const projects = await client.fetch(
-    `
-    *[_type == "project" && artist._ref in *[_type=="artist" && name==$artist.name]._id ]{ title, galleryImages, slug, _id }
-`,
-    { artist }
-  )
+  const projects = await client.fetch(projectQuery, { artist })
   return {
     props: {
       artist,

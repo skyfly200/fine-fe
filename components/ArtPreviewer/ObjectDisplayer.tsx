@@ -58,7 +58,12 @@ const Model: React.FC<ObjectDisplayerProps> = ({ url, withZoom = false }) => {
     <>
       {model && <primitive object={model.scene} ref={ref} dispose={null} />}
 
-      <OrbitControls screenSpacePanning={false} maxPolarAngle={Math.PI / 2} enableZoom={withZoom} />
+      <OrbitControls
+        screenSpacePanning={false}
+        autoRotate
+        maxPolarAngle={Math.PI / 2}
+        enableZoom={withZoom}
+      />
     </>
   )
 }
@@ -68,7 +73,7 @@ const ObjectDisplayer: React.FC<ObjectDisplayerProps> = props => {
     <Canvas className={style.canvas} shadows>
       <fog attach="fog" args={[colors.enviroment, 30, 200]} />
       <color attach="background" args={[colors.enviroment]} />
-      <spotLight position={[10, 50, -40]} angle={0.5} intensity={1} castShadow penumbra={0.3} />
+      <spotLight position={[0, 80, -40]} angle={0.5} intensity={1} castShadow penumbra={0.3} />
 
       <Ground />
       <Suspense fallback={null}>

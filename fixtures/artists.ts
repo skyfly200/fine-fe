@@ -1,4 +1,6 @@
-export const Far = {
+import { Artist } from '../types'
+
+export const Far: Artist = {
   id: 'far',
   slug: {
     current: 'far',
@@ -17,14 +19,15 @@ export const Far = {
   twitter: 'twitter.com',
 
   image: {
-    src: 'https://res.cloudinary.com/dhrwv7wvb/image/upload/v1640618962/fine/dospunk_ypftd5.png',
-    alt: 'far-avatar',
-    width: 400,
-    height: 400
+    asset: {
+      _ref: 'string',
+      _type: 'string'
+    },
+    type: 'image'
   }
 }
 
-export const AdamFerris = {
+export const AdamFerris: Artist = {
   id: 'adamFerris',
   slug: {
     current: 'adamFerris',
@@ -39,10 +42,11 @@ export const AdamFerris = {
   twitter: 'twitter.com',
 
   image: {
-    src: 'https://res.cloudinary.com/dhrwv7wvb/image/upload/v1642505564/fine/Screenshot_2022-01-11_at_19.58.08_cznhct.png',
-    alt: 'adam-ferris-avatar',
-    width: 857,
-    height: 871
+    asset: {
+      _ref: 'string',
+      _type: 'string'
+    },
+    type: 'image'
   }
 }
 

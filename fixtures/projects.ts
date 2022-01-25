@@ -1,43 +1,45 @@
-import { Project } from '../types'
+import { Project, SanityImage } from '../types'
 import { AdamFerris, Far } from './artists'
 import { dummy, solids } from './artworks'
+
+const dummyImage: SanityImage = {
+  asset: {
+    _ref: 'string',
+    _type: 'string'
+  },
+  type: 'image'
+}
 
 const projects: Project[] = [
   {
     id: '1',
+    _id: '1',
     invocations: 500,
     minted: 250,
     type: 'glb',
     artworks: solids,
-    slug: 'solids',
-    name: 'Solids',
-    about: [
-      'Praesent eu nibh a dui rutrum imperdiet eget ut tortor. Cras iaculis vehicula fringilla. Donec vestibulum est et nulla accumsan, quis semper metus ullamcorper. Praesent sagittis lorem libero, ac porta nisl tristique sed. Quisque laoreet nec mi eget hendrerit. Nulla sed iaculis est, eu rutrum tortor. Nulla a suscipit eros.',
-      'Praesent eu nibh a dui rutrum imperdiet eget ut tortor. Cras iaculis vehicula fringilla. Donec vestibulum est et nulla accumsan, quis semper metus ullamcorper. Praesent sagittis lorem libero, ac porta nisl tristique sed. Quisque laoreet nec mi eget hendrerit. Nulla sed iaculis est, eu rutrum tortor. Nulla a suscipit eros.'
-    ],
+    slug: { current: 'solids', _type: 'slug' },
+    title: 'Solids',
+    body: {},
     projectDetails: { price: 1.2, library: 'three' },
     artist: Far,
-    image: {
-      src: 'https://res.cloudinary.com/dhrwv7wvb/image/upload/v1641324878/fine/solid-10_fine.png'
-    }
+    image: dummyImage,
+    galleryImages: [dummyImage, dummyImage, dummyImage, dummyImage]
   },
   {
+    _id: '2',
     id: '2',
     invocations: 500,
     minted: 250,
     type: 'iframe',
     artworks: dummy,
-    slug: 'squares-and-triangles',
-    name: 'Squares and Triangles',
-    about: [
-      'Praesent eu nibh a dui rutrum imperdiet eget ut tortor. Cras iaculis vehicula fringilla. Donec vestibulum est et nulla accumsan, quis semper metus ullamcorper. Praesent sagittis lorem libero, ac porta nisl tristique sed. Quisque laoreet nec mi eget hendrerit. Nulla sed iaculis est, eu rutrum tortor. Nulla a suscipit eros.',
-      'Praesent eu nibh a dui rutrum imperdiet eget ut tortor. Cras iaculis vehicula fringilla. Donec vestibulum est et nulla accumsan, quis semper metus ullamcorper. Praesent sagittis lorem libero, ac porta nisl tristique sed. Quisque laoreet nec mi eget hendrerit. Nulla sed iaculis est, eu rutrum tortor. Nulla a suscipit eros.'
-    ],
+    slug: { current: 'squares-and-triangles', _type: 'slug' },
+    title: 'Squares and Triangles',
+    body: {},
     projectDetails: { price: 1.2, library: 'three' },
     artist: AdamFerris,
-    image: {
-      src: 'https://res.cloudinary.com/dhrwv7wvb/image/upload/v1639734260/fine/adamFerris-2.jpg'
-    }
+    image: dummyImage,
+    galleryImages: [dummyImage, dummyImage, dummyImage, dummyImage]
   }
 ]
 
