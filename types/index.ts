@@ -1,7 +1,5 @@
 import { ParsedUrlQuery } from 'querystring'
 
-// TODO: update with rich text schema
-
 export interface Img {
   src: string | StaticImageData
   alt?: string
@@ -68,7 +66,7 @@ export interface Artwork {
   id: string
   minted: boolean
   name: string
-  artistId: string
+  artist: Partial<Artist>
   attributes: Attribute[]
   image: Img
   about: string[]
@@ -85,26 +83,32 @@ export type SocialNetworkInfo = {
 
 export type SocialNetworks = Record<SocialNetwork, SocialNetworkInfo>
 export type Artist = {
+  _id: string
   id: string
-  slug: string
+  slug: SanitySlug
   name: string
-  bio: string[]
-  image?: Img
-  socialNetworks: SocialNetworks
+  bioSummary: any
+  bio: any
+  image: SanityImage
+  discord?: string
+  instagram?: string
+  twitter?: string
 }
 
 export type Project = {
   id: string
-  slug: string
-  name: string
-  about: string[]
+  _id: string
+  slug: SanitySlug
+  title: string
+  body: any
   projectDetails: Attribute
   artist: Partial<Artist>
-  image: Img
+  image: SanityImage
   invocations: number
   minted: number
   type: SrcType
   artworks: Artwork[]
+  galleryImages: SanityImage[]
 }
 
 export type ProjectDetails = {

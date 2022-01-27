@@ -42,6 +42,8 @@ const Model: React.FC<ObjectDisplayerProps> = ({ url, withZoom = false }) => {
       model.scene.position.x += model.scene.position.x - center.x
       model.scene.position.y = 0.01 // avoid blinking
       model.scene.position.z += model.scene.position.z - center.z
+      // @ts-ignore
+      Object.values(model.nodes).forEach(obj => Object.assign(obj, { castShadow: true }))
       setModel(model)
       setZoom(size)
     }
@@ -56,22 +58,27 @@ const Model: React.FC<ObjectDisplayerProps> = ({ url, withZoom = false }) => {
     <>
       {model && <primitive object={model.scene} ref={ref} dispose={null} />}
 
-      <OrbitControls screenSpacePanning={false} maxPolarAngle={Math.PI / 2} enableZoom={withZoom} />
+      <OrbitControls
+        screenSpacePanning={false}
+        autoRotate
+        maxPolarAngle={Math.PI / 2}
+        enableZoom={withZoom}
+      />
     </>
   )
 }
 
 const ObjectDisplayer: React.FC<ObjectDisplayerProps> = props => {
   return (
-    <Canvas className={style.canvas}>
+    <Canvas className={style.canvas} shadows>
       <fog attach="fog" args={[colors.enviroment, 30, 200]} />
       <color attach="background" args={[colors.enviroment]} />
-      <ambientLight intensity={0.1} />
-      <spotLight position={[10, 30, -10]} angle={0.5} intensity={1} castShadow penumbra={1} />
+      <spotLight position={[0, 80, -40]} angle={0.5} intensity={1} castShadow penumbra={0.3} />
+
+      <Ground />
       <Suspense fallback={null}>
         <Model {...props} />
       </Suspense>
-      <Ground />
       <Suspense fallback={null}>
         <Environment preset="sunset" />
       </Suspense>

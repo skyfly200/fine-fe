@@ -49,11 +49,11 @@ const Home: NextPage<HomeProps> = ({ news, events, project, upcoming, projectDet
                 <h5>NEW PROJECT</h5>
               </div>
             </div>
-            <h2 className={styles.projectName}>{project.name}</h2>
+            <h2 className={styles.projectName}>{project.title}</h2>
           </div>
           <div className={styles.bottom}>
             <div className={styles.buttonWrapper}>
-              <Link href={`/collection/${project.slug}`} scroll>
+              <Link href={`/collection/${project.slug.current}`} scroll>
                 <RoundButton size="xl">GO</RoundButton>
               </Link>
             </div>

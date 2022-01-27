@@ -19,7 +19,6 @@ const BottomNav = () => {
   return (
     <div className={cn(style.navWrapper, { [style.open]: open })}>
       <nav className={style.nav}>
-        {/* TODO: Connect Wallet */}
         <ConnectWalletButton />
 
         <ul className={style.menu}>

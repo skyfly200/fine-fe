@@ -1,3 +1,5 @@
+@import '../../styles/mixins.scss';
+
 .wrapper {
   display: flex;
   align-items: center;
@@ -11,5 +13,12 @@
   }
   .artistName {
     margin-bottom: 0.5rem;
+  }
+  .socialNetworks {
+    display: flex;
+    gap: 1rem;
+    @include respond-to('mobile') {
+      gap: 0.5rem;
+    }
   }
 }

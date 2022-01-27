@@ -11,7 +11,6 @@ function runMiddleware(req, res, fn) {
       if (result instanceof Error) {
         return reject(result)
       }
-
       return resolve(result)
     })
   })

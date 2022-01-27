@@ -1,4 +1,7 @@
 import type { GetStaticProps, NextPage } from 'next'
+import groq from 'groq'
+
+import client from '../../client'
 import Accordion from '../../components/Accordion'
 import ArtistCard from '../../components/ArtistCard'
 import Link from '../../components/Link'
@@ -6,8 +9,7 @@ import RotatedText from '../../components/RotatedText'
 import RoundedButton from '../../components/RoundedButton'
 import TextInput from '../../components/TextInput'
 import Layout from '../../containers/Layout'
-import { artists } from '../../fixtures'
-import { Artist, IParams } from '../../types'
+import { Artist } from '../../types'
 
 import style from './style.module.scss'
 
@@ -63,7 +65,7 @@ const ArtistsPage: NextPage<ArtistsPageProps> = ({ artists }) => {
         <div className={style.childrenWrapper}>
           <div className={style.contentWrapper}>
             {artists.map((artist, i) => (
-              <ArtistCard key={artist.id} {...artist} />
+              <ArtistCard key={artist._id} artist={artist} />
             ))}
           </div>{' '}
         </div>
@@ -71,7 +73,14 @@ const ArtistsPage: NextPage<ArtistsPageProps> = ({ artists }) => {
     </Layout>
   )
 }
+
+const query = groq`
+  *[_type == "artist"]
+`
+
 export const getStaticProps: GetStaticProps = async context => {
+  const artists = await client.fetch(query)
+
   return {
     props: { artists },
     revalidate: 10 // TODO: currently set to 1 day. Update if required

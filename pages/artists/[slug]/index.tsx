@@ -1,11 +1,11 @@
+import BlockContent from '@sanity/block-content-to-react'
+import groq from 'groq'
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import Image from 'next/image'
+
+import client from '../../../client'
 import ArtistFullCard from '../../../components/ArtistFullCard'
 import ProjectBigCard from '../../../components/ProjectBigCard'
-import SocialNetworksList from '../../../components/SocialNetworksList'
-
 import Layout from '../../../containers/Layout'
-import { artists, projects } from '../../../fixtures'
 import { Artist, IParams, Project } from '../../../types'
 
 import style from './style.module.scss'
@@ -26,14 +26,27 @@ const ArtistPage: NextPage<ArtistPageProps> = ({ artist, projects }) => {
 
         <div className={style.body}>
           <div className={style.about}>
-            {artist.bio.map(p => (
-              <p key={p}>{p}</p>
-            ))}
+            {artist?.bio && (
+              <div className="sanity-body">
+                <BlockContent
+                  blocks={artist.bio}
+                  imageOptions={{ w: 680, fit: 'max' }}
+                  {...client.config()}
+                />
+              </div>
+            )}
           </div>
           <div className={style.gallery}>
-            {projects?.map(project => (
-              <ProjectBigCard key={project.id} item={project} />
-            ))}
+            {projects?.length &&
+              projects.map(project => (
+                <ProjectBigCard
+                  key={project._id}
+                  title={project.title}
+                  slug={project.slug}
+                  galleryImages={project.galleryImages}
+                  artistName={artist.name}
+                />
+              ))}
           </div>
         </div>
       </div>
@@ -41,27 +54,38 @@ const ArtistPage: NextPage<ArtistPageProps> = ({ artist, projects }) => {
   )
 }
 
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = await client.fetch(`*[_type == "artist" && defined(slug.current)][].slug.current`)
+
+  return {
+    paths: paths.map((slug: string) => ({ params: { slug } })),
+    fallback: false
+  }
+}
+
+const artistQuery = groq`
+*[_type == "artist" && slug.current == $slug][0]
+`
+const projectQuery = groq`
+*[_type == "project" && artist._ref in *[_type=="artist" && name==$artist.name]._id ]{ title, galleryImages, slug, _id }
+`
 export const getStaticProps: GetStaticProps = async context => {
   const { slug } = context.params as IParams
-  const artist = artists.find(item => item.slug === slug)
+  const artist = await client.fetch(artistQuery, { slug })
   if (!artist) {
     return {
       notFound: true
     }
   }
-  const artistProjects = projects.filter(el => el.artist.slug === slug)
 
+  const projects = await client.fetch(projectQuery, { artist })
   return {
-    props: { artist, projects: artistProjects },
-    revalidate: 10 // TODO: currently set to 1 day. Update if required
+    props: {
+      artist,
+      projects
+    },
+    revalidate: 10
   }
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = artists.map(({ slug }) => ({ params: { slug } }))
-  return {
-    paths,
-    fallback: false
-  }
-}
 export default ArtistPage

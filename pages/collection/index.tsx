@@ -1,25 +1,25 @@
+import groq from 'groq'
 import { GetStaticProps, NextPage } from 'next'
 import { Fragment } from 'react'
+import client from '../../client'
 import ProjectBigCard from '../../components/ProjectBigCard'
 
 import RotatedText from '../../components/RotatedText'
 import TextInput from '../../components/TextInput'
 import Layout from '../../containers/Layout'
-import { projects as items } from '../../fixtures'
-
-import { AdamFerris, Far } from '../../fixtures/artists'
-import { dummy, solids } from '../../fixtures/artworks'
-import { Project, ProjectDetails } from '../../types'
+import { Project } from '../../types'
 
 import style from './style.module.scss'
 
-interface Item extends Project, ProjectDetails {}
-
-interface CollectionProps {
-  items: Item[]
+interface Item extends Partial<Project> {
+  name: string
 }
 
-const Collection: NextPage<CollectionProps> = ({ items }) => (
+interface CollectionProps {
+  projects: Item[]
+}
+
+const Collection: NextPage<CollectionProps> = ({ projects }) => (
   <Layout greyBG>
     <div className={style.collectionPage}>
       <div className={style.leftCol}>
@@ -38,36 +38,59 @@ const Collection: NextPage<CollectionProps> = ({ items }) => (
           </div>
         </div>
         <div className={style.body}>
-          {items.map((item, i) => (
-            <Fragment key={item.id}>
-              {!(i % 2) ? (
-                <>
-                  <div className={style.desktopBlank} />
-                  <div className={style.desktopBlank} />
-                </>
-              ) : null}
+          {projects.map(
+            (project, i) =>
+              project._id &&
+              project.title &&
+              project.slug &&
+              project.galleryImages &&
+              project.name && (
+                <Fragment key={project._id}>
+                  {!(i % 2) ? (
+                    <>
+                      <div className={style.desktopBlank} />
+                      <div className={style.desktopBlank} />
+                    </>
+                  ) : null}
 
-              <ProjectBigCard item={item} />
-              {i % 2 ? (
-                <>
-                  <div className={style.desktopBlank} />
-                  <div className={style.desktopBlank} />
-                  <div className={style.desktopBlank} />
-                </>
-              ) : null}
-            </Fragment>
-          ))}
+                  <ProjectBigCard
+                    key={project._id}
+                    title={project.title}
+                    slug={project.slug}
+                    galleryImages={project.galleryImages}
+                    artistName={project.name}
+                  />
+                  {i % 2 ? (
+                    <>
+                      <div className={style.desktopBlank} />
+                      <div className={style.desktopBlank} />
+                      <div className={style.desktopBlank} />
+                    </>
+                  ) : null}
+                </Fragment>
+              )
+          )}
         </div>
       </div>
     </div>
   </Layout>
 )
 
-export const getStaticProps: GetStaticProps = () => {
-  // TODO: Replace fixture
+const query = groq`
+  *[_type == "project"]{
+    _id,
+    title,
+    slug,
+    galleryImages,
+    "name": artist->name,
+    }
+`
+
+export const getStaticProps: GetStaticProps = async context => {
+  const projects = await client.fetch(query)
 
   return {
-    props: { items },
+    props: { projects },
     revalidate: 10 // TODO: currently set to 1 day. Update if required
   }
 }
