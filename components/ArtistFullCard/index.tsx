@@ -17,7 +17,9 @@ const ArtistFullCard: React.FC<ArtistFullCardProps> = ({ artist, className }) =>
   return (
     <div className={cn(style.wrapper, className)}>
       <div className={style.avatarWrapper}>
-        {artist?.image && <Image {...imageProps} layout="responsive" alt={`${name}-avatar`} />}
+        {artist?.image && (
+          <Image {...imageProps} layout="responsive" alt={`${artist?.name}-avatar`} />
+        )}
       </div>
       <div>
         <h1 className={style.artistName}>{artist?.name}</h1>
