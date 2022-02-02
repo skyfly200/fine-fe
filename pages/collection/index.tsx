@@ -1,6 +1,6 @@
 import groq from 'groq'
 import { GetStaticProps, NextPage } from 'next'
-import { Fragment } from 'react'
+import { Fragment, useMemo, useState } from 'react'
 import client from '../../client'
 import ProjectBigCard from '../../components/ProjectBigCard'
 
@@ -8,6 +8,7 @@ import RotatedText from '../../components/RotatedText'
 import TextInput from '../../components/TextInput'
 import Layout from '../../containers/Layout'
 import { Project } from '../../types'
+import { useDebounce } from '../../utils'
 
 import style from './style.module.scss'
 
@@ -19,62 +20,85 @@ interface CollectionProps {
   projects: Item[]
 }
 
-const Collection: NextPage<CollectionProps> = ({ projects }) => (
-  <Layout greyBG>
-    <div className={style.collectionPage}>
-      <div className={style.leftCol}>
-        <RotatedText>
-          <h2 className={style.pageTitle}>Collection</h2>
-        </RotatedText>
-      </div>
-      <div className={style.rightCol}>
-        <div className={style.header}>
-          <div className={style.intro}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum ab perferendis et eos. Iure
-            ullam eos natus quaerat facilis veniam sit illo eius voluptate eum.
-          </div>
-          <div className={style.searchWrapper}>
-            <TextInput styleType="search" placeholder="Search..." />
-          </div>
-        </div>
-        <div className={style.body}>
-          {projects.map(
-            (project, i) =>
-              project._id &&
-              project.title &&
-              project.slug &&
-              project.galleryImages &&
-              project.name && (
-                <Fragment key={project._id}>
-                  {!(i % 2) ? (
-                    <>
-                      <div className={style.desktopBlank} />
-                      <div className={style.desktopBlank} />
-                    </>
-                  ) : null}
+const Collection: NextPage<CollectionProps> = ({ projects }) => {
+  const [searchValue, setSearchValue] = useState<string>('')
+  const debouncedValue = useDebounce<string>(searchValue, 500)
 
-                  <ProjectBigCard
-                    key={project._id}
-                    title={project.title}
-                    slug={project.slug}
-                    galleryImages={project.galleryImages}
-                    artistName={project.name}
-                  />
-                  {i % 2 ? (
-                    <>
-                      <div className={style.desktopBlank} />
-                      <div className={style.desktopBlank} />
-                      <div className={style.desktopBlank} />
-                    </>
-                  ) : null}
-                </Fragment>
-              )
-          )}
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value)
+  }
+
+  const filteredProjects: Item[] = useMemo(() => {
+    if (debouncedValue) {
+      return projects.filter(project =>
+        project.title?.toLowerCase().includes(debouncedValue.toLowerCase())
+      )
+    }
+    return projects
+  }, [projects, debouncedValue])
+
+  return (
+    <Layout greyBG>
+      <div className={style.collectionPage}>
+        <div className={style.leftCol}>
+          <RotatedText>
+            <h2 className={style.pageTitle}>Collection</h2>
+          </RotatedText>
+        </div>
+        <div className={style.rightCol}>
+          <div className={style.header}>
+            <div className={style.intro}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum ab perferendis et eos.
+              Iure ullam eos natus quaerat facilis veniam sit illo eius voluptate eum.
+            </div>
+            <div className={style.searchWrapper}>
+              <TextInput
+                styleType="search"
+                placeholder="Search..."
+                onChange={handleChange}
+                value={searchValue}
+              />
+            </div>
+          </div>
+          <div className={style.body}>
+            {filteredProjects.map(
+              (project, i) =>
+                project._id &&
+                project.title &&
+                project.slug &&
+                project.galleryImages &&
+                project.name && (
+                  <Fragment key={project._id}>
+                    {!(i % 2) ? (
+                      <>
+                        <div className={style.desktopBlank} />
+                        <div className={style.desktopBlank} />
+                      </>
+                    ) : null}
+
+                    <ProjectBigCard
+                      key={project._id}
+                      title={project.title}
+                      slug={project.slug}
+                      galleryImages={project.galleryImages}
+                      artistName={project.name}
+                    />
+                    {i % 2 ? (
+                      <>
+                        <div className={style.desktopBlank} />
+                        <div className={style.desktopBlank} />
+                        <div className={style.desktopBlank} />
+                      </>
+                    ) : null}
+                  </Fragment>
+                )
+            )}
+          </div>
         </div>
       </div>
-    </div>
-  </Layout>
-)
+    </Layout>
+  )
+}
 
 const query = groq`
   *[_type == "project"]{

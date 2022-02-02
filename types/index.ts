@@ -121,10 +121,10 @@ export type ProjectDetails = {
 
 export type UpcomingProject = {
   title: string
-  artist: Partial<Artist>
+  name: string
   dropDate: string
-  overview: string[]
-  image: Img
+  overview: string
+  image: SanityImage
 }
 
 export type ToastType = 'success' | 'info' | 'error' | 'warning'
@@ -146,4 +146,12 @@ export type SanityImage = {
 export type SanitySlug = {
   current: string
   _type: string
+}
+
+export type HomeDetails = {
+  projectSlug: string
+  upcomingProjectTitle: string
+  upcomingProjectArtist: string
+  upcomingProjectDrop: string
+  upcomingProjectImage: SanityImage
 }

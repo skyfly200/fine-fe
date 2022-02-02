@@ -1,5 +1,7 @@
+import { useNextSanityImage } from 'next-sanity-image'
 import Image from 'next/image'
 import { FormattedDate } from 'react-intl'
+import client from '../../client'
 import { UpcomingProject } from '../../types'
 import RotatedText from '../RotatedText'
 
@@ -10,13 +12,8 @@ interface UpcomingBannerProps {
 }
 
 const UpcomingBanner: React.FC<UpcomingBannerProps> = ({ project }) => {
-  const {
-    title,
-    artist,
-    dropDate,
-    overview,
-    image: { src, alt }
-  } = project
+  const { title, name, dropDate, overview, image } = project
+  const imageProps = useNextSanityImage(client, image)
   return (
     <section className={style.wrapper}>
       <div className={style.top}>
@@ -28,11 +25,11 @@ const UpcomingBanner: React.FC<UpcomingBannerProps> = ({ project }) => {
           </div>
           <div className={style.titles}>
             <h3 className={style.title}>{title}</h3>
-            <h4 className={style.artist}>by {artist.name}</h4>
+            <h4 className={style.artist}>by {name}</h4>
           </div>
         </div>
         <div className={style.imageWrapper}>
-          <Image src={src} layout="fill" objectFit="cover" alt={alt} />
+          <Image layout="fill" objectFit="cover" alt="upcoming-project-image" {...imageProps} />
         </div>
       </div>
       <div className={style.bottom}>
@@ -44,9 +41,7 @@ const UpcomingBanner: React.FC<UpcomingBannerProps> = ({ project }) => {
           </span>
         </div>
         <div className={style.overview}>
-          {overview.map((p, i) => (
-            <p key={`upcoming-overview-${i}`}>{p}</p>
-          ))}
+          <p>{overview}</p>
         </div>
       </div>
     </section>

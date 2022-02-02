@@ -14,7 +14,15 @@ import RotatedText from '../components/RotatedText'
 import EventCard from '../components/EventCard'
 
 import { projectsDetails, projects, home as fixture } from '../fixtures'
-import { Event, News, Project, ProjectDetails, UpcomingProject } from '../types'
+import {
+  Event,
+  News,
+  Project,
+  ProjectDetails,
+  UpcomingProject,
+  HomeDetails,
+  Artwork
+} from '../types'
 import styles from './Home.module.scss'
 
 interface HomeProps {
@@ -22,18 +30,19 @@ interface HomeProps {
   events: Event[]
   upcoming: UpcomingProject
   project: Project
-  projectDetails: ProjectDetails
+  artworks: Artwork[]
 }
 
 const DynamicPixelHero = dynamic(() => import('../components/PixelHero'))
 
-const Home: NextPage<HomeProps> = ({ news, events, project, upcoming, projectDetails }) => {
-  const items = projectDetails.artworks.slice(0, 100) || []
+const Home: NextPage<HomeProps> = ({ news, events, project, upcoming, artworks }) => {
+  const items = artworks.slice(0, 100) || []
   const carouselItems = events.map((ev, i) => (
     <Link key={`eventcard-${i}`} href={`/event/${ev.slug.current}`}>
       <EventCard {...ev} />
     </Link>
   ))
+
   return (
     <Layout greyBG>
       <Head>
@@ -103,15 +112,34 @@ export const getStaticProps: GetStaticProps = async context => {
     *[_type == "event" && publishedAt < now()] | order(publishedAt desc) [0...3]
   `)
 
+  const data = await client.fetch(groq`
+  *[_type == "home"]{
+    "project": {
+      "title": featuredProject->title,
+      "slug": featuredProject->slug,
+     "artist":{ "name": featuredProject->artist->name,}
+      },
+    "title":upcomingProjectTitle,
+    "name":upcomingProjectArtist->name,
+    "dropDate":upcomingProjectDrop,
+    "overview":upcomingProjectOverview,
+    "image":upcomingProjectImage,
+  }[0]`)
+
+  // TODO: FETCH ARTWORKS FROM BE (OPENSEA ?)
+  const fetchedProject = projects.find(proj => proj.slug.current === data.project.slug.current)
+  const artworks = fetchedProject?.artworks
+
   return {
     props: {
       news,
       events,
-      project: projects[0],
+      project: data.project,
+      artworks,
       projectDetails: projectsDetails[0],
-      upcoming: fixture.upcoming
+      upcoming: data
     },
-    revalidate: 60 * 60 * 24 // TODO: currently set to 1 day. Update if required
+    revalidate: 10
   }
 }
 

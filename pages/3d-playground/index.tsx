@@ -1,22 +1,16 @@
 import * as THREE from 'three'
-
+import { useEffect, useState } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
 import { OrbitControls, useGLTF } from '@react-three/drei'
-import { Ground } from '../../components/ArtPreviewer/ObjectDisplayer'
-import style from './style.module.scss'
-import { useEffect, useState } from 'react'
-// import ModelLoader from '../../components/ArtPreviewer/ModelLoader'
 import { GLTFLoader, DRACOLoader } from 'three-stdlib'
+
+import { Ground } from '../../components/ArtPreviewer/ObjectDisplayer'
 import RoundedCheckbox from '../../components/RoundedCheckbox'
+
+import style from './style.module.scss'
 
 type ModelLoaderProps = {
   file?: File
-}
-
-interface SceneProps extends ModelLoaderProps {
-  activeColor: string
-  spotlightOn: boolean
-  fogOn: boolean
 }
 
 const ModelLoader = ({ file }: ModelLoaderProps) => {
@@ -75,6 +69,12 @@ const ModelLoader = ({ file }: ModelLoaderProps) => {
     reader.readAsArrayBuffer(file)
   }, [gl, scene, camera, file])
   return <></>
+}
+
+interface SceneProps extends ModelLoaderProps {
+  activeColor: string
+  spotlightOn: boolean
+  fogOn: boolean
 }
 
 const Scene = ({ activeColor, file, spotlightOn, fogOn }: SceneProps) => {

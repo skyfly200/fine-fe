@@ -12,12 +12,30 @@ import Layout from '../../containers/Layout'
 import { Artist } from '../../types'
 
 import style from './style.module.scss'
+import { useMemo, useState } from 'react'
+import { useDebounce } from '../../utils'
 
 interface ArtistsPageProps {
   artists: Artist[]
 }
 
 const ArtistsPage: NextPage<ArtistsPageProps> = ({ artists }) => {
+  const [searchValue, setSearchValue] = useState<string>('')
+  const debouncedValue = useDebounce<string>(searchValue, 500)
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value)
+  }
+
+  const filteredArtists: Artist[] = useMemo(() => {
+    if (debouncedValue) {
+      return artists.filter(artist =>
+        artist.name?.toLowerCase().includes(debouncedValue.toLowerCase())
+      )
+    }
+    return artists
+  }, [artists, debouncedValue])
+
   return (
     <Layout greyBG>
       <div className={style.DesktopTopBanner}>
@@ -54,7 +72,7 @@ const ArtistsPage: NextPage<ArtistsPageProps> = ({ artists }) => {
           <div className={style.blank} />
           <div className={style.searchWrapper}>
             <h1 className={style.subtitle}>Featured in FINE</h1>
-            <TextInput styleType="search" />
+            <TextInput styleType="search" onChange={handleChange} value={searchValue} />
           </div>
           <div className={style.rotatedWrapper}>
             <RotatedText>
@@ -64,7 +82,7 @@ const ArtistsPage: NextPage<ArtistsPageProps> = ({ artists }) => {
         </div>
         <div className={style.childrenWrapper}>
           <div className={style.contentWrapper}>
-            {artists.map((artist, i) => (
+            {filteredArtists.map((artist, i) => (
               <ArtistCard key={artist._id} artist={artist} />
             ))}
           </div>{' '}
