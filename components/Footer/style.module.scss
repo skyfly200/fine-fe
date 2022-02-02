@@ -11,6 +11,9 @@
   }
   .top {
     margin: 1rem 0 3rem;
+    @include respond-to('mobile') {
+      margin-bottom: 1.5rem;
+    }
     .logo {
       font-weight: 900;
       margin-bottom: 0.5rem;
@@ -35,7 +38,6 @@
     .social {
       display: flex;
       gap: 1rem;
-      flex: 1;
       justify-content: flex-end;
       button {
         cursor: pointer;
@@ -45,33 +47,29 @@
         }
       }
     }
-    .copyright {
-      flex: 1;
+  }
+
+  .copyright,
+  .docLink {
+    margin-bottom: 0.5rem;
+    opacity: 0.5;
+  }
+  .linksWrapper {
+    display: flex;
+  }
+  .docLink {
+    font-weight: 500;
+    font-size: 1rem;
+    transition: opacity 0.15s ease-in-out;
+    &:first-child {
+      padding-right: 1rem;
+      border-right: 1px solid rgba(0, 0, 0, 1);
     }
-    .copyright,
-    .docLink {
-      margin-bottom: 0.5rem;
-      opacity: 0.5;
+    &:last-child {
+      padding-left: 1rem;
     }
-    .linksWrapper {
-      display: flex;
-      flex: 1;
-      justify-content: center;
-    }
-    .docLink {
-      font-weight: 500;
-      font-size: 1rem;
-      transition: opacity 0.15s ease-in-out;
-      &:first-child {
-        padding-right: 1rem;
-        border-right: 1px solid rgba(0, 0, 0, 1);
-      }
-      &:last-child {
-        padding-left: 1rem;
-      }
-      @include hover {
-        opacity: 1;
-      }
+    @include hover {
+      opacity: 1;
     }
   }
 }
