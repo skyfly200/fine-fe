@@ -10,7 +10,7 @@ import Link from 'next/link'
 import client from '../../client'
 import GalleryImage from './GalleryImage'
 import { motion } from 'framer-motion'
-import { fadeIn } from '../../styles/motionAnimations'
+import { fadeIn, opacity } from '../../styles/motionAnimations'
 
 interface Item extends Project, ProjectDetails {}
 
@@ -37,12 +37,12 @@ const ProjectBigCard: React.FC<ProjectBigCardProps> = ({
   return (
     <>
       <Link href={`/collection/${slug.current}`} passHref>
-        <motion.div variants={fadeIn} className={cn(style.rect, style.details)}>
+        <motion.div variants={opacity} className={cn(style.rect, style.details)}>
           <h3 className={style.projectName}>{title}</h3>
           <p>by {artistName}</p>
         </motion.div>
       </Link>
-      <div className={style.gallery}>
+      <motion.div variants={opacity} className={style.gallery}>
         {galleryImages.slice(0, 4).map((el, i) => (
           <GalleryImage
             key={`${title}-${i}-gallery-image`}
@@ -52,7 +52,7 @@ const ProjectBigCard: React.FC<ProjectBigCardProps> = ({
             i={i}
           />
         ))}
-      </div>
+      </motion.div>
     </>
   )
 }
