@@ -8,7 +8,7 @@ import ProjectBigCard from '../../components/ProjectBigCard'
 import RotatedText from '../../components/RotatedText'
 import TextInput from '../../components/TextInput'
 import Layout from '../../containers/Layout'
-import { banner, fadeIn } from '../../styles/motionAnimations'
+import { banner, fadeIn, opacity } from '../../styles/motionAnimations'
 import { Project } from '../../types'
 import { useDebounce } from '../../utils'
 
@@ -54,11 +54,11 @@ const Collection: NextPage<CollectionProps> = ({ projects }) => {
         </div>
         <div className={style.rightCol}>
           <div className={style.header}>
-            <motion.div variants={fadeIn} className={style.intro}>
+            <motion.div variants={opacity} className={style.intro}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum ab perferendis et eos.
               Iure ullam eos natus quaerat facilis veniam sit illo eius voluptate eum.
             </motion.div>
-            <motion.div className={style.searchWrapper} variants={fadeIn}>
+            <motion.div className={style.searchWrapper} variants={opacity}>
               <TextInput
                 styleType="search"
                 placeholder="Search..."

@@ -8,7 +8,7 @@ import s from './style.module.scss'
 import sc from '../../styles/components.module.scss'
 import AnimatedLetters from '../AnimatedLetters'
 import { motion } from 'framer-motion'
-import { fadeIn } from '../../styles/motionAnimations'
+import { fadeIn, opacity } from '../../styles/motionAnimations'
 
 interface HeroProps {
   title: string
@@ -25,7 +25,7 @@ const Hero: React.FC<HeroProps> = ({ title, slug, name, items }) => {
       <div className={s.content}>
         <div className={s.main}>
           <motion.div
-            variants={fadeIn}
+            variants={opacity}
             initial="initial"
             animate="animate"
             className={s.rotatedWrapper}
@@ -37,7 +37,7 @@ const Hero: React.FC<HeroProps> = ({ title, slug, name, items }) => {
           <AnimatedLetters letterClassName={s.projectName} title={title} />
         </div>
         <div className={s.bottom}>
-          <motion.div variants={fadeIn} initial="initial" animate="animate">
+          <motion.div variants={opacity} initial="initial" animate="animate">
             <Link href={`/collection/${slug.current}`} scroll>
               <RoundedButton size="xl">GO</RoundedButton>
             </Link>

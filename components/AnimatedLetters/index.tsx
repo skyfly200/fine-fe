@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { banner, fadeIn } from '../../styles/motionAnimations'
+import { banner, fadeIn, opacity } from '../../styles/motionAnimations'
 
 interface AnimatedLettersProps {
   title: string
@@ -16,11 +16,7 @@ const AnimatedLetters: React.FC<AnimatedLettersProps> = ({
 }) => (
   <motion.span className={rowClassName} variants={banner} initial="initial" animate="animate">
     {title.split('').map(letter => (
-      <motion.span
-        key={`animated-letter-${letter}`}
-        variants={disabled ? undefined : fadeIn}
-        className={letterClassName}
-      >
+      <motion.span key={`animated-letter-${letter}`} variants={opacity} className={letterClassName}>
         {letter}
       </motion.span>
     ))}
