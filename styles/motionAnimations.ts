@@ -18,6 +18,7 @@ export const fadeIn = {
     }
   }
 }
+
 export const opacity = {
   initial: { opacity: 0 },
   animate: {

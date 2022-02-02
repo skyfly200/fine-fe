@@ -62,7 +62,7 @@
     padding-top: calc(var(--vh, 1vh) * 25 - 44px);
     @include respond-to('mobile') {
       grid-template-columns: repeat(3, 1fr);
-      margin-top: calc(var(--vh, 1vh) * 50);
+      margin-top: calc(var(--vh, 1vh) * 25);
     }
 
     .desktopBlank {

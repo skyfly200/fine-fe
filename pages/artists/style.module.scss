@@ -53,7 +53,7 @@
   gap: 1rem;
   @include respond-to('tablet-sm') {
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: max-content auto;
     padding: 0.5rem;
   }
 
@@ -69,7 +69,6 @@
     font-weight: 400;
     @include respond-to('tablet-sm') {
       position: static;
-
       height: max-content;
       flex-direction: row-reverse;
       margin-bottom: 2rem;

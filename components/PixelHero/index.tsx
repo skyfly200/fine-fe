@@ -43,7 +43,7 @@ const PixelHero: React.FC<PixelHeroProps> = ({ items }) => {
     setOpenItems(newItems)
   }
 
-  useInterval(updateOpenItems, isPlaying ? 2000 : null)
+  useInterval(updateOpenItems, isPlaying ? 1350 : null)
 
   return (
     <div className={style.wrapper} ref={ref}>
