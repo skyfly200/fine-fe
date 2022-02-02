@@ -8,7 +8,7 @@ export const banner = {
 }
 
 export const fadeIn = {
-  initial: { y: '100%', opacity: 0 },
+  initial: { y: '30%', opacity: 0 },
   animate: {
     y: 0,
     opacity: 1,
