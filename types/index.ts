@@ -102,7 +102,7 @@ export type Project = {
   title: string
   body: any
   projectDetails: Attribute
-  artist: Partial<Artist>
+  artist: Artist
   image: SanityImage
   invocations: number
   minted: number

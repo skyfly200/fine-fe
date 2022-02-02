@@ -18,6 +18,8 @@ import { urlFor } from '../../utils'
 import { EventDates } from '../../components/EventCard'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Spinner from '../../components/Spinner'
+import { motion } from 'framer-motion'
+import { banner, fadeIn } from '../../styles/motionAnimations'
 
 interface EventsAndNewsPageProps {
   items: Items
@@ -47,7 +49,7 @@ const EventsAndNewsPage: NextPage<EventsAndNewsPageProps> = ({ items }) => {
             <h2 className={style.pageTitle}>NEWS & EVENTS</h2>
           </RotatedText>
         </div>
-        <div className={style.body}>
+        <motion.div variants={banner} initial="initial" animate="animate" className={style.body}>
           <div className={style.header}>
             <div className={style.filterContainer}>
               <span className={style.filterBy}>FILTER BY: </span>
@@ -80,35 +82,37 @@ const EventsAndNewsPage: NextPage<EventsAndNewsPageProps> = ({ items }) => {
             className={style.list}
           >
             {filteredList.map((el, i) => (
-              <Fragment key={`${i}${el.title}`}>
-                <div className={cn(style.card, { [style.event]: el._type === 'event' })}>
-                  <div className={style.imageWrapper}>
-                    <Image
-                      src={urlFor(el.mainImage).url()}
-                      layout="fill"
-                      alt={el.title}
-                      objectFit="cover"
+              <motion.div
+                variants={fadeIn}
+                key={`${i}${el.title}`}
+                className={cn(style.card, { [style.event]: el._type === 'event' })}
+              >
+                <div className={style.imageWrapper}>
+                  <Image
+                    src={urlFor(el.mainImage).url()}
+                    layout="fill"
+                    alt={el.title}
+                    objectFit="cover"
+                  />
+                </div>
+                {el._type === 'post' ? (
+                  <div className={style.dates}>
+                    <FormattedDate
+                      value={el.publishedAt}
+                      year="numeric"
+                      month="long"
+                      day="2-digit"
                     />
                   </div>
-                  {el._type === 'post' ? (
-                    <div className={style.dates}>
-                      <FormattedDate
-                        value={el.publishedAt}
-                        year="numeric"
-                        month="long"
-                        day="2-digit"
-                      />
-                    </div>
-                  ) : el.dates ? (
-                    <EventDates dates={el.dates} />
-                  ) : null}
+                ) : el.dates ? (
+                  <EventDates dates={el.dates} />
+                ) : null}
 
-                  <h3 className={style.cardTitle}>{el.title}</h3>
-                </div>
-              </Fragment>
+                <h3 className={style.cardTitle}>{el.title}</h3>
+              </motion.div>
             ))}
           </InfiniteScroll>
-        </div>
+        </motion.div>
       </div>
     </Layout>
   )

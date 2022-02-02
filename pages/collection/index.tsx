@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import groq from 'groq'
 import { GetStaticProps, NextPage } from 'next'
 import { Fragment, useMemo, useState } from 'react'
@@ -7,6 +8,7 @@ import ProjectBigCard from '../../components/ProjectBigCard'
 import RotatedText from '../../components/RotatedText'
 import TextInput from '../../components/TextInput'
 import Layout from '../../containers/Layout'
+import { banner, fadeIn } from '../../styles/motionAnimations'
 import { Project } from '../../types'
 import { useDebounce } from '../../utils'
 
@@ -39,7 +41,12 @@ const Collection: NextPage<CollectionProps> = ({ projects }) => {
 
   return (
     <Layout greyBG>
-      <div className={style.collectionPage}>
+      <motion.div
+        variants={banner}
+        initial="initial"
+        animate="animate"
+        className={style.collectionPage}
+      >
         <div className={style.leftCol}>
           <RotatedText>
             <h2 className={style.pageTitle}>Collection</h2>
@@ -47,18 +54,18 @@ const Collection: NextPage<CollectionProps> = ({ projects }) => {
         </div>
         <div className={style.rightCol}>
           <div className={style.header}>
-            <div className={style.intro}>
+            <motion.div variants={fadeIn} className={style.intro}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum ab perferendis et eos.
               Iure ullam eos natus quaerat facilis veniam sit illo eius voluptate eum.
-            </div>
-            <div className={style.searchWrapper}>
+            </motion.div>
+            <motion.div className={style.searchWrapper} variants={fadeIn}>
               <TextInput
                 styleType="search"
                 placeholder="Search..."
                 onChange={handleChange}
                 value={searchValue}
               />
-            </div>
+            </motion.div>
           </div>
           <div className={style.body}>
             {filteredProjects.map(
@@ -95,7 +102,7 @@ const Collection: NextPage<CollectionProps> = ({ projects }) => {
             )}
           </div>
         </div>
-      </div>
+      </motion.div>
     </Layout>
   )
 }

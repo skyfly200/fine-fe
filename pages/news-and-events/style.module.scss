@@ -25,6 +25,22 @@
     }
   }
   .body {
+    & * {
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        width: 0rem;
+        height: 0rem;
+      }
+      &::-webkit-scrollbar-track {
+        width: 0;
+        background-color: #edf0f2;
+      }
+      &::-webkit-scrollbar-thumb {
+        width: 0;
+        background: #aab0bc;
+      }
+    }
     .header {
       display: flex;
       justify-content: flex-end;
@@ -59,6 +75,7 @@
       }
     }
     .list {
+      overflow: visible;
       display: grid;
       padding-top: calc(var(--vh, 1vh) * 25 - 44px);
       gap: 1rem;
@@ -90,8 +107,8 @@
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
-
         cursor: pointer;
+
         .imageWrapper {
           position: relative;
           height: 250px;
@@ -118,4 +135,7 @@
       }
     }
   }
+}
+.listWrapper {
+  background-color: color(white);
 }

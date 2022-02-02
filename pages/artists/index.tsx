@@ -14,6 +14,8 @@ import { Artist } from '../../types'
 import style from './style.module.scss'
 import { useMemo, useState } from 'react'
 import { useDebounce } from '../../utils'
+import { motion } from 'framer-motion'
+import { banner, fadeIn } from '../../styles/motionAnimations'
 
 interface ArtistsPageProps {
   artists: Artist[]
@@ -38,19 +40,26 @@ const ArtistsPage: NextPage<ArtistsPageProps> = ({ artists }) => {
 
   return (
     <Layout greyBG>
-      <div className={style.DesktopTopBanner}>
-        <h4 className={style.bannerTitle}>Artists Submissions</h4>
-        <div className={style.line} />
-        <div className={style.bannerSection}>
+      <motion.div
+        variants={banner}
+        initial="initial"
+        animate="animate"
+        className={style.DesktopTopBanner}
+      >
+        <motion.h4 variants={fadeIn} className={style.bannerTitle}>
+          Artists Submissions
+        </motion.h4>
+        <motion.div variants={fadeIn} className={style.line} />
+        <motion.div variants={fadeIn} className={style.bannerSection}>
           <div>Kindly submit your proposal here</div>
           <RoundedButton lineSide="left">SUBMIT</RoundedButton>
-        </div>
-        <div className={style.line} />
-        <div className={style.bannerSection}>
+        </motion.div>
+        <motion.div variants={fadeIn} className={style.line} />
+        <motion.div variants={fadeIn} className={style.bannerSection}>
           <div>For any submission questions</div>
           <RoundedButton lineSide="left">CONTACT</RoundedButton>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
       <div className={style.MobileTopBanner}>
         <Accordion header={<h4 className={style.bannerTitle}>Artists Submissions</h4>}>
           <div className={style.accordionSubmission}>
@@ -70,10 +79,19 @@ const ArtistsPage: NextPage<ArtistsPageProps> = ({ artists }) => {
       <div className={style.pageWrapper}>
         <div className={style.firstCol}>
           <div className={style.blank} />
-          <div className={style.searchWrapper}>
-            <h1 className={style.subtitle}>Featured in FINE</h1>
-            <TextInput styleType="search" onChange={handleChange} value={searchValue} />
-          </div>
+          <motion.div
+            variants={banner}
+            initial="initial"
+            animate="animate"
+            className={style.searchWrapper}
+          >
+            <motion.h1 variants={fadeIn} className={style.subtitle}>
+              Featured in FINE
+            </motion.h1>
+            <motion.div variants={fadeIn}>
+              <TextInput styleType="search" onChange={handleChange} value={searchValue} />
+            </motion.div>
+          </motion.div>
           <div className={style.rotatedWrapper}>
             <RotatedText>
               <h2 className={style.pageTitle}>ARTISTS</h2>
@@ -81,11 +99,16 @@ const ArtistsPage: NextPage<ArtistsPageProps> = ({ artists }) => {
           </div>
         </div>
         <div className={style.childrenWrapper}>
-          <div className={style.contentWrapper}>
+          <motion.div
+            variants={banner}
+            initial="initial"
+            animate="animate"
+            className={style.contentWrapper}
+          >
             {filteredArtists.map((artist, i) => (
               <ArtistCard key={artist._id} artist={artist} />
             ))}
-          </div>{' '}
+          </motion.div>
         </div>
       </div>
     </Layout>

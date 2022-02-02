@@ -1,0 +1,63 @@
+@import '../../styles/mixins.scss';
+
+.heroWrapper {
+  height: calc(var(--vh, 1vh) * 100 - 44px);
+  position: relative;
+  .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 2rem;
+    .main {
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+      .rotatedWrapper {
+        width: calc(11vw + 1rem);
+      }
+      @include respond-to('mobile') {
+        flex-direction: column;
+        padding: 0.5rem;
+        align-items: flex-start;
+        gap: 3rem;
+      }
+      .projectName {
+        display: inline-block;
+        margin-bottom: 0;
+        font-size: 15vw;
+        font-weight: 400;
+        line-height: 11vw;
+        text-transform: uppercase;
+      }
+    }
+    .bottom {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1rem 2rem;
+      padding-left: calc(11vw + 2rem);
+      z-index: 2;
+      @include respond-to('mobile') {
+        padding: 0.5rem 0.5rem 1rem;
+        padding-left: 0.5rem;
+      }
+
+      .artistName {
+        display: inline-block;
+        letter-spacing: -0.8rem;
+        font-size: 6vw;
+        @include respond-to('mobile') {
+          font-size: 1.2rem;
+        }
+        font-weight: 500;
+        padding-right: 1rem;
+      }
+    }
+  }
+}
