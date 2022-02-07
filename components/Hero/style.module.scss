@@ -54,6 +54,7 @@
         font-size: 6vw;
         @include respond-to('mobile') {
           font-size: 1.2rem;
+          letter-spacing: -1.2rem;
         }
         font-weight: 500;
         padding-right: 1rem;
