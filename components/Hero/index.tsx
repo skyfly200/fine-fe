@@ -31,7 +31,7 @@ const Hero: React.FC<HeroProps> = ({ title, slug, name, items }) => {
             className={s.rotatedWrapper}
           >
             <RotatedText>
-              <h3 className={sc.subtitle1}>NEW PROJECT</h3>
+              <h3 className={sc.h3}>NEW PROJECT</h3>
             </RotatedText>
           </motion.div>
           <AnimatedLetters letterClassName={s.projectName} title={title} />
@@ -42,7 +42,7 @@ const Hero: React.FC<HeroProps> = ({ title, slug, name, items }) => {
               <RoundedButton size="xl">GO</RoundedButton>
             </Link>
           </motion.div>
-          <AnimatedLetters letterClassName={s.artistName} title={`By ${name}`} />
+          <AnimatedLetters letterClassName={sc.h3} title={`By ${name}`} />
         </div>
       </div>
       <DynamicPixelHero items={items} />

@@ -53,7 +53,7 @@ export interface Event {
   publishedAt: string
 }
 
-export type SrcType = 'iframe' | 'glb'
+export type SrcType = 'three' | 'glb' | 'p5'
 
 export type TokenData = {
   tokenId: string

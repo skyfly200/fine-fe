@@ -11,7 +11,7 @@ export const solids: Artwork[] = Array.from({ length: 100 }, (_, i) => i + 1).ma
     artist: { slug: { current: 'far', _type: 'slug' } },
     project: { slug: { current: 'solids', _type: 'slug' }, name: 'Solids' },
     image: {
-      src: `https://res.cloudinary.com/dhrwv7wvb/image/upload/v1641324878/fine/solid-${num}_fine.png`,
+      src: `https://res.cloudinary.com/dhrwv7wvb/image/upload/v1641324878/fine/solids-${num}_fine.png`,
       alt: `solid-${num}`
     },
     attributes: [
@@ -65,7 +65,7 @@ export const dummy: Artwork[] = getArrayWithSequence(30, [1, 2, 3]).map((i, inde
   about: [
     'In efficitur arcu et urna efficitur, non placerat mi dignissim. Donec eget ante ut enim auctor sollicitudin at eu lectus. Aenean finibus massa lectus, vel suscipit lectus dictum vel. Etiam eu eros dui. Nullam at ullamcorper odio. Sed eu cursus est. Etiam elementum lectus sed justo tincidunt, eget gravida mi vulputate.'
   ],
-  type: 'iframe',
+  type: 'p5',
   src: `/solids/${i}.glb`
 }))
 

@@ -4,7 +4,7 @@ import TextInput from '../../components/TextInput'
 import style from './style.module.scss'
 
 const Protect: React.FC = ({ children }) => {
-  const [isLogged, setLogged] = useState(false)
+  const [isLogged, setLogged] = useState(true)
   const [pass, setPass] = useState('')
   const handleSubmit = () => pass === process.env.NEXT_PUBLIC_PASS && setLogged(true)
 

@@ -1,8 +1,10 @@
 .rotatedWrapper {
   transform-origin: bottom left;
   transform: rotate(-90deg) translateY(100%);
-
   .wrapper {
     white-space: nowrap;
+  }
+  .center {
+    transform: translateX(-100%);
   }
 }

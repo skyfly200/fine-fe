@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 
 import style from './style.module.scss'
 import Spinner from '../Spinner'
+import IframeGenerator from './IframeGenerator'
 
 interface ArtPreviewerProps {
   artwork: Artwork
@@ -26,9 +27,7 @@ const ArtPreviewer: React.FC<ArtPreviewerProps> = ({ artwork, withZoom }) => {
       {artwork.type === 'glb' ? (
         <ObjectDisplayer url={artwork.src} withZoom={withZoom} />
       ) : (
-        <div>
-          <strong> TODO:</strong> <br /> Create Iframe displayer for three/p5 tokens
-        </div>
+        <IframeGenerator artwork={artwork} />
       )}
     </>
   )

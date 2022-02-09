@@ -21,10 +21,12 @@ import {
   ProjectDetails,
   UpcomingProject,
   HomeDetails,
-  Artwork
+  Artwork,
+  Artist
 } from '../types'
 import styles from './Home.module.scss'
 import Hero from '../components/Hero'
+import ArtistBanner from '../components/ArtistBanner'
 
 interface HomeProps {
   news: News[]
@@ -32,11 +34,21 @@ interface HomeProps {
   upcoming: UpcomingProject
   project: Project
   artworks: Artwork[]
+  artists: Artist[]
+  curators: Artist[]
 }
 
 const DynamicPixelHero = dynamic(() => import('../components/PixelHero'))
 
-const Home: NextPage<HomeProps> = ({ news, events, project, upcoming, artworks }) => {
+const Home: NextPage<HomeProps> = ({
+  news,
+  events,
+  project,
+  upcoming,
+  artworks,
+  artists,
+  curators
+}) => {
   const items = artworks.slice(0, 100) || []
   const carouselItems = events.map((ev, i) => (
     <Link key={`eventcard-${i}`} href={`/event/${ev.slug.current}`}>
@@ -52,6 +64,7 @@ const Home: NextPage<HomeProps> = ({ news, events, project, upcoming, artworks }
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Hero title={project.title} slug={project.slug} items={items} name={project.artist.name} />
+      <ArtistBanner artists={artists} curators={curators} />
       <section className={styles.newsAndEventsWrapper}>
         <div className={styles.subtitleWrapper}>
           <RotatedText>NEWS & EVENTS</RotatedText>
@@ -106,6 +119,9 @@ export const getStaticProps: GetStaticProps = async context => {
     "image":upcomingProjectImage,
   }[0]`)
 
+  const artists = await client.fetch(groq`  *[_type == "artist"][0...3]`)
+  const curators = await client.fetch(groq`  *[_type == "curator"][0...3]`)
+
   // TODO: FETCH ARTWORKS FROM BE (OPENSEA ?)
   const fetchedProject = projects.find(proj => proj.slug.current === data.project.slug.current)
   const artworks = fetchedProject?.artworks
@@ -117,7 +133,9 @@ export const getStaticProps: GetStaticProps = async context => {
       project: data.project,
       artworks,
       projectDetails: projectsDetails[0],
-      upcoming: data
+      upcoming: data,
+      artists,
+      curators
     },
     revalidate: 10
   }
