@@ -31,7 +31,7 @@ const projects: Project[] = [
     id: '2',
     invocations: 500,
     minted: 250,
-    type: 'iframe',
+    type: 'p5',
     artworks: dummy,
     slug: { current: 'squares-and-triangles', _type: 'slug' },
     title: 'Squares and Triangles',
