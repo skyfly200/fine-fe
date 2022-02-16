@@ -113,24 +113,26 @@ const Playground = () => {
   return (
     <div className={style.wrapper}>
       <div className={style.controls}>
-        <div className={style.fileInputWrapper}>
-          <label htmlFor="fileinput">FILE</label>
-          <input id="fileinput" type="file" onChange={handleUpload} />
-        </div>
-        <RoundedCheckbox
-          label="SPOTLIGHT"
-          onChange={() => setSpotlight(s => !s)}
-          checked={spotlightOn}
-        />
-        <RoundedCheckbox label="FOG" onChange={() => setFog(s => !s)} checked={fogOn} />
-        <div className={style.colorInputWrapper}>
-          <label htmlFor="colorinput">COLOR</label>
-          <input
-            id="colorinput"
-            type="color"
-            value={activeColor}
-            onChange={e => setColor(e.target.value)}
+        <div>
+          <div className={style.fileInputWrapper}>
+            <label htmlFor="fileinput">FILE</label>
+            <input id="fileinput" type="file" onChange={handleUpload} />
+          </div>
+          <RoundedCheckbox
+            label="SPOTLIGHT"
+            onChange={() => setSpotlight(s => !s)}
+            checked={spotlightOn}
           />
+          <RoundedCheckbox label="FOG" onChange={() => setFog(s => !s)} checked={fogOn} />
+          <div className={style.colorInputWrapper}>
+            <label htmlFor="colorinput">COLOR</label>
+            <input
+              id="colorinput"
+              type="color"
+              value={activeColor}
+              onChange={e => setColor(e.target.value)}
+            />
+          </div>
         </div>
       </div>
       <Scene activeColor={activeColor} file={file} fogOn={fogOn} spotlightOn={spotlightOn} />

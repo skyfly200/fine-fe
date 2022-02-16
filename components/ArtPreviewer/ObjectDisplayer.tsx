@@ -24,14 +24,21 @@ export const Ground = ({ groundColor }: GroundProps) => {
   )
 }
 
-const ObjectDisplayer: React.FC<ObjectDisplayerProps> = props => {
+const ObjectDisplayer: React.FC<ObjectDisplayerProps> = ({
+  activeColor = '#FEFEFE',
+  fogOn,
+  spotlightOn,
+  ...props
+}) => {
   return (
     <Canvas className={style.canvas} shadows>
-      <fog attach="fog" args={[colors.enviroment, 30, 200]} />
-      <color attach="background" args={[colors.enviroment]} />
-      <spotLight position={[0, 80, -40]} angle={0.5} intensity={1} castShadow penumbra={0.3} />
+      <color attach="background" args={[activeColor]} />
+      {fogOn && <fog attach="fog" args={[activeColor, 30, 200]} />}
+      {spotlightOn && (
+        <spotLight position={[0, 80, -40]} angle={0.5} intensity={0.5} castShadow penumbra={0.3} />
+      )}
 
-      <Ground groundColor={colors.floor} />
+      <Ground groundColor={activeColor} />
       {props.url && (
         <Suspense fallback={null}>
           <ModelLoader {...props} />

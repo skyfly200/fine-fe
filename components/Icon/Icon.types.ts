@@ -13,7 +13,10 @@ export type Icons =
   | 'about'
   | 'chevron-up'
   | 'chevron-down'
+  | 'chevron-left'
+  | 'chevron-right'
   | 'search'
+  | 'full-screen'
 
 export type IconSize = 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'sm-F' | 'sm-INE' | 'F'
 

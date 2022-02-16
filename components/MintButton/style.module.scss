@@ -1,0 +1,41 @@
+@import '../../styles/mixins.scss';
+
+.button {
+  margin: 0;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding-left: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1.5rem;
+
+  cursor: pointer;
+  .counter {
+    min-width: 80px;
+    margin: 4px 1px;
+    padding: 0.4rem 0.6rem;
+    padding-left: 0.3rem;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: color(darkgrey-color);
+    color: color(grey-color);
+    cursor: auto;
+    .num {
+      flex: 1;
+    }
+    .controls {
+      display: flex;
+      flex-direction: column;
+      button {
+        transition: transform 0.07s ease-in-out;
+        cursor: pointer;
+        &:active {
+          transform: translate3d(0, 2px, 0);
+        }
+      }
+    }
+  }
+}

@@ -1,27 +1,29 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { SetStateAction, useState } from 'react'
+import { SetStateAction, useEffect, useMemo, useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import BlockContent from '@sanity/block-content-to-react'
 import cn from 'classnames'
 
 import Layout from '../../../containers/Layout'
-import Link from '../../../components/Link'
 import Icon from '../../../components/Icon'
 import { Artwork, IParams, Project, SanityImage } from '../../../types'
 
-import style from './Project.module.scss'
+import s from './Project.module.scss'
+import sc from '../../../styles/components.module.scss'
 
 import { projects } from '../../../fixtures'
-import InfiniteScroll from 'react-infinite-scroll-component'
-import Spinner from '../../../components/Spinner'
-import RoundedButton from '../../../components/RoundedButton'
 import SimpleTable, { Cell } from '../../../components/SimpleTable'
 import ArtPreviewer from '../../../components/ArtPreviewer'
 import client from '../../../client'
 import groq from 'groq'
 import { formatDetails } from '../../../utils'
 import { useNextSanityImage } from 'next-sanity-image'
+import MintButton from '../../../components/MintButton'
+import RotatedText from '../../../components/RotatedText'
+import InfiniteScroll from 'react-infinite-scroll-component'
+import Spinner from '../../../components/Spinner'
+import RoundedCheckbox from '../../../components/RoundedCheckbox'
 
 interface PageProject extends Project {
   bioSummary: any
@@ -34,30 +36,17 @@ interface ProjectPageProps {
   project: PageProject
 }
 
-interface TitleProps {
-  title: string
-  name?: string
-  hideOnDesktop?: boolean
-  hideOnMobile?: boolean
+interface ArtworkSlideProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  artwork: Artwork
+  active?: boolean
 }
-
-const Title = ({ title, name, hideOnDesktop, hideOnMobile }: TitleProps) => (
-  <div
-    className={cn(style.title, {
-      [style.hideOnDesktop]: hideOnDesktop,
-      [style.hideOnMobile]: hideOnMobile
-    })}
-  >
-    <div className={style.content}>
-      <h1>{title}</h1>
-      <h2>by {name}</h2>
-      <div className={style.buttonWrapper}>
-        <RoundedButton>MINT</RoundedButton>
-        <span className={style.number}>#68 / 500</span>
-      </div>
-    </div>
-  </div>
-)
+const ArtworkSlide: React.FC<ArtworkSlideProps> = ({ artwork, active, ...props }) => {
+  return (
+    <button className={cn(s.artworkSlide, { [s.active]: active })} {...props}>
+      <Image src={artwork.image.src} alt={`${artwork.id}-image`} layout="fill" objectFit="cover" />
+    </button>
+  )
+}
 
 interface GalleryProps {
   items: Array<Artwork>
@@ -68,34 +57,27 @@ interface GalleryProps {
 const pageQuantity = 20
 const Gallery = ({ items, setActive, active }: GalleryProps) => {
   const [limit, setLimit] = useState<number>(pageQuantity)
-  const handleSelection = (item: Artwork) => {
-    setActive(item)
 
-    document?.querySelector('canvas')?.scrollIntoView({
-      behavior: 'smooth'
-    })
-  }
   if (!items.length) return <></>
   return (
-    <div className={style.galleryWrapper} id="gallery">
-      <h3>Latest tokens</h3>
+    <div className={s.galleryWrapper} id="gallery">
       <InfiniteScroll
         dataLength={items.slice(0, limit).length}
         next={() => setLimit(old => old + pageQuantity)}
         hasMore={limit < items.length}
         loader={
-          <div className={style.spinnerWrapper}>
+          <div className={s.spinnerWrapper}>
             <Spinner />
           </div>
         }
         // endMessage={<h4>Nothing more to show</h4>}
-        className={style.gallery}
+        className={s.gallery}
       >
         {items.slice(0, limit).map((item, i) => (
           <button
-            className={cn(style.imageWrapper, { [style.activePiece]: item.id === active.id })}
+            className={cn(s.imageWrapper, { [s.activePiece]: item.id === active.id })}
             key={`${item.name}-${i}`}
-            onClick={() => handleSelection(item)}
+            onClick={() => setActive(item)}
           >
             {item.image && (
               <Image
@@ -113,29 +95,55 @@ const Gallery = ({ items, setActive, active }: GalleryProps) => {
   )
 }
 
-type Menu = 'canvas' | 'about' | 'details' | 'gallery'
-
 const ProjectPage: NextPage<ProjectPageProps> = ({ project }) => {
-  const router = useRouter()
   const { title, body, bioSummary, name, artworks, details, image } = project
-  const formattedDetails = formatDetails(details, ['_key', '_type'])
-  const imageProps = useNextSanityImage(client, image)
   const [active, setActive] = useState<Artwork>(artworks[0])
-  const menu: Menu[] = ['canvas', 'about', 'details', 'gallery']
+
+  const [activeColor, setColor] = useState('#FEFEFE')
+  const [spotlightOn, setSpotlight] = useState<boolean>(true)
+  const [fogOn, setFog] = useState<boolean>(true)
+  const [fullScreen, setFullScreen] = useState<boolean>(false)
+
+  const avatarPicture = useNextSanityImage(client, image)
+  const artworksSlides = artworks.map(artwork => (
+    <ArtworkSlide
+      key={artwork.id}
+      artwork={artwork}
+      onClick={() => setActive(artwork)}
+      active={active.id === artwork.id}
+    />
+  ))
+  const projectRows = [
+    {
+      title: <span className={s.minted}>Minted</span>,
+      description: <span className={s.num}>120 of 300</span>
+    },
+    ...formatDetails(details, ['_key', '_type'])
+  ]
+
+  const attributeRows = useMemo(() => {
+    return active.attributes.map(att => ({ '1': att.title, '2': att.description }))
+  }, [active])
 
   return (
-    <Layout>
-      <div className={style.pageWrapper}>
-        <Title title={title} name={name} hideOnDesktop />
-        <div className={style.menu}>
-          {menu.map((item, i) => (
-            <Link key={item} href={`#${item}`}>
-              <Icon icon={item} size="lg" />
-            </Link>
-          ))}
-        </div>
-        <div className={style.columnsLayout}>
-          <div className={style.about} id="about">
+    <Layout greyBG>
+      <div className={s.pageWrapper}>
+        <div className={s.left}>
+          <div className={s.detailsWrapper}>
+            <RotatedText className={s.rotatedCell}>
+              <h4 className={sc.h4}>Details</h4>
+            </RotatedText>
+            <div className={s.tableCell}>
+              <SimpleTable rows={projectRows} />
+            </div>
+            <RotatedText className={cn(s.rotatedCell, s.noBorder)}>
+              <h4 className={sc.h4}>Token Attributes</h4>
+            </RotatedText>
+            <div className={cn(s.tableCell, s.noBorder)}>
+              {attributeRows.length ? <SimpleTable rows={attributeRows} /> : <div />}
+            </div>
+          </div>
+          <div className={s.content}>
             <h3>About the project</h3>
             <div className="sanity-body">
               {body && (
@@ -146,12 +154,11 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ project }) => {
                 />
               )}
             </div>
-
-            <div className={style.bio}>
+            <div className={s.bio}>
               <h3>About the artist</h3>
               {image && (
-                <div className={style.avatar}>
-                  <Image layout="responsive" alt={`${name}-image`} {...imageProps} />
+                <div className={s.avatar}>
+                  <Image layout="responsive" alt={`${name}-image`} {...avatarPicture} />
                 </div>
               )}
 
@@ -166,21 +173,51 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ project }) => {
               </div>
             </div>
           </div>
-          <Title title={title} name={name} hideOnMobile />
-          <div className={style.display} id="canvas">
-            <div className={style.pieceWrapper}>
-              <ArtPreviewer artwork={active} withZoom />
-              <div className={style.buttonWrapper}>
-                <RoundedButton onClick={() => router.push(`/artwork/${active.id}`)}>
-                  VIEW DETAILS
-                </RoundedButton>
+        </div>
+
+        <div className={s.middle}>
+          <div className={s.titleWrapper}>
+            <h1 className={cn(s.title, sc.h1)}>{title}</h1>
+            <h3 className={sc.h3}>by {name}</h3>
+          </div>
+          <div className={cn(s.canvasWrapper, { [s.fullScreen]: fullScreen })}>
+            <div className={s.sceneControls}>
+              <div className={s.controls}>
+                <RoundedCheckbox
+                  label="SPOTLIGHT"
+                  onChange={() => setSpotlight(s => !s)}
+                  checked={spotlightOn}
+                />
+                <RoundedCheckbox label="FOG" onChange={() => setFog(s => !s)} checked={fogOn} />
+                <div className={s.colorInputWrapper}>
+                  <label htmlFor="colorinput">COLOR</label>
+                  <input
+                    id="colorinput"
+                    type="color"
+                    value={activeColor}
+                    onChange={e => setColor(e.target.value)}
+                  />
+                </div>
               </div>
+              <button className={s.fullScreenButton} onClick={() => setFullScreen(state => !state)}>
+                <Icon icon="full-screen" size="lg" />
+              </button>
+            </div>
+            <ArtPreviewer
+              artwork={active}
+              withZoom
+              activeColor={activeColor}
+              fogOn={fogOn}
+              spotlightOn={spotlightOn}
+            />
+          </div>
+          <div className={s.bottomWrapper}>
+            <div className={s.mintingWrapper}>
+              <MintButton onMint={num => console.log('mint', num)}>Mint</MintButton>
             </div>
           </div>
-          <div className={style.details} id="details">
-            <h3>Details</h3>
-            <SimpleTable rows={formattedDetails} maxWidth />
-          </div>
+        </div>
+        <div className={s.right}>
           {artworks && <Gallery items={artworks} setActive={setActive} active={active} />}
         </div>
       </div>

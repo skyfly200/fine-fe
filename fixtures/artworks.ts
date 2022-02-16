@@ -20,7 +20,7 @@ export const solids: Artwork[] = Array.from({ length: 100 }, (_, i) => i + 1).ma
       { title: 'Augmentation Type', description: ' Landscape' },
       { title: 'Residual Style', description: 'Still-Life' },
       { title: 'Base Speed', description: 0.06 },
-      { title: 'Noise Scale', description: 4.2 },
+      { title: 'Noise Scale', description: i },
       { title: 'Fluidity', description: ' Medium' },
       { title: 'Body', description: ' Heavy' }
     ],
