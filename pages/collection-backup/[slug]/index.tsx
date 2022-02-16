@@ -52,7 +52,7 @@ const Title = ({ title, name, hideOnDesktop, hideOnMobile }: TitleProps) => (
     <div className={style.content}>
       <h1>{title}</h1>
       <h2>by {name}</h2>
-      <MintButton total={500} next={68} onMint={() => console.log('handleOnMint')} />
+      {/* <MintButton total={500} next={68} onMint={() => console.log('handleOnMint')} /> */}
     </div>
   </div>
 )
