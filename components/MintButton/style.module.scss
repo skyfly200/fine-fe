@@ -14,7 +14,7 @@
   .counter {
     min-width: 80px;
     margin: 4px 1px;
-    padding: 0.4rem 0.6rem;
+    padding: 0.7rem 1.1rem;
     padding-left: 0.3rem;
     border-radius: 999px;
     display: flex;
@@ -29,8 +29,14 @@
     .controls {
       display: flex;
       flex-direction: column;
-      button {
+      .chevrons {
+        height: max-content;
         transition: transform 0.07s ease-in-out;
+        display: flex;
+        height: 16px;
+        &:last-child {
+          align-items: flex-end;
+        }
         cursor: pointer;
         &:active {
           transform: translate3d(0, 2px, 0);

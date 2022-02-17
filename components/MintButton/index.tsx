@@ -19,22 +19,24 @@ const MintButton: React.FC<MintButtonProps> = ({ onMint }) => {
       <div className={s.counter}>
         <span className={s.num}> {count}</span>
         <div className={s.controls}>
-          <button
+          <div
+            className={s.chevrons}
             onClick={e => {
               e.stopPropagation()
               setCount(c => c + 1)
             }}
           >
             <Icon icon="chevron-up" />
-          </button>
-          <button
+          </div>
+          <div
+            className={s.chevrons}
             onClick={e => {
               e.stopPropagation()
               setCount(c => (c > 1 ? c - 1 : 1))
             }}
           >
             <Icon icon="chevron-down" />
-          </button>
+          </div>
         </div>
       </div>
     </button>

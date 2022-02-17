@@ -212,9 +212,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ project }) => {
             />
           </div>
           <div className={s.bottomWrapper}>
-            <div className={s.mintingWrapper}>
-              <MintButton onMint={num => console.log('mint', num)}>Mint</MintButton>
-            </div>
+            <MintButton onMint={num => console.log('mint', num)}>Mint</MintButton>
           </div>
         </div>
         <div className={s.right}>
