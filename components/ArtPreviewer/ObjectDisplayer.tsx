@@ -37,16 +37,14 @@ const ObjectDisplayer: React.FC<ObjectDisplayerProps> = ({
       {spotlightOn && (
         <spotLight position={[0, 80, -40]} angle={0.5} intensity={0.5} castShadow penumbra={0.3} />
       )}
-
+      <ambientLight position={[0, 80, -40]} intensity={0.5} />
       <Ground groundColor={activeColor} />
       {props.url && (
         <Suspense fallback={null}>
           <ModelLoader {...props} />
         </Suspense>
       )}
-      <Suspense fallback={null}>
-        <Environment preset="sunset" />
-      </Suspense>
+
       <OrbitControls
         screenSpacePanning={false}
         autoRotate
