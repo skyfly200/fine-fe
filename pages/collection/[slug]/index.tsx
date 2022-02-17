@@ -183,12 +183,6 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ project }) => {
           <div className={cn(s.canvasWrapper, { [s.fullScreen]: fullScreen })}>
             <div className={s.sceneControls}>
               <div className={s.controls}>
-                <RoundedCheckbox
-                  label="SPOTLIGHT"
-                  onChange={() => setSpotlight(s => !s)}
-                  checked={spotlightOn}
-                />
-                <RoundedCheckbox label="FOG" onChange={() => setFog(s => !s)} checked={fogOn} />
                 <div className={s.colorInputWrapper}>
                   <label htmlFor="colorinput">COLOR</label>
                   <input
@@ -198,6 +192,12 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ project }) => {
                     onChange={e => setColor(e.target.value)}
                   />
                 </div>
+                <RoundedCheckbox
+                  label="SPOTLIGHT"
+                  onChange={() => setSpotlight(s => !s)}
+                  checked={spotlightOn}
+                />
+                <RoundedCheckbox label="FOG" onChange={() => setFog(s => !s)} checked={fogOn} />
               </div>
               <button className={s.fullScreenButton} onClick={() => setFullScreen(state => !state)}>
                 <Icon icon="full-screen" size="lg" />
