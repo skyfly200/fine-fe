@@ -102,6 +102,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ project }) => {
   const [activeColor, setColor] = useState('#FEFEFE')
   const [spotlightOn, setSpotlight] = useState<boolean>(true)
   const [fogOn, setFog] = useState<boolean>(true)
+  const [withGround, setGround] = useState<boolean>(true)
   const [fullScreen, setFullScreen] = useState<boolean>(false)
 
   const avatarPicture = useNextSanityImage(client, image)
@@ -193,11 +194,16 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ project }) => {
                   />
                 </div>
                 <RoundedCheckbox
-                  label="SPOTLIGHT"
+                  label="Ground"
+                  onChange={() => setGround(s => !s)}
+                  checked={withGround}
+                />
+                <RoundedCheckbox
+                  label="Spotlight"
                   onChange={() => setSpotlight(s => !s)}
                   checked={spotlightOn}
                 />
-                <RoundedCheckbox label="FOG" onChange={() => setFog(s => !s)} checked={fogOn} />
+                <RoundedCheckbox label="Fog" onChange={() => setFog(s => !s)} checked={fogOn} />
               </div>
               <button className={s.fullScreenButton} onClick={() => setFullScreen(state => !state)}>
                 <Icon icon="full-screen" size="lg" />
@@ -209,6 +215,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ project }) => {
               activeColor={activeColor}
               fogOn={fogOn}
               spotlightOn={spotlightOn}
+              withGround={withGround}
             />
           </div>
           <div className={s.bottomWrapper}>

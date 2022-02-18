@@ -28,6 +28,7 @@ const ObjectDisplayer: React.FC<ObjectDisplayerProps> = ({
   activeColor = '#FEFEFE',
   fogOn,
   spotlightOn,
+  withGround,
   ...props
 }) => {
   return (
@@ -38,7 +39,7 @@ const ObjectDisplayer: React.FC<ObjectDisplayerProps> = ({
         <spotLight position={[0, 80, -40]} angle={0.5} intensity={0.5} castShadow penumbra={0.3} />
       )}
       <ambientLight position={[0, 80, -40]} intensity={0.5} />
-      <Ground groundColor={activeColor} />
+      {withGround && <Ground groundColor={activeColor} />}
       {props.url && (
         <Suspense fallback={null}>
           <ModelLoader {...props} />

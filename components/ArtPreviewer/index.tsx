@@ -11,6 +11,7 @@ interface ArtPreviewerProps {
   activeColor?: string
   spotlightOn?: boolean
   fogOn?: boolean
+  withGround?: boolean
 }
 
 const ObjectDisplayer = dynamic(() => import('./ObjectDisplayer'), {
@@ -27,7 +28,8 @@ const ArtPreviewer: React.FC<ArtPreviewerProps> = ({
   withZoom,
   activeColor,
   spotlightOn,
-  fogOn
+  fogOn,
+  withGround
 }) => {
   const { type } = artwork
   if (!artwork.src) return <></>
@@ -40,6 +42,7 @@ const ArtPreviewer: React.FC<ArtPreviewerProps> = ({
           activeColor={activeColor}
           spotlightOn={spotlightOn}
           fogOn={fogOn}
+          withGround={withGround}
         />
       ) : (
         <IframeGenerator artwork={artwork} />

@@ -4,4 +4,5 @@ export interface ObjectDisplayerProps {
   activeColor?: string
   spotlightOn?: boolean
   fogOn?: boolean
+  withGround?: boolean
 }
