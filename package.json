@@ -13,6 +13,7 @@
     "@react-three/drei": "^7.27.2",
     "@react-three/fiber": "^7.0.21",
     "@react-three/postprocessing": "^2.0.5",
+    "@react-typed-hooks/use-key-press": "^1.0.5",
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/client": "^2.23.2",
     "@sanity/image-url": "^1.0.1",

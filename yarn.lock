@@ -783,6 +783,18 @@
     postprocessing "^6.22.2"
     react-merge-refs "^1.1.0"
 
+"@react-typed-hooks/use-key-press@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@react-typed-hooks/use-key-press/-/use-key-press-1.0.5.tgz#86143f8fe313de292c4451a6fcfa05e136bbd981"
+  integrity sha512-2z3atiQBNDNlEXHQFoojoGiJuukX6IxfqqLicQBTqOqmgmC6MVjTcyWu9fBadua991ah8+yUbSpAWqBB66q4fA==
+  dependencies:
+    "@react-typed-hooks/utils" "^1.0.5"
+
+"@react-typed-hooks/utils@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@react-typed-hooks/utils/-/utils-1.0.5.tgz#800a96528ffb1131bd93ed850d8cdbfc71a17a20"
+  integrity sha512-6mZXz2Roj6MBORq3CXox9nFp52wETDSthIlWHr5lXAJ7POUYC/uk03aJQyUcY8u1dZxwtw0e9TlA0tU9zIdB8A==
+
 "@rexxars/eventsource-polyfill@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@rexxars/eventsource-polyfill/-/eventsource-polyfill-1.0.0.tgz#ab46f2f44da23aedd6f51f13d92a194a5367525b"
