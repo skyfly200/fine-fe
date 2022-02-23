@@ -155,3 +155,10 @@ export type HomeDetails = {
   upcomingProjectDrop: string
   upcomingProjectImage: SanityImage
 }
+
+export type FAQ = {
+  _key: string
+  _type: string
+  answer: any
+  question: string
+}

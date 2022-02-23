@@ -61,7 +61,7 @@ const ArtistsPage: NextPage<ArtistsPageProps> = ({ artists }) => {
         </motion.div>
       </motion.div>
       <div className={style.MobileTopBanner}>
-        <Accordion header={<h4 className={style.bannerTitle}>Artists Submissions</h4>}>
+        <Accordion header={<h4 className={style.bannerTitle}>Artists Submissions</h4>} initialState>
           <div className={style.accordionSubmission}>
             <div className={style.bannerSection}>
               <div>Kindly submit your proposal here</div>

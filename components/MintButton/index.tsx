@@ -16,13 +16,17 @@ const MintButton: React.FC<MintButtonProps> = ({ onMint }) => {
   return (
     <button className={s.button} onClick={() => onMint(count)}>
       <span className={s.count}> MINT</span>
-      <div className={s.counter}>
+      <div
+        className={s.counter}
+        onClick={e => {
+          e.stopPropagation()
+        }}
+      >
         <span className={s.num}> {count}</span>
         <div className={s.controls}>
           <div
             className={s.chevrons}
             onClick={e => {
-              e.stopPropagation()
               setCount(c => c + 1)
             }}
           >

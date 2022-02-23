@@ -92,8 +92,7 @@
 
     .rotatedWrapper {
       @include respond-to('tablet-sm') {
-        width: calc(11vw + 2rem);
-        margin-bottom: -1.8rem;
+        display: none;
       }
     }
     .searchWrapper {
@@ -116,6 +115,7 @@
     @include respond-to('tablet-sm') {
       gap: 1rem;
       grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      padding-bottom: 1;
       padding-top: 0;
     }
   }

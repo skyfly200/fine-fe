@@ -92,8 +92,17 @@
 
 // logo exception sizes
 .F {
-  width: 25.25vw;
+  width: 25.53vw;
   height: 16.03vw;
+}
+
+.INE {
+  width: calc(74.47vw - 2rem);
+  height: 16.03vw;
+  mask-position: right;
+  @include respond-to('mobile') {
+    width: calc(74.47vw - 1rem);
+  }
 }
 
 .sm-F {

@@ -18,7 +18,7 @@ export type Icons =
   | 'search'
   | 'full-screen'
 
-export type IconSize = 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'sm-F' | 'sm-INE' | 'F'
+export type IconSize = 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'sm-F' | 'sm-INE' | 'F' | 'INE'
 
 export type IconProps = {
   className?: string

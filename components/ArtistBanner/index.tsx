@@ -1,4 +1,5 @@
 import cn from 'classnames'
+import { useRouter } from 'next/router'
 
 import RotatedText from '../RotatedText'
 import ArtistCard from '../ArtistCard'
@@ -14,6 +15,7 @@ interface ArtistsBannerProps {
 }
 
 const ArtistBanner: React.FC<ArtistsBannerProps> = ({ artists, curators }) => {
+  const router = useRouter()
   return (
     <section className={s.wrapper}>
       <div className={s.leftCol}>
@@ -30,7 +32,9 @@ const ArtistBanner: React.FC<ArtistsBannerProps> = ({ artists, curators }) => {
             ))}
           </ul>
 
-          <RoundedButton lineSide="left">ALL ARTISTS</RoundedButton>
+          <RoundedButton lineSide="left" onClick={() => router.push(`/artists`)}>
+            ALL ARTISTS
+          </RoundedButton>
         </div>
       </div>
       <div className={s.curators}>
@@ -45,7 +49,9 @@ const ArtistBanner: React.FC<ArtistsBannerProps> = ({ artists, curators }) => {
             ))}
           </ul>
 
-          <RoundedButton lineSide="left">FINE TEAM</RoundedButton>
+          <RoundedButton lineSide="left" onClick={() => router.push(`/about-us#curators`)}>
+            FINE TEAM
+          </RoundedButton>
         </div>
       </div>
     </section>

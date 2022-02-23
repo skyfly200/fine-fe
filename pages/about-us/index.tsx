@@ -1,32 +1,197 @@
-import React, { useContext, useState } from 'react'
-import type { NextPage } from 'next'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
+import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
-import dynamic from 'next/dynamic'
+import groq from 'groq'
+import cn from 'classnames'
 
-import style from './AboutUs.module.scss'
 import Layout from '../../containers/Layout'
+import Icon from '../../components/Icon'
+import Link from '../../components/Link'
+import TextInput from '../../components/TextInput'
+import client from '../../client'
+import { Artist, FAQ } from '../../types'
+import Accordion from '../../components/Accordion'
+import BlockContent from '@sanity/block-content-to-react'
 
-const HomePage: NextPage = () => {
+import s from './AboutUs.module.scss'
+import sc from '../../styles/components.module.scss'
+import { useDebounce } from '@usedapp/core'
+
+interface AboutUsProps {
+  curators: Artist[]
+  faqs: FAQ[]
+}
+
+const menu = ['About', 'curators', 'FAQ']
+const itemsPerPage = 5
+
+const AboutUs: NextPage<AboutUsProps> = ({ curators, faqs }) => {
+  const [activeSection, setActiveSection] = useState(menu[0])
+  const [activePage, setActivePage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
+  const [searchValue, setSearchValue] = useState<string>('')
+  const debouncedValue = useDebounce<string>(searchValue, 500)
+
+  const aboutRef = useRef(null)
+  const curatorRef = useRef(null)
+  const faqRef = useRef(null)
+
+  const handleIntersect = (entries: IntersectionObserverEntry[]) => {
+    if (entries[0].isIntersecting) {
+      setActiveSection(entries[0].target.id)
+    }
+  }
+
+  const createObserver = (target: Element) => {
+    const observer = new IntersectionObserver(handleIntersect, { threshold: 0.5 })
+    observer.observe(target)
+  }
+
+  useEffect(() => {
+    aboutRef.current && createObserver(aboutRef.current)
+    curatorRef.current && createObserver(curatorRef.current)
+    faqRef.current && createObserver(faqRef.current)
+  }, [])
+
+  useEffect(() => {
+    setTotalPages(Math.ceil(curators.length / itemsPerPage))
+  }, [curators])
+
+  const handleNext = () => {
+    if (activePage < totalPages) setActivePage(s => s + 1)
+  }
+
+  const handlePrev = () => {
+    if (activePage > 1) setActivePage(s => s - 1)
+  }
+
+  const filteredCurators = useMemo(() => {
+    let items = [...curators].filter(curator =>
+      curator.name?.toLowerCase().includes(debouncedValue.toLowerCase())
+    )
+    setTotalPages(Math.ceil(items.length / itemsPerPage))
+
+    const firstItem = itemsPerPage * (activePage - 1)
+    const lastItem = firstItem + itemsPerPage
+    return items.slice(firstItem, lastItem)
+  }, [curators, activePage, debouncedValue])
+
   return (
-    <Layout>
-      <Head>
-        <title>Fine</title>
-        <meta
-          name="description"
-          content="artist-run platform supporting established artists in the NFT space and
-            artists entering the NFT space for the first time"
-        />
-        <meta
-          property="og:image"
-          content="https://res.cloudinary.com/dhrwv7wvb/image/upload/v1639149533/fine/fine-meta-image_g1tndh.png"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div className={style.home}>
-        <strong>Soon...</strong>
+    <Layout hideLogo greyBG>
+      <div className={s.pageWrapper}>
+        <Link href="/" passHref>
+          <div className={s.logo}>
+            <Icon icon="f-logo" size="F" className={s.stickyF} />
+            <Icon icon="ine-logo" size="INE" className={s.ine} />
+          </div>
+        </Link>
+        <div className={s.sidenav}>
+          <ul className={s.nav}>
+            {menu.map(item => (
+              <li key={item}>
+                <Link
+                  href={`#${item}`}
+                  className={cn(s.link, { [s.active]: activeSection === item })}
+                >
+                  {item}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className={s.body}>
+          <section id={menu[0]} className={s.about} ref={aboutRef}>
+            <div>
+              <p className={s.bodyXL}>
+                FINE Digital is a cross-functional lab dedicated to guide artists and creatives in
+                their exploration of working in the metasphere.
+              </p>
+              <p className={s.bodyXL}>
+                We help extraordinary cultural creators & companies push the boundaries of our new
+                digital environment by removing barriers caused by technology, crypto-culture and
+                unchartered workflows
+              </p>
+            </div>
+          </section>
+
+          <section className={s.curators} id={menu[1]} ref={curatorRef}>
+            <div className={s.sectionHeader}>
+              <h3 className={sc.h3}>Fine Curators</h3>
+              <TextInput
+                styleType="search"
+                placeholder="Search by name..."
+                onChange={e => setSearchValue(e.target.value)}
+                value={searchValue}
+              />
+            </div>
+            <div>
+              <ul className={s.curatorsList}>
+                {filteredCurators.map(curator => (
+                  <li key={curator._id} className={s.curatorCard}>
+                    {curator.name}
+                  </li>
+                ))}
+              </ul>
+              {totalPages > 1 && (
+                <div className={s.pagination}>
+                  <button
+                    className={s.paginationBtn}
+                    onClick={handlePrev}
+                    disabled={activePage === 1}
+                  >
+                    <Icon icon="chevron-left" />
+                  </button>
+                  <span>{activePage}</span>/<span>{totalPages}</span>
+                  <button
+                    className={s.paginationBtn}
+                    onClick={handleNext}
+                    disabled={activePage === totalPages}
+                  >
+                    <Icon icon="chevron-right" />
+                  </button>
+                </div>
+              )}
+            </div>
+          </section>
+          <section className={s.faqs} id={menu[2]} ref={faqRef}>
+            <div className={s.sectionHeader}>
+              <h3 className={sc.h3}>Frequent Asked Questions</h3>
+            </div>
+            <ul className={s.faqsList}>
+              {faqs?.map(el => (
+                <Accordion
+                  key={el._key}
+                  className={s.accordion}
+                  header={<h2 className={s.question}>{el.question}</h2>}
+                >
+                  <div className={s.answerWrapper}>
+                    <div className="sanity-body">
+                      <BlockContent
+                        blocks={el.answer}
+                        imageOptions={{ w: 680, fit: 'max' }}
+                        {...client.config()}
+                      />
+                    </div>
+                  </div>
+                </Accordion>
+              ))}
+            </ul>
+          </section>
+        </div>
       </div>
     </Layout>
   )
 }
+export const getStaticProps: GetStaticProps = async context => {
+  const curators = await client.fetch(groq`  *[_type == "curator"]`)
+  const faqs = await client.fetch(groq`  *[_type == "faqs"][0]`)
 
-export default HomePage
+  return {
+    props: {
+      curators,
+      faqs: faqs?.faqs
+    },
+    revalidate: 10
+  }
+}
+export default AboutUs
