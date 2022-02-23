@@ -10,12 +10,10 @@ const ModelLoader: React.FC<ObjectDisplayerProps> = ({ url }) => {
   const [zoom, setZoom] = useState<number>(0)
   const ref = useRef()
   // @ts-ignore
-  console.log(url)
   const glb = useGLTF(url)
   const { camera } = useThree()
 
   useEffect(() => {
-    console.log(glb)
     if (glb) {
       // Center Model
       const box = new THREE.Box3().setFromObject(glb.scene)
