@@ -15,7 +15,8 @@
         outline: none;
       }
     }
-    &.search {
+    &.search,
+    &.submit {
       height: 44px;
       border-radius: 999px;
       padding-left: 1rem;
@@ -44,9 +45,24 @@
     }
   }
 
+  .submitButton {
+    cursor: pointer;
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    height: 36px;
+    border-radius: 999px;
+    color: color(grey-color);
+    padding: 0.2rem 0.9rem;
+    background-color: color(darkgrey-color);
+    font-weight: 500;
+    @include respond-to('mobile') {
+      height: 30px;
+    }
+  }
+
   .label {
     margin-bottom: 1rem;
-    display:inline-block;
-
+    display: inline-block;
   }
 }

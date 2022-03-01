@@ -48,3 +48,23 @@
     }
   }
 }
+
+.biglogo {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  justify-content: flex-end;
+
+  cursor: pointer;
+  .stickyF {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    color: black;
+    z-index: 7;
+    @include respond-to('mobile') {
+      top: 0.5rem;
+      left: 0.5rem;
+    }
+  }
+}

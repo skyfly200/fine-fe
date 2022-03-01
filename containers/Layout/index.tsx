@@ -1,24 +1,27 @@
 import { useEffect } from 'react'
-import BigLogo from '../../components/BigLogo'
+
 import BottomNav from '../../components/BottomNav'
 import Footer from '../../components/Footer'
+import Logo from '../../components/Logo'
 
 interface LayoutProps {
   greyBG?: boolean
   hideLogo?: boolean
+  hideFooter?: boolean
+  hideNav?: boolean
 }
 
-const Layout: React.FC<LayoutProps> = ({ greyBG, children, hideLogo }) => {
+const Layout: React.FC<LayoutProps> = ({ greyBG, children, hideLogo, hideFooter, hideNav }) => {
   useEffect(() => {
     if (greyBG) document.body.style.backgroundColor = 'var(--grey-color, #e2e3e5)'
   }, [greyBG])
 
   return (
     <>
-      {!hideLogo && <BigLogo />}
+      {!hideLogo && <Logo />}
       {children}
-      <BottomNav />
-      <Footer />
+      {!hideNav && <BottomNav />}
+      {!hideFooter && <Footer />}
     </>
   )
 }

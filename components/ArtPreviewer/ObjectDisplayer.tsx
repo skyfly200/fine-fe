@@ -29,11 +29,12 @@ const ObjectDisplayer: React.FC<ObjectDisplayerProps> = ({
   fogOn,
   spotlightOn,
   withGround,
+  noColor,
   ...props
 }) => {
   return (
     <Canvas className={style.canvas} shadows>
-      <color attach="background" args={[activeColor]} />
+      {!noColor && <color attach="background" args={[activeColor]} />}
       {fogOn && <fog attach="fog" args={[activeColor, 30, 200]} />}
       {spotlightOn && (
         <spotLight position={[0, 80, -40]} angle={0.5} intensity={0.5} castShadow penumbra={0.3} />

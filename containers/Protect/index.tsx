@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react'
 import { useKeyPress } from '@react-typed-hooks/use-key-press'
+import { useRouter } from 'next/router'
 
 import RoundedButton from '../../components/RoundedButton'
 import TextInput from '../../components/TextInput'
+
 import s from './style.module.scss'
 
 const Protect: React.FC = ({ children }) => {
-  const [isLogged, setLogged] = useState(true)
+  const [isLogged, setLogged] = useState(false)
+  const { pathname } = useRouter()
   const [err, setErr] = useState('')
   const [pass, setPass] = useState('')
   const handleSubmit = () =>
@@ -19,7 +22,7 @@ const Protect: React.FC = ({ children }) => {
 
   return (
     <>
-      {isLogged ? (
+      {isLogged || pathname === '/' ? (
         children
       ) : (
         <div className={s.wrapper}>

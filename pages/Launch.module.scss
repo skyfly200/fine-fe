@@ -1,0 +1,298 @@
+@import '../styles/mixins.scss';
+
+.pageWrapper {
+  padding: 1rem;
+  padding-bottom: 0;
+  overflow-x: hidden;
+  @include respond-to('mobile') {
+    padding: 0.5rem;
+  }
+
+  .about {
+    min-height: calc(var(--vh, 1vh) * 100 - 16.6vw);
+    padding-left: calc(28vw + 2rem);
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    .content {
+      max-width: 600px;
+      font-size: 2.8rem;
+    }
+
+    @include respond-to('mobile') {
+      padding-left: 40px;
+      .content {
+        font-size: 1.6rem;
+      }
+    }
+  }
+  .upcoming {
+    position: relative;
+    min-height: calc(var(--vh, 1vh) * 100);
+    padding-top: 4rem;
+    @include respond-to('mobile') {
+      padding-top: 1rem;
+    }
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: black;
+      width: 20%;
+      height: 1px;
+      content: '';
+      @include respond-to('mobile') {
+        width: calc(100% - 40px);
+      }
+    }
+  }
+  .submissions {
+    padding: 4rem 0;
+    padding-left: calc(28vw + 2rem);
+    background: white;
+    width: calc(100% + 2rem);
+    margin-left: -1rem;
+    @include respond-to('mobile') {
+      padding: 2rem;
+      padding-left: calc(40px + 1rem);
+      padding-right: 1.5rem;
+    }
+    .title {
+      font-size: 2.8rem;
+      font-weight: 400;
+    }
+    .content {
+      max-width: 450px;
+      font-size: 1.2rem;
+      line-height: 1.25;
+
+      .footnote {
+        margin-top: 4rem;
+        padding-top: 2rem;
+        position: relative;
+        &::after {
+          position: absolute;
+          top: 0;
+          left: 0;
+          background-color: black;
+          width: 100%;
+          height: 1px;
+          content: '';
+          @include respond-to('mobile') {
+            left: 0px;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  .join {
+    padding: 4rem 0 0;
+    padding-left: calc(28vw + 2rem);
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    font-size: 1.2rem;
+    line-height: 1.25;
+    @include respond-to('mobile') {
+      gap: 4rem;
+      padding-left: 40px;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto;
+    }
+    .content {
+      max-width: 450px;
+      .title {
+        font-size: 2.8rem;
+        font-weight: 400;
+      }
+    }
+    .joinus {
+      max-width: none;
+      grid-column: 1 / span 2;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      margin-top: 4rem;
+      padding-top: 11rem;
+      padding-bottom: 3rem;
+      overflow: hidden;
+      position: relative;
+      @include respond-to('mobile') {
+        margin-top: 0;
+        padding-top: 3rem;
+        grid-column: 1 / span 1;
+      }
+      &::after {
+        border-radius: 999999px;
+        position: absolute;
+        top: 0%;
+        right: 15%;
+        border: 1px solid;
+        width: 70%;
+        aspect-ratio: 1;
+        content: '';
+        @include respond-to('mobile') {
+          background: white;
+          width: 50%;
+          right: 25%;
+          border: none;
+          z-index: -1;
+        }
+      }
+      .inner {
+        max-width: 450px;
+      }
+    }
+  }
+}
+
+.project {
+  padding-left: calc(28vw + 2rem);
+  margin-bottom: 6rem;
+  min-height: calc(var(--vh, 1vh) * 50);
+  @include respond-to('mobile') {
+    padding-left: 40px;
+  }
+  .content {
+    position: sticky;
+    top: 0;
+    right: 0;
+    gap: 1rem;
+    .header {
+      margin-bottom: 4rem;
+      @include respond-to('mobile') {
+        margin-bottom: 1rem;
+      }
+      .title {
+        font-weight: 400;
+        font-size: 5rem;
+        margin: 0;
+      }
+      .artist {
+        font-size: 2.8rem;
+        font-weight: 400;
+        margin: 0;
+      }
+    }
+  }
+  .bottom {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 3fr 2fr;
+    .description {
+      font-size: 1.2rem;
+      line-height: 1.25;
+    }
+    @include respond-to('mobile') {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr;
+    }
+  }
+}
+
+.solids {
+  padding-top: 2rem;
+  margin-bottom: 6rem;
+  padding-left: calc(28vw + 2rem);
+  position: relative;
+  min-height: 550px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include respond-to('mobile') {
+    min-height: 350px;
+    padding-left: 40px;
+    align-items: flex-start;
+  }
+  .header {
+    margin-bottom: 4rem;
+    text-align: center;
+    z-index: 2;
+    @include respond-to('mobile') {
+      margin-bottom: 0;
+      text-align: left;
+    }
+    .title {
+      font-weight: 400;
+      font-size: 5rem;
+      margin: 0;
+    }
+    .artist {
+      font-size: 2.8rem;
+      font-weight: 400;
+      margin: 0;
+      z-index: 2;
+    }
+  }
+  .canvasWrapper {
+    margin-top: -165px;
+    padding-top: 10vh;
+    width: calc(100% - 28vw - 2rem);
+    aspect-ratio: 1;
+    background-color: yellow;
+    border-radius: 999px;
+    overflow: hidden;
+    @include respond-to('mobile') {
+      margin-top: -60px;
+      width: 100%;
+    }
+  }
+
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 24.7%;
+    background-color: black;
+    width: 20%;
+    height: 1px;
+    content: '';
+    @include respond-to('mobile') {
+      width: calc(100% - 40px);
+      right: 0;
+    }
+  }
+}
+
+.slime {
+  .video {
+    width: 100%;
+  }
+}
+.chunkyMouse {
+  position: relative;
+  padding-top: 2rem;
+  .mouseBottom {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 3fr 2fr;
+    .description {
+      margin-top: 1.5rem;
+      font-size: 1.2rem;
+      line-height: 1.25;
+    }
+    @include respond-to('mobile') {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr;
+    }
+  }
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: calc(28vw + 2rem);
+    background-color: black;
+    width: 20%;
+    height: 1px;
+    content: '';
+    @include respond-to('mobile') {
+      left: 40px;
+      width: 100%;
+    }
+  }
+}
+.link {
+  text-decoration: underline;
+  font-weight: 700;
+}

@@ -16,6 +16,8 @@ import BlockContent from '@sanity/block-content-to-react'
 import s from './AboutUs.module.scss'
 import sc from '../../styles/components.module.scss'
 import { useDebounce } from '@usedapp/core'
+import Logo from '../../components/Logo'
+import FixedSidenav from '../../components/FixedSidenav'
 
 interface AboutUsProps {
   curators: Artist[]
@@ -32,6 +34,7 @@ const AboutUs: NextPage<AboutUsProps> = ({ curators, faqs }) => {
   const [searchValue, setSearchValue] = useState<string>('')
   const debouncedValue = useDebounce<string>(searchValue, 500)
 
+  // Intersection Navigation
   const aboutRef = useRef(null)
   const curatorRef = useRef(null)
   const faqRef = useRef(null)
@@ -53,6 +56,7 @@ const AboutUs: NextPage<AboutUsProps> = ({ curators, faqs }) => {
     faqRef.current && createObserver(faqRef.current)
   }, [])
 
+  // Pagination
   useEffect(() => {
     setTotalPages(Math.ceil(curators.length / itemsPerPage))
   }, [curators])
@@ -79,26 +83,8 @@ const AboutUs: NextPage<AboutUsProps> = ({ curators, faqs }) => {
   return (
     <Layout hideLogo greyBG>
       <div className={s.pageWrapper}>
-        <Link href="/" passHref>
-          <div className={s.logo}>
-            <Icon icon="f-logo" size="F" className={s.stickyF} />
-            <Icon icon="ine-logo" size="INE" className={s.ine} />
-          </div>
-        </Link>
-        <div className={s.sidenav}>
-          <ul className={s.nav}>
-            {menu.map(item => (
-              <li key={item}>
-                <Link
-                  href={`#${item}`}
-                  className={cn(s.link, { [s.active]: activeSection === item })}
-                >
-                  {item}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <Logo big />
+        <FixedSidenav menu={menu} active={activeSection} />
         <div className={s.body}>
           <section id={menu[0]} className={s.about} ref={aboutRef}>
             <div>
