@@ -1,19 +1,21 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.2;
 
-import "@openzeppelin/contracts@4.4.2/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts@4.4.2/token/ERC721/extensions/ERC721Enumerable.sol";
-import "@openzeppelin/contracts@4.4.2/token/ERC721/extensions/ERC721Burnable.sol";
-import "@openzeppelin/contracts@4.4.2/access/AccessControl.sol";
-import "@openzeppelin/contracts@4.4.2/utils/Counters.sol";
+import "@openzeppelin/contracts@4.5.0/token/ERC721/extensions/ERC721Enumerable.sol";
+import "@openzeppelin/contracts@4.5.0/token/ERC721/extensions/ERC721Burnable.sol";
+import "@openzeppelin/contracts@4.5.0/token/ERC721/extensions/ERC721Royalty.sol";
+import "@openzeppelin/contracts@4.5.0/access/AccessControl.sol";
+import "@openzeppelin/contracts@4.5.0/utils/Counters.sol";
 
 interface FineCore {
     function getRandomness(uint256 id, uint256 seed) external view returns (uint256 randomnesss);
     function getProjectID(address project) external view returns (uint);
+    function FINE_TREASURY() external returns (address payable);
+    function platformRoyalty() external returns (uint256);
 }
 
 /// @custom:security-contact skyfly200@gmail.com
-contract FineNFT is ERC721, ERC721Enumerable, ERC721Burnable, AccessControl {
+contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessControl {
     using Counters for Counters.Counter;
 
     uint public TOTAL_SUPPLY = 1000;
@@ -21,8 +23,12 @@ contract FineNFT is ERC721, ERC721Enumerable, ERC721Burnable, AccessControl {
     FineCore coreContract;
     Counters.Counter private _tokenIdCounter;
     mapping(uint => uint) public hashes;
-    mapping(uint256 => string) scripts;
+    mapping(uint256 => string) public scripts;
     string baseURI = "https://api.fine.digital/metadata/";
+
+    address payable public artistAddress = payable(0x7A832c86002323a5de3a317b3281Eb88EC3b2C00);
+    address payable public additionalPayee = payable(0x0);
+    uint256 public additionalPayeePercentage = 0;
 
     string public artist = "fine";
     string public description = "a sample NFT for FINE";
@@ -33,6 +39,36 @@ contract FineNFT is ERC721, ERC721Enumerable, ERC721Burnable, AccessControl {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(MINTER_ROLE, msg.sender);
         coreContract = FineCore(coreAddress);
+        // set deafault royalty
+        uint96 royaltyPercent = 750;
+        _setDefaultRoyalty(address(this), royaltyPercent);
+    }
+
+    // /**
+    //  * @dev receive direct ETH transfers
+    //  * @notice for splitting royalties
+    //  */
+    // receive() external payable {
+    //     _splitFunds(msg.value); 
+    // }
+
+    /**
+     * @dev withdraw all funds in contract
+     */
+    function withdraw() onlyRole(DEFAULT_ADMIN_ROLE) external {
+        address payable from = payable(msg.sender);
+        from.transfer(address(this).balance);
+    }
+
+    /**
+     * @dev Split payments
+     */
+    function _splitFunds(uint256 amount) internal {
+        if (amount > 0) {
+            uint256 partA = amount * coreContract.platformRoyalty() / 10000;
+            coreContract.FINE_TREASURY().transfer(partA);
+            artistAddress.transfer(amount - partA);
+        }
     }
 
     function _baseURI() internal view override returns (string memory) {
@@ -85,6 +121,7 @@ contract FineNFT is ERC721, ERC721Enumerable, ERC721Burnable, AccessControl {
         website = _url;
     }
 
+
     /**
      * @dev Mint a token 
      * @param to address to mint the token to
@@ -96,6 +133,20 @@ contract FineNFT is ERC721, ERC721Enumerable, ERC721Burnable, AccessControl {
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
         hashes[tokenId] = coreContract.getRandomness(tokenId, block.timestamp);
+    }
+
+    // getters for interface
+    
+    function getArtistAddress() external view returns (address payable) {
+        return artistAddress;
+    }
+
+    function getAdditionalPayee() external view returns (address payable) {
+        return additionalPayee;
+    }
+
+    function getAdditionalPayeePercentage() external view returns (uint256) {
+        return additionalPayeePercentage;
     }
 
     // The following functions are overrides required by Solidity.
@@ -110,9 +161,16 @@ contract FineNFT is ERC721, ERC721Enumerable, ERC721Burnable, AccessControl {
     function supportsInterface(bytes4 interfaceId)
         public
         view
-        override(ERC721, ERC721Enumerable, AccessControl)
+        override(ERC721, ERC721Enumerable, ERC721Royalty, AccessControl)
         returns (bool)
     {
         return super.supportsInterface(interfaceId);
+    }
+
+    function _burn(uint256 tokenId)
+        internal
+        override(ERC721, ERC721Royalty)
+    {
+        super._burn(tokenId);
     }
 }

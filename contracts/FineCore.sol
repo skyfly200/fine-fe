@@ -18,6 +18,9 @@ contract FineCore is AccessControl {
     Counters.Counter private _projectCounter;
     mapping(uint => address) public projects;
     mapping(address => bool) public allowlist;
+
+    address payable public FINE_TREASURY = payable(0x7A832c86002323a5de3a317b3281Eb88EC3b2C00);
+    uint256 public platformRoyalty = 3333;
     
     constructor(address entropySourceAddress) {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
@@ -68,7 +71,7 @@ contract FineCore is AccessControl {
         allowlist[project] = false;
     }
 
-    function getProjectByID(uint id) external view returns (address) {
+    function getProjectAddress(uint id) external view returns (address) {
         return projects[id];
     }
 
