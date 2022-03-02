@@ -4,10 +4,13 @@
   padding: 1rem;
   padding-bottom: 0;
   overflow-x: hidden;
-  @include respond-to('mobile') {
+  @include respond-to('tablet-sm') {
     padding: 0.5rem;
   }
 
+  p {
+    max-width: 600px;
+  }
   .about {
     min-height: calc(var(--vh, 1vh) * 100 - 16.6vw);
     padding-left: calc(28vw + 2rem);
@@ -19,7 +22,7 @@
       font-size: 2.8rem;
     }
 
-    @include respond-to('mobile') {
+    @include respond-to('tablet-sm') {
       padding-left: 40px;
       .content {
         font-size: 1.6rem;
@@ -30,7 +33,7 @@
     position: relative;
     min-height: calc(var(--vh, 1vh) * 100);
     padding-top: 4rem;
-    @include respond-to('mobile') {
+    @include respond-to('tablet-sm') {
       padding-top: 1rem;
     }
     &::after {
@@ -41,7 +44,7 @@
       width: 20%;
       height: 1px;
       content: '';
-      @include respond-to('mobile') {
+      @include respond-to('tablet-sm') {
         width: calc(100% - 40px);
       }
     }
@@ -52,7 +55,7 @@
   //   background: white;
   //   width: calc(100% + 2rem);
   //   margin-left: -1rem;
-  //   @include respond-to('mobile') {
+  //   @include respond-to('tablet-sm') {
   //     padding: 2rem;
   //     padding-left: calc(40px + 1rem);
   //     padding-right: 1.5rem;
@@ -86,14 +89,17 @@
       width: calc(100% - 28vw - 2rem);
       height: 1px;
       content: '';
-      @include respond-to('mobile') {
+      @include respond-to('tablet-sm') {
         width: calc(100% - 40px);
       }
     }
 
-    @include respond-to('mobile') {
+    @include respond-to('tablet-sm') {
       gap: 4rem;
       padding-left: 40px;
+    }
+
+    @include respond-to('mobile') {
       grid-template-columns: 1fr;
       grid-template-rows: auto auto auto;
     }
@@ -102,7 +108,7 @@
       .title {
         font-size: 2.8rem;
         font-weight: 400;
-        @include respond-to('mobile') {
+        @include respond-to('tablet-sm') {
           margin-bottom: 2rem;
         }
       }
@@ -118,6 +124,11 @@
       padding-bottom: 3rem;
       overflow: hidden;
       position: relative;
+      @include respond-to('tablet-sm') {
+        margin-top: 0;
+        padding-top: 3rem;
+        padding-bottom: 2rem;
+      }
       @include respond-to('mobile') {
         margin-top: 0;
         padding-top: 3rem;
@@ -133,7 +144,7 @@
         width: 70%;
         aspect-ratio: 1;
         content: '';
-        @include respond-to('mobile') {
+        @include respond-to('tablet-sm') {
           background: white;
           width: 80%;
           right: 10%;
@@ -144,7 +155,7 @@
       }
       .inner {
         max-width: 450px;
-        @include respond-to('mobile') {
+        @include respond-to('tablet-sm') {
           max-width: 330px;
         }
       }
@@ -156,7 +167,7 @@
   padding-left: calc(28vw + 2rem);
   margin-bottom: 6rem;
   min-height: calc(var(--vh, 1vh) * 50);
-  @include respond-to('mobile') {
+  @include respond-to('tablet-sm') {
     padding-left: 40px;
   }
   .content {
@@ -166,7 +177,7 @@
     gap: 1rem;
     .header {
       margin-bottom: 4rem;
-      @include respond-to('mobile') {
+      @include respond-to('tablet-sm') {
         margin-bottom: 1rem;
       }
       .title {
@@ -189,7 +200,7 @@
       font-size: 1.2rem;
       line-height: 1.25;
     }
-    @include respond-to('mobile') {
+    @include respond-to('tablet-sm') {
       grid-template-columns: 1fr;
       grid-template-rows: auto 1fr;
     }
@@ -205,7 +216,7 @@
   display: flex;
   justify-content: space-between;
   gap: 2rem;
-  @include respond-to('mobile') {
+  @include respond-to('tablet-sm') {
     min-height: 350px;
     padding-left: 40px;
     flex-direction: column;
@@ -230,7 +241,7 @@
     aspect-ratio: 1;
     background-image: linear-gradient(to left, #ffb50d, #ffbf06, #ffc801, #ffd200, #fedc00);
     // border-radius: 999px;
-    @include respond-to('mobile') {
+    @include respond-to('tablet-sm') {
       margin-top: -60px;
       width: 100%;
     }
@@ -251,7 +262,7 @@
     width: 20%;
     height: 1px;
     content: '';
-    @include respond-to('mobile') {
+    @include respond-to('tablet-sm') {
       width: 100%;
       left: 40px;
     }
@@ -269,7 +280,7 @@
     width: 20%;
     height: 1px;
     content: '';
-    @include respond-to('mobile') {
+    @include respond-to('tablet-sm') {
       width: calc(100% - 40px);
       right: 0;
     }
@@ -284,7 +295,7 @@
       font-size: 1.2rem;
       line-height: 1.25;
     }
-    @include respond-to('mobile') {
+    @include respond-to('tablet-sm') {
       grid-template-columns: 1fr;
       grid-template-rows: auto 1fr;
     }
@@ -298,7 +309,7 @@
     width: 20%;
     height: 1px;
     content: '';
-    @include respond-to('mobile') {
+    @include respond-to('tablet-sm') {
       left: 40px;
       width: 100%;
     }
