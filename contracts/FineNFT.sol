@@ -41,9 +41,10 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
     string public website = "https://api.fine.digital";
     string public license = "MIT";
     
-    constructor(address coreAddress) ERC721("FINE Digital", "FINE") {
+    constructor(address coreAddress, address shopAddress) ERC721("FINE Digital", "FINE") {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(MINTER_ROLE, msg.sender);
+        _grantRole(MINTER_ROLE, shopAddress);
         coreContract = FineCore(coreAddress);
         // set deafault royalty
         _setDefaultRoyalty(address(this), royaltyPercent);
