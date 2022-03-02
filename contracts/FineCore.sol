@@ -53,17 +53,7 @@ contract FineCore is AccessControl {
     }
 
     /**
-     * @dev remove a project from the allowlist
-     * @param id of the project to remove
-     * @dev Only the admin can call this
-     */
-    function removeProject(uint id) external onlyRole(DEFAULT_ADMIN_ROLE) {
-        address project = projects[id];
-        allowlist[project] = false;
-    }
-
-    /**
-     * @dev remove a project from the allowlist
+     * @dev remove a project from the allowlist by address
      * @param project address to remove from allowlist
      * @dev Only the admin can call this
      */
@@ -71,6 +61,10 @@ contract FineCore is AccessControl {
         allowlist[project] = false;
     }
 
+    /**
+     * @dev lookup a projects address by id
+     * @param id of the project to retrieve
+     */
     function getProjectAddress(uint id) external view returns (address) {
         return projects[id];
     }
