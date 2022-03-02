@@ -114,6 +114,29 @@ contract FineShop is AccessControl {
         projectPause[_projectId] = true;
     }
 
+    /**
+     * @dev init the project in one call
+     * @param _projectId to set owner of
+     * @param newOwner to set as owner
+     * @param contractFilter switch to filter out minting via contract
+     * @param _bulk amount for minitng multiple per tx
+     * @param _limit mintable per address
+     */
+    function quickInit(
+        uint _projectId,
+        address newOwner,
+        bool contractFilter,
+        uint256 _bulk,
+        uint256 _limit
+    ) external onlyRole(DEFAULT_ADMIN_ROLE) {
+        require(projectOwner[_projectId] != newOwner, "can't be same owner");
+        require(projectOwner[_projectId] != address(0x0), "owner can't be zero address");
+        projectOwner[_projectId] = newOwner;
+        contractFilterProject[_projectId] = contractFilter;
+        projectBulkMintCount[_projectId] = _bulk;
+        projectMintLimit[_projectId] = _limit;
+    }
+
     // Project Owner Functions
 
     /**
