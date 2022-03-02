@@ -151,10 +151,8 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
         uint randomness = coreContract.getRandomness(tokenId, block.timestamp);
-        uint artId = randomness % TOKEN_LIMIT;
-        while(!availableArt.contains(artId)) {
-            artId = uint256(keccak256(abi.encodePacked(randomness, artId))) % TOKEN_LIMIT;
-        }
+        uint randIndex = randomness % availableArt.length();
+        uint artId = availableArt.at(randIndex);
         artworkId[tokenId] = artId;
         availableArt.remove(artId);
     }
