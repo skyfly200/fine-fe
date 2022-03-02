@@ -21,9 +21,9 @@ interface FineNFT {
 }
 
 interface ERC20 {
-  function balanceOf(address _owner) external view returns (uint balance);
-  function transferFrom(address _from, address _to, uint _value) external returns (bool success);
-  function allowance(address _owner, address _spender) external view returns (uint remaining);
+    function balanceOf(address _owner) external view returns (uint balance);
+    function transferFrom(address _from, address _to, uint _value) external returns (bool success);
+    function allowance(address _owner, address _spender) external view returns (uint remaining);
 }
 
 /// @custom:security-contact skyfly200@gmail.com
