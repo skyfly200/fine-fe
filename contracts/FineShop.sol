@@ -157,6 +157,17 @@ contract FineShop is AccessControl {
     }
 
     /**
+     * @dev set the allowlist spots of a project
+     * @param _projectId to set  allowlist spots of
+     * @param spots to make available
+     */
+    function setAllowlistSpots(uint _projectId, uint spots) external {
+        require(msg.sender == projectOwner[_projectId], "only owner");
+        require(!projectLive[_projectId], "already live");
+            projectAllowListAllocation[_projectId] = spots;
+    }
+
+    /**
      * @dev set the currency to ETH
      * @param _projectId to set currency of
      */
@@ -180,6 +191,34 @@ contract FineShop is AccessControl {
         require(_contract != address(0x0), "curency address cant be zero");
         projectCurrencySymbol[_projectId] = _symbol;
         projectCurrencyAddress[_projectId] = _contract;
+    }
+
+    /**
+     * @dev owner may set project up in one call
+     * @param _projectId to set up
+     * @param _symbol of the currency
+     * @param _contract address of the currency
+     * @param _price of the project
+     * @param _premints number available
+     * @param _allowlists number available
+     */
+    function quickSet(
+            uint _projectId,
+            string calldata _symbol,
+            address _contract,
+            uint256 _price,
+            uint256 _premints,
+            uint256 _allowlists
+        ) external {
+            require(msg.sender == projectOwner[_projectId], "only owner");
+            require(!projectLive[_projectId], "already live");
+            require(bytes(_symbol).length > 0, "Symbol must be provided");
+            require(_contract != address(0x0), "curency address cant be zero");
+            projectCurrencySymbol[_projectId] = _symbol;
+            projectCurrencyAddress[_projectId] = _contract;
+            projectPrice[_projectId] = _price;
+            projectPremintAllocation[_projectId] = _premints;
+            projectAllowListAllocation[_projectId] = _allowlists;
     }
 
     // Sale Functions
