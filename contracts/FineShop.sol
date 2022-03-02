@@ -157,14 +157,29 @@ contract FineShop is AccessControl {
     }
 
     /**
-     * @dev set the premints of a project
-     * @param _projectId to set premints of
-     * @param premints to set project to
+     * @dev set the currency to ETH
+     * @param _projectId to set currency of
      */
-    function setPremints(uint _projectId, uint premints) external {
+    function setCurrencyToETH(uint _projectId) external {
         require(msg.sender == projectOwner[_projectId], "only owner");
         require(!projectLive[_projectId], "already live");
-        projectPremintAllocation[_projectId] = premints;
+        projectCurrencySymbol[_projectId] = "ETH";
+        projectCurrencyAddress[_projectId] = address(0x0);
+    }
+
+    /**
+     * @dev set the currency
+     * @param _projectId to set currency of
+     * @param _symbol of the currency
+     * @param _contract address of the currency
+     */
+    function setCurrency(uint _projectId, string calldata _symbol, address _contract) external {
+        require(msg.sender == projectOwner[_projectId], "only owner");
+        require(!projectLive[_projectId], "already live");
+        require(bytes(_symbol).length > 0, "Symbol must be provided");
+        require(_contract != address(0x0), "curency address cant be zero");
+        projectCurrencySymbol[_projectId] = _symbol;
+        projectCurrencyAddress[_projectId] = _contract;
     }
 
     // Sale Functions
