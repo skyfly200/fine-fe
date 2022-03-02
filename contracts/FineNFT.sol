@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
 
-interface FineCore {
+interface FineCoreInterface {
     function getRandomness(uint256 id, uint256 seed) external view returns (uint256 randomnesss);
     function getProjectID(address project) external view returns (uint);
     function FINE_TREASURY() external returns (address payable);
@@ -22,7 +22,7 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
 
     uint public TOKEN_LIMIT = 1000;
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
-    FineCore coreContract;
+    FineCoreInterface coreContract;
     Counters.Counter private _tokenIdCounter;
     //mapping(uint => uint) public hashes; // for post generated projects
     mapping(uint => uint) public artworkId; // for pre generated projects
@@ -45,7 +45,7 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(MINTER_ROLE, msg.sender);
         _grantRole(MINTER_ROLE, shopAddress);
-        coreContract = FineCore(coreAddress);
+        coreContract = FineCoreInterface(coreAddress);
         // set deafault royalty
         _setDefaultRoyalty(address(this), royaltyPercent);
         for (uint i = 0; i < TOKEN_LIMIT; i++) availableArt.add(i);

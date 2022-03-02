@@ -4,7 +4,7 @@ pragma solidity ^0.8.2;
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 
-interface FineCore {
+interface FineCoreInterface {
     function getProjectAddress(uint id) external view returns (address);
     function getProjectID(address project) external view returns (uint);
     function FINE_TREASURY() external returns (address payable);
@@ -30,7 +30,7 @@ interface ERC20 {
 contract FineShop is AccessControl {
     using SafeMath for uint256;
 
-    FineCore fineCore;
+    FineCoreInterface fineCore;
     mapping(uint => address) public projectOwner;
     mapping(uint => uint) public projectPremintAllocation;
     mapping(uint => uint) public projectPrice;
@@ -47,7 +47,7 @@ contract FineShop is AccessControl {
     
     constructor(address _fineCoreAddresss) {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
-        fineCore = FineCore(_fineCoreAddresss);
+        fineCore = FineCoreInterface(_fineCoreAddresss);
     }
 
     // Admin Functions
