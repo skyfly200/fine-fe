@@ -32,20 +32,18 @@ contract FineShop is AccessControl {
 
     FineCore fineCore;
     mapping(uint => address) public projectOwner;
-    mapping(uint => uint) public projectPremints; // TODO: rename w allocation
-    mapping(uint => uint) public projectMinted;
+    mapping(uint => uint) public projectPremintAllocation;
     mapping(uint => uint) public projectPrice;
-    mapping(uint => address) public projectCurrencyAddress;
-    mapping(uint => string) public projectCurrencySymbol;
-    mapping(uint => uint) public projectBulkMintCount;
+    mapping(uint => address) public projectCurrencyAddress; // TODO: create setter
+    mapping(uint => string) public projectCurrencySymbol; // TODO: create setter
+    mapping(uint => uint) public projectBulkMintCount; // TODO: create setter
     mapping(uint => bool) public projectLive;
     mapping(uint => bool) public projectPause;
-    
     mapping(uint256 => bool) public contractFilterProject;
     mapping(address => mapping (uint256 => uint256)) public projectMintCounter;
     mapping(uint256 => uint256) public projectMintLimit;
     mapping(uint256 => mapping (address => bool) ) public projectAllowList;
-    mapping(uint256 => uint256 ) public projectAllowListCount; // TODO: rename w allocation
+    mapping(uint256 => uint256 ) public projectAllowListAllocation;
     
     constructor(address _fineCoreAddresss) {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
@@ -127,7 +125,7 @@ contract FineShop is AccessControl {
     function setPremints(uint _projectId, uint premints) external {
         require(msg.sender == projectOwner[_projectId], "only owner");
         require(!projectLive[_projectId], "already live");
-        projectPremints[_projectId] = premints;
+        projectPremintAllocation[_projectId] = premints;
     }
   
     /**
@@ -240,7 +238,8 @@ contract FineShop is AccessControl {
     function purchaseTo(uint _projectId, address to, uint count) public payable returns (uint256) {
         require(projectLive[_projectId], "project not live");
         require(!projectPause[_projectId], "project paused");
-        require(projectMinted[_projectId] > projectPremints[_projectId], "premints remaining");
+        FineNFT nftContract = FineNFT(fineCore.getProjectAddress(_projectId));
+        require(nftContract.totalSupply() > projectPremintAllocation[_projectId], "premints remaining");
         require(count <= projectBulkMintCount[_projectId], "excedes minting limit");
         if (contractFilterProject[_projectId]) require(msg.sender == tx.origin, "No Contract Buys");
         if (projectMintLimit[_projectId] > 0) {
@@ -248,18 +247,16 @@ contract FineShop is AccessControl {
             projectMintCounter[msg.sender][_projectId]++;
         }
         if (
-            projectAllowListCount[_projectId] > 0 &&
-            projectMinted[_projectId] < (projectAllowListCount[_projectId] + projectPremints[_projectId])
+            projectAllowListAllocation[_projectId] > 0 &&
+            nftContract.totalSupply() < (projectAllowListAllocation[_projectId] + projectPremintAllocation[_projectId])
         ) { // Allow listed sale active and still available
             require(projectAllowList[_projectId][msg.sender], "not on allowlist");
         }
-        FineNFT nftContract = FineNFT(fineCore.getProjectAddress(_projectId));
         handlePayment(_projectId, count);
         uint tokenID;
         // loop and mint count number of tokens specified by count
         require(nftContract.totalSupply() < nftContract.getTokenLimit(), "exceeds quantity remaining");
         for (uint i = 0; i < count; i++) {
-            projectMinted[_projectId] = projectMinted[_projectId] + 1;
             tokenID = nftContract.mint(to);
         }
         return tokenID; // returns id of last token minted
@@ -291,9 +288,8 @@ contract FineShop is AccessControl {
     function premint(uint _projectId) external payable returns (uint256) {
         require(projectLive[_projectId], "project not live");
         require(msg.sender == projectOwner[_projectId], "only owner");
-        require(projectMinted[_projectId] < projectPremints[_projectId], "max premints");
-        projectMinted[_projectId] = projectMinted[_projectId] + 1;
         FineNFT nftContract = FineNFT(fineCore.getProjectAddress(_projectId));
+        require(nftContract.totalSupply() < projectPremintAllocation[_projectId], "max premints");
         address to = msg.sender;
         uint tokenID = nftContract.mint(to);
         return tokenID;
