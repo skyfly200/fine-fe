@@ -244,6 +244,18 @@ contract FineShop is AccessControl {
             projectAllowListAllocation[_projectId] = _allowlists;
     }
 
+    function addToAllowlist(uint _projectId, address minter) external {
+        require(msg.sender == projectOwner[_projectId], "only owner");
+        require(!projectLive[_projectId], "already live");
+        projectAllowList[_projectId][minter] = true;
+    }
+
+    function removeFromAllowlist(uint _projectId, address minter) external {
+        require(msg.sender == projectOwner[_projectId], "only owner");
+        require(!projectLive[_projectId], "already live");
+        projectAllowList[_projectId][minter] = false;
+    }
+
     // Sale Functions
 
     /**
