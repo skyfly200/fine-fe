@@ -97,7 +97,7 @@ contract FineCore is AccessControl {
     function getRandomness(uint256 id, uint256 seed)
         external view returns (uint256 randomnesss)
     {
-        require(true); // TODO: check caller address is true in NFT contract allowlist
+        require(allowlist[msg.sender], "rng caller not allow listed");
         uint256 randomness = uint256(keccak256(abi.encodePacked(
             entropySource.returnValue(),
             id,
