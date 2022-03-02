@@ -9,9 +9,11 @@ import FixedSidenav from '../components/FixedSidenav'
 import Logo from '../components/Logo'
 import Layout from '../containers/Layout'
 import TextInput from '../components/TextInput'
+import { ToastContext } from '../containers/ToastProvider'
+
+import slimesIMG from '../assets/images/slimes.png'
 
 import s from './Launch.module.scss'
-import { ToastContext } from '../containers/ToastProvider'
 
 const menu = ['About', 'Upcoming', 'Submissions']
 
@@ -124,13 +126,13 @@ const Home: NextPage = () => {
           <div className={s.slime}>
             <ProjectCard title="SLIMES" artist="Adam Ferris">
               <div className={s.bottom}>
-                <video autoPlay controls loop={true} className={s.video}>
-                  <source
-                    src="https://res.cloudinary.com/dhrwv7wvb/video/upload/v1646143225/fine/adam_wt2vha.mp4"
-                    type="video/mp4"
-                  />
-                  Your browser does not support the video tag.
-                </video>
+                <Image
+                  src={slimesIMG}
+                  height={1672}
+                  width={1746}
+                  layout="responsive"
+                  alt="slimes image"
+                />
                 <div className={s.description}>
                   <p>
                     Slimes is a limited edition series of webGL artworks by Adam Ferriss programmed
