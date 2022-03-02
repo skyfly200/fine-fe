@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/FineCore.sol": {
-      "lastModificationDate": 1646181272905,
-      "contentHash": "5cfb33ea3459a16d7a79b535a516f42f",
+      "lastModificationDate": 1646183013033,
+      "contentHash": "b5110b4c64443b2d4a526c236e03b8f5",
       "sourceName": "contracts/FineCore.sol",
       "solcConfig": {
         "version": "0.8.2",
@@ -293,8 +293,8 @@
       ]
     },
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/FineNFT.sol": {
-      "lastModificationDate": 1646181291209,
-      "contentHash": "5878badd2fff41ea5079ea15c98bf197",
+      "lastModificationDate": 1646182652239,
+      "contentHash": "6c5c4357d668b4faa0a5e82938503938",
       "sourceName": "contracts/FineNFT.sol",
       "solcConfig": {
         "version": "0.8.2",
@@ -784,8 +784,8 @@
       "artifacts": []
     },
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/FineShop.sol": {
-      "lastModificationDate": 1646181341893,
-      "contentHash": "e4a310b0a793659883ed13352ce89f7c",
+      "lastModificationDate": 1646182390020,
+      "contentHash": "38fb603392da8d048ced9f25e2817503",
       "sourceName": "contracts/FineShop.sol",
       "solcConfig": {
         "version": "0.8.2",
