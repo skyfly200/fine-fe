@@ -139,12 +139,21 @@ contract FineShop is AccessControl {
 
     // Project Owner Functions
 
+    modifier onlyOwner(uint _projectId) {
+      require(msg.sender == projectOwner[_projectId], "only owner");
+      _;
+    }
+
+    modifier notLive(uint _projectId) {
+      require(!projectLive[_projectId], "already live");
+      _;
+    }
+
     /**
      * @dev unpause a project
      * @param _projectId to unpause
      */
-    function unpause(uint _projectId) external {
-        require(msg.sender == projectOwner[_projectId], "only owner");
+    function unpause(uint _projectId) external onlyOwner(_projectId) {
         projectPause[_projectId] = false;
     }
 
@@ -152,8 +161,7 @@ contract FineShop is AccessControl {
      * @dev pause a project
      * @param _projectId to pause
      */
-    function pause(uint _projectId) external {
-        require(msg.sender == projectOwner[_projectId], "only owner");
+    function pause(uint _projectId) external onlyOwner(_projectId) {
         projectPause[_projectId] = true;
     }
 
@@ -162,9 +170,7 @@ contract FineShop is AccessControl {
      * @param _projectId to set price of
      * @param price to set project to
      */
-    function setPrice(uint _projectId, uint price) external {
-        require(msg.sender == projectOwner[_projectId], "only owner");
-        require(!projectLive[_projectId], "already live");
+    function setPrice(uint _projectId, uint price) external onlyOwner(_projectId) notLive(_projectId) {
         projectPrice[_projectId] = price;
     }
 
@@ -173,9 +179,7 @@ contract FineShop is AccessControl {
      * @param _projectId to set premints of
      * @param premints to set project to
      */
-    function setPremints(uint _projectId, uint premints) external {
-        require(msg.sender == projectOwner[_projectId], "only owner");
-        require(!projectLive[_projectId], "already live");
+    function setPremints(uint _projectId, uint premints) external onlyOwner(_projectId) notLive(_projectId) {
         projectPremintAllocation[_projectId] = premints;
     }
 
@@ -184,9 +188,7 @@ contract FineShop is AccessControl {
      * @param _projectId to set  allowlist spots of
      * @param spots to make available
      */
-    function setAllowlistSpots(uint _projectId, uint spots) external {
-        require(msg.sender == projectOwner[_projectId], "only owner");
-        require(!projectLive[_projectId], "already live");
+    function setAllowlistSpots(uint _projectId, uint spots) external onlyOwner(_projectId) notLive(_projectId) {
             projectAllowListAllocation[_projectId] = spots;
     }
 
@@ -194,9 +196,7 @@ contract FineShop is AccessControl {
      * @dev set the currency to ETH
      * @param _projectId to set currency of
      */
-    function setCurrencyToETH(uint _projectId) external {
-        require(msg.sender == projectOwner[_projectId], "only owner");
-        require(!projectLive[_projectId], "already live");
+    function setCurrencyToETH(uint _projectId) external onlyOwner(_projectId) notLive(_projectId) {
         projectCurrencySymbol[_projectId] = "ETH";
         projectCurrencyAddress[_projectId] = address(0x0);
     }
@@ -207,9 +207,7 @@ contract FineShop is AccessControl {
      * @param _symbol of the currency
      * @param _contract address of the currency
      */
-    function setCurrency(uint _projectId, string calldata _symbol, address _contract) external {
-        require(msg.sender == projectOwner[_projectId], "only owner");
-        require(!projectLive[_projectId], "already live");
+    function setCurrency(uint _projectId, string calldata _symbol, address _contract) external onlyOwner(_projectId) notLive(_projectId) {
         require(bytes(_symbol).length > 0, "Symbol must be provided");
         require(_contract != address(0x0), "curency address cant be zero");
         projectCurrencySymbol[_projectId] = _symbol;
@@ -232,9 +230,7 @@ contract FineShop is AccessControl {
             uint256 _price,
             uint256 _premints,
             uint256 _allowlists
-        ) external {
-            require(msg.sender == projectOwner[_projectId], "only owner");
-            require(!projectLive[_projectId], "already live");
+        ) external onlyOwner(_projectId) notLive(_projectId) {
             require(bytes(_symbol).length > 0, "Symbol must be provided");
             require(_contract != address(0x0), "curency address cant be zero");
             projectCurrencySymbol[_projectId] = _symbol;
@@ -244,15 +240,11 @@ contract FineShop is AccessControl {
             projectAllowListAllocation[_projectId] = _allowlists;
     }
 
-    function addToAllowlist(uint _projectId, address minter) external {
-        require(msg.sender == projectOwner[_projectId], "only owner");
-        require(!projectLive[_projectId], "already live");
+    function addToAllowlist(uint _projectId, address minter) external onlyOwner(_projectId) notLive(_projectId) {
         projectAllowList[_projectId][minter] = true;
     }
 
-    function removeFromAllowlist(uint _projectId, address minter) external {
-        require(msg.sender == projectOwner[_projectId], "only owner");
-        require(!projectLive[_projectId], "already live");
+    function removeFromAllowlist(uint _projectId, address minter) external onlyOwner(_projectId) notLive(_projectId) {
         projectAllowList[_projectId][minter] = false;
     }
 
