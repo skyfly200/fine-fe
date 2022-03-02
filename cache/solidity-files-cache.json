@@ -293,8 +293,8 @@
       ]
     },
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/FineNFT.sol": {
-      "lastModificationDate": 1646182652239,
-      "contentHash": "6c5c4357d668b4faa0a5e82938503938",
+      "lastModificationDate": 1646186320566,
+      "contentHash": "e31d3064cbb5fccfc5693c38a232939c",
       "sourceName": "contracts/FineNFT.sol",
       "solcConfig": {
         "version": "0.8.2",
@@ -324,7 +324,8 @@
         "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol",
         "@openzeppelin/contracts/token/ERC721/extensions/ERC721Royalty.sol",
         "@openzeppelin/contracts/access/AccessControl.sol",
-        "@openzeppelin/contracts/utils/Counters.sol"
+        "@openzeppelin/contracts/utils/Counters.sol",
+        "@openzeppelin/contracts/utils/structs/EnumerableSet.sol"
       ],
       "versionPragmas": [
         "^0.8.2"
@@ -784,8 +785,8 @@
       "artifacts": []
     },
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/FineShop.sol": {
-      "lastModificationDate": 1646182390020,
-      "contentHash": "38fb603392da8d048ced9f25e2817503",
+      "lastModificationDate": 1646190832931,
+      "contentHash": "a1b2777ef3e944b7af4b4e74c4bd1306",
       "sourceName": "contracts/FineShop.sol",
       "solcConfig": {
         "version": "0.8.2",
@@ -857,6 +858,41 @@
       ],
       "artifacts": [
         "SafeMath"
+      ]
+    },
+    "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/node_modules/@openzeppelin/contracts/utils/structs/EnumerableSet.sol": {
+      "lastModificationDate": 1646181237361,
+      "contentHash": "b8070bbbb327a49a4d37f5c590b38238",
+      "sourceName": "@openzeppelin/contracts/utils/structs/EnumerableSet.sol",
+      "solcConfig": {
+        "version": "0.8.2",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "EnumerableSet"
       ]
     }
   }
