@@ -50,7 +50,7 @@ contract FineShop is AccessControl {
         fineCore = FineCore(_fineCoreAddresss);
     }
 
-    // Mgmt Functions
+    // Admin Functions
 
     /**
      * @dev set the owner of a project
@@ -87,6 +87,8 @@ contract FineShop is AccessControl {
     function pauseAdmin(uint _projectId) external onlyRole(DEFAULT_ADMIN_ROLE) {
         projectPause[_projectId] = true;
     }
+
+    // Project Owner Functions
 
     /**
      * @dev unpause a project
