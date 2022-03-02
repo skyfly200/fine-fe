@@ -59,7 +59,7 @@ contract FineShop is AccessControl {
      */
     function setOwner(uint _projectId, address newOwner) external onlyRole(DEFAULT_ADMIN_ROLE) {
         require(projectOwner[_projectId] != newOwner, "can't be same owner");
-        require(projectOwner[_projectId] != address(0x0), "owner can't be zero address");
+        require(newOwner != address(0x0), "owner can't be zero address");
         projectOwner[_projectId] = newOwner;
     }
 
@@ -129,7 +129,7 @@ contract FineShop is AccessControl {
         uint256 _bulk,
         uint256 _limit
     ) external onlyRole(DEFAULT_ADMIN_ROLE) {
-        require(projectOwner[_projectId] != address(0x0), "owner can't be zero address");
+        require(newOwner != address(0x0), "owner can't be zero address");
         projectOwner[_projectId] = newOwner;
         contractFilterProject[_projectId] = contractFilter;
         projectBulkMintCount[_projectId] = _bulk;
