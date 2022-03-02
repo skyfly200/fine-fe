@@ -158,7 +158,7 @@ const Home: NextPage = () => {
           {/* CHUNKY MOUSE */}
           <div className={s.chunkyMouse}>
             <ProjectCard title="Chunky Mouse" artist="William Virgil">
-              <div className={s.mouseBottom}>
+              {/* <div className={s.mouseBottom}>
                 <Image
                   alt="chunky mouse"
                   src="https://res.cloudinary.com/dhrwv7wvb/image/upload/v1646146839/fine/chunky_f22c4q.webp"
@@ -187,7 +187,7 @@ const Home: NextPage = () => {
                     chubby whiteface?
                   </p>
                 </div>
-              </div>
+              </div> */}
             </ProjectCard>
           </div>
         </section>

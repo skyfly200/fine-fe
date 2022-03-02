@@ -21,7 +21,8 @@ const ModelLoader: React.FC<ObjectDisplayerProps> = ({ url }) => {
       const center = box.getCenter(new THREE.Vector3())
       const model = { ...glb }
       model.scene.position.x += model.scene.position.x - center.x
-      model.scene.position.y = 0.01 // avoid blinking
+      // model.scene.position.y = 0.01 // avoid blinking
+      model.scene.position.y = -10 // avoid blinking
       model.scene.position.z += model.scene.position.z - center.z
       // @ts-ignore
       Object.values(model.nodes).forEach(obj => Object.assign(obj, { castShadow: true }))

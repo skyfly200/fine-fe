@@ -238,7 +238,7 @@
   }
   .canvasWrapper {
     width: calc(100% - 28vw - 2rem);
-    aspect-ratio: 1;
+
     background-image: linear-gradient(to left, #ffb50d, #ffbf06, #ffc801, #ffd200, #fedc00);
     // border-radius: 999px;
     @include respond-to('tablet-sm') {
