@@ -18,7 +18,7 @@ interface FineCore {
 contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessControl {
     using Counters for Counters.Counter;
 
-    uint public TOTAL_SUPPLY = 1000;
+    uint public TOKEN_LIMIT = 1000;
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     FineCore coreContract;
     Counters.Counter private _tokenIdCounter;
@@ -129,7 +129,7 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
      */
     function mint(address to) external onlyRole(MINTER_ROLE) returns (uint tokenId) {
         tokenId = _tokenIdCounter.current();
-        require(tokenId < TOTAL_SUPPLY, "supply cap reached");
+        require(tokenId < TOKEN_LIMIT, "supply cap reached");
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
         hashes[tokenId] = coreContract.getRandomness(tokenId, block.timestamp);
@@ -147,6 +147,10 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
 
     function getAdditionalPayeePercentage() external view returns (uint256) {
         return additionalPayeePercentage;
+    }
+
+    function getTokenLimit() external view returns (uint256) {
+        return TOKEN_LIMIT;
     }
 
     // The following functions are overrides required by Solidity.

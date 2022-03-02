@@ -16,6 +16,8 @@ interface FineNFT {
     function getArtistAddress() external view returns (address payable);
     function getAdditionalPayee() external view returns (address payable);
     function getAdditionalPayeePercentage() external view returns (uint256);
+    function getTokenLimit() external view returns (uint256);
+    function totalSupply() external view returns (uint256);
 }
 
 interface ERC20 {
@@ -237,7 +239,7 @@ contract FineShop is AccessControl {
         require(projectLive[_projectId], "project not live");
         require(!projectPause[_projectId], "project paused");
         require(projectMinted[_projectId] > projectPremints[_projectId], "premints remaining");
-        require(count <= projectBulkMintCount[_projectId], "excedes mint limit");
+        require(count <= projectBulkMintCount[_projectId], "excedes minting limit");
         if (contractFilterProject[_projectId]) require(msg.sender == tx.origin, "No Contract Buys");
         if (projectMintLimit[_projectId] > 0) {
             require(projectMintCounter[msg.sender][_projectId] < projectMintLimit[_projectId], "Reached minting limit");
@@ -253,7 +255,7 @@ contract FineShop is AccessControl {
         handlePayment(_projectId, count);
         uint tokenID;
         // loop and mint count number of tokens specified by count
-        // TODO: ensure count num of token remain
+        require(nftContract.totalSupply() < nftContract.getTokenLimit(), "exceeds quantity remaining");
         for (uint i = 0; i < count; i++) {
             projectMinted[_projectId] = projectMinted[_projectId] + 1;
             tokenID = nftContract.mint(to);
