@@ -6,6 +6,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Royalty.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
 
 interface FineCore {
     function getRandomness(uint256 id, uint256 seed) external view returns (uint256 randomnesss);
@@ -17,6 +18,7 @@ interface FineCore {
 /// @custom:security-contact skyfly200@gmail.com
 contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessControl {
     using Counters for Counters.Counter;
+    using EnumerableSet for EnumerableSet.UintSet;
 
     uint public TOKEN_LIMIT = 1000;
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
@@ -24,9 +26,10 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
     Counters.Counter private _tokenIdCounter;
     //mapping(uint => uint) public hashes;
     mapping(uint => uint) public artworkId;
-    mapping(uint => bool) public artAssigned;
     mapping(uint256 => string) public scripts;
     string baseURI = "https://api.fine.digital/metadata/";
+
+    EnumerableSet.UintSet private availableArt;
 
     address payable public artistAddress = payable(0x7A832c86002323a5de3a317b3281Eb88EC3b2C00);
     address payable public additionalPayee = payable(0x0);
@@ -44,6 +47,7 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
         // set deafault royalty
         uint96 royaltyPercent = 750;
         _setDefaultRoyalty(address(this), royaltyPercent);
+        for (uint i = 0; i < TOKEN_LIMIT; i++) availableArt.add(i);
     }
 
     // /**
@@ -136,10 +140,11 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
         _safeMint(to, tokenId);
         uint randomness = coreContract.getRandomness(tokenId, block.timestamp);
         uint artId = randomness % TOKEN_LIMIT;
-        while(artAssigned[artId]) { // TODO: improve efficiency more
-            artId++;
+        while(!availableArt.contains(artId)) {
+            artId = uint256(keccak256(abi.encodePacked(randomness, artId))) % TOKEN_LIMIT;
         }
         artworkId[tokenId] = artId;
+        availableArt.remove(artId);
     }
 
     // getters for interface
