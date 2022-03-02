@@ -36,7 +36,7 @@ contract FineShop is AccessControl {
     mapping(uint => uint) public projectPrice;
     mapping(uint => address) public projectCurrencyAddress; // TODO: create setter
     mapping(uint => string) public projectCurrencySymbol; // TODO: create setter
-    mapping(uint => uint) public projectBulkMintCount; // TODO: create setter
+    mapping(uint => uint) public projectBulkMintCount;
     mapping(uint => bool) public projectLive;
     mapping(uint => bool) public projectPause;
     mapping(uint256 => bool) public contractFilterProject;
@@ -70,6 +70,32 @@ contract FineShop is AccessControl {
     function goLive(uint _projectId) external onlyRole(DEFAULT_ADMIN_ROLE) {
         projectLive[_projectId] = true;
         projectPause[_projectId] = true;
+    }
+  
+    /**
+     * @dev set the mint limiter of a project
+     * @param _projectId project to set mint limit of
+     * @param _limit mint limit per address
+     */
+    function setProjectMintLimit(uint256 _projectId, uint8 _limit) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        projectMintLimit[_projectId] = _limit;
+    }
+  
+    /**
+     * @dev set the bulk mint count of a project
+     * @param _projectId project to set mint limit of
+     * @param _count of tokens mintable 
+     */
+    function setProjectBulkMintCount(uint256 _projectId, uint8 _count) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        projectBulkMintCount[_projectId] = _count;
+    }
+
+    /**
+     * @dev set the contract mint filter
+     * @param _projectId project to toggle the contract minting filter on
+     */
+    function toggleContractFilter(uint256 _projectId) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        contractFilterProject[_projectId]=!contractFilterProject[_projectId];
     }
 
     /**
@@ -129,22 +155,16 @@ contract FineShop is AccessControl {
         require(!projectLive[_projectId], "already live");
         projectPremintAllocation[_projectId] = premints;
     }
-  
-    /**
-     * @dev set the mint limiter of a project
-     * @param _projectId project to set mint limit of
-     * @param _limit mint limit per address
-     */
-    function setProjectMintLimit(uint256 _projectId, uint8 _limit) public onlyRole(DEFAULT_ADMIN_ROLE) {
-        projectMintLimit[_projectId] = _limit;
-    }
 
     /**
-     * @dev set the contract mint filter
-     * @param _projectId project to toggle the contract minting filter on
+     * @dev set the premints of a project
+     * @param _projectId to set premints of
+     * @param premints to set project to
      */
-    function toggleContractFilter(uint256 _projectId) public onlyRole(DEFAULT_ADMIN_ROLE) {
-        contractFilterProject[_projectId]=!contractFilterProject[_projectId];
+    function setPremints(uint _projectId, uint premints) external {
+        require(msg.sender == projectOwner[_projectId], "only owner");
+        require(!projectLive[_projectId], "already live");
+        projectPremintAllocation[_projectId] = premints;
     }
 
     // Sale Functions
