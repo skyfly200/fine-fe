@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/FineCore.sol": {
-      "lastModificationDate": 1646252834100,
-      "contentHash": "a030167d6def50a901bf390f990c5329",
+      "lastModificationDate": 1646264065974,
+      "contentHash": "a6d6f2ff82cf7a81de40250b87185962",
       "sourceName": "contracts/FineCore.sol",
       "solcConfig": {
         "version": "0.8.2",
@@ -293,8 +293,8 @@
       ]
     },
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/FineNFT.sol": {
-      "lastModificationDate": 1646259742498,
-      "contentHash": "7fc9c0162036e92f92f9add24a29ac7c",
+      "lastModificationDate": 1646263110615,
+      "contentHash": "fa40cc00f7290327cb7614bb73a53c77",
       "sourceName": "contracts/FineNFT.sol",
       "solcConfig": {
         "version": "0.8.2",
