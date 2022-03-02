@@ -42,11 +42,11 @@
       transition: opacity 0.2 ease-in;
     }
     li {
-      &:last-child {
-        .link {
-          text-transform: uppercase;
-        }
-      }
+      // &:last-child {
+      //   .link {
+      //     text-transform: uppercase;
+      //   }
+      // }
     }
     .active {
       opacity: 1;

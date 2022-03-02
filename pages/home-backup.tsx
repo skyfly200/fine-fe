@@ -38,8 +38,6 @@ interface HomeProps {
   curators: Artist[]
 }
 
-const DynamicPixelHero = dynamic(() => import('../components/PixelHero'))
-
 const Home: NextPage<HomeProps> = ({
   news,
   events,

@@ -13,7 +13,7 @@ import TextInput from '../components/TextInput'
 import s from './Launch.module.scss'
 import { ToastContext } from '../containers/ToastProvider'
 
-const menu = ['About', 'Upcoming', 'Submissions', 'Join']
+const menu = ['About', 'Upcoming', 'Submissions']
 
 type ProjectCardProps = {
   title: string
@@ -36,7 +36,6 @@ const Home: NextPage = () => {
   const [activeSection, setActiveSection] = useState(menu[0])
   const aboutRef = useRef(null)
   const upcomingRef = useRef(null)
-  const submissionsRef = useRef(null)
   const joinUsRef = useRef(null)
 
   // Intersection Navigation
@@ -53,8 +52,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     aboutRef.current && createObserver(aboutRef.current)
-    upcomingRef.current && createObserver(upcomingRef.current, 0.02)
-    submissionsRef.current && createObserver(submissionsRef.current)
+    upcomingRef.current && createObserver(upcomingRef.current, 0.09)
     joinUsRef.current && createObserver(joinUsRef.current)
   }, [])
 
@@ -109,9 +107,22 @@ const Home: NextPage = () => {
             </p>
           </div>
         </section>
+
         <section ref={upcomingRef} id={menu[1]} className={s.upcoming}>
+          {/* SOLIDS */}
+          <div className={s.solids}>
+            <div className={s.header}>
+              <h2 className={s.title}>SOLIDS</h2>
+              <h3 className={s.artist}>by Far</h3>
+            </div>
+            <div className={s.canvasWrapper}>
+              <ObjectDisplayer url="/solids/1.glb" noColor withZoom={false} spotlightOn />
+            </div>
+          </div>
+
+          {/* SLIMES */}
           <div className={s.slime}>
-            <ProjectCard title="SLIME" artist="Adam Ferris">
+            <ProjectCard title="SLIMES" artist="Adam Ferris">
               <div className={s.bottom}>
                 <video autoPlay controls loop={true} className={s.video}>
                   <source
@@ -141,15 +152,8 @@ const Home: NextPage = () => {
               </div>
             </ProjectCard>
           </div>
-          <div className={s.solids}>
-            <div className={s.header}>
-              <h2 className={s.title}>SOLIDS</h2>
-              <h3 className={s.artist}>by Far</h3>
-            </div>
-            <div className={s.canvasWrapper}>
-              <ObjectDisplayer url="/solids/1.glb" noColor withZoom={false} />
-            </div>
-          </div>
+
+          {/* CHUNKY MOUSE */}
           <div className={s.chunkyMouse}>
             <ProjectCard title="Chunky Mouse" artist="William Virgil">
               <div className={s.mouseBottom}>
@@ -185,48 +189,36 @@ const Home: NextPage = () => {
             </ProjectCard>
           </div>
         </section>
-        <section ref={submissionsRef} id={menu[2]} className={s.submissions}>
-          <h3 className={s.title}>
-            Artist <br />
-            Submissions
-          </h3>
-          <div className={s.content}>
-            <p>
-              We are interested in submissions from artists all around the world who are focused on
-              creating with on-chain technologies and would like to develop projects with us, kindly
-              submit your proposal{' '}
-              <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSd-RfosRffHfH7eKW5xFFZD6EuOApJUraqeBlsFfigyVame_w/viewform"
-                target="_blank"
-                rel="noreferrer"
-                className={s.link}
-              >
-                here
-              </a>
-              .
-            </p>
-            <p className={s.footnote}>
-              Submit any submission questions{' '}
-              <a href="mailto:hello@fine.digital" className={s.link}>
-                here
-              </a>
-              .
-            </p>
-          </div>
-        </section>
-        <section ref={joinUsRef} id={menu[3]} className={s.join}>
+
+        <section ref={joinUsRef} id={menu[2]} className={s.join}>
           <article className={s.content}>
-            <h4 className={s.title}>Investors</h4>
-            <p>
-              If you are a strategic investor and would like to grow with us, we are looking for
-              long-term partnerships that are willing to be part of a cultural movement utilizing
-              blockchain technology.
-            </p>
-            <p>
-              <a href="mailto:hello@fine.digital" className={s.link}>
-                Contact us
-              </a>
-            </p>
+            <h3 className={s.title}>
+              Artist <br />
+              Submissions
+            </h3>
+            <div className={s.content}>
+              <p>
+                We are interested in submissions from artists all around the world who are focused
+                on creating with on-chain technologies and would like to develop projects with us,
+                kindly submit your proposal{' '}
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSd-RfosRffHfH7eKW5xFFZD6EuOApJUraqeBlsFfigyVame_w/viewform"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={s.link}
+                >
+                  here
+                </a>
+                .
+              </p>
+              <p className={s.footnote}>
+                Submit any submission questions{' '}
+                <a href="mailto:hello@fine.digital" className={s.link}>
+                  here
+                </a>
+                .
+              </p>
+            </div>
           </article>
           <article className={s.content}>
             <h4 className={s.title}>Collectors</h4>
@@ -251,8 +243,7 @@ const Home: NextPage = () => {
               <h4 className={s.title}>Join Our Team</h4>
               <p>
                 If you are interested in being part of FINE and feel you have something unique to
-                contribute, we would like to hear from you. We are looking to collaborate with
-                Curators, Solidity Developers and others.
+                contribute, we would like to hear from you.
               </p>
               <p>
                 <a href="mailto:hello@fine.digital" className={s.link}>
