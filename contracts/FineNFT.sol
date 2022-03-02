@@ -22,7 +22,9 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     FineCore coreContract;
     Counters.Counter private _tokenIdCounter;
-    mapping(uint => uint) public hashes;
+    //mapping(uint => uint) public hashes;
+    mapping(uint => uint) public artworkId;
+    mapping(uint => bool) public artAssigned;
     mapping(uint256 => string) public scripts;
     string baseURI = "https://api.fine.digital/metadata/";
 
@@ -132,7 +134,12 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
         require(tokenId < TOKEN_LIMIT, "supply cap reached");
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
-        hashes[tokenId] = coreContract.getRandomness(tokenId, block.timestamp);
+        uint randomness = coreContract.getRandomness(tokenId, block.timestamp);
+        uint artId = randomness % TOKEN_LIMIT;
+        while(artAssigned[artId]) { // TODO: improve efficiency more
+            artId++;
+        }
+        artworkId[tokenId] = artId;
     }
 
     // getters for interface
