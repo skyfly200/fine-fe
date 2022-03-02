@@ -147,7 +147,7 @@ contract FineShop is AccessControl {
         contractFilterProject[_projectId]=!contractFilterProject[_projectId];
     }
 
-    // Minting Functions
+    // Sale Functions
 
     /**
      * @dev handle payment for a purchase
@@ -228,6 +228,8 @@ contract FineShop is AccessControl {
             ERC20(projectCurrencyAddress[_projectId]).transferFrom(msg.sender, nftContract.getArtistAddress(), creatorFunds);
         }
     }
+
+    // Minting Functions
 
     /**
      * @dev purchase tokens of a project and send to a specific address
