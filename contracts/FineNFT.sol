@@ -27,14 +27,15 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
     //mapping(uint => uint) public hashes;
     mapping(uint => uint) public artworkId;
     mapping(uint256 => string) public scripts;
-    string baseURI = "https://api.fine.digital/metadata/";
 
     EnumerableSet.UintSet private availableArt;
 
     address payable public artistAddress = payable(0x7A832c86002323a5de3a317b3281Eb88EC3b2C00);
     address payable public additionalPayee = payable(0x0);
     uint256 public additionalPayeePercentage = 0;
+    uint96 royaltyPercent = 750;
 
+    string baseURI = "https://api.fine.digital/metadata/";
     string public artist = "fine";
     string public description = "a sample NFT for FINE";
     string public website = "https://api.fine.digital";
@@ -45,7 +46,6 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
         _grantRole(MINTER_ROLE, msg.sender);
         coreContract = FineCore(coreAddress);
         // set deafault royalty
-        uint96 royaltyPercent = 750;
         _setDefaultRoyalty(address(this), royaltyPercent);
         for (uint i = 0; i < TOKEN_LIMIT; i++) availableArt.add(i);
     }
