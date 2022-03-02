@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.2;
 
-import "@openzeppelin/contracts@4.4.2/access/AccessControl.sol";
-import "@openzeppelin/contracts@4.4.2/utils/Counters.sol";
+import "@openzeppelin/contracts/access/AccessControl.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
 //import "./libraries/Random.sol";
 
 interface RandomizerInt {

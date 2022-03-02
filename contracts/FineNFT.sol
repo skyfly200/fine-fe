@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.2;
 
-import "@openzeppelin/contracts@4.5.0/token/ERC721/extensions/ERC721Enumerable.sol";
-import "@openzeppelin/contracts@4.5.0/token/ERC721/extensions/ERC721Burnable.sol";
-import "@openzeppelin/contracts@4.5.0/token/ERC721/extensions/ERC721Royalty.sol";
-import "@openzeppelin/contracts@4.5.0/access/AccessControl.sol";
-import "@openzeppelin/contracts@4.5.0/utils/Counters.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Royalty.sol";
+import "@openzeppelin/contracts/access/AccessControl.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
 
 interface FineCore {
     function getRandomness(uint256 id, uint256 seed) external view returns (uint256 randomnesss);
