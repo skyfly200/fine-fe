@@ -92,7 +92,7 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
 
     /**
      * @dev Store a script
-     * @param index base for all tokens 
+     * @param index in the array of scripts
      * @param script to store
      * @dev Only the admin can call this
      */
