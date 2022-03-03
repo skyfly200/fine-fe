@@ -135,6 +135,20 @@ describe("FineShop", function () {
     await expect(this.shop.buy(0, 1, {value: 10000})).to.be.reverted;
   });
 
+  it("Non allowlisted mints succeed, after allowlisted mint", async function () {
+    await this.core.addProject(this.nft.address);
+    const [owner, addr1] = await ethers.getSigners();
+    await this.shop.quickInit(0, owner.address, true, 0, 0);
+    await this.shop.quickSet(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 0, 1);
+    await this.shop.goLive(0);
+    await this.shop.addToAllowlist(0, owner.address);
+    await this.shop.unpause(0);
+    await this.shop.buy(0, 1, {value: 10000});
+    expect(await this.nft.totalSupply()).to.equal(1);
+    await this.shop.connect(addr1).buy(0, 1, {value: 10000});
+    expect(await this.nft.totalSupply()).to.equal(2);
+  });
+
   it("Should be able to mint normally", async function () {
     await this.core.addProject(this.nft.address);
     const [owner] = await ethers.getSigners();
