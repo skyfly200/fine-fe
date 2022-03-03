@@ -7,4 +7,5 @@ interface FineCoreInterface {
     function getProjectID(address project) external view returns (uint);
     function FINE_TREASURY() external returns (address payable);
     function platformPercentage() external returns (uint256);
+    function platformRoyalty() external returns (uint256);
 }
