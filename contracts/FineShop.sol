@@ -3,7 +3,7 @@ pragma solidity ^0.8.2;
 
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
-import "@openzeppelin/contracts/introspection/ERC165Checker.sol";
+import "@openzeppelin/contracts/utils/introspection/ERC165Checker.sol";
 
 interface FineCoreInterface {
     function getProjectAddress(uint id) external view returns (address);
@@ -21,7 +21,7 @@ interface FineNFTInterface {
     function totalSupply() external view returns (uint256);
 }
 
-interface ERC20 {
+interface IERC20 {
     function balanceOf(address _owner) external view returns (uint balance);
     function transferFrom(address _from, address _to, uint _value) external returns (bool success);
     function allowance(address _owner, address _spender) external view returns (uint remaining);
@@ -266,8 +266,8 @@ contract FineShop is AccessControl {
         uint price = projectPrice[_projectId].mul(count);
         if (keccak256(abi.encodePacked(projectCurrencySymbol[_projectId])) != keccak256(abi.encodePacked("ETH"))){
             require(msg.value==0, "this project accepts a different currency and cannot accept ETH");
-            require(ERC20(projectCurrencyAddress[_projectId]).allowance(msg.sender, address(this)) >= price, "Insufficient Funds Approved for TX");
-            require(ERC20(projectCurrencyAddress[_projectId]).balanceOf(msg.sender) >= price, "Insufficient balance.");
+            require(IERC20(projectCurrencyAddress[_projectId]).allowance(msg.sender, address(this)) >= price, "Insufficient Funds Approved for TX");
+            require(IERC20(projectCurrencyAddress[_projectId]).balanceOf(msg.sender) >= price, "Insufficient balance.");
             _splitFundsERC20(_projectId, count);
         } else {
             require(msg.value >= price, "Must send minimum value to mint!");
@@ -318,7 +318,7 @@ contract FineShop is AccessControl {
         uint salePrice = pricePerTokenInWei.mul(count);
         uint256 platformAmount = salePrice.div(10000).mul(fineCore.platformPercentage());
         if (platformAmount > 0) {
-            ERC20(projectCurrencyAddress[_projectId]).transferFrom(msg.sender, fineCore.FINE_TREASURY(), platformAmount);
+            IERC20(projectCurrencyAddress[_projectId]).transferFrom(msg.sender, fineCore.FINE_TREASURY(), platformAmount);
         }
         FineNFTInterface nftContract = FineNFTInterface(fineCore.getProjectAddress(_projectId));
         nftContract.getArtistAddress();
@@ -327,12 +327,12 @@ contract FineShop is AccessControl {
         if (nftContract.getAdditionalPayeePercentage() > 0) {
             additionalPayeeAmount = projectFunds.div(10000).mul(nftContract.getAdditionalPayeePercentage());
         if (additionalPayeeAmount > 0) {
-            ERC20(projectCurrencyAddress[_projectId]).transferFrom(msg.sender, nftContract.getAdditionalPayee(), additionalPayeeAmount);
+            IERC20(projectCurrencyAddress[_projectId]).transferFrom(msg.sender, nftContract.getAdditionalPayee(), additionalPayeeAmount);
         }
         }
         uint256 creatorFunds = projectFunds.sub(additionalPayeeAmount);
         if (creatorFunds > 0) {
-            ERC20(projectCurrencyAddress[_projectId]).transferFrom(msg.sender, nftContract.getArtistAddress(), creatorFunds);
+            IERC20(projectCurrencyAddress[_projectId]).transferFrom(msg.sender, nftContract.getArtistAddress(), creatorFunds);
         }
     }
 
