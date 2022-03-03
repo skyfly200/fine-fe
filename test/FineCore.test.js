@@ -3,11 +3,14 @@ const { ethers } = require("hardhat");
 
 describe("FineCore", function () {
   before(async function () {
+    this.RandomStub = await ethers.getContractFactory("RandomStub");
     this.FineCore = await ethers.getContractFactory("FineCore");
   });
 
   beforeEach(async function () {
-    this.core = await this.FineCore.deploy("0x7A832c86002323a5de3a317b3281Eb88EC3b2C00");
+    this.random = await this.RandomStub.deploy();
+    await this.random.deployed();
+    this.core = await this.FineCore.deploy(this.random.address);
     await this.core.deployed();
   });
 
