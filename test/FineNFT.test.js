@@ -22,7 +22,6 @@ describe("FineNFT", function () {
 
   it("Should be able to add the project to core", async function () {
     await this.core.addProject(this.nft.address);
-    console.log(await this.core.getProjectAddress(0));
     expect(await this.core.getProjectAddress(0)).to.equal(this.nft.address);
   });
 });
