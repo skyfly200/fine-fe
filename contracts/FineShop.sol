@@ -284,7 +284,7 @@ contract FineShop is AccessControl {
             if (refund > 0) {
                 payable(msg.sender).transfer(refund);
             }
-            uint256 platformAmount = salePrice.div(100).mul(fineCore.platformPercentage());
+            uint256 platformAmount = salePrice.div(10000).mul(fineCore.platformPercentage());
             if (platformAmount > 0) {
                 fineCore.FINE_TREASURY().transfer(platformAmount);
             }
@@ -292,7 +292,7 @@ contract FineShop is AccessControl {
             uint256 projectFunds = salePrice.sub(platformAmount);
             uint256 additionalPayeeAmount;
             if (nftContract.getAdditionalPayeePercentage() > 0) {
-                additionalPayeeAmount = projectFunds.div(100).mul(nftContract.getAdditionalPayeePercentage());
+                additionalPayeeAmount = projectFunds.div(10000).mul(nftContract.getAdditionalPayeePercentage());
                 if (additionalPayeeAmount > 0) {
                     nftContract.getAdditionalPayee().transfer(additionalPayeeAmount);
                 }
@@ -312,7 +312,7 @@ contract FineShop is AccessControl {
     function _splitFundsERC20(uint256 _projectId, uint count) internal {
         uint256 pricePerTokenInWei = projectPrice[_projectId];
         uint salePrice = pricePerTokenInWei.mul(count);
-        uint256 platformAmount = salePrice.div(100).mul(fineCore.platformPercentage());
+        uint256 platformAmount = salePrice.div(10000).mul(fineCore.platformPercentage());
         if (platformAmount > 0) {
             ERC20(projectCurrencyAddress[_projectId]).transferFrom(msg.sender, fineCore.FINE_TREASURY(), platformAmount);
         }
@@ -321,7 +321,7 @@ contract FineShop is AccessControl {
         uint256 projectFunds = salePrice.sub(platformAmount);
         uint256 additionalPayeeAmount;
         if (nftContract.getAdditionalPayeePercentage() > 0) {
-            additionalPayeeAmount = projectFunds.div(100).mul(nftContract.getAdditionalPayeePercentage());
+            additionalPayeeAmount = projectFunds.div(10000).mul(nftContract.getAdditionalPayeePercentage());
         if (additionalPayeeAmount > 0) {
             ERC20(projectCurrencyAddress[_projectId]).transferFrom(msg.sender, nftContract.getAdditionalPayee(), additionalPayeeAmount);
         }
