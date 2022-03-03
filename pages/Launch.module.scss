@@ -38,8 +38,8 @@
     margin-left: -1rem;
     padding-top: 4rem;
     padding-right: 1rem;
-    @include respond-to('tablet-sm') {
-      padding-top: 1rem;
+    @include respond-to('mobile') {
+      padding-top: 2rem;
     }
   }
 
@@ -53,21 +53,6 @@
     font-size: 1.2rem;
     line-height: 1.25;
     position: relative;
-    &::after {
-      position: absolute;
-      top: 0;
-      right: 0;
-      background-color: black;
-      width: calc(100% - 28vw - 2rem);
-      height: 1px;
-      content: '';
-      @include respond-to('tablet-sm') {
-        width: calc(100% - 80px);
-      }
-      @include respond-to('mobile') {
-        width: calc(100% - 40px);
-      }
-    }
 
     @include respond-to('tablet-sm') {
       gap: 4rem;
@@ -227,14 +212,16 @@
   &::after {
     position: absolute;
     top: 0;
-    left: 0;
     background-color: black;
     width: 20%;
     height: 1px;
     content: '';
     @include respond-to('tablet-sm') {
-      width: calc(100% - 40px);
+      width: calc(100% - 80px);
       right: 0;
+    }
+    @include respond-to('mouse') {
+      width: calc(100% - 40px);
     }
   }
 
@@ -250,20 +237,6 @@
     @include respond-to('tablet-sm') {
       grid-template-columns: 1fr;
       grid-template-rows: auto 1fr;
-    }
-  }
-
-  &::after {
-    position: absolute;
-    top: 0;
-    left: calc(28vw + 2rem);
-    background-color: black;
-    width: 20%;
-    height: 1px;
-    content: '';
-    @include respond-to('tablet-sm') {
-      left: 40px;
-      width: 100%;
     }
   }
 }
