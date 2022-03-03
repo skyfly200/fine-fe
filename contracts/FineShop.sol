@@ -11,7 +11,7 @@ interface FineCoreInterface {
     function platformPercentage() external returns (uint256);
 }
 
-interface FineNFT {
+interface FineNFTInterface {
     function mint(address to) external returns (uint);
     function getArtistAddress() external view returns (address payable);
     function getAdditionalPayee() external view returns (address payable);
@@ -284,7 +284,7 @@ contract FineShop is AccessControl {
             if (platformAmount > 0) {
                 fineCore.FINE_TREASURY().transfer(platformAmount);
             }
-            FineNFT nftContract = FineNFT(fineCore.getProjectAddress(_projectId));
+            FineNFTInterface nftContract = FineNFTInterface(fineCore.getProjectAddress(_projectId));
             nftContract.getArtistAddress();
             uint256 projectFunds = salePrice.sub(platformAmount);
             uint256 additionalPayeeAmount;
@@ -313,7 +313,7 @@ contract FineShop is AccessControl {
         if (platformAmount > 0) {
             ERC20(projectCurrencyAddress[_projectId]).transferFrom(msg.sender, fineCore.FINE_TREASURY(), platformAmount);
         }
-        FineNFT nftContract = FineNFT(fineCore.getProjectAddress(_projectId));
+        FineNFTInterface nftContract = FineNFTInterface(fineCore.getProjectAddress(_projectId));
         nftContract.getArtistAddress();
         uint256 projectFunds = salePrice.sub(platformAmount);
         uint256 additionalPayeeAmount;
@@ -340,7 +340,7 @@ contract FineShop is AccessControl {
     function purchaseTo(uint _projectId, address to, uint count) public payable returns (uint256) {
         require(projectLive[_projectId], "project not live");
         require(!projectPause[_projectId], "project paused");
-        FineNFT nftContract = FineNFT(fineCore.getProjectAddress(_projectId));
+        FineNFTInterface nftContract = FineNFTInterface(fineCore.getProjectAddress(_projectId));
         require(nftContract.totalSupply() > projectPremintAllocation[_projectId], "premints remaining");
         require(count <= projectBulkMintCount[_projectId], "excedes minting limit");
         if (contractFilterProject[_projectId]) require(msg.sender == tx.origin, "No Contract Buys");
@@ -390,7 +390,7 @@ contract FineShop is AccessControl {
     function premint(uint _projectId) external payable returns (uint256) {
         require(projectLive[_projectId], "project not live");
         require(msg.sender == projectOwner[_projectId], "only owner");
-        FineNFT nftContract = FineNFT(fineCore.getProjectAddress(_projectId));
+        FineNFTInterface nftContract = FineNFTInterface(fineCore.getProjectAddress(_projectId));
         require(nftContract.totalSupply() < projectPremintAllocation[_projectId], "max premints");
         address to = msg.sender;
         uint tokenID = nftContract.mint(to);

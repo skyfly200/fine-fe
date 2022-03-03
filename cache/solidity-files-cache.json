@@ -785,8 +785,8 @@
       "artifacts": []
     },
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/FineShop.sol": {
-      "lastModificationDate": 1646260009236,
-      "contentHash": "d678fd8098cc7980d5f4ba1ede84ecec",
+      "lastModificationDate": 1646266938446,
+      "contentHash": "779a5164b0ef2d9139b4b40962a2133e",
       "sourceName": "contracts/FineShop.sol",
       "solcConfig": {
         "version": "0.8.2",
@@ -821,7 +821,7 @@
       "artifacts": [
         "ERC20",
         "FineCoreInterface",
-        "FineNFT",
+        "FineNFTInterface",
         "FineShop"
       ]
     },

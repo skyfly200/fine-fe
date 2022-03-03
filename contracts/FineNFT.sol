@@ -48,7 +48,6 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
         coreContract = FineCoreInterface(coreAddress);
         // set deafault royalty
         _setDefaultRoyalty(address(this), royaltyPercent);
-        for (uint i = 0; i < TOKEN_LIMIT; i++) availableArt.add(i);
     }
 
     /**
@@ -61,7 +60,6 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
      * @dev split royalties sent to contract (ONLY ETH!)
      */
     function withdraw() onlyRole(DEFAULT_ADMIN_ROLE) external {
-        address payable from = payable(msg.sender);
         _splitFunds(address(this).balance);
     }
 
@@ -76,7 +74,12 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
         }
     }
 
-     
+    /**
+     * @dev init set with art IDs
+     */
+    function initPool(uint start, uint end) external {
+        for (uint i = start; i < end; i++) availableArt.add(i);
+    }
 
     /**
      * @dev get baseURI for all tokens
