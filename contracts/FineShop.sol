@@ -69,6 +69,7 @@ contract FineShop is AccessControl {
      * @param _projectId to push live
      */
     function goLive(uint _projectId) external onlyRole(DEFAULT_ADMIN_ROLE) {
+        require(projectReadyForLive[_projectId], "project not ready for live");
         projectLive[_projectId] = true;
         projectPause[_projectId] = true;
     }
