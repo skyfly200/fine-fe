@@ -38,7 +38,7 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
     string public baseURI = "IPFS HASH HERE";
     string public artist = "fine";
     string public description = "a sample NFT for FINE";
-    string public website = "https://api.fine.digital";
+    string public website = "https://fine.digital";
     string public license = "MIT";
     
     constructor(address coreAddress, address shopAddress) ERC721("FINE Digital", "FINE") {
