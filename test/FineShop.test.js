@@ -149,4 +149,16 @@ describe("FineShop", function () {
     expect(await this.nft.totalSupply()).to.equal(5);
     await expect(this.shop.buy(0, 6, {value: 60000})).to.be.reverted;
   });
+
+  it("Should be able limit mint per address", async function () {
+    await this.core.addProject(this.nft.address);
+    const [owner] = await ethers.getSigners();
+    await this.shop.quickInit(0, owner.address, true, 0, 1);
+    await this.shop.quickSet(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 0, 0);
+    await this.shop.goLive(0);
+    await this.shop.unpause(0);
+    await this.shop.buy(0, 1, {value: 10000});
+    expect(await this.nft.totalSupply()).to.equal(1);
+    await expect(this.shop.buy(0, 2, {value: 20000})).to.be.reverted;
+  });
 });
