@@ -341,7 +341,7 @@ contract FineShop is AccessControl {
         require(projectLive[_projectId], "project not live");
         require(!projectPause[_projectId], "project paused");
         FineNFTInterface nftContract = FineNFTInterface(fineCore.getProjectAddress(_projectId));
-        require(nftContract.totalSupply() > projectPremintAllocation[_projectId], "premints remaining");
+        require(nftContract.totalSupply() >= projectPremintAllocation[_projectId], "premints remaining");
         require(count <= projectBulkMintCount[_projectId], "excedes minting limit");
         if (contractFilterProject[_projectId]) require(msg.sender == tx.origin, "No Contract Buys");
         if (projectMintLimit[_projectId] > 0) {
