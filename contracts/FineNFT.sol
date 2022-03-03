@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.2;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
@@ -7,14 +7,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Royalty.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
-
-interface FineCoreInterface {
-    function getProjectAddress(uint id) external view returns (address);
-    function getRandomness(uint256 id, uint256 seed) external view returns (uint256 randomnesss);
-    function getProjectID(address project) external view returns (uint);
-    function FINE_TREASURY() external returns (address payable);
-    function platformRoyalty() external returns (uint256);
-}
+import "./FineCoreInterface.sol";
 
 /// @custom:security-contact skyfly200@gmail.com
 contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessControl {
