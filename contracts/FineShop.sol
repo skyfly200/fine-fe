@@ -289,7 +289,6 @@ contract FineShop is AccessControl {
                 fineCore.FINE_TREASURY().transfer(platformAmount);
             }
             FineNFTInterface nftContract = FineNFTInterface(fineCore.getProjectAddress(_projectId));
-            nftContract.getArtistAddress();
             uint256 projectFunds = salePrice.sub(platformAmount);
             uint256 additionalPayeeAmount;
             if (nftContract.getAdditionalPayeePercentage() > 0) {
