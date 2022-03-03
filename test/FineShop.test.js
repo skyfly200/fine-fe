@@ -42,7 +42,11 @@ describe("FineShop", function () {
     const [owner] = await ethers.getSigners();
     await this.shop.quickInit(0, owner.address, true, 0, 0);
     await this.shop.quickSet(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 1, 10);
+    expect(await this.shop.projectCurrencySymbol(0)).to.equal("ETH");
+    expect(await this.shop.projectCurrencyAddress(0)).to.equal("0x0000000000000000000000000000000000000000");
     expect(await this.shop.projectPrice(0)).to.equal(10000);
+    expect(await this.shop.projectPremintAllocation(0)).to.equal(1);
+    expect(await this.shop.projectAllowListAllocation(0)).to.equal(10);
   });
 
   it("Should be able to go live", async function () {
