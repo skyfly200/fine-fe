@@ -83,7 +83,7 @@ describe("FineShop", function () {
     expect(await this.shop.projectAllowList(0, owner.address)).to.equal(false);
   });
 
-  it("Should be able to premint", async function () {
+  it("Owner should be able to premint", async function () {
     await this.core.addProject(this.nft.address);
     const [owner] = await ethers.getSigners();
     await this.shop.quickInit(0, owner.address, true, 0, 0);
@@ -91,6 +91,15 @@ describe("FineShop", function () {
     await this.shop.goLive(0);
     await this.shop.premint(0);
     expect(await this.nft.totalSupply()).to.equal(1);
+  });
+
+  it("Non owner should not be able to premint", async function () {
+    await this.core.addProject(this.nft.address);
+    const [owner, addr1] = await ethers.getSigners();
+    await this.shop.quickInit(0, owner.address, true, 0, 0);
+    await this.shop.quickSet(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 1, 10);
+    await this.shop.goLive(0);
+    await expect(this.shop.connect(addr1).premint(0)).to.be.reverted;
   });
 
   it("Premints should be limitable", async function () {
@@ -114,6 +123,16 @@ describe("FineShop", function () {
     await this.shop.unpause(0);
     await this.shop.buy(0, 10, {value: 100000});
     expect(await this.nft.totalSupply()).to.equal(10);
+  });
+
+  it("Non allowlisted mints fail, during allowlisted mint", async function () {
+    await this.core.addProject(this.nft.address);
+    const [owner] = await ethers.getSigners();
+    await this.shop.quickInit(0, owner.address, true, 0, 0);
+    await this.shop.quickSet(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 0, 10);
+    await this.shop.goLive(0);
+    await this.shop.unpause(0);
+    await expect(this.shop.buy(0, 1, {value: 10000})).to.be.reverted;
   });
 
   it("Should be able to mint normally", async function () {
