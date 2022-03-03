@@ -231,7 +231,8 @@ contract FineShop is AccessControl {
             uint256 _allowlists
         ) external onlyOwner(_projectId) notLive(_projectId) {
             require(bytes(_symbol).length > 0, "Symbol must be provided");
-            require(_contract != address(0x0), "curency address cant be zero");
+            if (keccak256(abi.encodePacked(_symbol)) != keccak256(abi.encodePacked("ETH")))
+                require(_contract != address(0x0), "curency address cant be zero");
             projectCurrencySymbol[_projectId] = _symbol;
             projectCurrencyAddress[_projectId] = _contract;
             projectPrice[_projectId] = _price;
