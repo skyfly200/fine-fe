@@ -51,13 +51,11 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
         for (uint i = 0; i < TOKEN_LIMIT; i++) availableArt.add(i);
     }
 
-    // /**
-    //  * @dev receive direct ETH transfers
-    //  * @notice for splitting royalties
-    //  */
-    // receive() external payable {
-    //     _splitFunds(msg.value); 
-    // }
+    /**
+     * @dev receive direct ETH transfers
+     * @notice for splitting royalties
+     */
+    receive() external payable {}
 
     /**
      * @dev withdraw all funds in contract
