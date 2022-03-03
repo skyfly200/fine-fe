@@ -240,11 +240,11 @@ contract FineShop is AccessControl {
             projectAllowListAllocation[_projectId] = _allowlists;
     }
 
-    function addToAllowlist(uint _projectId, address minter) external onlyOwner(_projectId) notLive(_projectId) {
+    function addToAllowlist(uint _projectId, address minter) external onlyOwner(_projectId) {
         projectAllowList[_projectId][minter] = true;
     }
 
-    function removeFromAllowlist(uint _projectId, address minter) external onlyOwner(_projectId) notLive(_projectId) {
+    function removeFromAllowlist(uint _projectId, address minter) external onlyOwner(_projectId) {
         projectAllowList[_projectId][minter] = false;
     }
 
