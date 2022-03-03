@@ -383,7 +383,7 @@ contract FineShop is AccessControl {
      * @dev premint tokens of a project
      * @param _projectId to purchase
      */
-    function premint(uint _projectId) external payable returns (uint256) {
+    function premint(uint _projectId) external returns (uint256) {
         require(projectLive[_projectId], "project not live");
         require(msg.sender == projectOwner[_projectId], "only owner");
         FineNFTInterface nftContract = FineNFTInterface(fineCore.getProjectAddress(_projectId));
