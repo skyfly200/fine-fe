@@ -24,4 +24,11 @@ describe("FineNFT", function () {
     await this.core.addProject(this.nft.address);
     expect(await this.core.getProjectAddress(0)).to.equal(this.nft.address);
   });
+
+  it("Should be able to init project", async function () {
+    await this.core.addProject(this.nft.address);
+    const [owner] = await ethers.getSigners();
+    await this.shop.quickInit(0, owner.address, true, 0, 0);
+    expect(await this.shop.projectOwner(0)).to.equal(owner.address);
+  });
 });
