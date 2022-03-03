@@ -20,23 +20,8 @@ describe("FineNFT", function () {
     await this.nft.deployed();
   });
 
-  it("Should be able to add the project to core", async function () {
-    await this.core.addProject(this.nft.address);
-    expect(await this.core.getProjectAddress(0)).to.equal(this.nft.address);
-  });
-
-  it("Should be able to init project", async function () {
-    await this.core.addProject(this.nft.address);
-    const [owner] = await ethers.getSigners();
-    await this.shop.quickInit(0, owner.address, true, 0, 0);
-    expect(await this.shop.projectOwner(0)).to.equal(owner.address);
-  });
-
-  it("Should be able to setup project", async function () {
-    await this.core.addProject(this.nft.address);
-    const [owner] = await ethers.getSigners();
-    await this.shop.quickInit(0, owner.address, true, 0, 0);
-    await this.shop.quickSet(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 1, 10);
-    expect(await this.shop.projectPrice(0)).to.equal(10000);
+  it("Should be able to init the art id pool", async function () {
+    await this.nft.initPool(0,500);
+    await this.nft.initPool(500,1000);
   });
 });
