@@ -929,6 +929,41 @@
       "artifacts": [
         "console"
       ]
+    },
+    "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/RandomStub.sol": {
+      "lastModificationDate": 1646265917847,
+      "contentHash": "1099d3b6ca54a67b641869a62af0204f",
+      "sourceName": "contracts/RandomStub.sol",
+      "solcConfig": {
+        "version": "0.8.2",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.2"
+      ],
+      "artifacts": [
+        "RandomStub"
+      ]
     }
   }
 }
