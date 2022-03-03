@@ -38,7 +38,9 @@
     margin-left: -1rem;
     padding-top: 4rem;
     padding-right: 1rem;
+    padding-bottom: 4rem;
     @include respond-to('mobile') {
+      padding-bottom: 2rem;
       padding-top: 2rem;
     }
   }
@@ -132,12 +134,15 @@
   padding-left: calc(28vw + 2rem);
   margin-bottom: 4rem;
   min-height: calc(var(--vh, 1vh) * 50);
+  &:last-child {
+    min-height: 0;
+  }
   @include respond-to('tablet-sm') {
     margin-bottom: 2rem;
     padding-left: 80px;
   }
   @include respond-to('mobile') {
-    padding-left: 40px;
+    padding-left: calc(40px + 1rem);
   }
   .content {
     position: sticky;
@@ -152,6 +157,7 @@
       .title {
         font-weight: 400;
         font-size: 5rem;
+        line-height: 1;
         margin: 0;
       }
       .artist {
@@ -201,7 +207,7 @@
       left: 80px;
     }
     @include respond-to('mobile') {
-      left: 40px;
+      left: calc(40px + 1rem);
     }
   }
 }
@@ -218,11 +224,11 @@
     height: 1px;
     content: '';
     @include respond-to('tablet-sm') {
-      width: calc(100% - 80px);
-      right: 0;
+      width: 100%;
+      left: 80px;
     }
-    @include respond-to('mouse') {
-      width: calc(100% - 40px);
+    @include respond-to('mobile') {
+      left: calc(40px + 1rem);
     }
   }
 
