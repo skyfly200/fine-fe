@@ -8,6 +8,7 @@ import "@openzeppelin/contracts/utils/introspection/ERC165Checker.sol";
 
 interface FineCoreInterface {
     function getProjectAddress(uint id) external view returns (address);
+    function getRandomness(uint256 id, uint256 seed) external view returns (uint256 randomnesss);
     function getProjectID(address project) external view returns (uint);
     function FINE_TREASURY() external returns (address payable);
     function platformPercentage() external returns (uint256);
