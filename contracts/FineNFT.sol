@@ -92,13 +92,6 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
     // On-chain data
 
     /**
-     * @dev get project id from core contract
-     */
-    function projectId() external view returns (uint) {
-        return coreContract.getProjectID(address(this));
-    }
-
-    /**
      * @dev Store a script
      * @param index in the array of scripts
      * @param script to store
