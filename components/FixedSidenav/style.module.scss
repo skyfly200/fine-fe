@@ -9,7 +9,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-
+  z-index: 2;
   @include respond-to('tablet-sm') {
     justify-content: flex-start;
     width: calc(31vw + 0.5rem);

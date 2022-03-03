@@ -14,8 +14,10 @@ import { ToastContext } from '../containers/ToastProvider'
 import slimesIMG from '../assets/images/slimes.png'
 
 import s from './Launch.module.scss'
+import dynamic from 'next/dynamic'
 
 const menu = ['About', 'Upcoming', 'Submissions']
+const DynamicSoonCanvas = dynamic(() => import('../components/SoonCanvas'))
 
 type ProjectCardProps = {
   title: string
@@ -100,7 +102,7 @@ const Home: NextPage = () => {
       </Head>
       <div className={s.pageWrapper}>
         <Logo big />
-
+        <DynamicSoonCanvas />
         <section ref={aboutRef} id={menu[0]} className={s.about}>
           <div className={s.content}>
             <p>
@@ -112,15 +114,15 @@ const Home: NextPage = () => {
 
         <section ref={upcomingRef} id={menu[1]} className={s.upcoming}>
           {/* SOLIDS */}
-          <div className={s.solids}>
-            <div className={s.header}>
-              <h2 className={s.title}>SOLIDS</h2>
-              <h3 className={s.artist}>by Far</h3>
+
+          <ProjectCard title="SOLIDS" artist="Far">
+            <div className={s.bottom}>
+              <div className={s.canvasWrapper}>
+                <ObjectDisplayer url="/solids/1.glb" noColor withZoom={false} spotlightOn />
+              </div>
+              <div />
             </div>
-            <div className={s.canvasWrapper}>
-              <ObjectDisplayer url="/solids/1.glb" noColor withZoom={false} spotlightOn />
-            </div>
-          </div>
+          </ProjectCard>
 
           {/* SLIMES */}
           <div className={s.slime}>
