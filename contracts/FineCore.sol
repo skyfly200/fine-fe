@@ -3,7 +3,6 @@ pragma solidity ^0.8.2;
 
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
-//import "./libraries/Random.sol";
 
 interface RandomizerInt {
     function returnValue() external view returns (bytes32);
@@ -12,7 +11,6 @@ interface RandomizerInt {
 /// @custom:security-contact skyfly200@gmail.com
 contract FineCore is AccessControl {
     using Counters for Counters.Counter;
-    //using Random for bytes32[];
 
     RandomizerInt entropySource;
     Counters.Counter private _projectCounter;
