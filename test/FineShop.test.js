@@ -18,6 +18,8 @@ describe("FineShop", function () {
     await this.shop.deployed();
     this.nft = await this.FineNFT.deploy(this.core.address, this.shop.address);
     await this.nft.deployed();
+    await this.nft.initPool(0,500);
+    await this.nft.initPool(500,1000);
   });
 
   it("Should be able to add the project to core", async function () {
