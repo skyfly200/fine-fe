@@ -25,4 +25,8 @@ describe("FineCore", function () {
   it("Should return the platformRoyalty", async function () {
     expect(await this.core.platformRoyalty()).to.equal("3333");
   });
+
+  it("Should return randomness", async function () {
+    expect(await this.core.testRandom()).to.not.be.undefined;
+  });
 });

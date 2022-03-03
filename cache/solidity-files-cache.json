@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/FineCore.sol": {
-      "lastModificationDate": 1646264065974,
-      "contentHash": "a6d6f2ff82cf7a81de40250b87185962",
+      "lastModificationDate": 1646293231068,
+      "contentHash": "a129f47a77c67e39d2f1aa7eef735f63",
       "sourceName": "contracts/FineCore.sol",
       "solcConfig": {
         "version": "0.8.2",
@@ -293,8 +293,8 @@
       ]
     },
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/FineNFT.sol": {
-      "lastModificationDate": 1646267673307,
-      "contentHash": "8472ea7d117647f0cf8080535ea57df4",
+      "lastModificationDate": 1646293362698,
+      "contentHash": "fd840d430a21b6972c325d4ee2e2c51b",
       "sourceName": "contracts/FineNFT.sol",
       "solcConfig": {
         "version": "0.8.2",
@@ -325,13 +325,13 @@
         "@openzeppelin/contracts/token/ERC721/extensions/ERC721Royalty.sol",
         "@openzeppelin/contracts/access/AccessControl.sol",
         "@openzeppelin/contracts/utils/Counters.sol",
-        "@openzeppelin/contracts/utils/structs/EnumerableSet.sol"
+        "@openzeppelin/contracts/utils/structs/EnumerableSet.sol",
+        "./FineCoreInterface.sol"
       ],
       "versionPragmas": [
         "^0.8.2"
       ],
       "artifacts": [
-        "FineCoreInterface",
         "FineNFT"
       ]
     },
@@ -785,8 +785,8 @@
       "artifacts": []
     },
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/FineShop.sol": {
-      "lastModificationDate": 1646266938446,
-      "contentHash": "779a5164b0ef2d9139b4b40962a2133e",
+      "lastModificationDate": 1646293349794,
+      "contentHash": "85046b57a925f76c96237d1ea4b0fad2",
       "sourceName": "contracts/FineShop.sol",
       "solcConfig": {
         "version": "0.8.2",
@@ -812,15 +812,16 @@
         }
       },
       "imports": [
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol",
         "@openzeppelin/contracts/utils/math/SafeMath.sol",
-        "@openzeppelin/contracts/access/AccessControl.sol"
+        "@openzeppelin/contracts/access/AccessControl.sol",
+        "@openzeppelin/contracts/utils/introspection/ERC165Checker.sol",
+        "./FineCoreInterface.sol"
       ],
       "versionPragmas": [
         "^0.8.2"
       ],
       "artifacts": [
-        "ERC20",
-        "FineCoreInterface",
         "FineNFTInterface",
         "FineShop"
       ]
@@ -963,6 +964,113 @@
       ],
       "artifacts": [
         "RandomStub"
+      ]
+    },
+    "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/FineCoreInterface.sol": {
+      "lastModificationDate": 1646294054674,
+      "contentHash": "b72f7d633a2649467bdca0efd35ebea1",
+      "sourceName": "contracts/FineCoreInterface.sol",
+      "solcConfig": {
+        "version": "0.8.2",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.2"
+      ],
+      "artifacts": [
+        "FineCoreInterface"
+      ]
+    },
+    "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "lastModificationDate": 1646181238387,
+      "contentHash": "a44d1a099633876550ad2476b21bafbe",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "solcConfig": {
+        "version": "0.8.2",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20"
+      ]
+    },
+    "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/node_modules/@openzeppelin/contracts/utils/introspection/ERC165Checker.sol": {
+      "lastModificationDate": 1646181237529,
+      "contentHash": "1abe3767b27223b96a265645cb2a56e3",
+      "sourceName": "@openzeppelin/contracts/utils/introspection/ERC165Checker.sol",
+      "solcConfig": {
+        "version": "0.8.2",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IERC165.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ERC165Checker"
       ]
     }
   }
