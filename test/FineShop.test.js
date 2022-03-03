@@ -59,6 +59,30 @@ describe("FineShop", function () {
     expect(await this.shop.projectPause(0)).to.equal(true);
   });
 
+  it("Should be able to unpause", async function () {
+    await this.core.addProject(this.nft.address);
+    const [owner] = await ethers.getSigners();
+    await this.shop.setOwner(0, owner.address);
+    await this.shop.unpause(0);
+    expect(await this.shop.projectPause(0)).to.equal(false);
+  });
+
+  it("Should be able to add address to allowlist", async function () {
+    await this.core.addProject(this.nft.address);
+    const [owner] = await ethers.getSigners();
+    await this.shop.setOwner(0, owner.address);
+    await this.shop.addToAllowlist(0, owner.address);
+    expect(await this.shop.projectAllowList(0, owner.address)).to.equal(true);
+  });
+
+  it("Should be able to revoke address in allowlist", async function () {
+    await this.core.addProject(this.nft.address);
+    const [owner] = await ethers.getSigners();
+    await this.shop.setOwner(0, owner.address);
+    await this.shop.removeFromAllowlist(0, owner.address);
+    expect(await this.shop.projectAllowList(0, owner.address)).to.equal(false);
+  });
+
   it("Should be able to premint", async function () {
     await this.core.addProject(this.nft.address);
     const [owner] = await ethers.getSigners();
@@ -69,12 +93,13 @@ describe("FineShop", function () {
     expect(await this.nft.totalSupply(0)).to.equal(1);
   });
 
-  it("Should be able to unpause", async function () {
+  it("Should be able to premint and allowlist mint", async function () {
     await this.core.addProject(this.nft.address);
     const [owner] = await ethers.getSigners();
     await this.shop.quickInit(0, owner.address, true, 0, 0);
     await this.shop.quickSet(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 1, 10);
-    await this.shop.unpause(0);
-    expect(await this.shop.projectPause(0)).to.equal(false);
+    await this.shop.goLive(0);
+    await this.shop.premint(0);
+    expect(await this.nft.totalSupply(0)).to.equal(1);
   });
 });
