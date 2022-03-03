@@ -56,5 +56,25 @@ describe("FineShop", function () {
     await this.shop.quickSet(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 1, 10);
     await this.shop.goLive(0);
     expect(await this.shop.projectLive(0)).to.equal(true);
+    expect(await this.shop.projectPause(0)).to.equal(true);
+  });
+
+  it("Should be able to premint", async function () {
+    await this.core.addProject(this.nft.address);
+    const [owner] = await ethers.getSigners();
+    await this.shop.quickInit(0, owner.address, true, 0, 0);
+    await this.shop.quickSet(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 1, 10);
+    await this.shop.goLive(0);
+    await this.shop.premint(0);
+    expect(await this.nft.totalSupply(0)).to.equal(1);
+  });
+
+  it("Should be able to unpause", async function () {
+    await this.core.addProject(this.nft.address);
+    const [owner] = await ethers.getSigners();
+    await this.shop.quickInit(0, owner.address, true, 0, 0);
+    await this.shop.quickSet(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 1, 10);
+    await this.shop.unpause(0);
+    expect(await this.shop.projectPause(0)).to.equal(false);
   });
 });
