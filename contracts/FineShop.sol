@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.2;
 
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/utils/introspection/ERC165Checker.sol";
@@ -19,12 +20,6 @@ interface FineNFTInterface {
     function getAdditionalPayeePercentage() external view returns (uint256);
     function getTokenLimit() external view returns (uint256);
     function totalSupply() external view returns (uint256);
-}
-
-interface IERC20 {
-    function balanceOf(address _owner) external view returns (uint balance);
-    function transferFrom(address _from, address _to, uint _value) external returns (bool success);
-    function allowance(address _owner, address _spender) external view returns (uint remaining);
 }
 
 /// @custom:security-contact skyfly200@gmail.com
