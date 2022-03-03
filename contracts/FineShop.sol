@@ -34,8 +34,8 @@ contract FineShop is AccessControl {
     mapping(uint => address) public projectOwner;
     mapping(uint => uint) public projectPremintAllocation;
     mapping(uint => uint) public projectPrice;
-    mapping(uint => address) public projectCurrencyAddress; // TODO: create setter
-    mapping(uint => string) public projectCurrencySymbol; // TODO: create setter
+    mapping(uint => address) public projectCurrencyAddress;
+    mapping(uint => string) public projectCurrencySymbol;
     mapping(uint => uint) public projectBulkMintCount;
     mapping(uint => bool) public projectLive;
     mapping(uint => bool) public projectPause;
