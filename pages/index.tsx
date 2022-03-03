@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Image from 'next/image'
 import Head from 'next/head'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import cn from 'classnames'
 
 import ObjectDisplayer from '../components/ArtPreviewer/ObjectDisplayer'
@@ -49,16 +49,16 @@ const Home: NextPage = () => {
     }
   }
 
-  const createObserver = (target: Element, threshold: number = 0.5) => {
+  const createObserver = useCallback((target: Element, threshold: number = 0.5) => {
     const observer = new IntersectionObserver(handleIntersect, { threshold: threshold })
     observer.observe(target)
-  }
+  }, [])
 
   useEffect(() => {
     aboutRef.current && createObserver(aboutRef.current)
     upcomingRef.current && createObserver(upcomingRef.current, 0.09)
     joinUsRef.current && createObserver(joinUsRef.current)
-  }, [])
+  }, [createObserver])
 
   // Subscription
   const [email, setEmail] = useState<string>('')
