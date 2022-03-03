@@ -58,11 +58,11 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
     receive() external payable {}
 
     /**
-     * @dev withdraw all funds in contract
+     * @dev split royalties sent to contract (ONLY ETH!)
      */
     function withdraw() onlyRole(DEFAULT_ADMIN_ROLE) external {
         address payable from = payable(msg.sender);
-        from.transfer(address(this).balance);
+        _splitFunds(address(this).balance);
     }
 
     /**
@@ -75,6 +75,8 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
             artistAddress.transfer(amount - partA);
         }
     }
+
+     
 
     /**
      * @dev get baseURI for all tokens
