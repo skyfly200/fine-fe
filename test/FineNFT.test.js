@@ -73,7 +73,6 @@ describe("FineNFT", function () {
     let minted = await this.nft.mint(owner.address);
     let art = await this.nft.artworkId(minted.value);
     let tokenURI = await this.nft.tokenURI(minted.value);
-    console.log(art, tokenURI);
     expect(tokenURI).to.equal("test" + art);
   });
 
@@ -88,8 +87,8 @@ describe("FineNFT", function () {
     await owner.sendTransaction({to: this.nft.address, value: 300});
     expect(await provider.getBalance(this.nft.address)).to.equal(300);
     await this.nft.withdraw();
-    expect(await provider.getBalance(this.nft.address)).to.equal(0);
-    // TODO: check recipients balances
+    expect(await provider.getBalance(this.nft.artistAddress())).to.equal(200);
+    expect(await provider.getBalance(this.core.FINE_TREASURY())).to.equal(100);
   });
 
 });

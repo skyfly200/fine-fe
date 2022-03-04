@@ -293,8 +293,8 @@
       ]
     },
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/FineNFT.sol": {
-      "lastModificationDate": 1646424119728,
-      "contentHash": "7218c93e4563b59c8145625f3e3a30ae",
+      "lastModificationDate": 1646427123115,
+      "contentHash": "b0e8e55780075941d66e2eff11170494",
       "sourceName": "contracts/FineNFT.sol",
       "solcConfig": {
         "version": "0.8.2",
@@ -326,6 +326,7 @@
         "@openzeppelin/contracts/access/AccessControl.sol",
         "@openzeppelin/contracts/utils/Counters.sol",
         "@openzeppelin/contracts/utils/structs/EnumerableSet.sol",
+        "@openzeppelin/contracts/utils/Strings.sol",
         "./FineCoreInterface.sol"
       ],
       "versionPragmas": [
