@@ -84,11 +84,11 @@ describe("FineNFT", function () {
 
   it("DEFAULT_ADMIN_ROLE can withdraw (split payments)", async function () {
     const [owner] = await ethers.getSigners();
-    await owner.sendTransaction({to: this.nft.address, value: 300});
-    expect(await provider.getBalance(this.nft.address)).to.equal(300);
+    await owner.sendTransaction({to: this.nft.address, value: 1000});
+    expect(await provider.getBalance(this.nft.address)).to.equal(1000);
     await this.nft.withdraw();
     expect(await provider.getBalance(this.nft.address)).to.equal(0);
-    expect(await provider.getBalance(this.nft.artistAddress())).to.equal(200);
+    expect(await provider.getBalance(this.nft.artistAddress())).to.equal(900);
     expect(await provider.getBalance(this.core.FINE_TREASURY())).to.equal(100);
   });
 
