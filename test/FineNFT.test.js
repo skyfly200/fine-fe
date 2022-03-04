@@ -87,6 +87,7 @@ describe("FineNFT", function () {
     await owner.sendTransaction({to: this.nft.address, value: 300});
     expect(await provider.getBalance(this.nft.address)).to.equal(300);
     await this.nft.withdraw();
+    expect(await provider.getBalance(this.nft.address)).to.equal(0);
     expect(await provider.getBalance(this.nft.artistAddress())).to.equal(200);
     expect(await provider.getBalance(this.core.FINE_TREASURY())).to.equal(100);
   });
