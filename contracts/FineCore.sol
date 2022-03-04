@@ -19,7 +19,7 @@ contract FineCore is AccessControl {
 
     address payable public FINE_TREASURY = payable(0x7A832c86002323a5de3a317b3281Eb88EC3b2C00);
     uint256 public platformPercentage = 1000;
-    uint256 public platformRoyalty = 3333;
+    uint256 public platformRoyalty = 1000;
     
     constructor(address entropySourceAddress) {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
