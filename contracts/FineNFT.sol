@@ -7,6 +7,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Royalty.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 import "./FineCoreInterface.sol";
 
 /// @custom:security-contact skyfly200@gmail.com
@@ -82,18 +83,11 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
     }
 
     /**
-     * @dev get baseURI for all tokens
-     */
-    function _baseURI() internal view override returns (string memory) {
-        return baseURI;
-    }
-
-    /**
      * @dev lookup the URI for a token
       * @param tokenId 5to retieve URI for
      */
     function tokenURI(uint256 tokenId) public view override(ERC721) returns (string memory) {
-        return string(abi.encodePacked(baseURI, artworkId[tokenId]));
+        return string(abi.encodePacked(baseURI, Strings.toString(artworkId[tokenId])));
     }
 
     // On-chain data
@@ -172,6 +166,13 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
     }
 
     // The following functions are overrides required by Solidity.
+
+    /**
+     * @dev get baseURI for all tokens
+     */
+    function _baseURI() internal view override returns (string memory) {
+        return baseURI;
+    }
 
     function _beforeTokenTransfer(address from, address to, uint256 tokenId)
         internal
