@@ -28,6 +28,7 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
     address payable public artistAddress = payable(0xE31a7D022E545eCEd32D276cA880649852c91353);
     address payable public additionalPayee = payable(0x0);
     uint256 public additionalPayeePercentage = 0;
+    uint256 public additionalPayeeRoyaltyPercentage = 0;
     uint96 public royaltyPercent = 750;
 
     string public baseURI = "IPFS HASH HERE";
@@ -64,7 +65,9 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
         if (amount > 0) {
             uint256 partA = amount * coreContract.platformRoyalty() / 10000;
             coreContract.FINE_TREASURY().transfer(partA);
-            artistAddress.transfer(amount - partA);
+            uint256 partB = amount * additionalPayeeRoyaltyPercentage / 10000;
+            if (partB > 0) additionalPayee.transfer(amount - partA);
+            artistAddress.transfer(amount - (partA + partB));
         }
     }
 
