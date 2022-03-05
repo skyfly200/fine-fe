@@ -22,8 +22,8 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
     //mapping(uint => uint) public hashes; // for post generated projects
     mapping(uint => uint) public artworkId; // for pre generated projects
     mapping(uint256 => string) public scripts;
-
     EnumerableSet.UintSet private availableArt;
+    bool public locked = false;
 
     address payable public artistAddress = payable(0xE31a7D022E545eCEd32D276cA880649852c91353);
     address payable public additionalPayee = payable(0x0);
@@ -75,6 +75,7 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
      * @dev init set with art IDs
      */
     function initPool(uint start, uint end) external {
+        require(!locked, "settings already locked");
         for (uint i = start; i < end; i++) availableArt.add(i);
     }
 
@@ -94,6 +95,16 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
     }
 
     // On-chain data
+
+    /**
+     * @dev lock settings (artwork pool)
+     * @dev Only the admin can call this
+     */
+    function lock() onlyRole(DEFAULT_ADMIN_ROLE) external {
+        require(!locked, "settings already locked");
+        locked = true;
+    }
+    
 
     /**
      * @dev Store a script
@@ -139,6 +150,7 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
      * @dev Only the minter role can call this
      */
     function mint(address to) external onlyRole(MINTER_ROLE) returns (uint tokenId) {
+        require(locked, "settings not locked");
         tokenId = _tokenIdCounter.current();
         require(tokenId < TOKEN_LIMIT, "supply cap reached");
         _tokenIdCounter.increment();
