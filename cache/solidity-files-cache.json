@@ -293,8 +293,8 @@
       ]
     },
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/FineNFT.sol": {
-      "lastModificationDate": 1646427583492,
-      "contentHash": "60669c181472e83e4c54fa5f5f7b924a",
+      "lastModificationDate": 1646428578503,
+      "contentHash": "db2cc7cc877248b1a46d16367340134c",
       "sourceName": "contracts/FineNFT.sol",
       "solcConfig": {
         "version": "0.8.2",
