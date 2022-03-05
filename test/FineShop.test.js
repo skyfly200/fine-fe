@@ -20,6 +20,7 @@ describe("FineShop", function () {
     await this.nft.deployed();
     await this.nft.initPool(0,500);
     await this.nft.initPool(500,1000);
+    await this.nft.lock();
   });
 
   it("Should be able to add the project to core", async function () {

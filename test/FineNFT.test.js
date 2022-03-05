@@ -50,6 +50,7 @@ describe("FineNFT", function () {
 
   it("mint fails without MINTER_ROLE", async function () {
     const [owner] = await ethers.getSigners();
+    await this.nft.lock();
     await expect(this.nft.mint(owner)).to.be.reverted;
   });
 
@@ -57,6 +58,7 @@ describe("FineNFT", function () {
     const [owner] = await ethers.getSigners();
     await this.nft.initPool(0,500);
     await this.nft.initPool(500,1000);
+    await this.nft.lock();
     await this.core.addProject(this.nft.address);
     await this.nft.grantRole((await this.nft.MINTER_ROLE()), owner.address);
     let minted = await this.nft.mint(owner.address);
@@ -67,6 +69,7 @@ describe("FineNFT", function () {
     const [owner] = await ethers.getSigners();
     await this.nft.initPool(0,500);
     await this.nft.initPool(500,1000);
+    await this.nft.lock();
     await this.core.addProject(this.nft.address);
     await this.nft.grantRole((await this.nft.MINTER_ROLE()), owner.address);
     await this.nft.setBaseURI("test");
