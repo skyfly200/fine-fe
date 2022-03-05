@@ -36,6 +36,8 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
     string public description = "a sample NFT for FINE";
     string public website = "https://fine.digital";
     string public license = "MIT";
+
+    event recievedFunds(address _from, uint _amount);
     
     constructor(address coreAddress, address shopAddress) ERC721("FINE Digital", "FINE") {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
@@ -49,7 +51,9 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
      * @dev receive direct ETH transfers
      * @notice for splitting royalties
      */
-    receive() external payable {}
+    receive() external payable {
+        emit recievedFunds(msg.sender, msg.value);
+    }
 
     /**
      * @dev split royalties sent to contract (ONLY ETH!)
