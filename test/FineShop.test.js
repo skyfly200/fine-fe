@@ -42,7 +42,7 @@ describe("FineShop", function () {
     await this.core.addProject(this.nft.address);
     const [owner] = await ethers.getSigners();
     await this.shop.quickInit(0, owner.address, true, 0, 0);
-    await this.shop.quickSet(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 1, 10);
+    await this.shop.fullSetup(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 1, 10);
     expect(await this.shop.projectCurrencySymbol(0)).to.equal("ETH");
     expect(await this.shop.projectCurrencyAddress(0)).to.equal("0x0000000000000000000000000000000000000000");
     expect(await this.shop.projectPrice(0)).to.equal(10000);
@@ -54,7 +54,7 @@ describe("FineShop", function () {
     await this.core.addProject(this.nft.address);
     const [owner] = await ethers.getSigners();
     await this.shop.quickInit(0, owner.address, true, 0, 0);
-    await this.shop.quickSet(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 1, 10);
+    await this.shop.fullSetup(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 1, 10);
     await this.shop.goLive(0);
     expect(await this.shop.projectLive(0)).to.equal(true);
     expect(await this.shop.projectPause(0)).to.equal(true);
@@ -88,7 +88,7 @@ describe("FineShop", function () {
     await this.core.addProject(this.nft.address);
     const [owner] = await ethers.getSigners();
     await this.shop.quickInit(0, owner.address, true, 0, 0);
-    await this.shop.quickSet(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 1, 10);
+    await this.shop.fullSetup(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 1, 10);
     await this.shop.goLive(0);
     await this.shop.premint(0);
     expect(await this.nft.totalSupply()).to.equal(1);
@@ -98,7 +98,7 @@ describe("FineShop", function () {
     await this.core.addProject(this.nft.address);
     const [owner, addr1] = await ethers.getSigners();
     await this.shop.quickInit(0, owner.address, true, 0, 0);
-    await this.shop.quickSet(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 1, 10);
+    await this.shop.fullSetup(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 1, 10);
     await this.shop.goLive(0);
     await expect(this.shop.connect(addr1).premint(0)).to.be.reverted;
   });
@@ -107,7 +107,7 @@ describe("FineShop", function () {
     await this.core.addProject(this.nft.address);
     const [owner] = await ethers.getSigners();
     await this.shop.quickInit(0, owner.address, true, 0, 0);
-    await this.shop.quickSet(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 1, 10);
+    await this.shop.fullSetup(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 1, 10);
     await this.shop.goLive(0);
     await this.shop.premint(0);
     expect(await this.nft.totalSupply()).to.equal(1);
@@ -118,7 +118,7 @@ describe("FineShop", function () {
     await this.core.addProject(this.nft.address);
     const [owner] = await ethers.getSigners();
     await this.shop.quickInit(0, owner.address, true, 0, 0);
-    await this.shop.quickSet(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 0, 10);
+    await this.shop.fullSetup(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 0, 10);
     await this.shop.goLive(0);
     await this.shop.addToAllowlist(0, owner.address);
     await this.shop.unpause(0);
@@ -130,7 +130,7 @@ describe("FineShop", function () {
     await this.core.addProject(this.nft.address);
     const [owner] = await ethers.getSigners();
     await this.shop.quickInit(0, owner.address, true, 0, 0);
-    await this.shop.quickSet(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 0, 10);
+    await this.shop.fullSetup(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 0, 10);
     await this.shop.goLive(0);
     await this.shop.unpause(0);
     await expect(this.shop.buy(0, 1, {value: 10000})).to.be.reverted;
@@ -140,7 +140,7 @@ describe("FineShop", function () {
     await this.core.addProject(this.nft.address);
     const [owner, addr1] = await ethers.getSigners();
     await this.shop.quickInit(0, owner.address, true, 0, 0);
-    await this.shop.quickSet(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 0, 1);
+    await this.shop.fullSetup(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 0, 1);
     await this.shop.goLive(0);
     await this.shop.addToAllowlist(0, owner.address);
     await this.shop.unpause(0);
@@ -154,7 +154,7 @@ describe("FineShop", function () {
     await this.core.addProject(this.nft.address);
     const [owner] = await ethers.getSigners();
     await this.shop.quickInit(0, owner.address, true, 0, 0);
-    await this.shop.quickSet(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 0, 0);
+    await this.shop.fullSetup(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 0, 0);
     await this.shop.goLive(0);
     await this.shop.unpause(0);
     await this.shop.buy(0, 1, {value: 10000});
@@ -165,7 +165,7 @@ describe("FineShop", function () {
     await this.core.addProject(this.nft.address);
     const [owner] = await ethers.getSigners();
     await this.shop.quickInit(0, owner.address, true, 0, 0);
-    await this.shop.quickSet(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 0, 0);
+    await this.shop.fullSetup(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 0, 0);
     await this.shop.goLive(0);
     await this.shop.unpause(0);
     await this.shop.buy(0, 10, {value: 100000});
@@ -176,7 +176,7 @@ describe("FineShop", function () {
     await this.core.addProject(this.nft.address);
     const [owner] = await ethers.getSigners();
     await this.shop.quickInit(0, owner.address, true, 5, 0);
-    await this.shop.quickSet(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 0, 0);
+    await this.shop.fullSetup(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 0, 0);
     await this.shop.goLive(0);
     await this.shop.unpause(0);
     await this.shop.buy(0, 5, {value: 50000});
@@ -188,7 +188,7 @@ describe("FineShop", function () {
     await this.core.addProject(this.nft.address);
     const [owner] = await ethers.getSigners();
     await this.shop.quickInit(0, owner.address, true, 0, 1);
-    await this.shop.quickSet(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 0, 0);
+    await this.shop.fullSetup(0, "ETH", "0x0000000000000000000000000000000000000000", 10000, 0, 0);
     await this.shop.goLive(0);
     await this.shop.unpause(0);
     await this.shop.buy(0, 1, {value: 10000});
