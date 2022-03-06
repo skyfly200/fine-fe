@@ -164,6 +164,8 @@ contract FineShop is AccessControl {
      */
     function setPrice(uint _projectId, uint price) external onlyOwner(_projectId) notLive(_projectId) {
         projectPrice[_projectId] = price;
+        if (keccak256(abi.encodePacked(projectCurrencySymbol[_projectId])) != keccak256(abi.encodePacked("")))
+            projectReadyForLive[_projectId] = true;
     }
 
     /**
@@ -191,6 +193,7 @@ contract FineShop is AccessControl {
     function setCurrencyToETH(uint _projectId) external onlyOwner(_projectId) notLive(_projectId) {
         projectCurrencySymbol[_projectId] = "ETH";
         projectCurrencyAddress[_projectId] = address(0x0);
+        if (projectPrice[_projectId] > 0) projectReadyForLive[_projectId] = true;
     }
 
     /**
@@ -205,6 +208,7 @@ contract FineShop is AccessControl {
             require(_contract != address(0x0), "curency address cant be zero");
         projectCurrencySymbol[_projectId] = _symbol;
         projectCurrencyAddress[_projectId] = _contract;
+        if (projectPrice[_projectId] > 0) projectReadyForLive[_projectId] = true;
     }
 
     /**
@@ -232,7 +236,7 @@ contract FineShop is AccessControl {
             projectPrice[_projectId] = _price;
             projectPremintAllocation[_projectId] = _premints;
             projectAllowListAllocation[_projectId] = _allowlists;
-            projectReadyForLive[_projectId] = true; // TODO: allow ready without calling here
+            projectReadyForLive[_projectId] = true;
     }
 
     function addToAllowlist(uint _projectId, address minter) external onlyOwner(_projectId) {
