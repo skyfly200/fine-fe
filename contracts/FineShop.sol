@@ -226,7 +226,7 @@ contract FineShop is AccessControl {
             require(bytes(_symbol).length > 0, "Symbol must be provided");
             if (keccak256(abi.encodePacked(_symbol)) != keccak256(abi.encodePacked("ETH"))) {
                 require(_contract != address(0x0), "curency address cant be zero");
-                require(_contract.supportsInterface(type(IERC20).interfaceId), "not an ERC20 contract");
+                require(_contract.supportsInterface(type(IERC20).interfaceId), "not an ERC20 contract"); // TODO: remove or fix this
             }
             projectCurrencySymbol[_projectId] = _symbol;
             projectCurrencyAddress[_projectId] = _contract;
