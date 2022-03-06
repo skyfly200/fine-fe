@@ -26,6 +26,26 @@ contract FineCore is AccessControl {
         entropySource = RandomizerInt(entropySourceAddress);
     }
 
+    // Core Mgmt Functions
+
+    /**
+     * @dev Update the platform percentage
+     * @param _percentage for royalties
+     * @dev Only the admin can call this
+     */
+    function setPlatformPercent(uint96 _percentage) onlyRole(DEFAULT_ADMIN_ROLE) external {
+        platformPercentage = _percentage;
+    }
+
+    /**
+     * @dev Update the royalty percentage
+     * @param _percentage for royalties
+     * @dev Only the admin can call this
+     */
+    function setRoyaltyPercent(uint96 _percentage) onlyRole(DEFAULT_ADMIN_ROLE) external {
+        platformRoyalty = _percentage;
+    }
+
     // Project Mgmt Functions
 
     /**

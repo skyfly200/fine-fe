@@ -26,10 +26,10 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
     bool public locked = false;
 
     address payable public artistAddress = payable(0xE31a7D022E545eCEd32D276cA880649852c91353);
-    address payable public additionalPayee = payable(0x0);
-    uint256 public additionalPayeePercentage = 0;
-    uint256 public additionalPayeeRoyaltyPercentage = 0;
-    uint96 public royaltyPercent = 750;
+    address payable public additionalPayee = payable(0x268b87E4F6B7e7BEB58e3128138D4F6b768E1b17);
+    uint256 public additionalPayeePercentage = 100;
+    uint256 public additionalPayeeRoyaltyPercentage = 100;
+    uint96 public royaltyPercent = 7500;
 
     string public baseURI = "IPFS HASH HERE";
     string public artist = "fine";
@@ -127,6 +127,33 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
      */
     function setBaseURI(string calldata _uri) onlyRole(DEFAULT_ADMIN_ROLE) external {
         baseURI = _uri;
+    }
+
+    /**
+     * @dev Update the royalty percentage
+     * @param _percentage for royalties
+     * @dev Only the admin can call this
+     */
+    function setRoyaltyPercent(uint96 _percentage) onlyRole(DEFAULT_ADMIN_ROLE) external {
+        royaltyPercent = _percentage;
+    }
+
+    /**
+     * @dev Update the additional payee sales percentage
+     * @param _percentage for sales
+     * @dev Only the admin can call this
+     */
+    function additionalPayeePercent(uint96 _percentage) onlyRole(DEFAULT_ADMIN_ROLE) external {
+        additionalPayeePercentage = _percentage;
+    }
+
+    /**
+     * @dev Update the additional payee royalty percentage
+     * @param _percentage for royalty
+     * @dev Only the admin can call this
+     */
+    function additionalPayeeRoyaltyPercent(uint96 _percentage) onlyRole(DEFAULT_ADMIN_ROLE) external {
+        additionalPayeeRoyaltyPercentage = _percentage;
     }
 
     /**
