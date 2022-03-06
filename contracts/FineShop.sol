@@ -215,7 +215,7 @@ contract FineShop is AccessControl {
      * @param _premints number available
      * @param _allowlists number available
      */
-    function quickSet(
+    function fullSetup(
             uint _projectId,
             string calldata _symbol,
             address _contract,
@@ -233,7 +233,7 @@ contract FineShop is AccessControl {
             projectPrice[_projectId] = _price;
             projectPremintAllocation[_projectId] = _premints;
             projectAllowListAllocation[_projectId] = _allowlists;
-            projectReadyForLive[_projectId] = true;
+            projectReadyForLive[_projectId] = true; // TODO: allow ready without calling here
     }
 
     function addToAllowlist(uint _projectId, address minter) external onlyOwner(_projectId) {
@@ -282,15 +282,14 @@ contract FineShop is AccessControl {
                 fineCore.FINE_TREASURY().transfer(platformAmount);
             }
             FineNFTInterface nftContract = FineNFTInterface(fineCore.getProjectAddress(_projectId));
-            uint256 projectFunds = salePrice.sub(platformAmount);
             uint256 additionalPayeeAmount;
             if (nftContract.getAdditionalPayeePercentage() > 0) {
-                additionalPayeeAmount = projectFunds.div(10000).mul(nftContract.getAdditionalPayeePercentage());
+                additionalPayeeAmount = salePrice.div(10000).mul(nftContract.getAdditionalPayeePercentage());
                 if (additionalPayeeAmount > 0) {
                     nftContract.getAdditionalPayee().transfer(additionalPayeeAmount);
                 }
             }
-            uint256 creatorFunds = projectFunds.sub(additionalPayeeAmount);
+            uint256 creatorFunds = salePrice.sub(platformAmount).sub(additionalPayeeAmount);
             if (creatorFunds > 0) {
                 nftContract.getArtistAddress().transfer(creatorFunds);
             }
@@ -311,15 +310,11 @@ contract FineShop is AccessControl {
         }
         FineNFTInterface nftContract = FineNFTInterface(fineCore.getProjectAddress(_projectId));
         nftContract.getArtistAddress();
-        uint256 projectFunds = salePrice.sub(platformAmount);
-        uint256 additionalPayeeAmount;
-        if (nftContract.getAdditionalPayeePercentage() > 0) {
-            additionalPayeeAmount = projectFunds.div(10000).mul(nftContract.getAdditionalPayeePercentage());
+        uint256 additionalPayeeAmount = salePrice.div(10000).mul(nftContract.getAdditionalPayeePercentage());
         if (additionalPayeeAmount > 0) {
             IERC20(projectCurrencyAddress[_projectId]).transferFrom(msg.sender, nftContract.getAdditionalPayee(), additionalPayeeAmount);
         }
-        }
-        uint256 creatorFunds = projectFunds.sub(additionalPayeeAmount);
+        uint256 creatorFunds = salePrice.sub(platformAmount).sub(additionalPayeeAmount);
         if (creatorFunds > 0) {
             IERC20(projectCurrencyAddress[_projectId]).transferFrom(msg.sender, nftContract.getArtistAddress(), creatorFunds);
         }
