@@ -91,8 +91,9 @@ describe("FineNFT", function () {
     expect(await provider.getBalance(this.nft.address)).to.equal(1000);
     await this.nft.withdraw();
     expect(await provider.getBalance(this.nft.address)).to.equal(0);
-    expect(await provider.getBalance(this.nft.artistAddress())).to.equal(900);
+    expect(await provider.getBalance(this.nft.artistAddress())).to.equal(890);
     expect(await provider.getBalance(this.core.FINE_TREASURY())).to.equal(100);
+    expect(await provider.getBalance(this.nft.additionalPayee())).to.equal(10);
   });
 
 });

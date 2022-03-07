@@ -10,6 +10,8 @@ import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "./FineCoreInterface.sol";
 
+import "hardhat/console.sol";
+
 /// @custom:security-contact skyfly200@gmail.com
 contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessControl {
     using Counters for Counters.Counter;
@@ -71,8 +73,8 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
             uint256 partA = amount * coreContract.platformRoyalty() / 10000;
             coreContract.FINE_TREASURY().transfer(partA);
             uint256 partB = amount * additionalPayeeRoyaltyPercentage / 10000;
-            if (partB > 0) additionalPayee.transfer(amount - partA);
-            artistAddress.transfer(amount - (partA + partB));
+            if (partB > 0) additionalPayee.transfer(partB);
+            artistAddress.transfer((amount - partA) - partB);
         }
     }
 
