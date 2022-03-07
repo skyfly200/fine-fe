@@ -284,14 +284,11 @@ contract FineShop is AccessControl {
             }
             uint256 platformAmount = salePrice.mul(fineCore.platformPercentage()).div(10000);
             if (platformAmount > 0) {
-                console.log(platformAmount);
                 fineCore.FINE_TREASURY().transfer(platformAmount);
             }
             FineNFTInterface nftContract = FineNFTInterface(fineCore.getProjectAddress(_projectId));
             uint256 additionalPayeeAmount = salePrice.mul(nftContract.getAdditionalPayeePercentage()).div(10000);
             if (additionalPayeeAmount > 0) {
-                console.log("payee");
-                console.log(additionalPayeeAmount);
                 nftContract.getAdditionalPayee().transfer(additionalPayeeAmount);
             }
             uint256 creatorFunds = salePrice.sub(platformAmount).sub(additionalPayeeAmount);
