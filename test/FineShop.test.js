@@ -1,5 +1,7 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
+const { waffle } = require("hardhat");
+const provider = waffle.provider;
 
 describe("FineShop", function () {
   before(async function () {

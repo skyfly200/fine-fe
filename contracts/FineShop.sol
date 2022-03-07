@@ -7,6 +7,8 @@ import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/utils/introspection/ERC165Checker.sol";
 import "./FineCoreInterface.sol";
 
+import "hardhat/console.sol";
+
 interface FineNFTInterface {
     function mint(address to) external returns (uint);
     function getArtistAddress() external view returns (address payable);
@@ -280,17 +282,17 @@ contract FineShop is AccessControl {
             if (refund > 0) {
                 payable(msg.sender).transfer(refund);
             }
-            uint256 platformAmount = salePrice.div(10000).mul(fineCore.platformPercentage());
+            uint256 platformAmount = salePrice.mul(fineCore.platformPercentage()).div(10000);
             if (platformAmount > 0) {
+                console.log(platformAmount);
                 fineCore.FINE_TREASURY().transfer(platformAmount);
             }
             FineNFTInterface nftContract = FineNFTInterface(fineCore.getProjectAddress(_projectId));
-            uint256 additionalPayeeAmount;
-            if (nftContract.getAdditionalPayeePercentage() > 0) {
-                additionalPayeeAmount = salePrice.div(10000).mul(nftContract.getAdditionalPayeePercentage());
-                if (additionalPayeeAmount > 0) {
-                    nftContract.getAdditionalPayee().transfer(additionalPayeeAmount);
-                }
+            uint256 additionalPayeeAmount = salePrice.mul(nftContract.getAdditionalPayeePercentage()).div(10000);
+            if (additionalPayeeAmount > 0) {
+                console.log("payee");
+                console.log(additionalPayeeAmount);
+                nftContract.getAdditionalPayee().transfer(additionalPayeeAmount);
             }
             uint256 creatorFunds = salePrice.sub(platformAmount).sub(additionalPayeeAmount);
             if (creatorFunds > 0) {
@@ -307,13 +309,13 @@ contract FineShop is AccessControl {
     function _splitFundsERC20(uint256 _projectId, uint count) internal {
         uint256 pricePerTokenInWei = projectPrice[_projectId];
         uint salePrice = pricePerTokenInWei.mul(count);
-        uint256 platformAmount = salePrice.div(10000).mul(fineCore.platformPercentage());
+        uint256 platformAmount = salePrice.mul(fineCore.platformPercentage()).div(10000);
         if (platformAmount > 0) {
             IERC20(projectCurrencyAddress[_projectId]).transferFrom(msg.sender, fineCore.FINE_TREASURY(), platformAmount);
         }
         FineNFTInterface nftContract = FineNFTInterface(fineCore.getProjectAddress(_projectId));
         nftContract.getArtistAddress();
-        uint256 additionalPayeeAmount = salePrice.div(10000).mul(nftContract.getAdditionalPayeePercentage());
+        uint256 additionalPayeeAmount = salePrice.mul(nftContract.getAdditionalPayeePercentage()).div(10000);
         if (additionalPayeeAmount > 0) {
             IERC20(projectCurrencyAddress[_projectId]).transferFrom(msg.sender, nftContract.getAdditionalPayee(), additionalPayeeAmount);
         }

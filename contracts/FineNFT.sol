@@ -10,8 +10,6 @@ import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "./FineCoreInterface.sol";
 
-import "hardhat/console.sol";
-
 /// @custom:security-contact skyfly200@gmail.com
 contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessControl {
     using Counters for Counters.Counter;
