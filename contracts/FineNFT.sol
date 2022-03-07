@@ -31,6 +31,7 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
     uint256 public additionalPayeeRoyaltyPercentage = 100;
     uint96 public royaltyPercent = 7500;
 
+    string public _contractURI = "IPFS HASH HERE";
     string public baseURI = "IPFS HASH HERE";
     string public artist = "fine";
     string public description = "a sample NFT for FINE";
@@ -98,7 +99,7 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
         return string(abi.encodePacked(baseURI, Strings.toString(artworkId[tokenId])));
     }
 
-    // On-chain data
+    // On-chain Data
 
     /**
      * @dev lock settings (artwork pool)
@@ -108,7 +109,6 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
         require(!locked, "settings already locked");
         locked = true;
     }
-    
 
     /**
      * @dev Store a script
@@ -118,6 +118,15 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
      */
     function setScript(uint index, string calldata script) onlyRole(DEFAULT_ADMIN_ROLE) external {
         scripts[index] = script;
+    }
+
+    /**
+     * @dev Update the base URI field
+     * @param _uri base for all tokens 
+     * @dev Only the admin can call this
+     */
+    function setContractURI(string calldata _uri) onlyRole(DEFAULT_ADMIN_ROLE) external {
+        _contractURI = _uri;
     }
 
     /**
@@ -194,6 +203,10 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
     }
 
     // getters for interface
+
+    function contractURI() public view returns (string memory) {
+        return _contractURI;
+    }
     
     function getArtistAddress() external view returns (address payable) {
         return artistAddress;
