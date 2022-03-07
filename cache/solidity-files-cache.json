@@ -786,8 +786,8 @@
       "artifacts": []
     },
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/FineShop.sol": {
-      "lastModificationDate": 1646682078204,
-      "contentHash": "d8e6d73d2b7f586efe490229fd6b57b2",
+      "lastModificationDate": 1646682353614,
+      "contentHash": "7c3a8eeaef4249ea74a7500c3daf36ff",
       "sourceName": "contracts/FineShop.sol",
       "solcConfig": {
         "version": "0.8.2",

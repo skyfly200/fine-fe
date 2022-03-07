@@ -28,6 +28,11 @@ describe("FineNFT", function () {
     expect(await this.nft.checkPool()).to.equal("1000");
   });
 
+  it("DEFAULT_ADMIN_ROLE can setContractURI", async function () {
+    await this.nft.setContractURI("test");
+    expect(await this.nft.contractURI()).to.equal("test");
+  });
+
   it("DEFAULT_ADMIN_ROLE can setBaseURI", async function () {
     await this.nft.setBaseURI("test");
     expect(await this.nft.baseURI()).to.equal("test");
@@ -38,12 +43,12 @@ describe("FineNFT", function () {
     expect(await this.nft.scripts(0)).to.equal("test");
   });
 
-  it("DEFAULT_ADMIN_ROLE can description", async function () {
+  it("DEFAULT_ADMIN_ROLE can set description", async function () {
     await this.nft.setDescription("test");
     expect(await this.nft.description()).to.equal("test");
   });
 
-  it("DEFAULT_ADMIN_ROLE can website", async function () {
+  it("DEFAULT_ADMIN_ROLE can set website", async function () {
     await this.nft.setWebsite("test");
     expect(await this.nft.website()).to.equal("test");
   });
