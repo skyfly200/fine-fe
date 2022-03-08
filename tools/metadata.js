@@ -6,9 +6,6 @@ let folder = "json";
 fs.createReadStream('./solids.csv')
   .pipe(csv())
   .on('data', (row) => {
-    // convert JSON object to string
-    const data = JSON.stringify(row);
-
     const metadata = {
         description: "",
         image: "",
@@ -48,9 +45,13 @@ fs.createReadStream('./solids.csv')
         ],
     };
 
+    // convert JSON object to string
+    const data = JSON.stringify(metadata);
+
+
     // write JSON string to a file
     let filePath = './' + folder + '/' + row.No + '.json';
-    fs.writeFile(filePath, metadata, (err) => {
+    fs.writeFile(filePath, data, (err) => {
         if (err) {
             throw err;
         }
