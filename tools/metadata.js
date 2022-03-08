@@ -16,7 +16,7 @@ fs.createReadStream('./solids.csv')
         image: "",
         animation_url: "",
         external_url: "",
-        name: "",
+        name: "Solids",
         background_color: "",
         attributes: [
             {
