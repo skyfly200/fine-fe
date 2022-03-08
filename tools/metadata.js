@@ -6,8 +6,6 @@ let folder = "json";
 fs.createReadStream('./solids.csv')
   .pipe(csv())
   .on('data', (row) => {
-    // todo: transform json metadata
-
     // convert JSON object to string
     const data = JSON.stringify(row);
 
