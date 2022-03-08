@@ -6,6 +6,7 @@ const provider = waffle.provider;
 describe("FineShop", function () {
   before(async function () {
     this.RandomStub = await ethers.getContractFactory("RandomStub");
+    this.BasicToken = await ethers.getContractFactory("BasicToken");
     this.FineCore = await ethers.getContractFactory("FineCore");
     this.FineShop = await ethers.getContractFactory("FineShop");
     this.FineNFT = await ethers.getContractFactory("FineNFT");
@@ -14,6 +15,8 @@ describe("FineShop", function () {
   beforeEach(async function () {
     this.random = await this.RandomStub.deploy();
     await this.random.deployed();
+    this.token = await this.BasicToken.deploy("10000000000000000000000000");
+    await this.token.deployed();
     this.core = await this.FineCore.deploy(this.random.address);
     await this.core.deployed();
     this.shop = await this.FineShop.deploy(this.core.address);
@@ -160,6 +163,18 @@ describe("FineShop", function () {
     await this.shop.goLive(0);
     await this.shop.unpause(0);
     await this.shop.buy(0, 1, {value: 10000});
+    expect(await this.nft.totalSupply()).to.equal(1);
+  });
+
+  it("Should be able to mint with ERC20", async function () {
+    await this.core.addProject(this.nft.address);
+    const [owner] = await ethers.getSigners();
+    await this.shop.quickInit(0, owner.address, true, 0, 0);
+    await this.shop.fullSetup(0, "BSC", this.token.address, 10000, 0, 0);
+    await this.shop.goLive(0);
+    await this.shop.unpause(0);
+    await this.token.approve(this.shop.address, 10000);
+    await this.shop.buy(0, 1);
     expect(await this.nft.totalSupply()).to.equal(1);
   });
 
