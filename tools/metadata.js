@@ -9,7 +9,7 @@ fs.createReadStream('./solids.csv')
     const metadata = {
         description: "",
         image: "",
-        animation_url: "",
+        animation_url: "https://solids.fine.digital/preview/"+row.No,
         external_url: "",
         name: "Solids",
         background_color: "",
