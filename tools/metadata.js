@@ -11,9 +11,48 @@ fs.createReadStream('./solids.csv')
     // convert JSON object to string
     const data = JSON.stringify(row);
 
+    const metadata = {
+        description: "",
+        image: "",
+        animation_url: "",
+        external_url: "",
+        name: "",
+        background_color: "",
+        attributes: [
+            {
+                trait_type: "Artwork ID",
+                value: row.No,
+            },
+            {
+                trait_type: "Dim",
+                value: row.Dim,
+            },
+            {
+                trait_type: "Skylight",
+                value: row.Skylight,
+            },
+            {
+                trait_type: "Entrance",
+                value: row.Entrance,
+            },
+            {
+                trait_type: "Openings",
+                value: row.Openings,
+            },
+            {
+                trait_type: "Legs",
+                value: row.Legs,
+            },
+            {
+                trait_type: "Texture",
+                value: row.Texture,
+            },
+        ],
+    };
+
     // write JSON string to a file
     let filePath = './' + folder + '/' + row.No + '.json';
-    fs.writeFile(filePath, data, (err) => {
+    fs.writeFile(filePath, metadata, (err) => {
         if (err) {
             throw err;
         }
