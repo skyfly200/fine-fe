@@ -191,15 +191,13 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
      */
     function mint(address to) external onlyRole(MINTER_ROLE) returns (uint tokenId) {
         require(locked, "settings not locked");
-        tokenId = _tokenIdCounter.current();
-        require(tokenId < TOKEN_LIMIT, "supply cap reached");
-        _tokenIdCounter.increment();
-        _safeMint(to, tokenId);
+        require(availableArt.length() > 0, "all tokens minted");
         uint randomness = coreContract.getRandomness(tokenId, block.timestamp);
         uint randIndex = randomness % availableArt.length();
         uint artId = availableArt.at(randIndex);
         artworkId[tokenId] = artId;
         availableArt.remove(artId);
+        _safeMint(to, artId);
     }
 
     // getters for interface
