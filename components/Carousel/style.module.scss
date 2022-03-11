@@ -1,0 +1,50 @@
+@import '../../styles/mixins.scss';
+
+.embla {
+  width: 100%;
+  overflow: hidden;
+  .emblaContainer {
+    display: flex;
+    .emblaSlide {
+      position: relative;
+      flex: 0 0 100%;
+    }
+  }
+}
+.dotsWrapper {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  padding-top: 10px;
+  gap: 1rem;
+}
+.emblaDot {
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  width: 50px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  @include respond-to('mobile') {
+    width: 30px;
+  }
+  &:after {
+    border: 1px solid;
+    width: 50px;
+    height: 5px;
+    border-radius: 8px;
+    content: '';
+    @include respond-to('mobile') {
+      width: 20px;
+      height: 5px;
+    }
+  }
+  &.selected:after {
+    background-color: color(darkgrey-color);
+    opacity: 1;
+  }
+}

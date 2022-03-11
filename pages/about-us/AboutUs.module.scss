@@ -1,0 +1,122 @@
+@import '../../styles/mixins.scss';
+
+.pageWrapper {
+  padding: 1rem;
+  overflow-x: hidden;
+  @include respond-to('mobile') {
+    padding: 0.5rem;
+  }
+
+  .body {
+    padding-left: calc(36vw + 2rem);
+    @include respond-to('tablet-sm') {
+      padding-left: calc(25vw + 1rem);
+    }
+    @include respond-to('mobile') {
+      padding-left: 2.5rem;
+    }
+    .sectionHeader {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      padding: 2rem 0 1rem;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 1px;
+        width: 10%;
+        background: #000;
+      }
+      @include respond-to('mobile') {
+        padding-left: calc(15vw + 0.5rem);
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 1rem;
+        text-align: right;
+        &::before {
+          width: 30%;
+          left: auto;
+          right: 0;
+        }
+      }
+    }
+
+    .about {
+      min-height: calc(var(--vh, 1vh) * 100 - 44px - 16vw - 1rem);
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 8rem;
+      .bodyXL {
+        font-size: 2rem;
+        &:first-child {
+          font-weight: 600;
+        }
+        @include respond-to('tablet-sm') {
+          font-size: 1.6rem;
+        }
+        @include respond-to('mobile') {
+          font-size: 1.4rem;
+        }
+      }
+    }
+
+    .curators {
+      min-height: calc(var(--vh, 1vh) * 100 - 44px - 1rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-bottom: 8rem;
+      .curatorsList {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        .curatorCard {
+          font-size: 4.2rem;
+          font-weight: 400;
+          padding-bottom: 2rem;
+          @include respond-to('mobile') {
+            font-size: 3rem;
+          }
+        }
+      }
+      .pagination {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        font-family: Lato;
+        .paginationBtn {
+          cursor: pointer;
+          &:disabled {
+            opacity: 0.3;
+          }
+        }
+      }
+    }
+
+    .faqs {
+      margin-bottom: 8rem;
+      .faqsList {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        .accordion {
+          border-bottom: 1px solid;
+          padding: 2rem 0;
+          .question {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 0;
+            @include respond-to('mobile') {
+              font-size: 1.4rem;
+            }
+          }
+          .answerWrapper {
+            padding: 2rem 0;
+          }
+        }
+      }
+    }
+  }
+}

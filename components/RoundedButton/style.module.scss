@@ -1,0 +1,60 @@
+@import '../../styles/mixins.scss';
+
+.buttonWrapper {
+  display: flex;
+  align-items: center;
+  color: inherit;
+}
+
+.button {
+  color: inherit;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+  transition: all 0.1s;
+  @include hover {
+    transform: translateY(-5%);
+  }
+  &:active {
+    transform: translateY(5%);
+  }
+  &.xl {
+    border-width: 2px;
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    @include hover {
+      transform: scale(1);
+    }
+  }
+}
+
+.xl {
+  font-size: 2rem;
+  @include respond-to('mobile') {
+    font-size: 1.5rem;
+  }
+}
+.lg {
+  font-size: 1.5rem;
+  @include respond-to('mobile') {
+    font-size: 1.2rem;
+  }
+}
+.line {
+  background-color: currentColor;
+  height: 1px;
+  width: 1rem;
+}
+.md + .line {
+  height: 1px;
+}
+.xl + .line {
+  width: 30px;
+  height: 2px;
+}
+.lg + .line {
+  width: 2rem;
+}

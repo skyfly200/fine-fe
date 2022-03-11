@@ -1,0 +1,9 @@
+@import '../../styles/mixins.scss';
+
+.wrapper {
+  display: flex;
+  gap: 1rem;
+  @include respond-to('mobile') {
+    gap: 0.5rem;
+  }
+}

@@ -1,0 +1,49 @@
+@import '../../styles/mixins.scss';
+.canvasStickyWrapper {
+  position: sticky;
+  display: flex;
+  padding: 1rem;
+  .blank,
+  .canvasWrapper {
+    flex: 1;
+    gap: 1rem;
+  }
+  @include respond-to('tablet-sm') {
+    position: absolute;
+    margin-left: 16px;
+    margin-right: 16px;
+    left: 0;
+  }
+}
+
+.controlsWrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  @include respond-to('mobile') {
+    align-content: end;
+    justify-content: center;
+    grid-template-columns: 1fr;
+  }
+  .controls {
+    grid-column: 2;
+    @include respond-to('mobile') {
+      grid-column: 1;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.fullScreen {
+  z-index: 7;
+  padding: 0;
+  @include respond-to('mobile') {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+.closeWrapper {
+  position: fixed;
+  top: 1rem;
+  right: 0;
+  z-index: 8;
+}

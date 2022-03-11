@@ -1,0 +1,85 @@
+@import '../../../styles/mixins.scss';
+
+.wallet {
+  display: flex;
+  align-items: center;
+  position: relative;
+  .btn {
+    cursor: pointer;
+
+    .btnContent {
+      display: flex;
+      gap: 0.5rem;
+      .icon {
+        opacity: 0.5;
+      }
+      @include hover {
+        .icon {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  .outerCircle {
+    margin-right: 0.5rem;
+    width: 20px;
+    height: 20px;
+    border: 1px solid color(grey-color);
+    border-radius: 99px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .innerCircle {
+      background: radial-gradient(#e66465, #9198e5);
+      width: 16px;
+      height: 16px;
+      border-radius: 99px;
+      transition: all 0.1s ease-in;
+    }
+    .connected {
+      background: radial-gradient(#0cf803, #9198e5);
+    }
+  }
+
+  .panel {
+    position: absolute;
+    bottom: calc(44px + 1rem);
+    min-height: 30vh;
+    min-width: 340px;
+    background-color: color(white-color);
+    padding: 1rem;
+    box-shadow: 0px -3px 6px 1px rgb(0 0 0 / 3%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    @include respond-to('mobile') {
+      min-width: 0;
+    }
+    .panelHeader {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      .title {
+        margin: 0;
+      }
+    }
+    .panelSubheader {
+      font-size: 1rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+      opacity: 0.3;
+    }
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .number {
+      font-family: Lato;
+      @include respond-to('mobile') {
+        font-size: 0.7rem;
+      }
+    }
+  }
+}

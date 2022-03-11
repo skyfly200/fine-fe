@@ -1,0 +1,40 @@
+@import '../../../styles/mixins.scss';
+
+.pageWrapper {
+  background-color: color(grey-color);
+  min-height: calc(var(--vh, 1vh) * 100 - 44px);
+  position: relative;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 1rem;
+  @include respond-to('tablet-sm') {
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content auto;
+    padding: 0.5rem;
+  }
+  .body,
+  .leftCol {
+    padding: calc(var(--vh, 1vh) * 30 - 44px) 0;
+  }
+  .header {
+    position: sticky;
+    top: calc(var(--vh, 1vh) * 30 - 44px);
+  }
+  .body {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 2fr;
+    @include respond-to('tablet-sm') {
+      padding: 0;
+      grid-template-columns: 1fr;
+      grid-template-rows: max-content auto;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: auto;
+      height: max-content;
+    }
+  }
+}

@@ -1,0 +1,70 @@
+@import '../../styles/mixins.scss';
+
+.logo {
+  display: flex;
+  overflow: hidden;
+  cursor: pointer;
+  .f {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 7;
+  }
+  .ine {
+    position: fixed;
+    top: 1rem;
+    left: 13.5vw;
+    z-index: 4;
+    transition: all 0.15s ease-out;
+    transform: translate3d(0, -100%, 0);
+    opacity: 0;
+    @include hover {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+    @include respond-to('mobile') {
+      position: absolute;
+      transform: none;
+      opacity: 1;
+      right: 0.5rem;
+      left: auto;
+      @include hover {
+        transform: none;
+      }
+    }
+  }
+  .f:hover + .ine {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+
+  @include respond-to('mobile') {
+    .f {
+      top: 0.5rem;
+      left: 0.5rem;
+    }
+    .ine {
+      top: 0.5rem;
+    }
+  }
+}
+
+.biglogo {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  justify-content: flex-end;
+
+  cursor: pointer;
+  .stickyF {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    color: black;
+    z-index: 7;
+    @include respond-to('mobile') {
+      top: 0.5rem;
+      left: 0.5rem;
+    }
+  }
+}

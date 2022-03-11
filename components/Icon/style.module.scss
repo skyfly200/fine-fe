@@ -1,3 +1,5 @@
+@import '../../styles/mixins.scss';
+
 .icon {
   display: inline-block;
   background-repeat: no-repeat;
@@ -7,10 +9,12 @@
   mask-repeat: no-repeat;
   mask-size: contain;
   mask-position: center;
-  height: 1rem;
-  width: 1rem;
 }
 
+.xxl {
+  height: 1.8rem;
+  width: 1.8rem;
+}
 .xl {
   height: 1.4rem;
   width: 1.4rem;
@@ -21,14 +25,14 @@
   width: 1.2rem;
 }
 
+.md {
+  height: 1rem;
+  width: 1rem;
+}
+
 .sm {
   height: 0.8rem;
   width: 0.8rem;
-}
-
-.F {
-  width: 25.25vw;
-  height: 16.03vw;
 }
 
 .arrow-right {
@@ -39,4 +43,82 @@
 }
 .f-logo {
   mask-image: url(../../assets/icons/f.svg);
+}
+.ine-logo {
+  mask-image: url(../../assets/icons/ine.svg);
+}
+.eth {
+  mask-image: url(../../assets/icons/eth.svg);
+}
+.twitter {
+  mask-image: url(../../assets/icons/twitter.svg);
+}
+.instagram {
+  mask-image: url(../../assets/icons/instagram.svg);
+}
+.discord {
+  mask-image: url(../../assets/icons/discord.svg);
+}
+.gallery {
+  mask-image: url(../../assets/icons/gallery.svg);
+}
+.canvas {
+  mask-image: url(../../assets/icons/canvas.svg);
+}
+.details {
+  mask-image: url(../../assets/icons/details.svg);
+}
+.about {
+  mask-image: url(../../assets/icons/about.svg);
+}
+.search {
+  mask-image: url(../../assets/icons/search.svg);
+}
+.chevron-up {
+  mask-image: url(../../assets/icons/chevron-up.svg);
+}
+.chevron-down {
+  mask-image: url(../../assets/icons/chevron-down.svg);
+}
+.chevron-left {
+  mask-image: url(../../assets/icons/chevron-left.svg);
+}
+.chevron-right {
+  mask-image: url(../../assets/icons/chevron-right.svg);
+}
+.full-screen {
+  mask-image: url(../../assets/icons/full-screen.svg);
+}
+
+// logo exception sizes
+.F {
+  width: 25.53vw;
+  height: 16.03vw;
+}
+
+.INE {
+  width: calc(74.47vw - 2rem);
+  height: 16.03vw;
+  mask-position: right;
+  @include respond-to('mobile') {
+    width: calc(74.47vw - 1rem);
+  }
+}
+
+.sm-F {
+  width: 11vw;
+  height: 7vw;
+  @include respond-to('mobile') {
+    width: 25vw;
+    height: 15.5vw;
+  }
+}
+
+.sm-INE {
+  width: 30vw;
+  height: 7vw;
+  @include respond-to('mobile') {
+    width: 66vw;
+    height: 15.5vw;
+  }
 }

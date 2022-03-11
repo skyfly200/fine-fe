@@ -1,0 +1,169 @@
+@import '../styles/mixins.scss';
+
+.leftPadding {
+  padding-left: calc(11vw + 2rem);
+  @include respond-to('mobile') {
+    padding-left: 0.5rem;
+  }
+}
+
+.heroWrapper {
+  height: calc(var(--vh, 1vh) * 100 - 44px);
+  position: relative;
+  .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 2rem;
+    .main {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      .projectName {
+        font-size: 15vw;
+        margin-bottom: 2vw;
+        font-weight: 400;
+        text-transform: uppercase;
+      }
+      .rotatedWrapper {
+        z-index: 2;
+      }
+    }
+    .bottom {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 2rem;
+      z-index: 2;
+      .buttonWrapper {
+        margin-left: calc(63px + 1rem);
+        @include respond-to('mobile') {
+          margin-left: calc(35px + 1rem);
+        }
+      }
+      .artistName {
+        font-size: 6vw;
+        @include respond-to('mobile') {
+          font-size: 1.2rem;
+        }
+        font-weight: 500;
+        padding-right: 1rem;
+      }
+    }
+  }
+}
+
+.newsAndEventsWrapper {
+  padding: 0rem 1rem 2rem 0;
+  background-color: color(white-color);
+  display: grid;
+  grid-template-columns: calc(11vw + 1rem) 2fr 1fr;
+  gap: 1rem;
+  position: relative;
+  @include respond-to('mobile') {
+    grid-template-columns: 1fr;
+    padding: 0.5rem;
+  }
+  .subtitleWrapper {
+    position: sticky;
+    top: 1rem;
+    left: 1rem;
+    height: calc(var(--vh, 1vh) * 100 - 2rem);
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    margin: 0;
+    font-weight: 400;
+    @include respond-to('mobile') {
+      display: none;
+    }
+  }
+  .carouselWrapper {
+    position: sticky;
+    max-width: calc(100vw - 1rem); // TODO: FIND A BETTER SOLUTION
+    top: 1rem;
+    left: 0;
+    @include respond-to('mobile') {
+      margin-bottom: 2rem;
+    }
+  }
+  .newsWrapper {
+    .newsCardWrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      @include respond-to('mobile') {
+        div:nth-child(n + 4) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+.circle {
+  height: calc(var(--vh, 1vh) * 100 - 44px);
+  background: rgb(60, 60, 60);
+  background: radial-gradient(
+    closest-side,
+    rgba(30, 30, 30, 1) 0%,
+    rgba(20, 20, 20, 1) 10%,
+    color(darkgrey-color) 100%
+  );
+  color: color(white-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .shape {
+    padding: 1rem;
+    border: 1px solid color(white-color);
+    border-radius: 50%;
+    height: calc(var(--vh, 1vh) * 70);
+    width: 80%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .content {
+      font-size: 5vw;
+      font-weight: 500;
+      margin: 0;
+    }
+  }
+}
+
+.rotatedWrapper {
+  transform-origin: bottom left;
+  transform: rotate(-90deg) translateY(100%) translateX(-100%);
+  font-weight: 400;
+  width: 50px;
+  @include respond-to('mobile') {
+    width: 25px;
+  }
+  .rotatedSubtitle {
+    display: flex;
+    text-align: left;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.5rem;
+    padding: 1rem;
+    padding-left: 0;
+    width: max-content;
+
+    h5 {
+      font-size: 1.6rem;
+      margin: 0;
+      font-weight: 400;
+      white-space: nowrap;
+      @include respond-to('mobile') {
+        font-size: 1rem;
+      }
+    }
+  }
+}

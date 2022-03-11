@@ -3,8 +3,9 @@
 .canvasContainer {
   position: absolute;
   top: 0;
+  left: 0;
   width: 100%;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   background: transparent;
   overflow: hidden;
   z-index: 1;

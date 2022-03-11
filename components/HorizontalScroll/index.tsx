@@ -48,7 +48,7 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({ children, finalPadd
     handleDynamicHeight(objectRef, setDynamicHeight, finalPadding)
     window.addEventListener('resize', resizeHandler)
     applyScrollListener(containerRef, setTranslateX)
-  }, [])
+  }, [finalPadding])
 
   return (
     <div className={style.TallOuterContainer} style={{ height: `${dynamicHeight}px` }}>

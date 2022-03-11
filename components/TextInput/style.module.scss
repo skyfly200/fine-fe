@@ -1,0 +1,68 @@
+@import '../../styles/mixins.scss';
+
+.wrapper {
+  position: relative;
+  .input {
+    width: 100%;
+
+    &.simple {
+      border: none;
+      border-bottom: 1px solid #757575;
+      opacity: 0.3;
+      transition: all 0.15s ease-in;
+      &:focus {
+        opacity: 1;
+        outline: none;
+      }
+    }
+    &.search,
+    &.submit {
+      height: 44px;
+      border-radius: 999px;
+      padding-left: 1rem;
+      padding-right: 50px;
+      background-color: transparent;
+      border: 1px solid black;
+      transition: all 0.15s ease-in;
+      &:focus,
+      &:active {
+        background: color(white-color);
+        opacity: 1;
+        outline: none;
+      }
+      @include respond-to('mobile') {
+        height: 38px;
+      }
+    }
+  }
+  .searchIcon {
+    position: absolute;
+    right: 0.8rem;
+    top: 0.3rem;
+    @include respond-to('mobile') {
+      top: 0.1rem;
+      right: 0.5rem;
+    }
+  }
+
+  .submitButton {
+    cursor: pointer;
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    height: 36px;
+    border-radius: 999px;
+    color: color(grey-color);
+    padding: 0.2rem 0.9rem;
+    background-color: color(darkgrey-color);
+    font-weight: 500;
+    @include respond-to('mobile') {
+      height: 30px;
+    }
+  }
+
+  .label {
+    margin-bottom: 1rem;
+    display: inline-block;
+  }
+}

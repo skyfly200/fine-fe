@@ -1,26 +1,70 @@
-import React, { useContext, useState } from 'react'
 import type { NextPage } from 'next'
+import Image from 'next/image'
 import Head from 'next/head'
-import dynamic from 'next/dynamic'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import cn from 'classnames'
 
+import ObjectDisplayer from '../components/ArtPreviewer/ObjectDisplayer'
+import FixedSidenav from '../components/FixedSidenav'
+import Logo from '../components/Logo'
+import Layout from '../containers/Layout'
+import TextInput from '../components/TextInput'
 import { ToastContext } from '../containers/ToastProvider'
-import HorizontalScroll from '../components/HorizontalScroll'
-import Icon from '../components/Icon'
-import Button from '../components/Button'
-import Link from '../components/Link'
 
-import { constants } from '../utils'
-import style from '../styles/pages/Soon.module.scss'
+import slimesIMG from '../assets/images/slimes.png'
 
+import s from './Launch.module.scss'
+import dynamic from 'next/dynamic'
+
+const menu = ['About', 'Upcoming', 'Submissions']
 const DynamicSoonCanvas = dynamic(() => import('../components/SoonCanvas'))
 
-const HomePage: NextPage = () => {
+type ProjectCardProps = {
+  title: string
+  artist: string
+}
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ title, artist, children }) => (
+  <article className={s.project}>
+    <div className={s.content}>
+      <div className={s.header}>
+        <h2 className={s.title}>{title}</h2>
+        <h3 className={s.artist}>by {artist}</h3>
+      </div>
+    </div>
+    {children}
+  </article>
+)
+
+const Home: NextPage = () => {
+  const [activeSection, setActiveSection] = useState(menu[0])
+  const aboutRef = useRef(null)
+  const upcomingRef = useRef(null)
+  const joinUsRef = useRef(null)
+
+  // Intersection Navigation
+  const handleIntersect = (entries: IntersectionObserverEntry[]) => {
+    if (entries[0].isIntersecting) {
+      setActiveSection(entries[0].target.id)
+    }
+  }
+
+  const createObserver = useCallback((target: Element, threshold: number = 0.5) => {
+    const observer = new IntersectionObserver(handleIntersect, { threshold: threshold })
+    observer.observe(target)
+  }, [])
+
+  useEffect(() => {
+    aboutRef.current && createObserver(aboutRef.current)
+    upcomingRef.current && createObserver(upcomingRef.current, 0.09)
+    joinUsRef.current && createObserver(joinUsRef.current)
+  }, [createObserver])
+
+  // Subscription
   const [email, setEmail] = useState<string>('')
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
   const { notify } = useContext(ToastContext)
-  const handleSubscribe = async (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleSubscribe = async () => {
     setIsSubmitting(true)
 
     const res = await fetch('/api/subscribe', {
@@ -47,169 +91,175 @@ const HomePage: NextPage = () => {
   }
 
   return (
-    <>
+    <Layout greyBG hideLogo hideNav hideFooter>
       <Head>
-        <title>Fine</title>
+        <title>FINE</title>
         <meta
           name="description"
-          content="artist-run platform supporting established artists in the NFT space and
-            artists entering the NFT space for the first time"
-        />
-        <meta
-          property="og:image"
-          content="https://res.cloudinary.com/dhrwv7wvb/image/upload/v1639149533/fine/fine-meta-image_g1tndh.png"
+          content="FINE is a cross-functional lab dedicated to guide artists and creatives in their exploration of working in the metasphere."
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={style.home}>
-        <Icon icon="f-logo" size="F" className={style.stickyF} />
-        <div className={style.hero}>
-          <DynamicSoonCanvas />
-          <h1 className={style.logoLetters}>INE</h1>
-          <div className={style.heroContent}>
-            <div className={cn(style.ctaContainer, style.blank)}>
-              <div className={style.rotateCTA}>
-                <Link href="#artists">
-                  <button className={style.heroCTA}>
-                    <Icon icon="arrow-left" size="xl" />
-                    <h5>
-                      Artist <br /> submissions
-                    </h5>
-                  </button>
-                </Link>
-              </div>
-            </div>
-            <div className={cn(style.content, style.container)}>
-              <p className={style.textXL}>
-                FINE is an artist-run platform supporting established and emerging artists within
-                the NFT space and metaverse(s).
-              </p>
-              <p className={style.textXL}>
-                We view the blockchain both as a platform and a medium. We work one-on-one with
-                artists to develop projects -- providing the tools and knowledge necessary not only
-                to create and educate, but also to innovate. We are focused on building a diverse
-                roster of artists aligned in their intention to create experimental work and foster
-                a rich dialogue within the contemporary visual culture.
-              </p>
-            </div>
+      <div className={s.pageWrapper}>
+        <Logo big />
+        <DynamicSoonCanvas />
+        <section ref={aboutRef} id={menu[0]} className={s.about}>
+          <div className={s.content}>
+            <p>
+              FINE is a cross-functional lab dedicated to guide artists and creatives in their
+              exploration of working in the metasphere.
+            </p>
           </div>
-        </div>
+        </section>
+        <section ref={upcomingRef} id={menu[1]} className={s.upcoming}>
+          {/* SOLIDS */}
 
-        <section className={cn(style.when, style.FPadding)}>
-          <div className={style.whenWrapper}>
-            <div>
-              <h3 className={style.subheader}>When?</h3>
-              <p className={style.text}>
-                FINE is pleased to announce it will be launching its first season in early 2022.
-                Kindly subscribe to our newsletter to stay updated and receive details on our
-                upcoming launch:
-              </p>
+          <ProjectCard title="SOLIDS" artist="Far">
+            <div className={s.bottom}>
+              <div className={s.canvasWrapper}>
+                <ObjectDisplayer url="/solids/1.glb" noColor withZoom={false} spotlightOn />
+              </div>
+              <div />
             </div>
-            <form className={cn(style.inputWrapper, style.overBlack)} onSubmit={handleSubscribe}>
-              <input
-                placeholder="Email"
-                type="email"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-              />
-              <Button type="submit" text="SUBSCRIBE" loading={isSubmitting} overBlack />
-            </form>
+          </ProjectCard>
+
+          {/* SLIMES */}
+          <div className={s.slime}>
+            <ProjectCard title="SLIMES" artist="Adam Ferris">
+              <div className={s.bottom}>
+                <Image
+                  src={slimesIMG}
+                  height={1672}
+                  width={1746}
+                  layout="responsive"
+                  alt="slimes image"
+                />
+                <div className={s.description}>
+                  <p>
+                    Slimes is a limited edition series of webGL artworks by Adam Ferriss programmed
+                    in three.js and GLSL. Slimes are textural explorations, taking advantage of
+                    feedback loops and artifacts from the web graphics pipeline to fuel its growth.
+                  </p>
+                  <p>
+                    Every Slime is a unique and generative NFT, that contains its own set of traits
+                    and attributes. All features for a slime are generated when the piece is minted,
+                    by assigning each piece a series of random values, determined by the hash of the
+                    token. The features for slimes have mixed rarities, with some traits expressing
+                    themselves more readily than others.
+                  </p>
+                  <p>
+                    These works are best viewed full screen using a desktop computer. It’s
+                    recommended to use a modern machine with a dedicated graphics card.
+                  </p>
+                </div>
+              </div>
+            </ProjectCard>
           </div>
-          <div className={style.dateWrapper}>
-            <h4 className={style.year}>20</h4>
-            <h4 className={style.year}>22</h4>
+
+          {/* CHUNKY MOUSE */}
+          <div className={s.chunkyMouse}>
+            <ProjectCard title="Chunky Mouse" artist="William Virgil">
+              {/* <div className={s.mouseBottom}>
+                <Image
+                  alt="chunky mouse"
+                  src="https://res.cloudinary.com/dhrwv7wvb/image/upload/v1646146839/fine/chunky_f22c4q.webp"
+                  layout="responsive"
+                  width={2160}
+                  height={3840}
+                />
+                <div className={s.description}>
+                  <p>
+                    Chunky Mouse is an art collection that explores the inner confines of the one
+                    behind the mask. The character embodies what&apos;s genuinely behind the
+                    perceived perfection of the mask character. It wears a mask, hiding the truth of
+                    who it is while crafting a new narrative and re-tell the story from the point of
+                    view of &lsquo;the newly oppressed.&lsquo;
+                  </p>
+                  <p>Have you ever wondered who&lsquo;s behind the mask?</p>
+                  <p>
+                    At the time, a character was born. An entertainment hero painted millions of
+                    smiles to those who could afford to sit in front of a magic box. His swarthy
+                    body jumped, danced, and smiled with a familiar face to those who watched.
+                  </p>
+                  <p>
+                    In a world where blackface was an entertainment trend, A dark skin mascot
+                    invaded suburbia to become children&lsquo;s best friends. But if people of color
+                    were not allowed in a white home, Have you ever wondered who was behind that
+                    chubby whiteface?
+                  </p>
+                </div>
+              </div> */}
+            </ProjectCard>
           </div>
         </section>
 
-        <HorizontalScroll>
-          <div className={style.joinUs}>
-            <div className={style.joinUsSection} id="artists">
-              <div className={style.cardTitle}>
-                <h3 className={style.subheader}>
-                  Artists <br /> Submissions
-                </h3>
-              </div>
-              <div className={style.cardContent}>
-                <p className={style.text}>
-                  We are interested in submissions from artists all around the world who are focused
-                  on creating with on-chain technologies and would like to develop projects with us,
-                  kindly submit your proposal <Icon icon="arrow-right" />{' '}
-                  <a href="https://forms.gle/fJHnHrpvpXn8oA5B9" className={style.link}>
-                    here
-                  </a>
-                  .
-                </p>
-                <br />
-                <p className={style.text}>
-                  Submit any submission questions <Icon icon="arrow-right" />{' '}
-                  <a
-                    href={`mailto:${constants.contactEmail}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={style.link}
-                  >
-                    here.
-                  </a>
-                </p>
-              </div>
+        <section ref={joinUsRef} id={menu[2]} className={s.join}>
+          <article className={s.content}>
+            <h3 className={s.title}>
+              Artist <br />
+              Submissions
+            </h3>
+            <div className={s.content}>
+              <p>
+                We are interested in submissions from artists all around the world who are focused
+                on creating with on-chain technologies and would like to develop projects with us,
+                kindly submit your proposal{' '}
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSd-RfosRffHfH7eKW5xFFZD6EuOApJUraqeBlsFfigyVame_w/viewform"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={s.link}
+                >
+                  here
+                </a>
+                .
+              </p>
+              <p className={s.footnote}>
+                Submit any submission questions{' '}
+                <a href="mailto:hello@fine.digital" className={s.link}>
+                  here
+                </a>
+                .
+              </p>
             </div>
-            <div className={style.joinUsSection}>
-              <div className={style.cardTitle}>
-                <h3 className={style.subheader}>Investors</h3>
-              </div>
-              <div className={style.cardContent}>
-                <p className={style.text}>
-                  If you are a strategic investor and would like to grow with us, we are looking for
-                  long-term partnerships that are willing to be part of a cultural movement
-                  utilizing blockchain technology.
-                  <br />
-                  <br /> <Icon icon="arrow-right" />{' '}
-                  <a href={`mailto:${constants.contactEmail}`} className={style.link}>
-                    Contact us.
-                  </a>
-                </p>
-              </div>
-            </div>
-            <div className={style.joinUsSection}>
-              <div className={style.cardTitle}>
-                <h3 className={style.subheader}>Collectors</h3>
-              </div>
-              <div className={style.cardContent}>
-                <p className={style.text}>
-                  We are pleased to share upcoming artist projects, special programming and
-                  collectors circle details. Kindly join our email list to stay updated:
-                </p>
-                <form className={style.inputWrapper} onSubmit={handleSubscribe}>
-                  <input
-                    placeholder="Email"
-                    type="email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                  />
-                  <Button type="submit" text="SUBSCRIBE" loading={isSubmitting} />
-                </form>
-              </div>
-            </div>
-          </div>
-        </HorizontalScroll>
-        <footer className={style.footer}>
-          <div className={style.footerContent}>
-            <h3 className={style.subheader}>Join Our Team</h3>
-            <p className={style.text}>
-              If you are interested in being part of FINE and feel you have something unique to
-              contribute, we would like to hear from you. We are looking to collaborate with
-              Curators, Solidity Developers and others. <br />
-              <br />
-              <Icon icon="arrow-right" />{' '}
-              <a href={`mailto:${constants.contactEmail}`} className={style.link}>
-                Contact us.
-              </a>
+          </article>
+          <article className={s.content}>
+            <h4 className={s.title}>Collectors</h4>
+            <p>
+              We are pleased to share upcoming artist projects, special programming and collectors
+              circle details.
             </p>
-          </div>
-        </footer>
+            <div className={s.submitWrapper}>
+              <TextInput
+                placeholder="Email..."
+                onChange={e => setEmail(e.target.value)}
+                value={email}
+                styleType="submit"
+                onSubmit={handleSubscribe}
+                label="Kindly join our email list to stay updated:"
+                submitting={isSubmitting}
+              />
+            </div>
+          </article>
+          <article className={cn(s.content, s.joinus)}>
+            <div className={s.inner}>
+              <h4 className={s.title}>Join Our Team</h4>
+              <p>
+                If you are interested in being part of FINE and feel you have something unique to
+                contribute, we would like to hear from you.
+              </p>
+              <p>
+                <a href="mailto:hello@fine.digital" className={s.link}>
+                  Contact us
+                </a>
+              </p>
+            </div>
+          </article>
+        </section>
       </div>
-    </>
+      <FixedSidenav menu={menu} active={activeSection} />
+    </Layout>
   )
 }
 
-export default HomePage
+export default Home

@@ -1,5 +1,5 @@
 @import '../mixins.scss';
-@import '../components.scss';
+@import '../components.module.scss';
 
 .logoLetters {
   font-weight: 900;
@@ -58,21 +58,21 @@
   }
   &.overBlack {
     input {
-      color: color(bg-grey-color);
+      color: color(grey-color);
       background-color: rgba(255, 255, 255, 0.03);
     }
     .btn {
       background-color: transparent;
-      border: 1px solid color(bg-grey-color);
+      border: 1px solid color(grey-color);
     }
   }
 }
 
 .home {
-  background-color: color(bg-grey-color);
+  background-color: color(grey-color);
   .hero {
     width: 100%;
-    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -130,7 +130,7 @@
     grid-column: span 2;
     gap: 3vw;
     background-color: black;
-    color: color(bg-grey-color);
+    color: color(grey-color);
     align-items: end;
     padding-top: 4rem;
     padding-bottom: 4rem;
@@ -193,7 +193,7 @@
       border-left: 1px solid #000;
       background-color: rgba(0, 0, 0, 0);
       transition: background-color 0.15s ease-in;
-      &:hover {
+      @include hover {
         background-color: rgba(0, 0, 0, 0.08);
       }
       &:last-child {
@@ -253,7 +253,7 @@
 
 .footer {
   background: #fff;
-  min-height: 80vh;
+  min-height: calc(var(--vh, 1vh) * 80);
   display: flex;
   align-items: center;
   @extend .FPadding;
@@ -273,7 +273,7 @@
     }
   }
   @include respond-to('tablet-sm') {
-    min-height: 60vh;
+    min-height: calc(var(--vh, 1vh) * 60);
     padding: 0;
   }
 }

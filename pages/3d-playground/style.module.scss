@@ -1,0 +1,39 @@
+.wrapper {
+  position: relative;
+  height: 100%;
+  .controls {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 2;
+    display: flex;
+    gap: 1rem;
+    .fileInputWrapper {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .colorInputWrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.2rem;
+    }
+    input[type='color'] {
+      cursor: pointer;
+      -webkit-appearance: none;
+      width: 100%;
+      height: 28px;
+      background-color: black;
+      border-radius: 4px;
+      outline: none;
+      border: none;
+    }
+    input[type='color']::-webkit-color-swatch-wrapper {
+      padding: 4px;
+    }
+    input[type='color']::-webkit-color-swatch {
+      border-radius: 2px;
+      border: none;
+    }
+  }
+}
