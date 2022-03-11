@@ -111,7 +111,6 @@ const Home: NextPage = () => {
             </p>
           </div>
         </section>
-
         <section ref={upcomingRef} id={menu[1]} className={s.upcoming}>
           {/* SOLIDS */}
 
