@@ -4,7 +4,6 @@ pragma solidity ^0.8.2;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
-import "@openzeppelin/contracts/utils/introspection/ERC165Checker.sol";
 import "./FineCoreInterface.sol";
 
 import "hardhat/console.sol";
@@ -21,7 +20,6 @@ interface FineNFTInterface {
 /// @custom:security-contact skyfly200@gmail.com
 contract FineShop is AccessControl {
     using SafeMath for uint256;
-    using ERC165Checker for address;
 
     FineCoreInterface fineCore;
     mapping(uint => address) public projectOwner;
