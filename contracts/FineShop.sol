@@ -31,15 +31,19 @@ contract FineShop is AccessControl {
     mapping(uint => bool) public projectLive;
     mapping(uint => bool) public projectPause;
     mapping(uint256 => bool) public contractFilterProject;
-    mapping(address => mapping (uint256 => uint256)) public projectMintCounter;
+    mapping(address => mapping (uint256 => uint256)) public projectMintCounter; // TODO: evaluate need for this
     mapping(uint256 => uint256) public projectMintLimit;
     mapping(uint256 => mapping (address => bool) ) public projectAllowList;
     mapping(uint256 => uint256 ) public projectAllowListAllocation;
-    mapping(uint256 => bool) public projectReadyForLive;
+    mapping(uint256 => bool) public projectReadyForLive; // TODO: evaluate need for this
     
     constructor(address _fineCoreAddresss) {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         fineCore = FineCoreInterface(_fineCoreAddresss);
+    }
+
+    function stringComp(string memory str1, string memory str2) pure internal returns (bool) {
+        return keccak256(abi.encodePacked(str1)) == keccak256(abi.encodePacked(str2));
     }
 
     // Admin Functions
@@ -60,7 +64,8 @@ contract FineShop is AccessControl {
      * @param _projectId to push live
      */
     function goLive(uint _projectId) external onlyRole(DEFAULT_ADMIN_ROLE) {
-        require(projectReadyForLive[_projectId], "project not ready for live");
+        bool ready = projectPrice[_projectId] > 0 && !stringComp(projectCurrencySymbol[_projectId], "");
+        require(ready, "project not ready for live");
         projectLive[_projectId] = true;
         projectPause[_projectId] = true;
     }
@@ -164,8 +169,6 @@ contract FineShop is AccessControl {
      */
     function setPrice(uint _projectId, uint price) external onlyOwner(_projectId) notLive(_projectId) {
         projectPrice[_projectId] = price;
-        if (keccak256(abi.encodePacked(projectCurrencySymbol[_projectId])) != keccak256(abi.encodePacked("")))
-            projectReadyForLive[_projectId] = true;
     }
 
     /**
@@ -193,7 +196,6 @@ contract FineShop is AccessControl {
     function setCurrencyToETH(uint _projectId) external onlyOwner(_projectId) notLive(_projectId) {
         projectCurrencySymbol[_projectId] = "ETH";
         projectCurrencyAddress[_projectId] = address(0x0);
-        if (projectPrice[_projectId] > 0) projectReadyForLive[_projectId] = true;
     }
 
     /**
@@ -204,11 +206,10 @@ contract FineShop is AccessControl {
      */
     function setCurrency(uint _projectId, string calldata _symbol, address _contract) external onlyOwner(_projectId) notLive(_projectId) {
         require(bytes(_symbol).length > 0, "Symbol must be provided");
-        if (keccak256(abi.encodePacked(_symbol)) != keccak256(abi.encodePacked("ETH")))
+        if (!stringComp(_symbol, "ETH"))
             require(_contract != address(0x0), "curency address cant be zero");
         projectCurrencySymbol[_projectId] = _symbol;
         projectCurrencyAddress[_projectId] = _contract;
-        if (projectPrice[_projectId] > 0) projectReadyForLive[_projectId] = true;
     }
 
     /**
@@ -229,7 +230,7 @@ contract FineShop is AccessControl {
             uint256 _allowlists
         ) external onlyOwner(_projectId) notLive(_projectId) {
             require(bytes(_symbol).length > 0, "Symbol must be provided");
-            if (keccak256(abi.encodePacked(_symbol)) != keccak256(abi.encodePacked("ETH")))
+            if (!stringComp(_symbol, "ETH"))
                 require(_contract != address(0x0), "curency address cant be zero");
             projectCurrencySymbol[_projectId] = _symbol;
             projectCurrencyAddress[_projectId] = _contract;
@@ -256,7 +257,7 @@ contract FineShop is AccessControl {
      */
     function handlePayment(uint _projectId, uint count) internal {
         uint price = projectPrice[_projectId].mul(count);
-        if (keccak256(abi.encodePacked(projectCurrencySymbol[_projectId])) != keccak256(abi.encodePacked("ETH"))){
+        if (!stringComp(projectCurrencySymbol[_projectId], "ETH")){
             require(msg.value==0, "this project accepts a different currency and cannot accept ETH");
             require(IERC20(projectCurrencyAddress[_projectId]).allowance(msg.sender, address(this)) >= price, "Insufficient Funds Approved for TX");
             require(IERC20(projectCurrencyAddress[_projectId]).balanceOf(msg.sender) >= price, "Insufficient balance.");
