@@ -125,7 +125,7 @@ const Home: NextPage = () => {
 
           {/* SLIMES */}
           <div className={s.slime}>
-            <ProjectCard title="SLIMES" artist="Adam Ferris">
+            <ProjectCard title="SLIMES" artist="Adam Ferriss">
               <div className={s.bottom}>
                 <Image
                   src={slimesIMG}
