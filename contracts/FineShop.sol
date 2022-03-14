@@ -35,7 +35,6 @@ contract FineShop is AccessControl {
     mapping(uint256 => uint256) public projectMintLimit;
     mapping(uint256 => mapping (address => bool) ) public projectAllowList;
     mapping(uint256 => uint256 ) public projectAllowListAllocation;
-    mapping(uint256 => bool) public projectReadyForLive; // TODO: evaluate need for this
     
     constructor(address _fineCoreAddresss) {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
@@ -237,7 +236,6 @@ contract FineShop is AccessControl {
             projectPrice[_projectId] = _price;
             projectPremintAllocation[_projectId] = _premints;
             projectAllowListAllocation[_projectId] = _allowlists;
-            projectReadyForLive[_projectId] = true;
     }
 
     function addToAllowlist(uint _projectId, address minter) external onlyOwner(_projectId) {
