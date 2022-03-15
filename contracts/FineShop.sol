@@ -327,7 +327,7 @@ contract FineShop is AccessControl {
      * @param to address to send token to
      * @param count number of tokens to purchase
      */
-    function purchaseTo(uint _projectId, address to, uint count) public payable returns (uint256) {
+    function purchaseTo(uint _projectId, address to, uint count) public payable returns (string memory) {
         require(projectLive[_projectId], "project not live");
         require(!projectPause[_projectId], "project paused");
         FineNFTInterface nftContract = FineNFTInterface(fineCore.getProjectAddress(_projectId));
@@ -345,13 +345,15 @@ contract FineShop is AccessControl {
             require(projectAllowList[_projectId][msg.sender], "not on allowlist");
         }
         handlePayment(_projectId, count);
-        uint tokenID;
         // loop and mint count number of tokens specified by count
-        require(nftContract.totalSupply() < nftContract.getTokenLimit(), "exceeds quantity remaining");
+        require(nftContract.totalSupply() < nftContract.getTokenLimit(), "exceeds quantity remaining"); // todo: try using TOKEN_LIMIT directly
+        string memory idList;
         for (uint i = 0; i < count; i++) {
-            tokenID = nftContract.mint(to);
+            uint tokenID = nftContract.mint(to);
+            if (i == 0) idList = string(abi.encodePacked(tokenID));
+            else idList = string(abi.encodePacked(idList, ",", tokenID));
         }
-        return tokenID; // returns id of last token minted
+        return idList; // returns id of last token minted
     }
 
     /**
@@ -359,7 +361,7 @@ contract FineShop is AccessControl {
      * @param _projectId to purchase
      * @param count number of tokens to purchase
      */
-    function buy(uint _projectId, uint count) external payable returns (uint256) {
+    function buy(uint _projectId, uint count) external payable returns (string memory) {
         return purchaseTo(_projectId, msg.sender, count);
     }
 
@@ -369,7 +371,7 @@ contract FineShop is AccessControl {
      * @param to recipients address
      * @param count number of tokens to purchase
      */
-    function buyFor(uint _projectId, address to, uint count) external payable returns (uint256) {
+    function buyFor(uint _projectId, address to, uint count) external payable returns (string memory) {
         return purchaseTo(_projectId, to, count);
     }
 
