@@ -101,14 +101,14 @@ contract FineShop is AccessControl {
     }
 
     /**
-     * @dev init the project in one call
+     * @dev init the project
      * @param _projectId to set owner of
      * @param newOwner to set as owner
      * @param contractFilter switch to filter out minting via contract
      * @param _bulk amount for minitng multiple per tx
      * @param _limit mintable per address
      */
-    function quickInit(
+    function projectInit(
         uint _projectId,
         address newOwner,
         bool contractFilter,
