@@ -119,6 +119,34 @@ const Home: NextPage = () => {
               <div className={s.canvasWrapper}>
                 <ObjectDisplayer url="/solids/1.glb" noColor withZoom={false} spotlightOn />
               </div>
+              <div className={s.description}>
+                <p>
+                  SOLIDS is a generative architecture project created by FAR. There will be 8,888
+                  unique buildings generated algorithmically and compatible with Metaverses.
+                </p>
+
+                <p>
+                  {' '}
+                  As the Metaverse is becoming more ubiquitous, we are seeing many different
+                  examples emerging. Immersive virtual worlds are not something novel; however,
+                  blockchain technology and cryptocurrency is bringing another level of excitement.
+                  The combination of technologies adds a more tangible layer to our virtual
+                  experience, which extends the material world.
+                </p>
+
+                <p>
+                  In this context of expansion into the Metasphere, Architecture is needed to shape
+                  the habitat of the Virtual Realm. This is where SOLIDS was born, as an essential
+                  response to the needs of buildings in the established and upcoming Digital
+                  Environments.{' '}
+                </p>
+
+                <p>
+                  When the user mints a SOLID, they get a 3D file that can be imported into other 3D
+                  environments. Down the road, we will work on making them compatible with more
+                  Metaverses and environments as we evolve.
+                </p>
+              </div>
               <div />
             </div>
           </ProjectCard>
