@@ -126,12 +126,11 @@ const Home: NextPage = () => {
                 </p>
 
                 <p>
-                  {' '}
                   As the Metaverse is becoming more ubiquitous, we are seeing many different
-                  examples emerging. Immersive virtual worlds are not something novel; however,
-                  blockchain technology and cryptocurrency is bringing another level of excitement.
-                  The combination of technologies adds a more tangible layer to our virtual
-                  experience, which extends the material world.
+                  examples of virtual worlds emerging. Immersive virtual worlds are not something
+                  novel; however, blockchain technology and cryptocurrency are bringing another
+                  level of excitement. The combination of technologies adds a more tangible layer to
+                  our virtual experience, which extends the material world.
                 </p>
 
                 <p>
