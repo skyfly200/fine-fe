@@ -33,7 +33,7 @@ contract FineShop is AccessControl {
     mapping(uint256 => bool) public contractFilterProject;
     mapping(address => mapping (uint256 => uint256)) public projectMintCounter; // TODO: evaluate need for this
     mapping(uint256 => uint256) public projectMintLimit;
-    mapping(uint256 => mapping (address => bool) ) public projectAllowList;
+    mapping(uint256 => mapping (address => uint8) ) public projectAllowList;
     mapping(uint256 => uint256 ) public projectAllowListAllocation;
     
     constructor(address _fineCoreAddresss) {
@@ -238,12 +238,10 @@ contract FineShop is AccessControl {
             projectAllowListAllocation[_projectId] = _allowlists;
     }
 
-    function addToAllowlist(uint _projectId, address minter) external onlyOwner(_projectId) {
-        projectAllowList[_projectId][minter] = true;
-    }
-
-    function removeFromAllowlist(uint _projectId, address minter) external onlyOwner(_projectId) {
-        projectAllowList[_projectId][minter] = false;
+    function setAllowList(uint _projectId, address[] calldata addresses, uint8 numAllowedToMint) external onlyOwner {
+        for (uint256 i = 0; i < addresses.length; i++) {
+            projectAllowList[_projectId][addresses[i]] = numAllowedToMint;
+        }
     }
 
     // Sale Functions
@@ -331,7 +329,9 @@ contract FineShop is AccessControl {
         require(projectLive[_projectId], "project not live");
         require(!projectPause[_projectId], "project paused");
         FineNFTInterface nftContract = FineNFTInterface(fineCore.getProjectAddress(_projectId));
-        require(nftContract.totalSupply() >= projectPremintAllocation[_projectId], "premints remaining");
+        uint256 ts = nftContract.totalSupply();
+        require(ts >= projectPremintAllocation[_projectId], "Premint unfinished");
+        require(ts < nftContract.getTokenLimit(), "Purchase would exceed max tokens"); // todo: try using TOKEN_LIMIT directly
         if (projectBulkMintCount[_projectId] > 0) require(count <= projectBulkMintCount[_projectId], "excedes minting limit");
         if (contractFilterProject[_projectId]) require(msg.sender == tx.origin, "No Contract Buys");
         if (projectMintLimit[_projectId] > 0) {
@@ -340,14 +340,14 @@ contract FineShop is AccessControl {
         }
         if (
             projectAllowListAllocation[_projectId] > 0 &&
-            nftContract.totalSupply() < (projectAllowListAllocation[_projectId] + projectPremintAllocation[_projectId])
-        ) { // Allow listed sale active and still available
-            require(projectAllowList[_projectId][msg.sender], "not on allowlist");
-            // TODO: whitelist limits per acount
+            ts < (projectAllowListAllocation[_projectId] + projectPremintAllocation[_projectId])
+        ) {
+            // Allow listed sale active and still available
+            require(count <= projectAllowList[_projectId][msg.sender], "Exceeds max available to purchase");
+            projectAllowList[_projectId][msg.sender] -= count;
         }
         handlePayment(_projectId, count);
         // loop and mint count number of tokens specified by count
-        require(nftContract.totalSupply() < nftContract.getTokenLimit(), "exceeds quantity remaining"); // todo: try using TOKEN_LIMIT directly
         string memory idList;
         for (uint i = 0; i < count; i++) {
             uint tokenID = nftContract.mint(to);
@@ -384,7 +384,7 @@ contract FineShop is AccessControl {
         require(projectLive[_projectId], "project not live");
         require(msg.sender == projectOwner[_projectId], "only owner");
         FineNFTInterface nftContract = FineNFTInterface(fineCore.getProjectAddress(_projectId));
-        require(nftContract.totalSupply() < projectPremintAllocation[_projectId], "max premints");
+        require(ts < projectPremintAllocation[_projectId], "max premints");
         address to = msg.sender;
         uint tokenID = nftContract.mint(to);
         return tokenID;
