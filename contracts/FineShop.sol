@@ -39,7 +39,7 @@ contract FineShop is AccessControl {
     mapping(uint256 => bool) public contractFilterProject;
     mapping(address => mapping (uint256 => uint256)) public projectMintCounter;
     mapping(uint256 => uint256) public projectMintLimit;
-    mapping(uint256 => uint8) public projectPhase;
+    mapping(uint256 => SalePhase) public projectPhase;
     mapping(uint256 => mapping (address => uint8) ) public projectAllowList;
     
     constructor(address _fineCoreAddresss) {
@@ -138,8 +138,7 @@ contract FineShop is AccessControl {
      * @dev set mint phase of a project
      * @param _projectId to set phase of
      */
-    function setPhase(uint _projectId, uint8 phase) external onlyOwner(_projectId) {
-        require(phase < 3, "invlaid phase index");
+    function setPhase(uint _projectId, SalePhase phase) external onlyOwner(_projectId) {
         projectPhase[_projectId] = phase;
     }
 
@@ -304,18 +303,19 @@ contract FineShop is AccessControl {
         require(ts + count < nftContract.getTokenLimit(), "Can't exceed max tokens");
 
         // Owner phase conditions
-        if (projectPhase[_projectId] == 0) {
+        if (projectPhase[_projectId] == SalePhase.Owner) {
             require(msg.sender == projectOwner[_projectId], "Only owner can mint now");
             require(count <= projectPremints[_projectId], "Excededs max premints");
             projectPremints[_projectId] -= count;
         } else {
             // Presale phase conditions
-            if (projectPhase[_projectId] == 1) {
+            if (projectPhase[_projectId] == SalePhase.PreSale) {
                 require(count <= projectAllowList[_projectId][msg.sender], "Exceeds max available to purchase");
                 projectAllowList[_projectId][msg.sender] -= uint8(count);
+            } else if (projectPhase[_projectId] == SalePhase.PreSale) {
+                if (projectBulkMintCount[_projectId] > 0)
+                    require(count <= projectBulkMintCount[_projectId], "Count excedes bulk mint limit");
             }
-            if (projectBulkMintCount[_projectId] > 0)
-                require(count <= projectBulkMintCount[_projectId], "Count excedes bulk mint limit");
             if (projectMintLimit[_projectId] > 0) {
                 require(projectMintCounter[msg.sender][_projectId] < projectMintLimit[_projectId], "Reached minting limit");
                 projectMintCounter[msg.sender][_projectId] += count;
