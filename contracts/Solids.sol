@@ -15,7 +15,7 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
     using Counters for Counters.Counter;
     using EnumerableSet for EnumerableSet.UintSet;
 
-    uint public TOKEN_LIMIT = 1000;
+    uint public TOKEN_LIMIT = 500;
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     FineCoreInterface coreContract;
     Counters.Counter private _tokenIdCounter;
@@ -198,8 +198,6 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
         availableArt.remove(artId);
         _safeMint(to, artId);
     }
-
-    
 
     /**
      * @dev Mint a bonus token (for infinites AI holders)
