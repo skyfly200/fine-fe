@@ -20,6 +20,7 @@ interface FineNFTInterface {
 }
 
 interface BasicNFTInterface {
+    function ownerOf(uint256 tokenId) external view returns (address);
     function balanceOf(address owner) external view returns (uint256);
     function tokenOfOwnerByIndex(address owner, uint256 index) external view returns (uint256);
 }
@@ -380,9 +381,9 @@ contract FineShop is AccessControl {
                 uint redeemId = allowToken.tokenOfOwnerByIndex(msg.sender, j);
                 require(!redeemed[gateTokens[i]][redeemId], "already redeemed for ID");
                 redeemed[gateTokens[i]][redeemId] = true;
-                uint tokenID = nftContract.mint(to);
-                if (i == 0 && j == 0) idList = string(abi.encodePacked(tokenID));
-                else idList = string(abi.encodePacked(idList, ",", tokenID));
+                uint tokenId = nftContract.mint(to);
+                if (i == 0 && j == 0) idList = string(abi.encodePacked(tokenId));
+                else idList = string(abi.encodePacked(idList, ",", tokenId));
                 // free bonus mints for coresponding Infinites AI tokens owned
                 if (i == 0) nftContract.mintBonus(to, redeemId);
             }
@@ -391,6 +392,40 @@ contract FineShop is AccessControl {
         handlePayment(_projectId, count); // TODO: bypass for Infinites AI WOW tokens
 
         return idList; // returns a list of ids of all tokens minted
+    }
+
+    /**
+     * @dev purchase tokens of a project and send to a specific address (only holders of listed NFTs)
+     * @param _projectId to purchase
+     * @param to address to send token to
+     * @param contractId of contract to lookup gate pass in
+     * @param redeemId id of token to redeem gate pass for
+     */
+    function mintGated(uint _projectId, address to, uint8 contractId, uint256 redeemId) public payable isLive(_projectId) returns (string memory) {
+        if (contractFilterProject[_projectId]) require(msg.sender == tx.origin, "No Contract Buys");
+        // instantiate an interface with the projects NFT contract
+        FineNFTInterface nftContract = FineNFTInterface(fineCore.getProjectAddress(_projectId));
+        uint256 ts = nftContract.totalSupply();
+        address [3] memory gateTokens = [
+            0xA7F767865FCe8236f71AddA56c60Cf2E91DADc00, // Infintes AI
+            0xE80201a8e706A7AC353124c004960201C8b99f4B, // Infintes IRL
+            0x80549075471291d8E7e14e1DEfE4280c743d86AF // MeebitsDAO
+        ];
+        
+        // Presale phase conditions
+        require(projectPhase[_projectId] != SalePhase.Owner, "Must redeem after owner mint");
+        BasicNFTInterface allowToken = BasicNFTInterface(gateTokens[contractId]);
+        require(ts + 1 < nftContract.getTokenLimit(), "Can't exceed max tokens");
+        require(allowToken.ownerOf(redeemId) == msg.sender, "Only token owner can redeem pass");
+        require(!redeemed[gateTokens[contractId]][redeemId], "already redeemed for ID");
+        redeemed[gateTokens[contractId]][redeemId] = true;
+        uint tokenId = nftContract.mint(to);
+        // free bonus mints for coresponding Infinites AI tokens owned
+        if (contractId == 0) nftContract.mintBonus(to, redeemId);
+        
+        handlePayment(_projectId, 1); // TODO: bypass for Infinites AI WOW tokens
+
+        return string(abi.encodePacked(tokenId)); // returns a list of ids of all tokens minted
     }
 
     /**
