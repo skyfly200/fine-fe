@@ -30,13 +30,12 @@ contract FineShop is AccessControl {
 
     FineCoreInterface fineCore;
     mapping(uint => address) public projectOwner;
-    mapping(uint => uint) public projectPremintAllocation;
+    mapping(uint => uint) public projectPremints;
     mapping(uint => uint) public projectPrice;
     mapping(uint => address) public projectCurrencyAddress;
     mapping(uint => string) public projectCurrencySymbol;
     mapping(uint => uint) public projectBulkMintCount;
     mapping(uint => bool) public projectLive;
-    mapping(uint => bool) public projectPause;
     mapping(uint256 => bool) public contractFilterProject;
     mapping(address => mapping (uint256 => uint256)) public projectMintCounter;
     mapping(uint256 => uint256) public projectMintLimit;
@@ -73,7 +72,6 @@ contract FineShop is AccessControl {
         bool ready = projectPrice[_projectId] > 0 && !stringComp(projectCurrencySymbol[_projectId], "");
         require(ready, "project not ready for live");
         projectLive[_projectId] = true;
-        projectPause[_projectId] = true;
     }
   
     /**
@@ -100,22 +98,6 @@ contract FineShop is AccessControl {
      */
     function toggleContractFilter(uint256 _projectId) public onlyRole(DEFAULT_ADMIN_ROLE) {
         contractFilterProject[_projectId]=!contractFilterProject[_projectId];
-    }
-
-    /**
-     * @dev unpause a project as admin
-     * @param _projectId to unpause
-     */
-    function unpauseAdmin(uint _projectId) external onlyRole(DEFAULT_ADMIN_ROLE) {
-        projectPause[_projectId] = false;
-    }
-
-    /**
-     * @dev pause a project as admin
-     * @param _projectId to pause
-     */
-    function pauseAdmin(uint _projectId) external onlyRole(DEFAULT_ADMIN_ROLE) {
-        projectPause[_projectId] = true;
     }
 
     /**
@@ -162,22 +144,6 @@ contract FineShop is AccessControl {
     }
 
     /**
-     * @dev unpause a project
-     * @param _projectId to unpause
-     */
-    function unpause(uint _projectId) external onlyOwner(_projectId) {
-        projectPause[_projectId] = false;
-    }
-
-    /**
-     * @dev pause a project
-     * @param _projectId to pause
-     */
-    function pause(uint _projectId) external onlyOwner(_projectId) {
-        projectPause[_projectId] = true;
-    }
-
-    /**
      * @dev set the price of a project
      * @param _projectId to set price of
      * @param price to set project to
@@ -192,7 +158,7 @@ contract FineShop is AccessControl {
      * @param premints to set project to
      */
     function setPremints(uint _projectId, uint premints) external onlyOwner(_projectId) notLive(_projectId) {
-        projectPremintAllocation[_projectId] = premints;
+        projectPremints[_projectId] = premints;
     }
 
     /**
@@ -239,7 +205,7 @@ contract FineShop is AccessControl {
             projectCurrencySymbol[_projectId] = _symbol;
             projectCurrencyAddress[_projectId] = _contract;
             projectPrice[_projectId] = _price;
-            projectPremintAllocation[_projectId] = _premints;
+            projectPremints[_projectId] = _premints;
     }
 
     function setAllowList(uint _projectId, address[] calldata addresses, uint8 numAllowedToMint) external onlyOwner(_projectId) {
@@ -331,7 +297,6 @@ contract FineShop is AccessControl {
      */
     function purchaseTo(uint _projectId, address to, uint count) public payable returns (string memory) {
         require(projectLive[_projectId], "project not live");
-        require(!projectPause[_projectId], "project paused");
         if (contractFilterProject[_projectId]) require(msg.sender == tx.origin, "No Contract Buys");
         // instantiate an interface with the projects NFT contract
         FineNFTInterface nftContract = FineNFTInterface(fineCore.getProjectAddress(_projectId));
@@ -341,7 +306,7 @@ contract FineShop is AccessControl {
         // Owner phase conditions
         if (projectPhase[_projectId] == 0) {
             require(msg.sender == projectOwner[_projectId], "only owner");
-            require(ts + count <= projectPremintAllocation[_projectId], "max premints");
+            require(ts + count <= projectPremints[_projectId], "max premints");
         } else {
             // Presale phase conditions
             if (projectPhase[_projectId] == 1)
