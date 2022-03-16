@@ -17,6 +17,12 @@ interface FineNFTInterface {
     function totalSupply() external view returns (uint256);
 }
 
+enum SalePhase {
+  Owner,
+  PreSale,
+  PublicSale
+}
+
 /// @custom:security-contact skyfly200@gmail.com
 contract FineShop is AccessControl {
     using SafeMath for uint256;
@@ -33,8 +39,8 @@ contract FineShop is AccessControl {
     mapping(uint256 => bool) public contractFilterProject;
     mapping(address => mapping (uint256 => uint256)) public projectMintCounter; // TODO: evaluate need for this
     mapping(uint256 => uint256) public projectMintLimit;
+    mapping(uint256 => uint8) public projectPhase;
     mapping(uint256 => mapping (address => uint8) ) public projectAllowList;
-    mapping(uint256 => uint256 ) public projectAllowListAllocation;
     
     constructor(address _fineCoreAddresss) {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
@@ -144,6 +150,15 @@ contract FineShop is AccessControl {
       require(!projectLive[_projectId], "already live");
       _;
     }
+    
+    /**
+     * @dev set mint phase of a project
+     * @param _projectId to set phase of
+     */
+    function setPhase(uint _projectId, uint8 phase) external onlyOwner(_projectId) {
+        require(phase < 3, "invlaid phase index");
+        projectPhase[_projectId] = phase;
+    }
 
     /**
      * @dev unpause a project
@@ -180,15 +195,6 @@ contract FineShop is AccessControl {
     }
 
     /**
-     * @dev set the allowlist spots of a project
-     * @param _projectId to set  allowlist spots of
-     * @param spots to make available
-     */
-    function setAllowlistSpots(uint _projectId, uint spots) external onlyOwner(_projectId) notLive(_projectId) {
-            projectAllowListAllocation[_projectId] = spots;
-    }
-
-    /**
      * @dev set the currency to ETH
      * @param _projectId to set currency of
      */
@@ -218,15 +224,13 @@ contract FineShop is AccessControl {
      * @param _contract address of the currency
      * @param _price of the project
      * @param _premints number available
-     * @param _allowlists number available
      */
     function fullSetup(
             uint _projectId,
             string calldata _symbol,
             address _contract,
             uint256 _price,
-            uint256 _premints,
-            uint256 _allowlists
+            uint256 _premints
         ) external onlyOwner(_projectId) notLive(_projectId) {
             require(bytes(_symbol).length > 0, "Symbol must be provided");
             if (!stringComp(_symbol, "ETH"))
@@ -235,10 +239,9 @@ contract FineShop is AccessControl {
             projectCurrencyAddress[_projectId] = _contract;
             projectPrice[_projectId] = _price;
             projectPremintAllocation[_projectId] = _premints;
-            projectAllowListAllocation[_projectId] = _allowlists;
     }
 
-    function setAllowList(uint _projectId, address[] calldata addresses, uint8 numAllowedToMint) external onlyOwner {
+    function setAllowList(uint _projectId, address[] calldata addresses, uint8 numAllowedToMint) external onlyOwner(_projectId) {
         for (uint256 i = 0; i < addresses.length; i++) {
             projectAllowList[_projectId][addresses[i]] = numAllowedToMint;
         }
@@ -338,13 +341,11 @@ contract FineShop is AccessControl {
             require(projectMintCounter[msg.sender][_projectId] < projectMintLimit[_projectId], "Reached minting limit");
             projectMintCounter[msg.sender][_projectId]++;
         }
-        if (
-            projectAllowListAllocation[_projectId] > 0 &&
-            ts < (projectAllowListAllocation[_projectId] + projectPremintAllocation[_projectId])
-        ) {
-            // Allow listed sale active and still available
+        // Allow listed sale phase
+        if (projectPhase[_projectId] == 1)
+        {
             require(count <= projectAllowList[_projectId][msg.sender], "Exceeds max available to purchase");
-            projectAllowList[_projectId][msg.sender] -= count;
+            projectAllowList[_projectId][msg.sender] -= uint8(count);
         }
         handlePayment(_projectId, count);
         // loop and mint count number of tokens specified by count
@@ -377,14 +378,14 @@ contract FineShop is AccessControl {
     }
 
     /**
-     * @dev premint tokens of a project
+     * @dev owner minting tokens of a project while paused
      * @param _projectId to purchase
      */
-    function premint(uint _projectId) external returns (uint256) {
+    function ownerMint(uint _projectId) external returns (uint256) {
         require(projectLive[_projectId], "project not live");
         require(msg.sender == projectOwner[_projectId], "only owner");
         FineNFTInterface nftContract = FineNFTInterface(fineCore.getProjectAddress(_projectId));
-        require(ts < projectPremintAllocation[_projectId], "max premints");
+        require(nftContract.totalSupply() < projectPremintAllocation[_projectId], "max premints");
         address to = msg.sender;
         uint tokenID = nftContract.mint(to);
         return tokenID;
