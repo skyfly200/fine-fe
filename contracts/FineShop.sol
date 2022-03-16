@@ -343,6 +343,7 @@ contract FineShop is AccessControl {
             nftContract.totalSupply() < (projectAllowListAllocation[_projectId] + projectPremintAllocation[_projectId])
         ) { // Allow listed sale active and still available
             require(projectAllowList[_projectId][msg.sender], "not on allowlist");
+            // TODO: whitelist limits per acount
         }
         handlePayment(_projectId, count);
         // loop and mint count number of tokens specified by count
@@ -353,7 +354,7 @@ contract FineShop is AccessControl {
             if (i == 0) idList = string(abi.encodePacked(tokenID));
             else idList = string(abi.encodePacked(idList, ",", tokenID));
         }
-        return idList; // returns id of last token minted
+        return idList; // returns a list of ids of all tokens minted
     }
 
     /**

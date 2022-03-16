@@ -201,6 +201,7 @@ contract FineNFT is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContr
     }
 
     // getters for interface
+    // TODO: do we need these getters?
 
     function contractURI() public view returns (string memory) {
         return _contractURI;
