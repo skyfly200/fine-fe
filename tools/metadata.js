@@ -8,11 +8,12 @@ fs.createReadStream('./solids.csv')
   .on('data', (row) => {
     const metadata = {
         description: "",
-        image: "",
-        animation_url: "https://solids.fine.digital/preview/"+row.No,
-        external_url: "",
+        image: "" + row.No + "_SOLID01.png",
+        animation_url: "https://solids.fine.digital/preview/" + row.No,
+        external_url: "https://solids.fine.digital/token/" + row.NO,
         name: "Solids",
-        background_color: "",
+        background_color: "#fff",
+        model_url: "" + row.No + ".fbx",
         attributes: [
             {
                 trait_type: "Artwork ID",
