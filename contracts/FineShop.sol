@@ -320,6 +320,8 @@ contract FineShop is AccessControl {
         } else {
             // Presale phase conditions
             if (projectPhase[_projectId] == SalePhase.PreSale) {
+                // TODO: alternate allow flow based on token ownership (needs a redeemed mapping)
+                // TODO: bonus mints for corespnding tokens owned
                 require(count <= projectAllowList[_projectId][msg.sender], "Exceeds max available to purchase");
                 projectAllowList[_projectId][msg.sender] -= uint8(count);
             } else if (projectPhase[_projectId] == SalePhase.PreSale) {
