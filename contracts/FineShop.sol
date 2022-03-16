@@ -129,17 +129,14 @@ contract FineShop is AccessControl {
       _;
     }
 
-    modifier notLive(uint _projectId) {
-      require(!projectLive[_projectId], "already live");
+    modifier isLive(uint _projectId) {
+      require(projectLive[_projectId], "Project not yet live");
       _;
     }
-    
-    /**
-     * @dev set mint phase of a project
-     * @param _projectId to set phase of
-     */
-    function setPhase(uint _projectId, SalePhase phase) external onlyOwner(_projectId) {
-        projectPhase[_projectId] = phase;
+
+    modifier notLive(uint _projectId) {
+      require(!projectLive[_projectId], "Can't call once live");
+      _;
     }
 
     /**
@@ -207,10 +204,24 @@ contract FineShop is AccessControl {
             projectPremints[_projectId] = _premints;
     }
 
+    /**
+     * @dev set mint phase of a project
+     * @param _projectId to set allowlist of
+     * @param addresses to set allowlist counts for
+     * @param numAllowedToMint number of mints to allow addresses
+     */
     function setAllowList(uint _projectId, address[] calldata addresses, uint8 numAllowedToMint) external onlyOwner(_projectId) {
         for (uint256 i = 0; i < addresses.length; i++) {
             projectAllowList[_projectId][addresses[i]] = numAllowedToMint;
         }
+    }
+    
+    /**
+     * @dev set mint phase of a project
+     * @param _projectId to set phase of
+     */
+    function setPhase(uint _projectId, SalePhase phase) external onlyOwner(_projectId) isLive(_projectId) {
+        projectPhase[_projectId] = phase;
     }
 
     // Sale Functions
@@ -294,8 +305,7 @@ contract FineShop is AccessControl {
      * @param to address to send token to
      * @param count number of tokens to purchase
      */
-    function purchaseTo(uint _projectId, address to, uint count) public payable returns (string memory) {
-        require(projectLive[_projectId], "project not live");
+    function purchaseTo(uint _projectId, address to, uint count) public payable isLive(_projectId) returns (string memory) {
         if (contractFilterProject[_projectId]) require(msg.sender == tx.origin, "No Contract Buys");
         // instantiate an interface with the projects NFT contract
         FineNFTInterface nftContract = FineNFTInterface(fineCore.getProjectAddress(_projectId));
