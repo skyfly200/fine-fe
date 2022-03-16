@@ -305,12 +305,12 @@ contract FineShop is AccessControl {
 
         // Owner phase conditions
         if (projectPhase[_projectId] == 0) {
-            require(msg.sender == projectOwner[_projectId], "only owner");
-            require(ts + count <= projectPremints[_projectId], "max premints");
+            require(msg.sender == projectOwner[_projectId], "Only owner can mint now");
+            require(count <= projectPremints[_projectId], "Excededs max premints");
+            projectPremints[_projectId] -= count;
         } else {
             // Presale phase conditions
-            if (projectPhase[_projectId] == 1)
-            {
+            if (projectPhase[_projectId] == 1) {
                 require(count <= projectAllowList[_projectId][msg.sender], "Exceeds max available to purchase");
                 projectAllowList[_projectId][msg.sender] -= uint8(count);
             }
