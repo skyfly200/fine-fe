@@ -18,6 +18,11 @@ interface FineNFTInterface {
     function balanceOf(address owner) external view returns (uint256);
 }
 
+interface BasicNFTInterface {
+    function balanceOf(address owner) external view returns (uint256);
+    function tokenOfOwnerByIndex(address owner, uint256 index) external view returns (uint256);
+}
+
 enum SalePhase {
   Owner,
   PreSale,
