@@ -136,8 +136,8 @@ const Home: NextPage = () => {
                 <p>
                   In this context of expansion into the Metasphere, Architecture is needed to shape
                   the habitat of the Virtual Realm. This is where SOLIDS was born, as an essential
-                  response to the needs of buildings in the established and upcoming Digital
-                  Environments.{' '}
+                  response to the needs for buildings in the established and upcoming Digital
+                  Environments.
                 </p>
 
                 <p>
