@@ -49,6 +49,14 @@ contract FineShop is AccessControl {
     mapping(uint256 => SalePhase) public projectPhase;
     mapping(uint256 => mapping (address => uint8) ) public projectAllowList;
     mapping(address => mapping (uint256 => bool) ) public redeemed;
+
+    // TODO: change to mapping per project
+    address [4] gateTokens = [
+        0xA7F767865FCe8236f71AddA56c60Cf2E91DADc00, // Infintes AI
+        0xE80201a8e706A7AC353124c004960201C8b99f4B, // Infintes IRL
+        0x7Bd29408f11D2bFC23c34f18275bBf23bB716Bc7, // Meebits
+        0x80549075471291d8E7e14e1DEfE4280c743d86AF // MeebitsDAO
+    ];
     
     constructor(address _fineCoreAddresss) {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
@@ -363,12 +371,6 @@ contract FineShop is AccessControl {
         uint256 ts = nftContract.totalSupply();
         string memory idList;
         uint count;
-        address [4] memory gateTokens = [
-            0xA7F767865FCe8236f71AddA56c60Cf2E91DADc00, // Infintes AI
-            0xE80201a8e706A7AC353124c004960201C8b99f4B, // Infintes IRL
-            0x7Bd29408f11D2bFC23c34f18275bBf23bB716Bc7, // Meebits
-            0x80549075471291d8E7e14e1DEfE4280c743d86AF // MeebitsDAO
-        ];
         
         for (uint i = 0; i < 4; i++) {
             // Presale phase conditions
@@ -407,11 +409,6 @@ contract FineShop is AccessControl {
         // instantiate an interface with the projects NFT contract
         FineNFTInterface nftContract = FineNFTInterface(fineCore.getProjectAddress(_projectId));
         uint256 ts = nftContract.totalSupply();
-        address [3] memory gateTokens = [
-            0xA7F767865FCe8236f71AddA56c60Cf2E91DADc00, // Infintes AI
-            0xE80201a8e706A7AC353124c004960201C8b99f4B, // Infintes IRL
-            0x80549075471291d8E7e14e1DEfE4280c743d86AF // MeebitsDAO
-        ];
         
         // Presale phase conditions
         require(projectPhase[_projectId] != SalePhase.Owner, "Must redeem after owner mint");
