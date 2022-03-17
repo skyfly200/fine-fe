@@ -363,13 +363,14 @@ contract FineShop is AccessControl {
         uint256 ts = nftContract.totalSupply();
         string memory idList;
         uint count;
-        address [3] memory gateTokens = [
+        address [4] memory gateTokens = [
             0xA7F767865FCe8236f71AddA56c60Cf2E91DADc00, // Infintes AI
             0xE80201a8e706A7AC353124c004960201C8b99f4B, // Infintes IRL
+            0x7Bd29408f11D2bFC23c34f18275bBf23bB716Bc7, // Meebits
             0x80549075471291d8E7e14e1DEfE4280c743d86AF // MeebitsDAO
         ];
         
-        for (uint i = 0; i < 3; i++) {
+        for (uint i = 0; i < 4; i++) {
             // Presale phase conditions
             require(projectPhase[_projectId] != SalePhase.Owner, "Must redeem after owner mint");
             BasicNFTInterface allowToken = BasicNFTInterface(gateTokens[i]);
