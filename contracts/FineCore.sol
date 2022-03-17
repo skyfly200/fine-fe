@@ -72,24 +72,6 @@ contract FineCore is AccessControl {
     }
 
     /**
-     * @dev add a project to the allowlist
-     * @param project address to add to the allowlist
-     * @dev Only the admin can call this
-     */
-    function allowProject(address project) external onlyRole(DEFAULT_ADMIN_ROLE) {
-        allowlist[project] = true;
-    }
-
-    /**
-     * @dev remove a project from the allowlist by address
-     * @param project address to remove from allowlist
-     * @dev Only the admin can call this
-     */
-    function unallowProject(address project) external onlyRole(DEFAULT_ADMIN_ROLE) {
-        allowlist[project] = false;
-    }
-
-    /**
      * @dev lookup a projects address by id
      * @param id of the project to retrieve
      */
