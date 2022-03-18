@@ -236,10 +236,6 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
         return TOKEN_LIMIT;
     }
 
-    function getRemaining() external view returns (uint256) {
-        return availableArt.length();
-    }
-
     // The following functions are overrides required by Solidity.
 
     /**
