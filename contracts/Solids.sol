@@ -15,7 +15,7 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
     using Counters for Counters.Counter;
     using EnumerableSet for EnumerableSet.UintSet;
 
-    uint public TOKEN_LIMIT = 500;
+    uint public TOKEN_LIMIT = 500; // not including bonus
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     FineCoreInterface coreContract;
     Counters.Counter private _tokenIdCounter;
@@ -81,6 +81,9 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
      */
     function initPool(uint start, uint end) external {
         require(!locked, "settings already locked");
+        require(start <= end, "start must come before or equal end");
+        uint toAdd = end - start;
+        require(availableArt.length() + toAdd <= TOKEN_LIMIT, "cant add more than token limit");
         for (uint i = start; i < end; i++) availableArt.add(i);
     }
 
