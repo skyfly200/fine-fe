@@ -1,4 +1,6 @@
 require("@nomiclabs/hardhat-waffle");
+require("@nomiclabs/hardhat-etherscan");
+let secrets = require("./secrets");
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -25,5 +27,14 @@ module.exports = {
         runs: 200,
       },
     }
+  },
+  networks:  {
+    rinkeby: {
+      url: secrets.url,
+      accounts: [secrets.seed]
+    }
+  },
+  etherscan: {
+    apiKey: secrets.key
   }
 };
