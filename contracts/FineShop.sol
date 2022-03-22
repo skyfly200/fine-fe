@@ -392,8 +392,8 @@ contract FineShop is AccessControl {
         uint tokenId = nftContract.mint(to);
         // free bonus mints for coresponding Infinites AI tokens owned
         if (contractId == 0) nftContract.mintBonus(to, redeemId);
-        
-        if (contractId == 0 && infinitesAIWOW[redeemId]) handlePayment(_projectId, 1);
+        // free mint for 
+        if (contractId != 0 || !infinitesAIWOW[redeemId]) handlePayment(_projectId, 1);
 
         return string(abi.encodePacked(tokenId)); // returns a list of ids of all tokens minted
     }
