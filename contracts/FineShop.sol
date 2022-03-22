@@ -54,8 +54,7 @@ contract FineShop is AccessControl {
     mapping(uint256 => uint256) public projectGateTokensCount;
     mapping(uint256 => mapping(uint256 => mapping(uint256 => bool)) ) public redeemed; // projectID, gateContractId, gateTokenId
     
-    uint256[17] wowIds = [49,62,223,233,234,244,261,268,292,300,335,354,371,386,407,501,505];
-    //uint256[17] wowIds = [23,211,223,233,234,244,261,268,292,300,335,359,371,386,407,501,505];
+    uint256[17] wowIds = [23,211,223,233,234,244,261,268,292,300,335,359,371,386,407,501,505];
 
     constructor(address _fineCoreAddresss) {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
