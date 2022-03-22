@@ -34,7 +34,7 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
     string public _contractURI = "IPFS HASH HERE";
     string public baseURI = "IPFS HASH HERE";
     string public artist = "FAR";
-    string public description = "a sample NFT for FINE";
+    string public description = "SOLIDS is a generative architecture project created by FAR. There will be 8,888 unique buildings generated algorithmically and compatible with Metaverses./nAs the Metaverse is becoming more ubiquitous, we are seeing many different examples of virtual worlds emerging. Immersive virtual worlds are not something novel; however, blockchain technology and cryptocurrency are bringing another level of excitement. The combination of technologies adds a more tangible layer to our virtual experience, which extends the material world./nIn this context of expansion into the Metasphere, Architecture is needed to shape the habitat of the Virtual Realm. This is where SOLIDS was born, as an essential response to the needs for buildings in the established and upcoming Digital Environments./nWhen the user mints a SOLID, they get a 3D file that can be imported into other 3D environments. Down the road, we will work on making them compatible with more Metaverses and environments as we evolve.";
     string public website = "https://fine.digital";
     string public license = "MIT";
 
