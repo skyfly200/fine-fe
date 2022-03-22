@@ -9,7 +9,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -48,7 +48,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -88,7 +88,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -123,7 +123,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -158,7 +158,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -193,7 +193,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -228,7 +228,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -265,7 +265,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -293,14 +293,14 @@
       ]
     },
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/FineNFT.sol": {
-      "lastModificationDate": 1646754867601,
+      "lastModificationDate": 1647412445890,
       "contentHash": "b99261970b25e60feb4da23dfe527634",
       "sourceName": "contracts/FineNFT.sol",
       "solcConfig": {
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -344,7 +344,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -382,7 +382,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -420,7 +420,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -459,7 +459,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -502,7 +502,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -539,7 +539,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -576,7 +576,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -611,7 +611,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -648,7 +648,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -683,7 +683,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -721,7 +721,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -758,7 +758,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -786,14 +786,14 @@
       "artifacts": []
     },
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/FineShop.sol": {
-      "lastModificationDate": 1647717798964,
-      "contentHash": "c6e56bc1d71628541b0715d9ccacba73",
+      "lastModificationDate": 1647927434007,
+      "contentHash": "464fd35975f08df74db582767e506a73",
       "sourceName": "contracts/FineShop.sol",
       "solcConfig": {
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -836,7 +836,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -871,7 +871,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -906,7 +906,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -941,7 +941,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -976,7 +976,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -1011,7 +1011,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -1083,7 +1083,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -1120,7 +1120,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -1159,7 +1159,7 @@
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -1189,14 +1189,14 @@
       ]
     },
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/Solids.sol": {
-      "lastModificationDate": 1647565580788,
+      "lastModificationDate": 1647924008593,
       "contentHash": "48fbc072dc8e4e6e01db88fe6a28ee43",
       "sourceName": "contracts/Solids.sol",
       "solcConfig": {
         "version": "0.8.2",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
