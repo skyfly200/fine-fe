@@ -48,13 +48,17 @@ contract FineShop is AccessControl {
     mapping(uint256 => uint256) public projectMintLimit;
     mapping(uint256 => SalePhase) public projectPhase;
     mapping(uint256 => mapping (address => uint8) ) public projectAllowList;
+    mapping(uint256 => bool ) public infinitesAIWOW;
     mapping(uint256 => mapping (uint256 => address) ) public projectGateTokens;
     mapping(uint256 => uint256) public projectGateTokensCount;
     mapping(uint256 => mapping(uint256 => mapping(uint256 => bool)) ) public redeemed; // projectID, gateContractId, gateTokenId
     
+    uint256[17] wowIds = [23,211,223,233,234,244,261,268,292,300,335,359,371,386,407,501,505];
+
     constructor(address _fineCoreAddresss) {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         fineCore = FineCoreInterface(_fineCoreAddresss);
+        for (uint256 i = 0; i < 17; i++) infinitesAIWOW[wowIds[i]] = true;
     }
 
     function stringComp(string memory str1, string memory str2) pure internal returns (bool) {
@@ -340,6 +344,10 @@ contract FineShop is AccessControl {
             require(count <= projectPremints[_projectId], "Excededs max premints");
             projectPremints[_projectId] -= count;
         } else {
+            if (projectMintLimit[_projectId] > 0) {
+                require(projectMintCounter[msg.sender][_projectId] < projectMintLimit[_projectId], "Reached minting limit");
+                projectMintCounter[msg.sender][_projectId] += count;
+            }
             // Presale phase conditions
             if (projectPhase[_projectId] == SalePhase.PreSale) {
                 require(count <= projectAllowList[_projectId][msg.sender], "Exceeds allowlisted count");
@@ -347,10 +355,6 @@ contract FineShop is AccessControl {
             } else if (projectPhase[_projectId] == SalePhase.PublicSale) {
                 if (projectBulkMintCount[_projectId] > 0)
                     require(count <= projectBulkMintCount[_projectId], "Count excedes bulk mint limit");
-            }
-            if (projectMintLimit[_projectId] > 0) {
-                require(projectMintCounter[msg.sender][_projectId] < projectMintLimit[_projectId], "Reached minting limit");
-                projectMintCounter[msg.sender][_projectId] += count;
             }
             handlePayment(_projectId, count);
         }
@@ -364,43 +368,6 @@ contract FineShop is AccessControl {
 
         return idList; // returns a list of ids of all tokens minted
     }
-
-    // /**
-    //  * @dev purchase tokens of a project and send to a specific address (only holders of listed NFTs)
-    //  * @param _projectId to purchase
-    //  * @param to address to send token to
-    //  */
-    // function mintAllGated(uint _projectId, address to) public payable isLive(_projectId) returns (string memory idList) {
-    //     if (contractFilterProject[_projectId]) require(msg.sender == tx.origin, "No Contract Buys");
-    //     // instantiate an interface with the projects NFT contract
-    //     FineNFTInterface nftContract = FineNFTInterface(fineCore.getProjectAddress(_projectId));
-    //     uint count;
-        
-    //     for (uint i = 0; i < projectGateTokensCount[_projectId]; i++) {
-    //         // Presale phase conditions
-    //         require(projectPhase[_projectId] != SalePhase.Owner, "Must redeem after owner mint");
-    //         BasicNFTInterface allowToken = BasicNFTInterface(projectGateTokens[_projectId][i]);
-    //         uint balance = allowToken.balanceOf(msg.sender);
-    //         require(nftContract.totalSupply() + count < nftContract.getTokenLimit(), "Can't exceed max tokens");
-
-    //         for (uint j = 0; j < balance; j++) {
-    //             uint redeemId = allowToken.tokenOfOwnerByIndex(msg.sender, j);
-    //             if (!redeemed[projectGateTokens[_projectId][i]][redeemId]) {
-    //                 count++;
-    //                 redeemed[projectGateTokens[_projectId][i]][redeemId] = true;
-    //                 uint tokenId = nftContract.mint(to);
-    //                 if (i == 0 && j == 0) idList = string(abi.encodePacked(tokenId));
-    //                 else idList = string(abi.encodePacked(idList, ",", tokenId));
-    //                 // free bonus mints for coresponding Infinites AI tokens owned
-    //                 if (i == 0) nftContract.mintBonus(to, redeemId);
-    //             }
-    //         }
-    //     }
-        
-    //     handlePayment(_projectId, count); // TODO: bypass for Infinites AI WOW tokens
-
-    //     return idList; // returns a list of ids of all tokens minted
-    // }
 
     /**
      * @dev purchase tokens of a project and send to a specific address (only holders of listed NFTs)
@@ -426,7 +393,7 @@ contract FineShop is AccessControl {
         // free bonus mints for coresponding Infinites AI tokens owned
         if (contractId == 0) nftContract.mintBonus(to, redeemId);
         
-        handlePayment(_projectId, 1); // TODO: bypass for Infinites AI WOW tokens
+        if (contractId == 0 && infinitesAIWOW[redeemId]) handlePayment(_projectId, 1);
 
         return string(abi.encodePacked(tokenId)); // returns a list of ids of all tokens minted
     }
