@@ -15,6 +15,7 @@ interface FineNFTInterface {
     function getAdditionalPayee() external view returns (address payable);
     function getAdditionalPayeePercentage() external view returns (uint256);
     function getTokenLimit() external view returns (uint256);
+    function checkPool() external view returns (uint);
     function totalSupply() external view returns (uint256);
     function balanceOf(address owner) external view returns (uint256);
 }
@@ -335,8 +336,8 @@ contract FineShop is AccessControl {
         if (contractFilterProject[_projectId]) require(msg.sender == tx.origin, "No Contract Buys");
         // instantiate an interface with the projects NFT contract
         FineNFTInterface nftContract = FineNFTInterface(fineCore.getProjectAddress(_projectId));
-        uint256 ts = nftContract.totalSupply();
-        require(ts + count < nftContract.getTokenLimit(), "Can't exceed max tokens");
+        require(nftContract.checkPool() > 0, "Sold out");
+        require(nftContract.checkPool() >= count, "Count excedes available");
 
         // Owner phase conditions
         if (projectPhase[_projectId] == SalePhase.Owner) {
@@ -380,19 +381,18 @@ contract FineShop is AccessControl {
         if (contractFilterProject[_projectId]) require(msg.sender == tx.origin, "No Contract Buys");
         // instantiate an interface with the projects NFT contract
         FineNFTInterface nftContract = FineNFTInterface(fineCore.getProjectAddress(_projectId));
-        uint256 ts = nftContract.totalSupply();
         
         // Presale phase conditions
         require(projectPhase[_projectId] != SalePhase.Owner, "Must redeem after owner mint");
         BasicNFTInterface allowToken = BasicNFTInterface(projectGateTokens[_projectId][contractId]);
-        require(ts + 1 < nftContract.getTokenLimit(), "Can't exceed max tokens");
+        require(nftContract.checkPool() > 0, "Sold out");
         require(allowToken.ownerOf(redeemId) == msg.sender, "Only token owner can redeem pass");
         require(!redeemed[_projectId][contractId][redeemId], "already redeemed for ID");
         redeemed[_projectId][contractId][redeemId] = true;
         uint tokenId = nftContract.mint(to);
         // free bonus mints for coresponding Infinites AI tokens owned
         if (contractId == 0) nftContract.mintBonus(to, redeemId);
-        // free mint for 
+        // free mint for Infinites AI WOWs
         if (contractId != 0 || !infinitesAIWOW[redeemId]) handlePayment(_projectId, 1);
 
         return string(abi.encodePacked(tokenId)); // returns a list of ids of all tokens minted
