@@ -1,8 +1,12 @@
 {
     "name": "Solids by FAR",
-    "description": "",
+    "description":
+        "SOLIDS is a generative architecture project created by FAR. There will be 8,888 unique buildings generated algorithmically and compatible with Metaverses./n
+        As the Metaverse is becoming more ubiquitous, we are seeing many different examples of virtual worlds emerging. Immersive virtual worlds are not something novel; however, blockchain technology and cryptocurrency are bringing another level of excitement. The combination of technologies adds a more tangible layer to our virtual experience, which extends the material world./n
+        In this context of expansion into the Metasphere, Architecture is needed to shape the habitat of the Virtual Realm. This is where SOLIDS was born, as an essential response to the needs for buildings in the established and upcoming Digital Environments./n
+        When the user mints a SOLID, they get a 3D file that can be imported into other 3D environments. Down the road, we will work on making them compatible with more Metaverses and environments as we evolve.",
     "image": "",
     "external_link": "https://solids.fine.digital/",
     "seller_fee_basis_points": 750,
-    "fee_recipient": "FINE TREASURY ADDRESS HERE"
+    "fee_recipient": "0xE31a7D022E545eCEd32D276cA880649852c91353"
 }
