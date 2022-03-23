@@ -4,6 +4,7 @@ pragma solidity ^0.8.2;
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Royalty.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
@@ -11,7 +12,7 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 import "./FineCoreInterface.sol";
 
 /// @custom:security-contact skyfly200@gmail.com
-contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessControl {
+contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessControl, Ownable {
     using Counters for Counters.Counter;
     using EnumerableSet for EnumerableSet.UintSet;
 
@@ -39,7 +40,6 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
     event recievedFunds(address _from, uint _amount);
     
     constructor(address coreAddress, address shopAddress) ERC721("SOLIDS", "SOLIDS") {
-        _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(MINTER_ROLE, shopAddress);
         coreContract = FineCoreInterface(coreAddress);
         // set deafault royalty
@@ -57,7 +57,7 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
     /**
      * @dev split royalties sent to contract (ONLY ETH!)
      */
-    function withdraw() onlyRole(DEFAULT_ADMIN_ROLE) external {
+    function withdraw() onlyOwner external {
         _splitFunds(address(this).balance);
     }
 
@@ -106,7 +106,7 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
      * @dev lock settings (artwork pool)
      * @dev Only the admin can call this
      */
-    function lock() onlyRole(DEFAULT_ADMIN_ROLE) external {
+    function lock() onlyOwner external {
         require(!locked, "settings already locked");
         locked = true;
     }
@@ -117,7 +117,7 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
      * @param script to store
      * @dev Only the admin can call this
      */
-    function setScript(uint index, string calldata script) onlyRole(DEFAULT_ADMIN_ROLE) external {
+    function setScript(uint index, string calldata script) onlyOwner external {
         scripts[index] = script;
     }
 
@@ -126,7 +126,7 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
      * @param _uri base for all tokens 
      * @dev Only the admin can call this
      */
-    function setContractURI(string calldata _uri) onlyRole(DEFAULT_ADMIN_ROLE) external {
+    function setContractURI(string calldata _uri) onlyOwner external {
         _contractURI = _uri;
     }
 
@@ -135,7 +135,7 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
      * @param _uri base for all tokens 
      * @dev Only the admin can call this
      */
-    function setBaseURI(string calldata _uri) onlyRole(DEFAULT_ADMIN_ROLE) external {
+    function setBaseURI(string calldata _uri) onlyOwner external {
         baseURI = _uri;
     }
 
@@ -144,7 +144,7 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
      * @param _percentage for royalties
      * @dev Only the admin can call this
      */
-    function setRoyaltyPercent(uint96 _percentage) onlyRole(DEFAULT_ADMIN_ROLE) external {
+    function setRoyaltyPercent(uint96 _percentage) onlyOwner external {
         royaltyPercent = _percentage;
     }
 
@@ -153,7 +153,7 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
      * @param _percentage for sales
      * @dev Only the admin can call this
      */
-    function additionalPayeePercent(uint96 _percentage) onlyRole(DEFAULT_ADMIN_ROLE) external {
+    function additionalPayeePercent(uint96 _percentage) onlyOwner external {
         additionalPayeePercentage = _percentage;
     }
 
@@ -162,7 +162,7 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
      * @param _percentage for royalty
      * @dev Only the admin can call this
      */
-    function additionalPayeeRoyaltyPercent(uint96 _percentage) onlyRole(DEFAULT_ADMIN_ROLE) external {
+    function additionalPayeeRoyaltyPercent(uint96 _percentage) onlyOwner external {
         additionalPayeeRoyaltyPercentage = _percentage;
     }
 
@@ -171,7 +171,7 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
      * @param _desc description of the project
      * @dev Only the admin can call this
      */
-    function setDescription(string calldata _desc) onlyRole(DEFAULT_ADMIN_ROLE) external {
+    function setDescription(string calldata _desc) onlyOwner external {
         description = _desc;
     }
 
@@ -180,7 +180,7 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
      * @param _url base for all tokens 
      * @dev Only the admin can call this
      */
-    function setWebsite(string calldata _url) onlyRole(DEFAULT_ADMIN_ROLE) external {
+    function setWebsite(string calldata _url) onlyOwner external {
         website = _url;
     }
 
