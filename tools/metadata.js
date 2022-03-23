@@ -14,8 +14,8 @@ fs.createReadStream('./solids.csv')
     const metadata = {
         description: description,
         image: imagesBaseURI + "/" + row.ID + ".png",
-        animation_url: "https://solids-minisite-git-infura-aldomedinaz.vercel.app/preview/" + row.ID,
-        external_url: "https://solids-minisite-git-infura-aldomedinaz.vercel.app/",
+        animation_url: "https://solids.fine.digital/preview/" + row.ID,
+        external_url: "https://solids.fine.digital/token/" + row.ID,
         name: "Solids #" + row.ID,
         background_color: "#fff",
         model_url: modelsBaseURI + "/" + row.ID + ".glb",
