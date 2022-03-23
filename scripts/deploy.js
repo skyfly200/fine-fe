@@ -3,7 +3,7 @@ async function main() {
     this.RandomStub = await ethers.getContractFactory("RandomStub");
     this.FineCore = await ethers.getContractFactory("FineCore");
     this.FineShop = await ethers.getContractFactory("FineShop");
-    this.FineNFT = await ethers.getContractFactory("FineNFT");
+    this.Solids = await ethers.getContractFactory("Solids");
 
     this.random = await this.RandomStub.deploy();
     await this.random.deployed();
@@ -11,13 +11,31 @@ async function main() {
     await this.core.deployed();
     this.shop = await this.FineShop.deploy(this.core.address);
     await this.shop.deployed();
-    this.nft = await this.FineNFT.deploy(this.core.address, this.shop.address);
-    await this.nft.deployed();
+    this.solids = await this.Solids.deploy(this.core.address, this.shop.address);
+    await this.solids.deployed();
 
     console.log("RandomStub deployed to:", this.random.address);
-    console.log("Core deployed to:", this.core.address);
-    console.log("Core deployed to:", this.shop.address);
-    console.log("Core deployed to:", this.nft.address);
+    console.log("Core:", this.core.address);
+    console.log("Shop:", this.shop.address);
+    console.log("Solids:", this.solids.address);
+
+    console.log(await hre.run("verify:verify", {
+      address: this.random.address
+    }));
+
+    // await hre.run("verify:verify", {
+    //   address: this.core.address,
+    //   constructorArguments: [
+    //     this.random.address
+    //   ],
+    // });
+
+    // await hre.run("verify:verify", {
+    //   address: this.shop.address,
+    //   constructorArguments: [
+    //     this.core.address
+    //   ],
+    // });
 }
 
 main()
