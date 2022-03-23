@@ -19,9 +19,9 @@ async function main() {
     console.log("Shop:", this.shop.address);
     console.log("Solids:", this.solids.address);
 
-    console.log(await hre.run("verify:verify", {
-      address: this.random.address
-    }));
+    // console.log(await hre.run("verify:verify", {
+    //   address: this.random.address
+    // }));
 
     // await hre.run("verify:verify", {
     //   address: this.core.address,
