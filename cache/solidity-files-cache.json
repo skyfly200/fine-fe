@@ -1309,8 +1309,8 @@
       ]
     },
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/FineCoreFlat.sol": {
-      "lastModificationDate": 1647999532925,
-      "contentHash": "631aa0ae78067d83ecb78da23834eac1",
+      "lastModificationDate": 1647999600849,
+      "contentHash": "f181a57f9b738f19a78f5ed737965318",
       "sourceName": "contracts/FineCoreFlat.sol",
       "solcConfig": {
         "version": "0.8.12",
@@ -1359,8 +1359,8 @@
       ]
     },
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/FineShopFlat.sol": {
-      "lastModificationDate": 1647999528547,
-      "contentHash": "d553b1ec2c2f7913bd40167f82eeaee8",
+      "lastModificationDate": 1647999575579,
+      "contentHash": "9c3ccc579b4e968509f75360bce728f3",
       "sourceName": "contracts/FineShopFlat.sol",
       "solcConfig": {
         "version": "0.8.12",
@@ -1416,8 +1416,8 @@
       ]
     },
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/SolidsFlat.sol": {
-      "lastModificationDate": 1647999541788,
-      "contentHash": "cb2d20d373a815167e041629e90710cc",
+      "lastModificationDate": 1647999593518,
+      "contentHash": "371b6fbc952f600df174be38dbe43044",
       "sourceName": "contracts/SolidsFlat.sol",
       "solcConfig": {
         "version": "0.8.12",
