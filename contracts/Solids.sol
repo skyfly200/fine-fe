@@ -15,12 +15,10 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
     using Counters for Counters.Counter;
     using EnumerableSet for EnumerableSet.UintSet;
 
-    uint public TOKEN_LIMIT = 500; // not including bonus
+    uint public TOKEN_LIMIT = 1000; // not including bonus
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     FineCoreInterface coreContract;
     Counters.Counter private _tokenIdCounter;
-    //mapping(uint => uint) public hashes; // for post generated projects
-    mapping(uint => uint) public artworkId; // for pre generated projects
     mapping(uint256 => string) public scripts;
     EnumerableSet.UintSet private availableArt;
     bool public locked = false;
@@ -32,7 +30,7 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
     uint96 public royaltyPercent = 7500;
 
     string public _contractURI = "https://gateway.pinata.cloud/ipfs/QmaNuNrMFtZYH6THVZ6QU4z9Xohf1bHu6vEy1JCBPiaDa8";
-    string public baseURI = "IPFS HASH HERE";
+    string public baseURI = "https://gateway.pinata.cloud/ipfs/QmeEky5aZNmog1fNdbsxAC5X1CkKCfrfns3tPqQ8rb1kiw";
     string public artist = "FAR";
     string public description = "a sample NFT for FINE";
     string public website = "https://fine.digital";
@@ -96,10 +94,10 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
 
     /**
      * @dev lookup the URI for a token
-      * @param tokenId 5to retieve URI for
+      * @param tokenId to retieve URI for
      */
     function tokenURI(uint256 tokenId) public view override(ERC721) returns (string memory) {
-        return string(abi.encodePacked(baseURI, Strings.toString(artworkId[tokenId])));
+        return string(abi.encodePacked(baseURI, "/", Strings.toString(tokenId), ".json"));
     }
 
     // On-chain Data
@@ -191,15 +189,15 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
      * @param to address to mint the token to
      * @dev Only the minter role can call this
      */
-    function mint(address to) external onlyRole(MINTER_ROLE) returns (uint tokenId) {
+    function mint(address to) external onlyRole(MINTER_ROLE) returns (uint) {
         require(locked, "settings not locked");
         require(availableArt.length() > 0, "all tokens minted");
-        uint randomness = coreContract.getRandomness(tokenId, block.timestamp);
+        uint randomness = coreContract.getRandomness(availableArt.length(), block.timestamp);
         uint randIndex = randomness % availableArt.length();
         uint artId = availableArt.at(randIndex);
-        artworkId[tokenId] = artId;
         availableArt.remove(artId);
         _safeMint(to, artId);
+        return artId;
     }
 
     /**
