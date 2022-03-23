@@ -1,501 +1,1001 @@
-No,Dim,Skylight,Entrance,Openings,Legs,Texture,Entrance
-1,6,TRUE,Ground,1,,,1
-2,8,TRUE,Ramp,6,,,1
-3,9,TRUE,Ground,4,,,1
-4,7,FALSE,Ground,1,,,1
-5,7,TRUE,Ramp,4,,,1
-6,10,TRUE,Ramp,1,,,1
-7,9,TRUE,Ground,1,,,1
-8,8,FALSE,Ground,2,,,1
-9,8,TRUE,Ground,1,,,1
-10,8,FALSE,Ground,1,,,1
-11,8,TRUE,Ground,4,,,1
-12,7,TRUE,Ramp,4,,,1
-13,10,TRUE,Ramp,4,,,1
-14,9,TRUE,Ground,3,,,1
-15,10,TRUE,Spiral,3,,,1
-16,8,FALSE,Ramp,3,,,1
-17,6,TRUE,Spiral,3,,,1
-18,7,TRUE,Ground,1,,,1
-19,7,FALSE,Ramp,3,,,1
-20,8,TRUE,Ground,1,,,1
-21,9,TRUE,Ramp,3,,,1
-22,8,TRUE,Ground,1,,,1
-23,7,FALSE,Ramp,1,,,1
-24,10,TRUE,Ground,4,,,1
-25,8,FALSE,Ramp,1,,,1
-26,6,TRUE,Ground,1,,,1
-27,8,FALSE,Ramp,1,,,1
-28,9,TRUE,Ramp,4,,,1
-29,6,TRUE,Ramp,1,,,1
-30,8,TRUE,Ramp,1,,,1
-31,7,FALSE,Ground,4,,,1
-32,7,TRUE,Ramp,1,,,1
-33,8,FALSE,Ground,5,,,1
-34,8,FALSE,Ramp,3,,,1
-35,8,FALSE,Ramp,1,,,1
-36,7,FALSE,Ramp,4,,,1
-37,9,FALSE,Ramp,1,,,1
-38,7,FALSE,Ground,1,,,1
-39,8,TRUE,Ground,5,,,1
-40,6,TRUE,Ground,4,,,1
-41,8,FALSE,Ramp,3,,,1
-42,8,TRUE,Ramp,4,,,1
-43,8,TRUE,Ramp,1,,,1
-44,6,FALSE,Ground,4,,,1
-45,8,TRUE,Spiral,1,,,1
-46,9,FALSE,Spiral,4,,,1
-47,9,FALSE,Ramp,1,,,1
-48,8,TRUE,Ramp,1,,,1
-49,6,FALSE,Ground,3,,,1
-50,7,FALSE,Ground,2,,,1
-51,8,TRUE,Ground,1,,,1
-52,9,FALSE,Ground,3,,,1
-53,7,FALSE,Ramp,1,,,1
-54,9,FALSE,Ground,1,,,1
-55,7,TRUE,Ramp,1,,,1
-56,8,TRUE,Spiral,4,,,1
-57,7,FALSE,Ground,1,,,1
-58,9,TRUE,Spiral,5,,,1
-59,9,FALSE,Ramp,1,,,1
-60,7,TRUE,Ground,1,,,1
-61,8,TRUE,Ramp,5,,,1
-62,10,TRUE,Ground,1,,,1
-63,8,FALSE,Ground,3,,,1
-64,10,TRUE,Ground,3,,,1
-65,6,TRUE,Ramp,2,,,1
-66,7,TRUE,Ramp,1,,,1
-67,10,TRUE,Ramp,3,,,1
-68,8,TRUE,Ground,1,,,1
-69,6,TRUE,Ramp,4,,,1
-70,8,TRUE,Ground,4,,,1
-71,9,FALSE,Ground,2,,,1
-72,9,FALSE,Ground,1,,,1
-73,8,TRUE,Ground,1,,,1
-74,7,TRUE,Ramp,1,,,1
-75,10,TRUE,Ground,5,,,1
-76,8,FALSE,Ground,1,,,1
-77,6,TRUE,Ramp,1,,,1
-78,6,TRUE,Ground,4,,,1
-79,8,FALSE,Ramp,1,,,1
-80,10,FALSE,Ramp,2,,,1
-81,7,FALSE,Ramp,1,,,1
-82,6,TRUE,Ground,3,,,1
-83,9,TRUE,Ground,1,,,1
-84,10,TRUE,Ramp,1,,,1
-85,6,FALSE,Ramp,1,,,1
-86,8,TRUE,Ground,1,,,1
-87,6,FALSE,Ground,1,,,1
-88,9,TRUE,Ground,4,,,1
-89,7,FALSE,Ground,1,,,1
-90,6,FALSE,Ground,2,,,1
-91,6,FALSE,Ramp,1,,,1
-92,6,FALSE,Ramp,1,,,1
-93,8,FALSE,Ramp,4,,,1
-94,8,FALSE,Ground,5,,,1
-95,8,TRUE,Ramp,1,,,1
-96,9,TRUE,Ground,2,,,1
-97,10,FALSE,Ground,1,,,1
-98,8,TRUE,Spiral,3,,,1
-99,6,TRUE,Ground,1,,,1
-100,7,FALSE,Spiral,1,,,1
-101,9,FALSE,Ground,4,,,1
-102,7,TRUE,Ground,3,,,1
-103,7,FALSE,Ground,1,,,1
-104,8,FALSE,Ground,6,,,1
-105,8,TRUE,Ramp,3,,,1
-106,8,FALSE,Ramp,2,,,1
-107,7,TRUE,Ramp,3,,,1
-108,10,FALSE,Ground,1,,,1
-109,9,FALSE,Ramp,1,,,1
-110,9,TRUE,Ramp,1,,,1
-111,8,TRUE,Ground,6,,,1
-112,7,TRUE,Ground,1,,,1
-113,7,TRUE,Ramp,3,,,1
-114,9,TRUE,Ramp,4,,,1
-115,9,FALSE,Ground,4,,,1
-116,7,FALSE,Ground,3,,,1
-117,6,FALSE,Ground,2,,,1
-118,8,TRUE,Ramp,1,,,1
-119,10,FALSE,Ramp,1,,,1
-120,8,FALSE,Ramp,1,,,1
-121,7,FALSE,Spiral,1,,,1
-122,7,TRUE,Ramp,3,,,1
-123,6,TRUE,Ground,2,,,1
-124,6,FALSE,Ground,4,,,1
-125,8,FALSE,Ground,2,,,1
-126,9,TRUE,Ramp,1,,,1
-127,7,TRUE,Ground,1,,,1
-128,7,TRUE,Ground,4,,,1
-129,9,TRUE,Ramp,3,,,1
-130,7,FALSE,Ground,3,,,1
-131,8,TRUE,Spiral,4,,,1
-132,9,TRUE,Ground,1,,,1
-133,6,FALSE,Ramp,1,,,1
-134,7,TRUE,Ramp,1,,,1
-135,7,FALSE,Ramp,4,,,1
-136,6,TRUE,Ground,1,,,1
-137,9,FALSE,Ground,1,,,1
-138,8,TRUE,Ramp,4,,,1
-139,8,FALSE,Ramp,1,,,1
-140,8,TRUE,Ramp,3,,,1
-141,8,TRUE,Ground,1,,,1
-142,6,TRUE,Ramp,1,,,1
-143,10,FALSE,Ground,1,,,1
-144,8,FALSE,Ground,4,,,1
-145,9,TRUE,Ground,3,,,1
-146,9,FALSE,Ramp,3,,,1
-147,9,TRUE,Ground,1,,,1
-148,9,FALSE,Ground,1,,,1
-149,9,FALSE,Ramp,1,,,1
-150,7,FALSE,Ground,1,,,1
-151,8,TRUE,Ramp,1,,,1
-152,8,FALSE,Ground,3,,,1
-153,8,FALSE,Ground,3,,,1
-154,8,TRUE,Ramp,3,,,1
-155,6,TRUE,Ground,1,,,1
-156,8,FALSE,Ramp,5,,,1
-157,7,TRUE,Ground,1,,,1
-158,7,TRUE,Ramp,6,,,1
-159,9,FALSE,Ramp,1,,,1
-160,9,TRUE,Ground,1,,,1
-161,7,FALSE,Ramp,2,,,1
-162,6,TRUE,Ramp,1,,,1
-163,7,TRUE,Ground,5,,,1
-164,8,TRUE,Ground,4,,,1
-165,7,FALSE,Ramp,3,,,1
-166,9,TRUE,Ground,1,,,1
-167,7,FALSE,Ground,3,,,1
-168,6,TRUE,Ramp,4,,,1
-169,9,TRUE,Ground,1,,,1
-170,9,FALSE,Ramp,3,,,1
-171,8,TRUE,Ground,5,,,1
-172,8,FALSE,Ground,4,,,1
-173,9,TRUE,Ground,4,,,1
-174,8,TRUE,Ramp,1,,,1
-175,6,FALSE,Ramp,1,,,1
-176,6,TRUE,Ramp,4,,,1
-177,7,FALSE,Ground,1,,,1
-178,8,FALSE,Ramp,4,,,1
-179,7,FALSE,Ground,2,,,1
-180,9,FALSE,Ramp,4,,,1
-181,10,FALSE,Ground,3,,,1
-182,9,FALSE,Ground,3,,,1
-183,8,FALSE,Ground,7,,,1
-184,8,FALSE,Spiral,1,,,1
-185,9,TRUE,Ground,3,,,1
-186,10,FALSE,Ground,6,,,1
-187,7,FALSE,Ramp,3,,,1
-188,8,FALSE,Ground,3,,,1
-189,6,TRUE,Spiral,1,,,1
-190,8,FALSE,Ramp,1,,,1
-191,9,TRUE,Ground,4,,,1
-192,8,FALSE,Ramp,5,,,1
-193,8,TRUE,Ramp,1,,,1
-194,10,FALSE,Ground,1,,,1
-195,7,FALSE,Ground,1,,,1
-196,7,TRUE,Ramp,1,,,1
-197,9,TRUE,Ramp,1,,,1
-198,8,TRUE,Ground,1,,,1
-199,6,FALSE,Ramp,1,,,1
-200,10,FALSE,Ground,1,,,1
-201,9,TRUE,Ground,5,,,1
-202,9,TRUE,Ground,1,,,1
-203,6,TRUE,Ramp,1,,,1
-204,9,FALSE,Ground,3,,,1
-205,9,FALSE,Ground,4,,,1
-206,10,FALSE,Ramp,5,,,1
-207,9,FALSE,Ground,1,,,1
-208,10,TRUE,Ground,1,,,1
-209,8,FALSE,Ground,1,,,1
-210,10,TRUE,Ramp,1,,,1
-211,8,FALSE,Ramp,4,,,1
-212,9,FALSE,Ground,1,,,1
-213,6,TRUE,Ground,1,,,1
-214,7,TRUE,Ground,1,,,1
-215,9,TRUE,Ramp,1,,,1
-216,8,TRUE,Ground,4,,,1
-217,8,FALSE,Ground,4,,,1
-218,9,FALSE,Ramp,1,,,1
-219,9,FALSE,Ramp,1,,,1
-220,8,TRUE,Ground,1,,,1
-221,8,TRUE,Ground,1,,,1
-222,8,FALSE,Ground,1,,,1
-223,6,FALSE,Ground,1,,,1
-224,6,FALSE,Ground,6,,,1
-225,6,TRUE,Ground,1,,,1
-226,6,TRUE,Ramp,4,,,1
-227,10,TRUE,Ground,1,,,1
-228,10,TRUE,Ground,4,,,1
-229,7,FALSE,Ramp,2,,,1
-230,9,TRUE,Ramp,1,,,1
-231,7,TRUE,Ramp,1,,,1
-232,8,TRUE,Spiral,1,,,1
-233,8,FALSE,Ground,5,,,1
-234,7,FALSE,Ground,1,,,1
-235,10,FALSE,Spiral,3,,,1
-236,7,FALSE,Ground,4,,,1
-237,9,FALSE,Ground,3,,,1
-238,9,FALSE,Ground,3,,,1
-239,9,TRUE,Ground,5,,,1
-240,9,FALSE,Ramp,1,,,1
-241,7,TRUE,Ground,1,,,1
-242,7,FALSE,Ramp,2,,,1
-243,6,TRUE,Ground,1,,,1
-244,6,TRUE,Ramp,4,,,1
-245,7,TRUE,Ground,4,,,1
-246,6,TRUE,Ground,3,,,1
-247,8,FALSE,Ground,1,,,1
-248,8,FALSE,Ramp,4,,,1
-249,7,FALSE,Ground,3,,,1
-250,9,FALSE,Ramp,3,,,1
-251,9,FALSE,Ground,1,,,1
-252,7,TRUE,Ground,1,,,1
-253,10,TRUE,Ground,3,,,1
-254,9,TRUE,Ground,1,,,1
-255,8,FALSE,Ground,1,,,1
-256,6,TRUE,Ramp,7,,,1
-257,8,TRUE,Ramp,3,,,1
-258,10,TRUE,Ramp,1,,,1
-259,9,FALSE,Ramp,1,,,1
-260,9,TRUE,Ramp,1,,,1
-261,10,TRUE,Ground,1,,,1
-262,9,FALSE,Ground,3,,,1
-263,9,FALSE,Ramp,1,,,1
-264,9,TRUE,Ground,4,,,1
-265,9,FALSE,Ground,4,,,1
-266,9,TRUE,Ramp,1,,,1
-267,7,TRUE,Ground,1,,,1
-268,9,TRUE,Ground,1,,,1
-269,7,TRUE,Ground,5,,,1
-270,7,TRUE,Ramp,1,,,1
-271,10,TRUE,Ramp,5,,,1
-272,9,FALSE,Ramp,1,,,1
-273,9,TRUE,Ground,3,,,1
-274,9,FALSE,Ground,3,,,1
-275,7,TRUE,Ground,1,,,1
-276,7,TRUE,Ground,4,,,1
-277,8,FALSE,Ground,1,,,1
-278,10,TRUE,Ramp,1,,,1
-279,9,FALSE,Ramp,1,,,1
-280,10,FALSE,Ground,6,,,1
-281,8,FALSE,Ramp,1,,,1
-282,8,TRUE,Ramp,1,,,1
-283,8,FALSE,Spiral,2,,,1
-284,9,TRUE,Ramp,6,,,1
-285,10,FALSE,Ground,1,,,1
-286,6,FALSE,Ramp,6,,,1
-287,9,TRUE,Ground,1,,,1
-288,9,FALSE,Ramp,3,,,1
-289,9,FALSE,Ramp,3,,,1
-290,10,FALSE,Ramp,4,,,1
-291,9,FALSE,Ramp,1,,,1
-292,9,FALSE,Ramp,1,,,1
-293,10,TRUE,Ramp,5,,,1
-294,7,FALSE,Ramp,4,,,1
-295,9,FALSE,Ramp,4,,,1
-296,8,FALSE,Ground,1,,,1
-297,8,FALSE,Ramp,1,,,1
-298,8,TRUE,Spiral,1,,,1
-299,7,FALSE,Ramp,1,,,1
-300,8,TRUE,Ground,3,,,1
-301,10,FALSE,Spiral,1,,,1
-302,9,FALSE,Ramp,4,,,1
-303,7,TRUE,Ground,4,,,1
-304,6,FALSE,Ramp,1,,,1
-305,9,TRUE,Ground,1,,,1
-306,10,TRUE,Ramp,7,,,1
-307,7,TRUE,Ramp,1,,,1
-308,7,FALSE,Ground,1,,,1
-309,8,TRUE,Ground,1,,,1
-310,7,FALSE,Ramp,1,,,1
-311,8,FALSE,Ramp,4,,,1
-312,8,FALSE,Ground,1,,,1
-313,7,TRUE,Ramp,4,,,1
-314,9,TRUE,Spiral,7,,,1
-315,7,FALSE,Ramp,1,,,1
-316,8,FALSE,Ramp,3,,,1
-317,7,FALSE,Ground,1,,,1
-318,10,TRUE,Ground,3,,,1
-319,9,TRUE,Ramp,6,,,1
-320,8,TRUE,Ground,5,,,1
-321,7,FALSE,Ground,1,,,1
-322,7,TRUE,Ground,1,,,1
-323,10,FALSE,Ground,5,,,1
-324,7,TRUE,Ramp,1,,,1
-325,8,TRUE,Ground,3,,,1
-326,7,TRUE,Ground,1,,,1
-327,10,TRUE,Ground,3,,,1
-328,9,FALSE,Ground,2,,,1
-329,6,FALSE,Ramp,4,,,1
-330,8,TRUE,Ground,3,,,1
-331,9,TRUE,Ground,1,,,1
-332,6,TRUE,Ground,4,,,1
-333,8,TRUE,Ramp,1,,,1
-334,7,FALSE,Ground,6,,,1
-335,10,TRUE,Ground,3,,,1
-336,9,FALSE,Ramp,1,,,1
-337,7,TRUE,Ground,4,,,1
-338,8,FALSE,Ground,5,,,1
-339,10,FALSE,Ground,1,,,1
-340,10,FALSE,Spiral,4,,,1
-341,9,TRUE,Ramp,3,,,1
-342,8,FALSE,Spiral,3,,,1
-343,7,FALSE,Ramp,4,,,1
-344,8,FALSE,Ground,3,,,1
-345,7,TRUE,Ramp,1,,,1
-346,7,TRUE,Ground,5,,,1
-347,8,FALSE,Ramp,1,,,1
-348,7,TRUE,Ramp,4,,,1
-349,6,TRUE,Ramp,4,,,1
-350,7,FALSE,Ramp,4,,,1
-351,8,FALSE,Ramp,1,,,1
-352,8,TRUE,Spiral,5,,,1
-353,9,FALSE,Ground,1,,,1
-354,9,FALSE,Ground,2,,,1
-355,7,FALSE,Ground,3,,,1
-356,9,FALSE,Ramp,5,,,1
-357,10,FALSE,Ground,1,,,1
-358,6,TRUE,Ramp,4,,,1
-359,8,FALSE,Ramp,1,,,1
-360,8,TRUE,Ramp,4,,,1
-361,6,TRUE,Ground,3,,,1
-362,9,TRUE,Ground,5,,,1
-363,7,TRUE,Ramp,1,,,1
-364,6,TRUE,Ramp,1,,,1
-365,8,TRUE,Ground,1,,,1
-366,8,FALSE,Ground,1,,,1
-367,10,FALSE,Ground,1,,,1
-368,10,TRUE,Ramp,1,,,1
-369,9,FALSE,Ground,3,,,1
-370,8,TRUE,Ground,5,,,1
-371,7,FALSE,Ground,1,,,1
-372,8,TRUE,Ground,1,,,1
-373,6,TRUE,Spiral,1,,,1
-374,9,FALSE,Ramp,5,,,1
-375,9,TRUE,Spiral,6,,,1
-376,9,FALSE,Ramp,1,,,1
-377,6,TRUE,Ground,4,,,1
-378,7,FALSE,Ground,1,,,1
-379,10,TRUE,Spiral,4,,,1
-380,7,FALSE,Ramp,5,,,1
-381,9,TRUE,Ramp,5,,,1
-382,9,FALSE,Ground,1,,,1
-383,8,FALSE,Ramp,4,,,1
-384,9,TRUE,Ramp,1,,,1
-385,7,FALSE,Ground,1,,,1
-386,6,TRUE,Ramp,6,,,1
-387,7,FALSE,Ground,5,,,1
-388,9,FALSE,Ramp,1,,,1
-389,10,TRUE,Ground,3,,,1
-390,7,FALSE,Ground,4,,,1
-391,9,FALSE,Ramp,3,,,1
-392,7,FALSE,Ramp,1,,,1
-393,10,TRUE,Ramp,6,,,1
-394,8,FALSE,Ground,1,,,1
-395,10,FALSE,Ramp,2,,,1
-396,7,FALSE,Ground,1,,,1
-397,8,TRUE,Ground,3,,,1
-398,7,FALSE,Ramp,1,,,1
-399,6,FALSE,Ramp,1,,,1
-400,9,TRUE,Ramp,4,,,1
-401,7,FALSE,Ground,5,,,1
-402,8,TRUE,Ground,1,,,1
-403,7,FALSE,Ramp,1,,,1
-404,9,TRUE,Ramp,5,,,1
-405,7,TRUE,Ramp,1,,,1
-406,9,FALSE,Ramp,6,,,1
-407,8,TRUE,Ramp,4,,,1
-408,10,FALSE,Ramp,1,,,1
-409,6,FALSE,Spiral,1,,,1
-410,9,TRUE,Ramp,5,,,1
-411,8,FALSE,Ramp,1,,,1
-412,9,TRUE,Ground,1,,,1
-413,6,TRUE,Ramp,3,,,1
-414,7,FALSE,Ramp,3,,,1
-415,9,FALSE,Ground,4,,,1
-416,7,FALSE,Ramp,1,,,1
-417,6,FALSE,Ramp,1,,,1
-418,8,TRUE,Ground,4,,,1
-419,9,FALSE,Ramp,1,,,1
-420,8,TRUE,Spiral,3,,,1
-421,7,TRUE,Ground,3,,,1
-422,7,TRUE,Ground,1,,,1
-423,10,TRUE,Ground,4,,,1
-424,8,TRUE,Ramp,5,,,1
-425,8,FALSE,Ground,1,,,1
-426,6,FALSE,Ramp,4,,,1
-427,9,FALSE,Ground,1,,,1
-428,9,TRUE,Ground,3,,,1
-429,9,FALSE,Ground,1,,,1
-430,8,TRUE,Ground,4,,,1
-431,7,TRUE,Ground,1,,,1
-432,9,FALSE,Ground,3,,,1
-433,7,TRUE,Ground,4,,,1
-434,7,FALSE,Ground,4,,,1
-435,6,FALSE,Ground,1,,,1
-436,7,FALSE,Ground,1,,,1
-437,8,FALSE,Spiral,3,,,1
-438,10,FALSE,Ramp,3,,,1
-439,8,FALSE,Ground,1,,,1
-440,7,FALSE,Ramp,1,,,1
-441,8,TRUE,Ramp,1,,,1
-442,8,TRUE,Ramp,4,,,1
-443,9,TRUE,Ramp,4,,,1
-444,7,FALSE,Ramp,3,,,1
-445,9,TRUE,Ramp,1,,,1
-446,7,FALSE,Ground,4,,,1
-447,6,FALSE,Spiral,2,,,1
-448,9,FALSE,Spiral,1,,,1
-449,9,FALSE,Ramp,3,,,1
-450,9,TRUE,Spiral,4,,,1
-451,7,FALSE,Ground,3,,,1
-452,10,TRUE,Ramp,1,,,1
-453,8,TRUE,Ground,2,,,1
-454,8,FALSE,Ground,1,,,1
-455,8,TRUE,Ground,4,,,1
-456,6,FALSE,Ramp,1,,,1
-457,8,FALSE,Ramp,4,,,1
-458,9,TRUE,Ramp,5,,,1
-459,6,TRUE,Ground,4,,,1
-460,6,FALSE,Ramp,1,,,1
-461,7,TRUE,Ground,3,,,1
-462,9,TRUE,Ramp,5,,,1
-463,6,TRUE,Ground,1,,,1
-464,8,FALSE,Ground,4,,,1
-465,8,TRUE,Ground,1,,,1
-466,9,TRUE,Ground,5,,,1
-467,8,FALSE,Ramp,6,,,1
-468,10,TRUE,Spiral,4,,,1
-469,6,TRUE,Ramp,5,,,1
-470,8,TRUE,Ramp,3,,,1
-471,9,TRUE,Ground,5,,,1
-472,7,FALSE,Ground,4,,,1
-473,10,TRUE,Ground,1,,,1
-474,8,TRUE,Ground,4,,,1
-475,10,FALSE,Ground,1,,,1
-476,9,TRUE,Ramp,3,,,1
-477,7,TRUE,Ground,4,,,1
-478,8,FALSE,Spiral,1,,,1
-479,9,FALSE,Ground,4,,,1
-480,8,FALSE,Ground,1,,,1
-481,10,TRUE,Ramp,1,,,1
-482,9,FALSE,Ramp,1,,,1
-483,6,FALSE,Ground,1,,,1
-484,6,TRUE,Ground,1,,,1
-485,8,FALSE,Spiral,3,,,1
-486,7,FALSE,Ramp,1,,,1
-487,8,TRUE,Ground,3,,,1
-488,8,TRUE,Ground,6,,,1
-489,9,FALSE,Ground,1,,,1
-490,6,TRUE,Ground,1,,,1
-491,9,FALSE,Ramp,2,,,1
-492,9,FALSE,Ramp,1,,,1
-493,9,FALSE,Ground,1,,,1
-494,8,TRUE,Ground,5,,,1
-495,7,FALSE,Ground,1,,,1
-496,9,FALSE,Ground,1,,,1
-497,7,FALSE,Ground,3,,,1
-498,8,FALSE,Ground,5,,,1
-499,10,FALSE,Ramp,4,,,1
-500,10,TRUE,Spiral,1,,,1
+ID,Dim,Size,Skylight,Entrance,Openings,Legs,Texture
+0,35.828526,Super,Skylight,Ground,0,None,Solids Gradient 21
+1,42.664224,Super,Skylight,Ramp,4,White Legs,Solids Gradient 37
+2,21.680222,Super,Skylight,Ground,3,None,Solids Gradient 22
+3,14.520924,Super,None,Ground,0,None,Solids Gradient 36
+4,41.742774,Super,Skylight,Ramp,2,Black Legs,Solids Gradient 32
+5,41.333811,Super,Skylight,Ramp,0,White Legs,Solids Gradient 14
+6,17.515927,Super,Skylight,Ground,0,None,Solids Gradient 37
+7,12.451481,Super,None,Ground,0,None,Solids Gradient 25
+8,20.162799,Super,Skylight,Ground,0,None,Solids Gradient 27
+9,35.375317,Super,None,Ground,0,None,Solids Gradient 31
+10,18.576862,Super,Skylight,Ground,3,None,Solids Gradient 01
+11,21.010027,Super,Skylight,Ramp,3,White Legs,Solids Gradient 34
+12,25.371029,Super,Skylight,Ramp,4,White Legs,Solids Gradient 32
+13,19.228413,Super,Skylight,Ground,4,None,Solids Gradient 13
+14,41.562543,Super,Skylight,Spiral,2,Black Legs,Unknown (8)
+15,20.805138,Super,None,Ramp,2,White Legs,Solids Gradient 18
+16,23.496206,Super,Skylight,Spiral,1,White Legs,Solids Gradient 17
+17,36.224687,Super,Skylight,Ground,0,None,Solids Gradient 40
+18,22.494455,Super,None,Ramp,3,White Legs,Unknown (8)
+19,21.080662,Super,Skylight,Ground,0,None,Solids Gradient 15
+20,21.147549,Super,Skylight,Ramp,4,White Legs,Solids Gradient 18
+21,33.34183,Super,Skylight,Ground,0,None,Solids Gradient 15
+22,20.659794,Super,None,Ramp,0,White Legs,Solids Gradient 29
+23,19.606923,Super,Skylight,Ground,3,None,Solids Gradient 04
+24,36.254381,Super,None,Ramp,0,White Legs,Unknown (7)
+25,30.136335,Super,Skylight,Ground,0,None,Solids Gradient 10
+26,22.732712,Super,None,Ramp,0,White Legs,Unknown (7)
+27,24.136977,Super,Skylight,Ramp,3,Black Legs,Solids Gradient 12
+28,21.258606,Super,Skylight,Ramp,0,White Legs,Solids Gradient 12
+29,24.549857,Super,Skylight,Ramp,0,White Legs,Solids Gradient 03
+30,31.113021,Super,None,Ground,2,None,Solids Gradient 08
+31,21.754645,Super,Skylight,Ramp,0,White Legs,Solids Gradient 43
+32,32.265624,Super,None,Ground,4,None,Solids Gradient 13
+33,21.414745,Super,None,Ramp,2,White Legs,Solids Gradient 25
+34,16.96686,Super,None,Ramp,0,White Legs,Solids Gradient 11
+35,17.72004,Super,None,Ramp,3,Black Legs,Solids Gradient 22
+36,20.419943,Super,None,Ramp,0,White Legs,Solids Gradient 26
+37,13.316474,Super,None,Ground,0,None,Solids Gradient 08
+38,43.327912,Super,Skylight,Ground,4,None,Solids Gradient 26
+39,36.66513,Super,Skylight,Ground,4,None,Solids Gradient 12
+40,16.518658,Super,None,Ramp,1,White Legs,Solids Gradient 28
+41,42.610799,Super,Skylight,Ramp,2,White Legs,Solids Gradient 04
+42,23.087219,Super,Skylight,Ramp,0,White Legs,Solids Gradient 13
+43,13.280452,Super,None,Ground,2,None,Solids Gradient 04
+44,26.562058,Super,Skylight,Spiral,0,White Legs,Solids Gradient 27
+45,21.791931,Super,None,Spiral,2,White Legs,Solids Gradient 28
+46,16.887882,Super,None,Ramp,0,Black Legs,Solids Gradient 39
+47,26.502742,Super,Skylight,Ramp,0,Black Legs,Solids Gradient 11
+48,17.187778,Super,None,Ground,3,None,Solids Gradient 26
+49,15.976175,Super,None,Ground,2,None,Solids Gradient 18
+50,19.249532,Super,Skylight,Ground,0,None,Solids Gradient 15
+51,13.944384,Super,None,Ground,3,None,Unknown (7)
+52,16.802057,Super,None,Ramp,0,Black Legs,Solids Gradient 08
+53,31.981513,Super,None,Ground,0,None,Solids Gradient 36
+54,21.241737,Super,Skylight,Ramp,0,White Legs,Solids Gradient 03
+55,43.768707,Super,Skylight,Spiral,3,White Legs,Solids Gradient 30
+56,15.924596,Super,None,Ground,0,None,Solids Gradient 10
+57,25.415065,Super,Skylight,Spiral,4,White Legs,Unknown
+58,42.600485,Super,None,Ramp,0,White Legs,Solids Gradient 43
+59,18.732109,Super,Skylight,Ground,0,None,Solids Gradient 10
+60,24.829095,Super,Skylight,Ramp,3,White Legs,Solids Gradient 26
+61,37.162333,Super,Skylight,Ground,0,None,Solids Gradient 18
+62,30.245635,Super,None,Ground,3,None,Solids Gradient 28
+63,16.179737,Super,Skylight,Ground,1,None,Solids Gradient 39
+64,20.302183,Super,Skylight,Ramp,2,White Legs,Solids Gradient 35
+65,38.846836,Super,Skylight,Ramp,0,White Legs,Solids Gradient 27
+66,22.942806,Super,Skylight,Ramp,1,Black Legs,Solids Gradient 15
+67,21.500604,Super,Skylight,Ground,0,None,Solids Gradient 22
+68,22.130212,Super,Skylight,Ramp,3,White Legs,Solids Gradient 23
+69,16.090608,Super,Skylight,Ground,4,None,Solids Gradient 24
+70,17.385181,Super,None,Ground,1,None,Solids Gradient 35
+71,17.107965,Super,None,Ground,0,None,Solids Gradient 31
+72,16.165257,Super,Skylight,Ground,0,None,Solids Gradient 37
+73,36.439829,Super,Skylight,Ramp,0,Black Legs,Solids Gradient 07
+74,33.771777,Super,Skylight,Ground,3,None,Solids Gradient 02
+75,15.897754,Super,None,Ground,0,None,Solids Gradient 20
+76,44.260057,Super,Skylight,Ramp,0,White Legs,Unknown (9)
+77,16.198932,Super,Skylight,Ground,4,None,Solids Gradient 38
+78,18.033262,Super,None,Ramp,0,Black Legs,Solids Gradient 02
+79,17.062443,Super,None,Ramp,1,White Legs,Solids Gradient 38
+80,35.338594,Super,None,Ramp,0,Black Legs,Solids Gradient 19
+81,16.360083,Super,Skylight,Ground,3,None,Solids Gradient 22
+82,20.465295,Super,Skylight,Ground,0,None,Solids Gradient 29
+83,26.66843,Super,Skylight,Ramp,0,White Legs,Solids Gradient 39
+84,33.297658,Super,None,Ramp,0,White Legs,Solids Gradient 41
+85,15.791747,Super,Skylight,Ground,0,None,Solids Gradient 42
+86,13.372754,Super,None,Ground,0,None,Solids Gradient 23
+87,38.921958,Super,Skylight,Ground,3,None,Solids Gradient 27
+88,17.736407,Super,None,Ground,0,None,Unknown (8)
+89,14.757707,Super,None,Ground,1,None,Solids Gradient 32
+90,19.795421,Super,None,Ramp,0,White Legs,Unknown (7)
+91,19.277199,Super,None,Ramp,1,White Legs,Solids Gradient 13
+92,20.049918,Super,None,Ramp,3,White Legs,Solids Gradient 38
+93,33.497293,Super,None,Ground,5,None,Solids Gradient 15
+94,21.690701,Super,Skylight,Ramp,0,White Legs,Solids Gradient 18
+95,18.742976,Super,Skylight,Ground,2,None,Solids Gradient 30
+96,17.738722,Super,None,Ground,0,None,Solids Gradient 22
+97,39.176888,Super,Skylight,Spiral,2,White Legs,Solids Gradient 10
+98,16.398045,Super,Skylight,Ground,0,None,Solids Gradient 42
+99,21.565535,Super,None,Spiral,0,White Legs,Solids Gradient 29
+100,13.719187,Super,None,Ground,1,None,Solids Gradient 19
+101,16.937007,Super,Skylight,Ground,3,None,Solids Gradient 10
+102,14.117678,Super,None,Ground,0,None,Solids Gradient 32
+103,30.692949,Super,None,Ground,3,None,Solids Gradient 07
+104,43.209104,Super,Skylight,Ramp,3,White Legs,Solids Gradient 09
+105,20.021536,Super,None,Ramp,2,White Legs,Solids Gradient 08
+106,21.411994,Super,Skylight,Ramp,4,Black Legs,Solids Gradient 38
+107,12.190997,Super,None,Ground,0,None,Solids Gradient 30
+108,23.590363,Super,None,Ramp,0,White Legs,Solids Gradient 14
+109,23.485057,Super,Skylight,Ramp,0,White Legs,Solids Gradient 01
+110,20.79398,Super,Skylight,Ground,3,None,Solids Gradient 15
+111,18.793347,Super,Skylight,Ground,0,None,Solids Gradient 07
+112,40.520387,Super,Skylight,Ramp,2,White Legs,Solids Gradient 12
+113,42.257727,Super,Skylight,Ramp,3,White Legs,Solids Gradient 33
+114,14.475416,Super,None,Ground,3,None,Solids Gradient 24
+115,15.484356,Super,None,Ground,3,None,Solids Gradient 43
+116,17.363027,Super,None,Ground,3,None,Unknown
+117,20.195771,Super,Skylight,Ramp,0,Black Legs,Solids Gradient 02
+118,37.182276,Super,None,Ramp,0,White Legs,Unknown
+119,18.748637,Super,None,Ramp,0,Black Legs,Solids Gradient 29
+120,19.614171,Super,None,Spiral,0,White Legs,Solids Gradient 08
+121,25.812265,Super,Skylight,Ramp,1,Black Legs,Solids Gradient 33
+122,15.477687,Super,Skylight,Ground,2,None,Solids Gradient 32
+123,17.293527,Super,None,Ground,3,None,Solids Gradient 07
+124,15.364162,Super,None,Ground,2,None,Solids Gradient 30
+125,24.04774,Super,Skylight,Ramp,0,White Legs,Solids Gradient 42
+126,19.189828,Super,Skylight,Ground,0,None,Solids Gradient 37
+127,20.149458,Super,Skylight,Ground,3,None,Solids Gradient 27
+128,42.451803,Super,Skylight,Ramp,2,Black Legs,Solids Gradient 36
+129,13.580508,Super,None,Ground,3,None,Solids Gradient 16
+130,27.503233,Super,Skylight,Spiral,3,Black Legs,Solids Gradient 20
+131,19.629973,Super,Skylight,Ground,0,None,Solids Gradient 11
+132,21.416157,Super,None,Ramp,0,White Legs,Unknown (7)
+133,24.611485,Super,Skylight,Ramp,0,Black Legs,Solids Gradient 13
+134,35.572869,Super,None,Ramp,3,White Legs,Solids Gradient 23
+135,35.083472,Super,Skylight,Ground,0,None,Solids Gradient 43
+136,38.11342,Super,None,Ground,0,None,Solids Gradient 17
+137,22.191762,Super,Skylight,Ramp,4,White Legs,Solids Gradient 28
+138,22.238689,Super,None,Ramp,0,Black Legs,Solids Gradient 40
+139,37.596432,Super,Skylight,Ramp,3,Black Legs,Solids Gradient 40
+140,20.566479,Super,Skylight,Ground,0,None,Solids Gradient 23
+141,22.190228,Super,Skylight,Ramp,0,Black Legs,Solids Gradient 30
+142,27.905091,Super,None,Ground,0,None,Solids Gradient 11
+143,15.555813,Super,None,Ground,3,None,Solids Gradient 30
+144,19.358282,Super,Skylight,Ground,3,None,Solids Gradient 38
+145,31.650182,Super,None,Ramp,2,White Legs,Solids Gradient 26
+146,34.014533,Super,Skylight,Ground,0,None,Solids Gradient 07
+147,14.045797,Super,None,Ground,0,None,Solids Gradient 27
+148,24.142869,Super,None,Ramp,0,Black Legs,Solids Gradient 41
+149,27.950895,Super,None,Ground,0,None,Solids Gradient 06
+150,23.797898,Super,Skylight,Ramp,0,Black Legs,Unknown (9)
+151,17.722787,Super,None,Ground,1,None,Solids Gradient 41
+152,14.049118,Super,None,Ground,2,None,Solids Gradient 20
+153,22.140147,Super,Skylight,Ramp,1,White Legs,Solids Gradient 37
+154,17.398794,Super,Skylight,Ground,0,None,Solids Gradient 41
+155,39.160896,Super,None,Ramp,6,Black Legs,Solids Gradient 41
+156,16.926527,Super,Skylight,Ground,0,None,Solids Gradient 05
+157,24.934303,Super,Skylight,Ramp,4,Black Legs,Solids Gradient 01
+158,19.864047,Super,None,Ramp,0,White Legs,Solids Gradient 33
+159,35.201585,Super,Skylight,Ground,0,None,Unknown
+160,17.363469,Super,None,Ramp,1,White Legs,Unknown
+161,23.750739,Super,Skylight,Ramp,0,Black Legs,Solids Gradient 13
+162,31.554191,Super,Skylight,Ground,3,None,Solids Gradient 12
+163,19.011259,Super,Skylight,Ground,4,None,Solids Gradient 25
+164,34.039055,Super,None,Ramp,2,Black Legs,Solids Gradient 30
+165,35.899289,Super,Skylight,Ground,0,None,Solids Gradient 04
+166,15.329105,Super,None,Ground,3,None,Solids Gradient 32
+167,40.359101,Super,Skylight,Ramp,2,White Legs,Solids Gradient 18
+168,34.735132,Super,Skylight,Ground,0,None,Solids Gradient 12
+169,34.791703,Super,None,Ramp,2,White Legs,Solids Gradient 17
+170,37.809068,Super,Skylight,Ground,4,None,Unknown
+171,37.541698,Super,None,Ground,4,None,Solids Gradient 43
+172,16.105551,Super,Skylight,Ground,3,None,Solids Gradient 42
+173,41.090958,Super,Skylight,Ramp,0,Black Legs,Solids Gradient 19
+174,19.904883,Super,None,Ramp,0,White Legs,Solids Gradient 18
+175,43.372228,Super,Skylight,Ramp,3,White Legs,Solids Gradient 01
+176,34.976532,Super,None,Ground,0,None,Solids Gradient 26
+177,20.140824,Super,None,Ramp,3,White Legs,Solids Gradient 36
+178,13.678355,Super,None,Ground,3,None,Solids Gradient 06
+179,21.914001,Super,None,Ramp,3,White Legs,Solids Gradient 15
+180,17.740284,Super,None,Ground,2,None,Solids Gradient 41
+181,13.612259,Super,None,Ground,2,None,Solids Gradient 36
+182,32.058404,Super,None,Ground,5,None,Solids Gradient 39
+183,22.224962,Super,None,Spiral,0,White Legs,Unknown
+184,36.050524,Super,Skylight,Ground,3,None,Solids Gradient 40
+185,33.49151,Super,None,Ground,4,None,Solids Gradient 02
+186,19.386148,Super,None,Ramp,3,White Legs,Solids Gradient 15
+187,17.001591,Super,None,Ground,1,None,Solids Gradient 27
+188,38.898701,Super,Skylight,Spiral,0,White Legs,Solids Gradient 30
+189,18.201402,Super,None,Ramp,0,White Legs,Solids Gradient 34
+190,19.687144,Super,Skylight,Ground,2,None,Solids Gradient 12
+191,25.981929,Super,Skylight,Ramp,0,White Legs,Solids Gradient 16
+192,38.355683,Super,None,Ramp,0,White Legs,Solids Gradient 23
+193,13.512682,Super,None,Ground,0,None,Solids Gradient 34
+194,17.639323,Super,Skylight,Ground,0,None,Solids Gradient 12
+195,41.848964,Super,Skylight,Ramp,0,Black Legs,Solids Gradient 40
+196,21.688365,Super,Skylight,Ramp,0,White Legs,Solids Gradient 30
+197,17.534258,Super,None,Ground,0,None,Solids Gradient 36
+198,20.907898,Super,None,Ramp,0,White Legs,Solids Gradient 18
+199,18.614609,Super,Skylight,Ground,2,None,Solids Gradient 43
+200,38.107387,Super,Skylight,Ground,0,None,Solids Gradient 40
+201,16.822466,Super,Skylight,Ground,0,None,Unknown
+202,38.260253,Super,None,Ramp,4,White Legs,Solids Gradient 16
+203,34.46103,Super,None,Ground,3,None,Solids Gradient 32
+204,16.201416,Super,None,Ground,3,None,Solids Gradient 04
+205,21.945522,Super,None,Ramp,0,White Legs,Solids Gradient 36
+206,20.603697,Super,Skylight,Ground,0,None,Solids Gradient 41
+207,17.509695,Super,None,Ground,0,None,Solids Gradient 34
+208,18.917963,Super,Skylight,Ground,0,None,Solids Gradient 17
+209,22.069627,Super,None,Ramp,3,White Legs,Solids Gradient 23
+210,22.417429,Super,None,Ramp,0,Black Legs,Solids Gradient 27
+211,16.580282,Super,Skylight,Ground,0,None,Solids Gradient 16
+212,19.483221,Super,Skylight,Ground,0,None,Solids Gradient 16
+213,15.799347,Super,Skylight,Ground,0,None,Solids Gradient 09
+214,27.60721,Super,Skylight,Ramp,2,Black Legs,Solids Gradient 33
+215,15.665256,Super,None,Ground,3,None,Solids Gradient 10
+216,15.99021,Super,None,Ground,0,None,Solids Gradient 05
+217,22.989856,Super,None,Ramp,0,White Legs,Solids Gradient 41
+218,27.885316,Super,Skylight,Ramp,0,White Legs,Solids Gradient 13
+219,39.551161,Super,Skylight,Ground,0,None,Unknown
+220,34.346952,Super,None,Ground,0,None,Unknown
+221,12.725407,Super,None,Ground,0,None,Solids Gradient 23
+222,27.824866,Super,None,Ground,4,None,Solids Gradient 17
+223,20.777,Super,Skylight,Ground,0,None,Solids Gradient 27
+224,18.041431,Super,Skylight,Ground,3,None,Solids Gradient 02
+225,36.205139,Super,Skylight,Ramp,0,Black Legs,Solids Gradient 04
+226,16.428734,Super,Skylight,Ground,4,None,Solids Gradient 32
+227,13.793452,Super,None,Ground,2,None,Solids Gradient 35
+228,47.952932,Super,Skylight,Ramp,0,White Legs,Solids Gradient 05
+229,24.405439,Super,Skylight,Ramp,0,Black Legs,Solids Gradient 34
+230,26.564456,Super,Skylight,Ramp,0,White Legs,Solids Gradient 23
+231,22.606576,Super,None,Spiral,3,Black Legs,Solids Gradient 05
+232,29.37047,Super,None,Ground,0,None,Solids Gradient 04
+233,12.592931,Super,None,Ground,2,None,Solids Gradient 21
+234,23.61435,Super,None,Spiral,3,Black Legs,Solids Gradient 23
+235,26.227335,Super,None,Ground,2,None,Solids Gradient 26
+236,14.707222,Super,None,Ground,2,None,Unknown (8)
+237,20.045148,Super,Skylight,Ground,4,None,Solids Gradient 43
+238,17.818609,Super,None,Ground,0,None,Solids Gradient 40
+239,26.3274,Super,Skylight,Ramp,0,White Legs,Solids Gradient 04
+240,29.043167,Super,None,Ground,2,None,Solids Gradient 01
+241,27.576336,Super,Skylight,Ramp,0,Black Legs,Solids Gradient 14
+242,20.937605,Super,Skylight,Ground,2,None,Solids Gradient 03
+243,33.711548,Super,Skylight,Ramp,2,White Legs,Unknown (8)
+244,20.64858,Super,Skylight,Ground,2,None,Solids Gradient 13
+245,29.876203,Super,None,Ground,0,None,Solids Gradient 13
+246,12.789847,Super,None,Ground,2,None,Solids Gradient 19
+247,22.212928,Super,None,Ramp,3,White Legs,Solids Gradient 07
+248,14.361473,Super,None,Ground,2,None,Solids Gradient 21
+249,23.054885,Super,None,Ramp,0,Black Legs,Solids Gradient 16
+250,18.171772,Super,Skylight,Ground,0,None,Solids Gradient 26
+251,34.416618,Super,Skylight,Ground,2,None,Solids Gradient 06
+252,41.288482,Super,Skylight,Ground,0,None,Solids Gradient 40
+253,14.786759,Super,None,Ground,0,None,Solids Gradient 21
+254,37.214047,Super,Skylight,Ground,5,None,Solids Gradient 16
+255,36.53511,Super,Skylight,Ramp,2,White Legs,Solids Gradient 14
+256,38.26088,Super,Skylight,Ramp,0,White Legs,Solids Gradient 26
+257,34.684982,Super,None,Ramp,0,White Legs,Solids Gradient 13
+258,21.957063,Super,Skylight,Ramp,0,Black Legs,Solids Gradient 28
+259,26.019575,Super,Skylight,Ramp,0,White Legs,Solids Gradient 43
+260,16.723929,Super,None,Ground,2,None,Solids Gradient 40
+261,30.94956,Super,None,Ground,0,None,Solids Gradient 41
+262,22.744922,Super,Skylight,Ramp,1,Black Legs,Unknown
+263,16.853156,Super,None,Ground,1,None,Solids Gradient 19
+264,37.69311,Super,Skylight,Ground,0,None,Solids Gradient 21
+265,21.914888,Super,Skylight,Ramp,0,White Legs,Solids Gradient 39
+266,17.587657,Super,Skylight,Ground,0,None,Solids Gradient 28
+267,33.597399,Super,Skylight,Ground,4,None,Solids Gradient 33
+268,32.929383,Super,Skylight,Ground,0,None,Solids Gradient 14
+269,27.371811,Super,Skylight,Ramp,3,White Legs,Solids Gradient 06
+270,19.558039,Super,None,Ramp,0,White Legs,Solids Gradient 25
+271,26.150609,Super,Skylight,Ramp,1,White Legs,Solids Gradient 29
+272,17.571257,Super,None,Ground,2,None,Unknown (8)
+273,28.29017,Super,Skylight,Ground,0,None,Solids Gradient 04
+274,18.076176,Super,Skylight,Ground,4,None,Solids Gradient 20
+275,33.835643,Super,None,Ground,0,None,Solids Gradient 15
+276,33.394432,Super,Skylight,Ground,0,None,Solids Gradient 37
+277,19.527699,Super,None,Ramp,0,White Legs,Solids Gradient 42
+278,32.456258,Super,None,Ramp,5,White Legs,Solids Gradient 39
+279,13.740022,Super,None,Ground,0,None,Solids Gradient 29
+280,44.477324,Super,Skylight,Ramp,0,White Legs,Unknown (8)
+281,19.608696,Super,None,Ramp,2,White Legs,Solids Gradient 23
+282,28.853072,Super,Skylight,Spiral,3,Black Legs,Solids Gradient 28
+283,34.749576,Super,None,Ramp,0,White Legs,Solids Gradient 04
+284,29.689428,Super,None,Ground,3,None,Solids Gradient 04
+285,39.95242,Super,Skylight,Ramp,0,White Legs,Solids Gradient 43
+286,15.057622,Super,None,Ground,2,None,Solids Gradient 42
+287,20.183708,Super,None,Ramp,2,White Legs,Solids Gradient 31
+288,19.799381,Super,None,Ramp,2,White Legs,Solids Gradient 06
+289,41.598027,Super,None,Ramp,0,White Legs,Solids Gradient 36
+290,23.50187,Super,None,Ramp,0,White Legs,Solids Gradient 31
+291,27.089109,Super,Skylight,Ramp,3,White Legs,Solids Gradient 23
+292,21.215806,Super,None,Ramp,1,White Legs,Solids Gradient 25
+293,38.941132,Super,None,Ramp,3,Black Legs,Solids Gradient 38
+294,17.966833,Super,None,Ramp,0,White Legs,Solids Gradient 08
+295,12.093618,Super,None,Ground,0,None,Solids Gradient 19
+296,45.037139,Super,Skylight,Ramp,0,White Legs,Solids Gradient 27
+297,34.199198,Super,None,Spiral,0,Black Legs,Solids Gradient 38
+298,25.042917,Super,Skylight,Ramp,2,White Legs,Solids Gradient 39
+299,15.297222,Super,None,Ground,0,None,Solids Gradient 03
+300,24.700848,Super,None,Spiral,1,White Legs,Solids Gradient 41
+301,22.621833,Super,Skylight,Ramp,4,White Legs,Solids Gradient 17
+302,30.48452,Super,None,Ground,0,None,Solids Gradient 29
+303,23.909221,Super,Skylight,Ramp,0,Black Legs,Solids Gradient 01
+304,35.017202,Super,Skylight,Ground,5,None,Solids Gradient 19
+305,42.495787,Super,Skylight,Ramp,0,Black Legs,Solids Gradient 29
+306,35.844025,Super,None,Ramp,0,White Legs,Solids Gradient 01
+307,21.15748,Super,Skylight,Ground,0,None,Solids Gradient 34
+308,12.308778,Super,None,Ground,0,None,Solids Gradient 04
+309,24.157938,Super,None,Ramp,3,White Legs,Solids Gradient 21
+310,40.401713,Super,None,Ramp,0,White Legs,Solids Gradient 02
+311,33.197261,Super,Skylight,Ground,3,None,Solids Gradient 09
+312,41.069663,Super,Skylight,Ramp,6,White Legs,Solids Gradient 35
+313,38.556476,Super,None,Spiral,0,White Legs,Solids Gradient 05
+314,38.352877,Super,None,Ramp,2,White Legs,Solids Gradient 34
+315,21.315246,Super,None,Ramp,0,Black Legs,Unknown
+316,19.587449,Super,Skylight,Ground,1,None,Solids Gradient 13
+317,34.851667,Super,Skylight,Ground,3,None,Solids Gradient 26
+318,40.908736,Super,Skylight,Ramp,3,White Legs,Solids Gradient 09
+319,13.220955,Super,None,Ground,0,None,Solids Gradient 12
+320,20.371274,Super,Skylight,Ground,0,None,Solids Gradient 41
+321,17.191657,Super,None,Ground,2,None,Solids Gradient 21
+322,16.671186,Super,Skylight,Ground,0,None,Solids Gradient 02
+323,43.048487,Super,Skylight,Ramp,2,White Legs,Solids Gradient 42
+324,29.738062,Super,Skylight,Ground,0,None,Solids Gradient 06
+325,17.081345,Super,Skylight,Ground,4,None,Solids Gradient 43
+326,15.062139,Super,None,Ground,1,None,Solids Gradient 10
+327,15.334864,Super,None,Ground,3,None,Unknown (8)
+328,22.269308,Super,Skylight,Ramp,4,White Legs,Solids Gradient 38
+329,18.074707,Super,Skylight,Ground,0,None,Solids Gradient 23
+330,40.816737,Super,Skylight,Ground,3,None,Solids Gradient 35
+331,16.333325,Super,Skylight,Ground,0,None,Solids Gradient 38
+332,32.688525,Super,None,Ramp,5,Black Legs,Solids Gradient 03
+333,18.797468,Super,Skylight,Ground,3,None,Solids Gradient 26
+334,14.639185,Super,None,Ground,0,None,Solids Gradient 32
+335,42.933613,Super,Skylight,Ramp,3,White Legs,Solids Gradient 32
+336,15.524186,Super,None,Ground,3,None,Solids Gradient 22
+337,13.994411,Super,None,Ground,0,None,Solids Gradient 40
+338,15.233046,Super,None,Ground,3,None,Solids Gradient 29
+339,28.132885,Super,Skylight,Spiral,3,White Legs,Solids Gradient 12
+340,38.963874,Super,None,Ramp,2,White Legs,Solids Gradient 07
+341,37.347688,Super,None,Spiral,2,White Legs,Solids Gradient 36
+342,20.874939,Super,None,Ramp,2,Black Legs,Solids Gradient 04
+343,32.604015,Super,Skylight,Ground,0,None,Solids Gradient 07
+344,22.487552,Super,Skylight,Ramp,4,White Legs,Solids Gradient 30
+345,13.504096,Super,None,Ground,0,None,Solids Gradient 37
+346,22.919257,Super,Skylight,Ramp,2,Black Legs,Solids Gradient 18
+347,23.745854,Super,Skylight,Ramp,3,White Legs,Solids Gradient 34
+348,20.083563,Super,None,Ramp,3,White Legs,Solids Gradient 36
+349,20.2516,Super,None,Ramp,0,White Legs,Unknown (9)
+350,39.174227,Super,Skylight,Ramp,3,Black Legs,Solids Gradient 41
+351,25.171913,Super,None,Spiral,0,White Legs,Solids Gradient 14
+352,15.380529,Super,None,Ground,1,None,Solids Gradient 28
+353,13.618241,Super,None,Ground,3,None,Solids Gradient 41
+354,16.543984,Super,None,Ground,3,None,Solids Gradient 28
+355,21.509201,Super,None,Ramp,0,Black Legs,Solids Gradient 25
+356,17.694211,Super,Skylight,Ground,4,None,Unknown
+357,38.044307,Super,None,Ramp,0,White Legs,Solids Gradient 03
+358,38.023513,Super,Skylight,Ramp,3,White Legs,Solids Gradient 41
+359,37.235462,Super,Skylight,Ramp,2,White Legs,Unknown
+360,35.184846,Super,Skylight,Ground,2,None,Solids Gradient 40
+361,36.212782,Super,Skylight,Ground,0,None,Solids Gradient 07
+362,26.399417,Super,Skylight,Ramp,0,Black Legs,Solids Gradient 22
+363,26.14738,Super,Skylight,Ramp,0,Black Legs,Solids Gradient 06
+364,17.889271,Super,None,Ground,0,None,Solids Gradient 27
+365,30.238992,Super,None,Ground,0,None,Solids Gradient 31
+366,18.083261,Super,Skylight,Ground,0,None,Unknown (9)
+367,18.665905,Super,None,Ramp,0,Black Legs,Solids Gradient 05
+368,19.086962,Super,Skylight,Ground,3,None,Solids Gradient 38
+369,13.35621,Super,None,Ground,0,None,Solids Gradient 22
+370,32.640593,Super,Skylight,Ground,0,None,Solids Gradient 43
+371,16.997981,Super,Skylight,Ground,0,None,Solids Gradient 06
+372,38.962041,Super,None,Spiral,3,Black Legs,Solids Gradient 40
+373,44.339056,Super,Skylight,Ramp,3,Black Legs,Solids Gradient 36
+374,24.283437,Super,None,Spiral,0,White Legs,Solids Gradient 05
+375,23.200191,Super,Skylight,Ramp,1,Black Legs,Solids Gradient 21
+376,14.916726,Super,None,Ground,0,None,Unknown (9)
+377,38.040563,Super,Skylight,Ground,2,None,Solids Gradient 01
+378,41.24894,Super,None,Spiral,3,White Legs,Unknown (7)
+379,25.858893,Super,Skylight,Ramp,4,Black Legs,Unknown (8)
+380,23.24037,Super,None,Ramp,0,White Legs,Solids Gradient 43
+381,26.402806,Super,None,Ground,2,None,Solids Gradient 03
+382,27.194839,Super,Skylight,Ramp,0,White Legs,Solids Gradient 05
+383,39.076145,Super,None,Ramp,0,White Legs,Solids Gradient 11
+384,21.316431,Super,Skylight,Ground,4,None,Solids Gradient 28
+385,30.696779,Super,None,Ramp,3,Black Legs,Solids Gradient 14
+386,28.403238,Super,None,Ground,0,None,Solids Gradient 21
+387,26.054991,Super,Skylight,Ramp,1,Black Legs,Unknown (8)
+388,16.316963,Super,None,Ground,2,None,Solids Gradient 30
+389,14.729993,Super,None,Ground,2,None,Solids Gradient 22
+390,34.721692,Super,None,Ramp,0,White Legs,Solids Gradient 06
+391,26.692027,Super,Skylight,Ramp,2,White Legs,Solids Gradient 17
+392,23.178865,Super,None,Ramp,0,White Legs,Unknown (9)
+393,13.071986,Super,None,Ground,2,None,Solids Gradient 21
+394,23.554613,Super,None,Ramp,0,White Legs,Unknown
+395,31.646064,Super,None,Ground,0,None,Solids Gradient 11
+396,16.350543,Super,None,Ground,0,None,Solids Gradient 08
+397,23.059417,Super,Skylight,Ramp,3,White Legs,Unknown
+398,21.052449,Super,None,Ramp,3,White Legs,Solids Gradient 07
+399,25.492374,Super,Skylight,Ramp,0,White Legs,Solids Gradient 26
+400,14.629535,Super,None,Ground,0,None,Solids Gradient 34
+401,21.098485,Super,Skylight,Ground,4,None,Solids Gradient 13
+402,23.24369,Super,Skylight,Ramp,0,White Legs,Solids Gradient 36
+403,35.06055,Super,None,Ramp,3,Black Legs,Solids Gradient 40
+404,23.327712,Super,Skylight,Ramp,3,White Legs,Solids Gradient 08
+405,21.809898,Super,None,Ramp,0,White Legs,Solids Gradient 21
+406,41.607748,Super,None,Ramp,0,White Legs,Solids Gradient 27
+407,32.993957,Super,None,Ramp,0,White Legs,Solids Gradient 01
+408,48.589837,Super,Skylight,Spiral,0,White Legs,Solids Gradient 39
+409,25.900536,Super,Skylight,Ramp,3,White Legs,Solids Gradient 10
+410,21.19653,Super,None,Ramp,3,White Legs,Unknown (8)
+411,16.897616,Super,None,Ground,4,None,Solids Gradient 05
+412,22.120707,Super,None,Ramp,0,White Legs,Solids Gradient 19
+413,23.033556,Super,None,Ramp,0,Black Legs,Solids Gradient 37
+414,33.415754,Super,Skylight,Ground,2,None,Solids Gradient 20
+415,20.450554,Super,None,Ramp,0,White Legs,Solids Gradient 40
+416,26.372754,Super,Skylight,Ramp,2,White Legs,Solids Gradient 17
+417,21.417409,Super,Skylight,Ground,2,None,Solids Gradient 29
+418,23.568371,Super,Skylight,Ramp,0,Black Legs,Solids Gradient 06
+419,26.287815,Super,Skylight,Spiral,3,Black Legs,Solids Gradient 32
+420,34.436516,Super,Skylight,Ground,4,None,Solids Gradient 09
+421,12.587305,Super,None,Ground,0,None,Solids Gradient 31
+422,13.234531,Super,None,Ground,3,None,Solids Gradient 17
+423,18.636789,Super,None,Ramp,0,White Legs,Solids Gradient 26
+424,18.772285,Super,Skylight,Ground,3,None,Solids Gradient 14
+425,19.890048,Super,None,Ramp,0,Black Legs,Solids Gradient 03
+426,21.272797,Super,Skylight,Ground,3,None,Solids Gradient 26
+427,15.804635,Super,Skylight,Ground,0,None,Solids Gradient 19
+428,14.873512,Super,None,Ground,1,None,Solids Gradient 36
+429,20.111954,Super,Skylight,Ground,3,None,Unknown (7)
+430,13.764125,Super,None,Ground,3,None,Solids Gradient 29
+431,15.320939,Super,None,Ground,0,None,Solids Gradient 43
+432,17.323123,Super,None,Ground,0,None,Solids Gradient 05
+433,14.010839,Super,None,Ground,3,None,Solids Gradient 16
+434,13.060747,Super,None,Ground,2,None,Solids Gradient 35
+435,28.642053,Super,None,Ground,0,None,Solids Gradient 15
+436,20.615611,Super,None,Spiral,0,White Legs,Solids Gradient 42
+437,26.997838,Super,Skylight,Ramp,0,Black Legs,Solids Gradient 21
+438,18.599792,Super,Skylight,Ground,4,None,Solids Gradient 40
+439,24.727033,Super,Skylight,Ramp,4,White Legs,Solids Gradient 33
+440,19.135478,Super,None,Ramp,2,White Legs,Unknown (9)
+441,42.130192,Super,Skylight,Ramp,0,Black Legs,Solids Gradient 29
+442,21.33752,Super,None,Ramp,3,White Legs,Solids Gradient 29
+443,18.963033,Super,None,Ramp,2,Black Legs,Unknown (8)
+444,20.157774,Super,None,Ramp,0,White Legs,Unknown
+445,17.681258,Super,None,Ground,1,None,Solids Gradient 19
+446,44.278267,Super,Skylight,Spiral,3,White Legs,Solids Gradient 19
+447,25.121068,Super,None,Spiral,2,White Legs,Solids Gradient 23
+448,26.419473,Super,Skylight,Ramp,0,Black Legs,Solids Gradient 39
+449,25.691705,Super,Skylight,Spiral,4,White Legs,Solids Gradient 35
+450,12.234468,Super,None,Ground,0,None,Solids Gradient 07
+451,22.262914,Super,Skylight,Ramp,3,White Legs,Solids Gradient 37
+452,14.966856,Super,None,Ground,0,None,Solids Gradient 42
+453,29.355858,Super,None,Ground,2,None,Solids Gradient 10
+454,16.56034,Super,Skylight,Ground,4,None,Solids Gradient 41
+455,38.114384,Super,Skylight,Ramp,3,White Legs,Solids Gradient 22
+456,19.492826,Super,None,Ramp,0,White Legs,Solids Gradient 27
+457,20.633265,Super,Skylight,Ramp,1,White Legs,Solids Gradient 30
+458,19.927551,Super,Skylight,Ground,3,None,Solids Gradient 13
+459,22.93287,Super,Skylight,Ramp,0,White Legs,Unknown (8)
+460,17.589545,Super,None,Ground,3,None,Solids Gradient 06
+461,23.781422,Super,Skylight,Ramp,0,Black Legs,Solids Gradient 24
+462,16.217626,Super,Skylight,Ground,4,None,Solids Gradient 28
+463,36.184902,Super,None,Ground,5,None,Solids Gradient 20
+464,17.842139,Super,Skylight,Ground,1,None,Solids Gradient 07
+465,20.836816,Super,Skylight,Ground,4,None,Unknown (9)
+466,27.942903,Super,Skylight,Ramp,2,Black Legs,Solids Gradient 23
+467,43.207499,Super,Skylight,Spiral,3,Black Legs,Solids Gradient 37
+468,20.972816,Super,None,Ramp,3,White Legs,Solids Gradient 12
+469,41.953564,Super,Skylight,Ramp,0,White Legs,Solids Gradient 11
+470,16.470126,Super,Skylight,Ground,4,None,Solids Gradient 27
+471,17.36065,Super,None,Ground,0,None,Solids Gradient 23
+472,18.635622,Super,Skylight,Ground,4,None,Solids Gradient 18
+473,18.605693,Super,Skylight,Ground,3,None,Unknown
+474,29.934094,Super,None,Ground,0,None,Solids Gradient 42
+475,19.425949,Super,None,Ramp,3,Black Legs,Solids Gradient 02
+476,12.849795,Super,None,Ground,0,None,Solids Gradient 05
+477,28.376571,Super,Skylight,Spiral,0,White Legs,Solids Gradient 43
+478,16.479011,Super,None,Ground,0,None,Solids Gradient 07
+479,32.263075,Super,None,Ground,0,None,Solids Gradient 26
+480,38.126405,Super,Skylight,Ramp,0,White Legs,Solids Gradient 01
+481,24.49714,Super,None,Ramp,2,White Legs,Solids Gradient 31
+482,13.354893,Super,None,Ground,0,None,Solids Gradient 42
+483,15.989262,Super,Skylight,Ground,4,None,Solids Gradient 16
+484,27.614557,Super,Skylight,Spiral,3,Black Legs,Solids Gradient 16
+485,43.283935,Super,None,Ramp,0,White Legs,Solids Gradient 36
+486,15.811311,Super,Skylight,Ground,0,None,Solids Gradient 39
+487,14.967283,Super,None,Ground,2,None,Solids Gradient 26
+488,13.130257,Super,None,Ground,0,None,Solids Gradient 05
+489,34.707317,Super,None,Ground,0,None,Unknown
+490,26.107796,Super,Skylight,Ramp,5,White Legs,Solids Gradient 26
+491,38.133255,Super,None,Ramp,0,White Legs,Solids Gradient 21
+492,32.069261,Super,None,Ground,0,None,Solids Gradient 42
+493,12.967034,Super,None,Ground,2,None,Solids Gradient 10
+494,31.805961,Super,None,Ground,4,None,Solids Gradient 32
+495,17.945844,Super,None,Ground,2,None,Solids Gradient 39
+496,30.53446,Super,Skylight,Ground,0,None,Solids Gradient 30
+497,,Standard,,,,,
+498,,Standard,,,,,
+499,,Standard,,,,,
+500,33.696034,,Skylight,Ground,0,,Lisboa-Ten
+501,22.525404,,Skylight,Ramp,5,,Porto-Four
+502,16.161853,,Skylight,Ground,2,,Porto-Eight
+503,13.52344,,None,Ground,0,,Porto-Seven
+504,22.647375,,Skylight,Ramp,2,,Porto-Three
+505,42.776966,,Skylight,Ramp,0,,Porto-Three
+506,34.552691,,Skylight,Ground,0,,Lisboa-Five
+507,14.875415,,None,Ground,1,,Corner
+508,19.464813,,Skylight,Ground,0,,Lisboa-Three
+509,27.317379,,None,Ground,0,,Lisboa-One
+510,18.19578,,Skylight,Ground,2,,Lisboa-Seven
+511,23.673279,,Skylight,Ramp,2,,Lisboa-Ten
+512,23.420692,,Skylight,Ramp,3,,Lisboa-Four
+513,20.834383,,Skylight,Ground,3,,Porto-Nine
+514,25.220853,,Skylight,Spiral,4,,Porto-Eight
+515,23.21904,,None,Ramp,3,,Corner
+516,34.252316,,Skylight,Spiral,3,,Porto-Four
+517,30.307904,,Skylight,Ground,0,,Porto-Five
+518,19.236385,,None,Ramp,2,,Lisboa-Nine
+519,20.204884,,Skylight,Ground,0,,Lisboa-Nine
+520,23.31781,,Skylight,Ramp,4,,Porto-Twelve
+521,31.794032,,Skylight,Ground,0,,Porto-One
+522,39.860125,,None,Ramp,0,,Lisboa-Eight
+523,19.529954,,Skylight,Ground,3,,Porto-Seven
+524,22.736421,,None,Ramp,0,,Hundreds
+525,32.578091,,Skylight,Ground,0,,Lisboa-Ten
+526,22.693103,,None,Ramp,0,,Porto-Six
+527,21.725386,,Skylight,Ramp,3,,Hundreds
+528,36.646753,,Skylight,Ramp,0,,Lisboa-One
+529,37.771443,,Skylight,Ramp,0,,Lisboa-Two
+530,26.854223,,None,Ground,3,,Porto-Five
+531,36.617457,,Skylight,Ramp,0,,Hundreds
+532,12.863401,,None,Ground,3,,Hundreds-Waves
+533,31.840594,,None,Ramp,4,,Porto-Three
+534,33.547787,,None,Ramp,0,,Porto-Two
+535,33.03634,,None,Ramp,2,,Earlyjpg
+536,19.124481,,None,Ramp,0,,Porto-Eleven
+537,14.243877,,None,Ground,0,,Lisboa-Two
+538,15.99417,,Skylight,Ground,1,,Lisboa-Two
+539,17.934748,,Skylight,Ground,2,,Long-Beach
+540,17.966651,,None,Ramp,2,,Lisboa-Eleven
+541,36.462472,,Skylight,Ramp,3,,Lisboa-Two
+542,40.304116,,Skylight,Ramp,0,,Corner
+543,16.578366,,None,Ground,1,,Lisboa-Ten
+544,25.934628,,Skylight,Spiral,0,,Lisboa-Eleven
+545,20.613074,,None,Spiral,2,,Lisboa-Nine
+546,39.416824,,None,Ramp,0,,Porto-Ten
+547,26.783248,,Skylight,Ramp,0,,Porto-Eleven
+548,31.093023,,None,Ground,3,,Lisboa-Two
+549,12.774249,,None,Ground,2,,Earlyjpg
+550,21.210027,,Skylight,Ground,0,,Lisboa-Ten
+551,31.88473,,None,Ground,1,,Porto-Four
+552,30.375619,,None,Ramp,0,,Porto-Six
+553,17.819768,,None,Ground,0,,Lisboa-One
+554,24.433599,,Skylight,Ramp,0,,Sunset
+555,28.739742,,Skylight,Spiral,4,,Lisboa-Seven
+556,15.375143,,None,Ground,0,,Porto-Nine
+557,44.921583,,Skylight,Spiral,5,,Lisboa-Eight
+558,33.404619,,None,Ramp,0,,Lisboa-Four
+559,18.155484,,Skylight,Ground,0,,Lisboa-Seven
+560,39.915094,,Skylight,Ramp,4,,Lisboa-Seven
+561,18.01449,,Skylight,Ground,0,,Lisboa-Ten
+562,17.134406,,None,Ground,2,,Lisboa-Two
+563,37.791393,,Skylight,Ground,2,,Lisboa-Three
+564,20.238254,,Skylight,Ramp,1,,Porto-Seven
+565,21.32706,,Skylight,Ramp,0,,Porto-Eight
+566,24.949636,,Skylight,Ramp,2,,Porto-Nine
+567,16.721365,,Skylight,Ground,0,,Hundreds
+568,33.846523,,Skylight,Ramp,3,,Lisboa-Nine
+569,19.223895,,Skylight,Ground,4,,Hundreds
+570,15.094494,,None,Ground,3,,Earlyjpg
+571,16.417754,,None,Ground,0,,Hundreds-Waves
+572,32.65679,,Skylight,Ground,0,,Lisboa-Nine
+573,25.957035,,Skylight,Ramp,0,,Hundreds-Waves
+574,17.862853,,Skylight,Ground,3,,Porto-Five
+575,17.471786,,None,Ground,0,,Porto-Three
+576,23.100996,,Skylight,Ramp,0,,Iris
+577,21.039421,,Skylight,Ground,3,,Porto-Three
+578,32.976552,,None,Ramp,0,,Sunset
+579,37.238335,,None,Ramp,5,,Lisboa-One
+580,22.725693,,None,Ramp,0,,Porto-Six
+581,29.591119,,Skylight,Ground,2,,Lisboa-Eight
+582,15.481316,,Skylight,Ground,0,,Lisboa-Two
+583,24.836402,,Skylight,Ramp,0,,Porto-Ten
+584,23.598018,,None,Ramp,0,,Sunset
+585,32.632736,,Skylight,Ground,0,,Lisboa-Six
+586,34.480796,,None,Ground,0,,Porto-Five
+587,16.352187,,Skylight,Ground,3,,Porto-Six
+588,26.699958,,None,Ground,0,,Porto-Two
+589,26.102926,,None,Ground,4,,Lisboa-Five
+590,17.52327,,None,Ramp,0,,Hundreds
+591,23.559336,,None,Ramp,1,,Porto-Five
+592,24.456852,,None,Ramp,1,,Porto-Eleven
+593,29.889657,,None,Ground,4,,Porto-Six
+594,23.971236,,Skylight,Ramp,0,,Porto-Five
+595,20.945584,,Skylight,Ground,5,,Porto-Ten
+596,17.834194,,None,Ground,0,,Lisboa-Seven
+597,44.90318,,Skylight,Spiral,3,,Iris
+598,19.394972,,Skylight,Ground,0,,Lisboa-Nine
+599,34.507032,,None,Spiral,0,,Iris
+600,16.01827,,None,Ground,4,,Porto-Five
+601,18.889498,,Skylight,Ground,3,,Porto-Five
+602,27.672333,,None,Ground,0,,Porto-Seven
+603,15.78573,,None,Ground,2,,Corner
+604,24.664146,,Skylight,Ramp,2,,Porto-Three
+605,16.97864,,None,Ramp,2,,Lisboa-Six
+606,20.43954,,Skylight,Ramp,2,,Hundreds-Waves
+607,16.70934,,None,Ground,0,,Lisboa-Ten
+608,21.787814,,None,Ramp,0,,Iris
+609,43.901871,,Skylight,Ramp,0,,Porto-Twelve
+610,36.916764,,Skylight,Ground,3,,Porto-Five
+611,33.217025,,Skylight,Ground,0,,Porto-Seven
+612,22.105987,,Skylight,Ramp,3,,Porto-Ten
+613,24.223264,,Skylight,Ramp,5,,Porto-Three
+614,15.648776,,None,Ground,1,,Lisboa-Eight
+615,38.04479,,None,Ground,5,,Earlyjpg
+616,26.762449,,None,Ground,5,,Lisboa-Four
+617,22.009307,,Skylight,Ramp,0,,Porto-Three
+618,30.003783,,None,Ramp,0,,Porto-Eleven
+619,21.013778,,None,Ramp,3,,Hundreds
+620,36.271529,,None,Spiral,4,,Porto-Nine
+621,39.714522,,Skylight,Ramp,5,,Lisboa-One
+622,29.747227,,Skylight,Ground,1,,Porto-Nine
+623,28.88509,,None,Ground,4,,Hundreds-Waves
+624,15.067537,,None,Ground,4,,Hundreds
+625,37.07228,,Skylight,Ramp,0,,Porto-Two
+626,35.040831,,Skylight,Ground,0,,Lisboa-Two
+627,38.817708,,Skylight,Ground,4,,Lisboa-Six
+628,32.191437,,Skylight,Ramp,6,,Long-Beach
+629,14.930997,,None,Ground,1,,Porto-Seven
+630,40.845741,,Skylight,Spiral,3,,Porto-Seven
+631,19.761966,,Skylight,Ground,0,,Porto-One
+632,17.166532,,None,Ramp,0,,Porto-Five
+633,25.640342,,Skylight,Ramp,0,,Porto-Seven
+634,28.705091,,None,Ramp,2,,Lisboa-Eleven
+635,30.964981,,Skylight,Ground,0,,Sunset
+636,31.966895,,None,Ground,0,,Lisboa-Eleven
+637,24.18799,,Skylight,Ramp,1,,Porto-Seven
+638,29.88294,,None,Ramp,0,,Porto-Nine
+639,22.626209,,Skylight,Ramp,2,,Porto-Eight
+640,30.469351,,Skylight,Ground,0,,Lisboa-Three
+641,25.992779,,Skylight,Ramp,0,,Lisboa-One
+642,15.855838,,None,Ground,0,,Iris
+643,31.241245,,None,Ground,3,,Porto-Five
+644,20.878541,,Skylight,Ground,2,,Lisboa-One
+645,21.829853,,None,Ramp,3,,Iris
+646,18.971048,,Skylight,Ground,0,,Porto-Eight
+647,27.593174,,None,Ground,0,,Iris
+648,18.840882,,None,Ramp,0,,Lisboa-Eleven
+649,28.905209,,None,Ground,0,,Lisboa-Eight
+650,23.02565,,Skylight,Ramp,0,,Porto-Five
+651,15.666547,,None,Ground,3,,Iris
+652,16.431574,,None,Ground,3,,Porto-Three
+653,36.989604,,Skylight,Ramp,4,,Porto-Two
+654,19.151979,,Skylight,Ground,0,,Porto-Two
+655,19.667111,,None,Ramp,3,,Porto-Ten
+656,34.041185,,Skylight,Ground,0,,Porto-Eleven
+657,27.728302,,Skylight,Ramp,4,,Sunset
+658,19.318205,,None,Ramp,0,,Porto-Seven
+659,35.709089,,Skylight,Ground,0,,Porto-Eight
+660,19.417473,,None,Ramp,3,,Sunset
+661,22.286167,,Skylight,Ramp,0,,Long-Beach
+662,17.432307,,Skylight,Ground,1,,Porto-Seven
+663,15.461083,,Skylight,Ground,3,,Lisboa-Nine
+664,21.090437,,None,Ramp,3,,Long-Beach
+665,19.444657,,Skylight,Ground,0,,Porto-Two
+666,14.126901,,None,Ground,3,,Porto-Twelve
+667,21.440383,,Skylight,Ramp,3,,Lisboa-Six
+668,19.392989,,Skylight,Ground,0,,Corner
+669,35.756368,,None,Ramp,4,,Lisboa-Seven
+670,15.594317,,Skylight,Ground,3,,Lisboa-Eleven
+671,27.176509,,None,Ground,6,,Porto-Twelve
+672,18.314399,,Skylight,Ground,2,,Corner
+673,23.714056,,Skylight,Ramp,0,,Lisboa-Ten
+674,23.621382,,None,Ramp,0,,Sunset
+675,25.453652,,Skylight,Ramp,2,,Porto-Five
+676,16.095345,,None,Ground,0,,Lisboa-Eight
+677,34.695889,,None,Ramp,2,,Lisboa-Nine
+678,13.94638,,None,Ground,3,,Hundreds
+679,38.437696,,None,Ramp,4,,Porto-Ten
+680,12.469304,,None,Ground,2,,Lisboa-Two
+681,14.967756,,None,Ground,2,,Lisboa-Three
+682,17.017369,,None,Ground,3,,Porto-Two
+683,23.714434,,None,Spiral,0,,Lisboa-Nine
+684,21.114327,,Skylight,Ground,4,,Hundreds
+685,13.971057,,None,Ground,2,,Lisboa-Nine
+686,23.568857,,None,Ramp,3,,Porto-Nine
+687,34.86511,,None,Ground,5,,Long-Beach
+688,40.152229,,Skylight,Spiral,0,,Lisboa-Eight
+689,21.638097,,None,Ramp,0,,Lisboa-Eleven
+690,37.622771,,Skylight,Ground,3,,Lisboa-Seven
+691,41.165861,,None,Ramp,3,,Lisboa-Seven
+692,22.480592,,Skylight,Ramp,0,,Porto-Four
+693,17.742409,,None,Ground,0,,Porto-Nine
+694,12.802183,,None,Ground,0,,Corner
+695,22.823536,,Skylight,Ramp,0,,Lisboa-Ten
+696,23.140464,,Skylight,Ramp,0,,Sunset
+697,18.838147,,Skylight,Ground,0,,Lisboa-Nine
+698,21.622355,,None,Ramp,0,,Porto-Two
+699,13.28483,,None,Ground,0,,Lisboa-Seven
+700,16.388514,,Skylight,Ground,3,,Sunset
+701,17.476888,,Skylight,Ground,0,,Hundreds
+702,25.316855,,Skylight,Ramp,0,,Porto-Eleven
+703,29.023268,,None,Ground,2,,Iris
+704,27.821961,,None,Ground,2,,Lisboa-Three
+705,30.923804,,None,Ramp,0,,Porto-Nine
+706,33.164922,,Skylight,Ground,0,,Lisboa-Ten
+707,14.680113,,None,Ground,0,,Porto-Eight
+708,20.559922,,Skylight,Ground,0,,Lisboa-Ten
+709,21.57177,,None,Ramp,2,,Hundreds-Waves
+710,19.429805,,None,Ramp,0,,Earlyjpg
+711,19.155511,,Skylight,Ground,0,,Sunset
+712,16.160732,,Skylight,Ground,0,,Lisboa-One
+713,20.362676,,Skylight,Ground,0,,Lisboa-Three
+714,45.499538,,Skylight,Ramp,4,,Lisboa-Four
+715,28.41687,,None,Ground,6,,Sunset
+716,16.733281,,None,Ground,0,,Sunset
+717,18.098577,,None,Ramp,0,,Porto-One
+718,37.673695,,Skylight,Ramp,0,,Porto-Eleven
+719,19.611124,,Skylight,Ground,0,,Lisboa-Two
+720,14.261801,,None,Ground,0,,Lisboa-One
+721,17.661219,,None,Ground,0,,Porto-Three
+722,12.12064,,None,Ground,1,,Lisboa-Three
+723,17.866749,,Skylight,Ground,0,,Porto-Eleven
+724,16.374104,,Skylight,Ground,3,,Long-Beach
+725,36.448307,,Skylight,Ramp,0,,Porto-Four
+726,18.411967,,Skylight,Ground,2,,Porto-Eight
+727,13.981958,,None,Ground,2,,Lisboa-Six
+728,23.895905,,Skylight,Ramp,0,,Corner
+729,22.173887,,Skylight,Ramp,0,,Lisboa-Six
+730,21.357064,,Skylight,Ramp,0,,Porto-One
+731,22.72301,,None,Spiral,2,,Lisboa-Eight
+732,12.661556,,None,Ground,0,,Lisboa-Four
+733,16.734739,,None,Ground,2,,Lisboa-Six
+734,23.952783,,None,Spiral,3,,Lisboa-Four
+735,32.506996,,None,Ground,5,,Porto-Seven
+736,12.932846,,None,Ground,1,,Lisboa-Ten
+737,31.088839,,Skylight,Ground,3,,Porto-Twelve
+738,14.762003,,None,Ground,0,,Earlyjpg
+739,22.126785,,Skylight,Ramp,0,,Porto-Four
+740,31.321323,,None,Ground,4,,Porto-Six
+741,25.120729,,Skylight,Ramp,0,,Corner
+742,29.131346,,Skylight,Ground,3,,Lisboa-Seven
+743,18.938837,,Skylight,Ramp,2,,Porto-Five
+744,36.750958,,Skylight,Ground,4,,Porto-Six
+745,33.79456,,None,Ground,0,,Porto-Three
+746,12.753025,,None,Ground,1,,Earlyjpg
+747,17.267099,,None,Ramp,2,,Lisboa-Four
+748,12.952464,,None,Ground,1,,Hundreds-Waves
+749,37.246274,,Skylight,Ground,0,,Two-Color-Nineteen
+750,28.880656,,Skylight,Ramp,4,,Two-Color-Twentyeight
+751,19.79002,,Skylight,Ground,5,,Two-Color-Eleven
+752,31.221391,,None,Ground,0,,Two-Color-Thirty
+753,30.719924,,Skylight,Ramp,2,,Two-Color-Eleven
+754,30.84615,,Skylight,Ramp,0,,Two-Color-One
+755,20.95853,,Skylight,Ground,0,,Two-Color-Thirty
+756,15.340312,,None,Ground,3,,Two-Color-Three
+757,20.845068,,Skylight,Ground,0,,Two-Color-Eight
+758,14.092681,,None,Ground,0,,Two-Color-Twentthree
+759,36.456247,,Skylight,Ground,3,,Two-Color-Twentthree
+760,27.111556,,Skylight,Ramp,4,,Two-Color-One
+761,41.215942,,Skylight,Ramp,4,,Two-Color-Twentyseven
+762,23.508944,,Skylight,Ground,2,,Two-Color-Twentyeight
+763,30.23164,,Skylight,Spiral,4,,Two-Color-Six
+764,34.586755,,None,Ramp,4,,Two-Color-Five
+765,29.064468,,Skylight,Spiral,3,,Two-Color-Thirty
+766,17.858213,,Skylight,Ground,0,,Two-Color-Eleven
+767,20.70781,,None,Ramp,2,,Two-Color-Thirteen
+768,22.536292,,Skylight,Ground,0,,Two-Color-Fiveteen
+769,26.863453,,Skylight,Ramp,4,,Two-Color-Nineteen
+770,20.796946,,Skylight,Ground,0,,Two-Color-Eighteen
+771,21.505479,,None,Ramp,0,,Two-Color-Twenty
+772,46.865779,,Skylight,Ground,3,,Two-Color-Four (1)
+773,19.785991,,None,Ramp,0,,Two-Color-Nineteen
+774,33.664038,,Skylight,Ground,0,,Two-Color-Twentysix
+775,19.988246,,None,Ramp,0,,Two-Color-One
+776,29.231984,,Skylight,Ramp,3,,Two-Color-Twentyeight
+777,23.389334,,Skylight,Ramp,0,,Two-Color-Nine
+778,28.015277,,Skylight,Ramp,0,,Two-Color-Thirty
+779,13.747273,,None,Ground,3,,Two-Color-Twentysix
+780,24.273366,,Skylight,Ramp,0,,Two-Color-Twentyfour
+781,15.849616,,None,Ground,4,,Two-Color-Thirtytwo (1)
+782,32.760089,,None,Ramp,2,,Two-Color-Thirtytwo (1)
+783,17.921069,,None,Ramp,0,,Two-Color-Twentyone
+784,30.81453,,None,Ramp,3,,Two-Color-Twentyeight
+785,33.78348,,None,Ramp,0,,Two-Color-Eight
+786,16.33756,,None,Ground,0,,Two-Color-One
+787,43.111086,,Skylight,Ground,4,,Two-Color-Two
+788,21.24675,,Skylight,Ground,3,,Two-Color-Eleven
+789,30.841848,,None,Ramp,3,,Two-Color-Twentynine
+790,38.072025,,Skylight,Ramp,4,,Two-Color-Twenty
+791,24.528809,,Skylight,Ramp,0,,Two-Color-Twentynine
+792,17.81163,,None,Ground,2,,Two-Color-Sixteen
+793,30.001308,,Skylight,Spiral,0,,Two-Color-One
+794,37.356355,,None,Spiral,2,,Two-Color-Seven
+795,34.59359,,None,Ramp,0,,Two-Color-Twentynine
+796,43.741913,,Skylight,Ramp,0,,Two-Color-Nine
+797,31.739999,,None,Ground,5,,Two-Color-Seventeen
+798,13.252999,,None,Ground,1,,Two-Color-Six
+799,20.442531,,Skylight,Ground,0,,Two-Color-Sixteen
+800,14.198154,,None,Ground,4,,Two-Color-Twenty
+801,28.926001,,None,Ramp,0,,Two-Color-Seventeen
+802,14.048398,,None,Ground,0,,Two-Color-Eleven
+803,29.098962,,Skylight,Ramp,0,,Two-Color-Fourteen
+804,41.992369,,Skylight,Spiral,5,,Two-Color-Eleven
+805,13.713298,,None,Ground,0,,Two-Color-Ten
+806,29.618964,,Skylight,Spiral,3,,Two-Color-Eleven
+807,37.847711,,None,Ramp,0,,Two-Color-Twentyfive
+808,32.422713,,Skylight,Ground,0,,Two-Color-Eighteen
+809,26.889636,,Skylight,Ramp,4,,Two-Color-Six
+810,20.428028,,Skylight,Ground,0,,Two-Color-Seven
+811,13.364517,,None,Ground,2,,Two-Color-Seven
+812,44.337727,,Skylight,Ground,5,,Two-Color-Twentynine
+813,21.756704,,Skylight,Ramp,4,,Two-Color-Five
+814,36.678441,,Skylight,Ramp,0,,Two-Color-Twentytwo
+815,45.466855,,Skylight,Ramp,5,,Two-Color-Thirtytwo (1)
+816,22.909672,,Skylight,Ground,0,,Two-Color-Twentthree
+817,27.243706,,Skylight,Ramp,3,,Two-Color-Twentytwo
+818,38.29058,,Skylight,Ground,4,,Two-Color-Twentthree
+819,16.343183,,None,Ground,0,,Two-Color-Thirteen
+820,41.300595,,Skylight,Ground,0,,Two-Color-Twentyseven
+821,23.930416,,Skylight,Ground,0,,Two-Color-Twentyfive
+822,30.147573,,Skylight,Ramp,5,,Two-Color-Twentyfour
+823,13.464673,,None,Ground,0,,Two-Color-Fourteen
+824,21.234728,,Skylight,Ground,0,,Two-Color-Sixteen
+825,26.700104,,Skylight,Ramp,4,,Two-Color-Five
+826,24.174011,,None,Ground,0,,Two-Color-Fiveteen
+827,43.012692,,None,Ramp,0,,Two-Color-Nine
+828,28.621266,,Skylight,Ramp,5,,Two-Color-Two
+829,39.095788,,Skylight,Ramp,0,,Two-Color-Twentytwo
+830,18.489639,,Skylight,Ground,0,,Two-Color-Twelve
+831,33.342195,,None,Ground,0,,Two-Color-Eighteen
+832,31.528523,,Skylight,Ramp,0,,Two-Color-Thirtyone
+833,20.5539,,None,Ramp,0,,Two-Color-Seven
+834,37.310083,,Skylight,Ground,5,,Two-Color-Eight
+835,17.296899,,None,Ground,0,,Two-Color-Twentyeight
+836,15.999767,,None,Ground,2,,Two-Color-Four (1)
+837,27.290295,,None,Ground,0,,Two-Color-One
+838,17.082524,,None,Ground,3,,Two-Color-Twentyfour
+839,32.689861,,None,Ramp,2,,Two-Color-Sixteen
+840,35.361803,,None,Ramp,2,,Two-Color-Thirteen
+841,31.529018,,Skylight,Ramp,0,,Two-Color-Four (1)
+842,35.544614,,Skylight,Ground,3,,Two-Color-Twentyfive
+843,19.88346,,None,Ramp,0,,Two-Color-Twentyseven
+844,20.865938,,Skylight,Ground,3,,Two-Color-Two
+845,23.281037,,Skylight,Ground,0,,Two-Color-Five
+846,24.007325,,None,Spiral,0,,Two-Color-Twentysix
+847,16.58392,,None,Ground,2,,Two-Color-Thirtyone
+848,47.238992,,Skylight,Spiral,6,,Two-Color-Thirty
+849,27.374793,,None,Ground,0,,Two-Color-Seven
+850,17.518256,,None,Ground,2,,Two-Color-Twentyeight
+851,36.321559,,Skylight,Ground,4,,Two-Color-Twentyone
+852,15.518454,,None,Ground,3,,Two-Color-Seventeen
+853,24.217921,,Skylight,Ramp,3,,Two-Color-Twentyseven
+854,32.136651,,None,Ramp,0,,Two-Color-Twenty
+855,19.031974,,None,Ramp,0,,Two-Color-Twenty
+856,38.393194,,Skylight,Ground,0,,Two-Color-Eleven
+857,25.012408,,Skylight,Ramp,2,,Two-Color-Nine
+858,50.46682,,Skylight,Ramp,0,,Two-Color-Ten
+859,31.540322,,Skylight,Ground,4,,Two-Color-Twentyone
+860,18.644324,,Skylight,Ground,5,,Two-Color-Twentynine
+861,22.722927,,None,Ramp,3,,Two-Color-Thirtyone
+862,20.862123,,None,Ramp,2,,Two-Color-Twentyseven
+863,15.131746,,None,Ground,2,,Two-Color-Twentyfour
+864,32.979926,,Skylight,Ground,0,,Two-Color-Nine
+865,12.056595,,None,Ground,0,,Two-Color-One
+866,29.478216,,None,Ramp,5,,Two-Color-Sixteen
+867,20.793662,,None,Ramp,1,,Two-Color-Twentyeight
+868,42.239083,,Skylight,Ramp,4,,Two-Color-Three
+869,39.939335,,Skylight,Spiral,2,,Two-Color-Ten
+870,23.360407,,None,Ramp,2,,Two-Color-Twentyseven
+871,32.67535,,None,Ground,6,,Two-Color-Sixteen
+872,37.323686,,Skylight,Ground,0,,Two-Color-Twentyfour
+873,22.866498,,Skylight,Ground,0,,Two-Color-Eighteen
+874,25.938259,,Skylight,Ramp,3,,Two-Color-Six
+875,24.840719,,Skylight,Ground,3,,Two-Color-Thirtytwo (1)
+876,16.683241,,None,Ground,1,,Two-Color-Thirty
+877,26.365746,,Skylight,Ramp,5,,Two-Color-Twentyone
+878,17.395298,,Skylight,Ground,0,,Two-Color-Sixteen
+879,23.227632,,None,Spiral,0,,Two-Color-Twentynine
+880,19.855081,,Skylight,Ground,0,,Two-Color-Twentytwo
+881,21.132389,,None,Ramp,2,,Two-Color-Twentytwo
+882,23.412246,,Skylight,Ramp,0,,Two-Color-Twenty
+883,40.468624,,None,Ramp,0,,Two-Color-Twentyseven
+884,34.895495,,Skylight,Ground,4,,Two-Color-Twenty
+885,12.307665,,None,Ground,0,,Two-Color-Twentyone
+886,32.97426,,Skylight,Ramp,4,,Two-Color-Seven
+887,27.388741,,Skylight,Ramp,0,,Two-Color-Twentysix
+888,40.840312,,Skylight,Ramp,0,,Two-Color-Eleven
+889,17.369266,,None,Ground,0,,Two-Color-Three
+890,34.498504,,None,Ramp,4,,Two-Color-Four (1)
+891,21.962196,,Skylight,Ground,3,,Two-Color-Eighteen
+892,15.926954,,None,Ground,3,,Two-Color-Twentthree
+893,19.866311,,Skylight,Ground,0,,Two-Color-Thirtytwo (1)
+894,24.55845,,None,Ramp,0,,Two-Color-Ten
+895,26.940735,,None,Ground,0,,Two-Color-Twentynine
+896,24.643175,,None,Ground,0,,Two-Color-Twenty
+897,28.950064,,Skylight,Ramp,0,,Two-Color-Nine
+898,13.641754,,None,Ground,2,,Two-Color-Twentyeight
+899,32.42468,,None,Ramp,2,,Two-Color-Six
+900,24.32108,,Skylight,Ground,5,,Two-Color-Twentysix
+901,17.866708,,Skylight,Ground,0,,Two-Color-Twentyone
+902,18.499368,,None,Ramp,3,,Two-Color-Thirty
+903,42.468451,,Skylight,Ground,0,,Two-Color-Fourteen
+904,25.381917,,Skylight,Ramp,4,,Two-Color-Four (1)
+905,14.84292,,None,Ground,0,,Two-Color-Thirteen
+906,30.081146,,Skylight,Ramp,0,,Two-Color-Twenty
+907,23.865122,,None,Ramp,2,,Two-Color-Twelve
+908,19.282623,,Skylight,Ground,0,,Two-Color-Twentyfour
+909,22.670844,,Skylight,Ramp,3,,Two-Color-Twentyfive
+910,37.320818,,Skylight,Ramp,5,,Two-Color-Seven
+911,16.217307,,None,Ground,2,,Two-Color-Nine
+912,19.397138,,Skylight,Ground,0,,Two-Color-Nineteen
+913,31.591847,,None,Ramp,2,,Two-Color-Five
+914,19.194543,,Skylight,Ground,5,,Two-Color-Ten
+915,18.919057,,Skylight,Ground,0,,Two-Color-Nineteen
+916,21.69716,,None,Ramp,3,,Two-Color-Seven
+917,23.431197,,Skylight,Ground,5,,Two-Color-Three
+918,34.064212,,None,Ramp,4,,Two-Color-Eight
+919,19.370423,,Skylight,Ground,3,,Two-Color-Twentytwo
+920,17.624763,,Skylight,Ground,0,,Two-Color-Twentthree
+921,14.443142,,None,Ground,0,,Two-Color-Seven
+922,43.015339,,Skylight,Ramp,5,,Two-Color-Thirtytwo (1)
+923,22.915375,,None,Ramp,0,,Two-Color-Five
+924,20.52067,,None,Ramp,4,,Two-Color-Three
+925,14.045868,,None,Ground,3,,Two-Color-Eighteen
+926,39.348406,,None,Ramp,6,,Two-Color-Twentyone
+927,17.12783,,None,Ground,3,,Two-Color-Thirty
+928,22.8949,,None,Ramp,2,,Two-Color-Twentthree
+929,13.997841,,None,Ground,2,,Two-Color-Four (1)
+930,16.175562,,None,Ground,0,,Two-Color-Seven
+931,18.40542,,Skylight,Ground,2,,Two-Color-Twentyfive
+932,34.999639,,None,Spiral,3,,Two-Color-Eleven
+933,15.33016,,None,Ground,3,,Two-Color-Twelve
+934,30.957709,,None,Ground,2,,Two-Color-Twentysix
+935,24.823717,,Skylight,Ramp,0,,Two-Color-Six
+936,29.596144,,None,Ground,0,,Two-Color-Fourteen
+937,25.636857,,Skylight,Spiral,4,,Two-Color-Eight
+938,37.864133,,None,Ramp,5,,Two-Color-Thirty
+939,22.930829,,Skylight,Ground,0,,Two-Color-Twentyeight
+940,19.247844,,None,Ramp,0,,Two-Color-Twentyfour
+941,18.028203,,None,Ramp,0,,Two-Color-Two
+942,19.651461,,Skylight,Ground,0,,Two-Color-Nine
+943,19.356649,,Skylight,Ground,0,,Two-Color-Twelve
+944,41.985042,,Skylight,Ramp,0,,Two-Color-Twenty
+945,21.28108,,None,Ramp,0,,Two-Color-Twentyfive
+946,13.584149,,None,Ground,0,,Two-Color-Eleven
+947,28.755722,,Skylight,Ramp,5,,Two-Color-Thirtyone
+948,19.391044,,Skylight,Ground,0,,Two-Color-Eleven
+949,23.158505,,Skylight,Ground,0,,Two-Color-Five
+950,29.843577,,None,Ground,4,,Two-Color-Twentytwo
+951,20.847263,,None,Ramp,2,,Two-Color-Eighteen
+952,26.337267,,None,Ground,5,,Two-Color-Eight
+953,13.307705,,None,Ground,0,,Two-Color-Twentyfour
+954,24.776663,,Skylight,Ramp,0,,Two-Color-Eight
+955,14.226794,,None,Ground,0,,Two-Color-Twentynine
+956,23.004979,,Skylight,Ground,0,,Two-Color-Nine
+957,14.584075,,None,Ground,2,,Two-Color-Twentthree
+958,41.640916,,None,Ramp,0,,Two-Color-Fourteen
+959,28.945732,,Skylight,Ramp,0,,Two-Color-Twelve
+960,38.572459,,Skylight,Ground,0,,Two-Color-Four (1)
+961,46.118185,,Skylight,Ground,0,,Two-Color-Thirty
+962,18.292879,,Skylight,Ground,3,,Two-Color-Three
+963,18.859639,,None,Ramp,2,,Two-Color-Eight
+964,14.554662,,None,Ground,0,,Two-Color-Sixteen
+965,25.504717,,None,Ground,0,,Two-Color-Eight
+966,23.876035,,Skylight,Ramp,0,,Two-Color-Twentytwo
+967,47.323697,,Skylight,Ramp,0,,Two-Color-Seven
+968,14.034139,,None,Ground,0,,Two-Color-Three
+969,17.57267,,None,Ground,0,,Two-Color-Thirty
+970,13.966016,,None,Ground,2,,Two-Color-Seventeen
+971,39.32484,,Skylight,Ground,0,,Two-Color-Nineteen
+972,19.07976,,Skylight,Ground,4,,Two-Color-Three
+973,22.504809,,Skylight,Ground,0,,Two-Color-Eight
+974,26.033368,,Skylight,Ramp,3,,Two-Color-Twentyfive
+975,17.935096,,None,Ground,3,,Two-Color-Twentthree
+976,18.057606,,Skylight,Ground,0,,Two-Color-Fiveteen
+977,42.795393,,Skylight,Ramp,0,,Two-Color-Twentyfour
+978,44.5568,,Skylight,Ramp,0,,Two-Color-Twentyfive
+979,35.277389,,None,Ramp,4,,Two-Color-Twentyfour
+980,20.061726,,None,Spiral,0,,Two-Color-Twentthree
+981,13.813279,,None,Ground,1,,Two-Color-Eight
+982,16.500708,,None,Ground,3,,Two-Color-Two
+983,24.535484,,None,Spiral,1,,Two-Color-One
+984,34.685686,,None,Ground,4,,Two-Color-Fiveteen
+985,19.32804,,Skylight,Ground,3,,Two-Color-Twenty
+986,17.544522,,None,Ground,0,,Two-Color-Twentyfive
+987,36.12022,,Skylight,Ground,0,,Two-Color-Eighteen
+988,18.468769,,None,Ramp,2,,Two-Color-Twentytwo
+989,36.405835,,Skylight,Ground,0,,Two-Color-Thirtyone
+990,28.458845,,Skylight,Ramp,4,,Two-Color-Twentynine
+991,19.49048,,Skylight,Ground,4,,Two-Color-Thirtyone
+992,24.961101,,Skylight,Ramp,3,,Two-Color-One
+993,33.695617,,None,Ground,0,,Two-Color-Five
+994,33.357996,,None,Ground,4,,Two-Color-Twentyeight
+995,14.553212,,None,Ground,2,,Two-Color-Thirtythree
+996,22.057982,,None,Ramp,1,,Two-Color-Twelve
+997,,,,,,,
+998,,,,,,,
+999,,,,,,,
