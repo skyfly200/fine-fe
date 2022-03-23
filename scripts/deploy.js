@@ -1,9 +1,9 @@
 async function main() {
     // We get the contract to deploy
     this.RandomStub = await ethers.getContractFactory("RandomStub");
-    this.FineCore = await ethers.getContractFactory("FineCore");
-    this.FineShop = await ethers.getContractFactory("FineShop");
-    this.Solids = await ethers.getContractFactory("Solids");
+    this.FineCore = await ethers.getContractFactory("FineCoreFlat");
+    this.FineShop = await ethers.getContractFactory("FineShopFlat");
+    this.Solids = await ethers.getContractFactory("SolidsFlat");
 
     this.random = await this.RandomStub.deploy();
     await this.random.deployed();
