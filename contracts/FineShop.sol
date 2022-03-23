@@ -6,8 +6,6 @@ import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "./FineCoreInterface.sol";
 
-import "hardhat/console.sol";
-
 interface FineNFTInterface {
     function mint(address to) external returns (uint);
     function mintBonus(address to, uint infiniteId) external returns (uint);
