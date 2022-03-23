@@ -1307,6 +1307,189 @@
       "artifacts": [
         "GateTest"
       ]
+    },
+    "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/FineCoreFlat.sol": {
+      "lastModificationDate": 1647999532925,
+      "contentHash": "631aa0ae78067d83ecb78da23834eac1",
+      "sourceName": "contracts/FineCoreFlat.sol",
+      "solcConfig": {
+        "version": "0.8.12",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.2"
+      ],
+      "artifacts": [
+        "AccessControl",
+        "Context",
+        "Counters",
+        "ERC165",
+        "FineCore",
+        "IAccessControl",
+        "IERC165",
+        "RandomizerInt",
+        "Strings"
+      ]
+    },
+    "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/FineShopFlat.sol": {
+      "lastModificationDate": 1647999528547,
+      "contentHash": "d553b1ec2c2f7913bd40167f82eeaee8",
+      "sourceName": "contracts/FineShopFlat.sol",
+      "solcConfig": {
+        "version": "0.8.12",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.2",
+        ">=0.4.22 <0.9.0",
+        "^0.8.2"
+      ],
+      "artifacts": [
+        "AccessControl",
+        "BasicNFTInterface",
+        "Context",
+        "ERC165",
+        "FineCoreInterface",
+        "FineNFTInterface",
+        "FineShop",
+        "IAccessControl",
+        "IERC165",
+        "IERC20",
+        "SafeMath",
+        "Strings",
+        "console"
+      ]
+    },
+    "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/SolidsFlat.sol": {
+      "lastModificationDate": 1647999541788,
+      "contentHash": "cb2d20d373a815167e041629e90710cc",
+      "sourceName": "contracts/SolidsFlat.sol",
+      "solcConfig": {
+        "version": "0.8.12",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.1",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.2",
+        "^0.8.2"
+      ],
+      "artifacts": [
+        "AccessControl",
+        "Address",
+        "Context",
+        "Counters",
+        "ERC165",
+        "ERC2981",
+        "ERC721",
+        "ERC721Burnable",
+        "ERC721Enumerable",
+        "ERC721Royalty",
+        "EnumerableSet",
+        "FineCoreInterface",
+        "IAccessControl",
+        "IERC165",
+        "IERC2981",
+        "IERC721",
+        "IERC721Enumerable",
+        "IERC721Metadata",
+        "IERC721Receiver",
+        "Solids",
+        "Strings"
+      ]
     }
   }
 }

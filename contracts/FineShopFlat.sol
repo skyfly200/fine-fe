@@ -1,8 +1,9 @@
 // Sources flattened with hardhat v2.9.0 https://hardhat.org
 
+// SPDX-License-Identifier: MIT AND UNLICENSED
+
 // File @openzeppelin/contracts/token/ERC20/IERC20.sol@v4.5.0
 
-// SPDX-License-Identifier: MIT AND UNLICENSED
 // OpenZeppelin Contracts (last updated v4.5.0) (token/ERC20/IERC20.sol)
 
 pragma solidity ^0.8.0;

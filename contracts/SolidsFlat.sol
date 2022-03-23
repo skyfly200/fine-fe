@@ -1,8 +1,9 @@
 // Sources flattened with hardhat v2.9.0 https://hardhat.org
 
+// SPDX-License-Identifier: MIT AND UNLICENSED
+
 // File @openzeppelin/contracts/utils/introspection/IERC165.sol@v4.5.0
 
-// SPDX-License-Identifier: MIT AND UNLICENSED
 // OpenZeppelin Contracts v4.4.1 (utils/introspection/IERC165.sol)
 
 pragma solidity ^0.8.0;

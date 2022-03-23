@@ -1,8 +1,9 @@
 // Sources flattened with hardhat v2.9.0 https://hardhat.org
 
+// SPDX-License-Identifier: MIT AND UNLICENSED
+
 // File @openzeppelin/contracts/access/IAccessControl.sol@v4.5.0
 
-// SPDX-License-Identifier: MIT AND UNLICENSED
 // OpenZeppelin Contracts v4.4.1 (access/IAccessControl.sol)
 
 pragma solidity ^0.8.0;
