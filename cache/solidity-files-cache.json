@@ -786,8 +786,8 @@
       "artifacts": []
     },
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/FineShop.sol": {
-      "lastModificationDate": 1647996992634,
-      "contentHash": "464fd35975f08df74db582767e506a73",
+      "lastModificationDate": 1648067656233,
+      "contentHash": "aed320ebc9cd784a316b5d53aac80eac",
       "sourceName": "contracts/FineShop.sol",
       "solcConfig": {
         "version": "0.8.12",
@@ -816,8 +816,7 @@
         "@openzeppelin/contracts/token/ERC20/IERC20.sol",
         "@openzeppelin/contracts/utils/math/SafeMath.sol",
         "@openzeppelin/contracts/access/AccessControl.sol",
-        "./FineCoreInterface.sol",
-        "hardhat/console.sol"
+        "./FineCoreInterface.sol"
       ],
       "versionPragmas": [
         "^0.8.2"
@@ -1189,8 +1188,8 @@
       ]
     },
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/Solids.sol": {
-      "lastModificationDate": 1648057383845,
-      "contentHash": "29abaa34a83f332aa69769525a3568c8",
+      "lastModificationDate": 1648066878203,
+      "contentHash": "af5b28ea7d64e712ad4bc3d2f4f8d869",
       "sourceName": "contracts/Solids.sol",
       "solcConfig": {
         "version": "0.8.12",
@@ -1219,6 +1218,7 @@
         "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol",
         "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol",
         "@openzeppelin/contracts/token/ERC721/extensions/ERC721Royalty.sol",
+        "@openzeppelin/contracts/access/Ownable.sol",
         "@openzeppelin/contracts/access/AccessControl.sol",
         "@openzeppelin/contracts/utils/Counters.sol",
         "@openzeppelin/contracts/utils/structs/EnumerableSet.sol",

@@ -25,6 +25,7 @@
     "react-scrollspy": "^3.4.3",
     "react-toastify": "^8.1.0",
     "sass": "^1.43.4",
+    "solt": "0.0.10",
     "three": "^0.134.0"
   },
   "devDependencies": {
