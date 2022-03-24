@@ -16,7 +16,7 @@ fs.createReadStream('./solids.csv')
         image: imagesBaseURI + "/" + row.ID + ".png",
         animation_url: "https://solids.fine.digital/preview/" + row.ID,
         external_url: "https://solids.fine.digital/token/" + row.ID,
-        name: "Solids #" + row.ID,
+        name: "SOLID #" + row.ID,
         background_color: "#fff",
         model_url: modelsBaseURI + "/" + row.ID + ".glb",
         attributes: [
