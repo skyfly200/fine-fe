@@ -29,6 +29,15 @@ contract FineCore is AccessControl {
     // Core Mgmt Functions
 
     /**
+     * @dev Update the treasury address
+     * @param treasury address to set
+     * @dev Only the admin can call this
+     */
+    function setTreasury(address payable treasury) onlyRole(DEFAULT_ADMIN_ROLE) external {
+        FINE_TREASURY = treasury;
+    }
+
+    /**
      * @dev Update the platform percentage
      * @param _percentage for royalties
      * @dev Only the admin can call this

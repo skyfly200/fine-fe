@@ -25,10 +25,10 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
     bool public locked = false;
 
     address payable public artistAddress = payable(0xE31a7D022E545eCEd32D276cA880649852c91353);
-    address payable public additionalPayee = payable(0x268b87E4F6B7e7BEB58e3128138D4F6b768E1b17);
-    uint256 public additionalPayeePercentage = 100;
-    uint256 public additionalPayeeRoyaltyPercentage = 100;
-    uint96 public royaltyPercent = 7500;
+    address payable public additionalPayee = payable(0x0000000000000000000000000000000000000000);
+    uint256 public additionalPayeePercentage = 0;
+    uint256 public additionalPayeeRoyaltyPercentage = 0;
+    uint96 public royaltyPercent = 4500;
 
     string public _contractURI = "https://gateway.pinata.cloud/ipfs/Qmchn1kBhZv43jxPsPE4ijQuKxuSBuK2DyWJ8av5NXkQgt";
     string public baseURI = "https://gateway.pinata.cloud/ipfs/QmeEky5aZNmog1fNdbsxAC5X1CkKCfrfns3tPqQ8rb1kiw";
