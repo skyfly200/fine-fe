@@ -25,7 +25,7 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
     bool public locked = false;
     bool public paused = false;
 
-    address payable public artistAddress = payable(0xE31a7D022E545eCEd32D276cA880649852c91353);
+    address payable public artistAddress = payable(0x70F2D7fA5fAE142E1AF7A95B4d48A9C8e417813D);
     address payable public additionalPayee = payable(0x0000000000000000000000000000000000000000);
     uint256 public additionalPayeePercentage = 0;
     uint256 public additionalPayeeRoyaltyPercentage = 0;
