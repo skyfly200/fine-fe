@@ -23,6 +23,7 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
     mapping(uint256 => string) public scripts;
     EnumerableSet.UintSet private availableArt;
     bool public locked = false;
+    bool public paused = false;
 
     address payable public artistAddress = payable(0xE31a7D022E545eCEd32D276cA880649852c91353);
     address payable public additionalPayee = payable(0x0000000000000000000000000000000000000000);
@@ -185,12 +186,29 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
     }
 
     /**
+     * @dev pause minting
+     * @dev Only the admin can call this
+     */
+    function pause() onlyOwner external {
+        paused = true;
+    }
+
+    /**
+     * @dev unpause minting
+     * @dev Only the admin can call this
+     */
+    function unpause() onlyOwner external {
+        paused = false;
+    }
+
+    /**
      * @dev Mint a token 
      * @param to address to mint the token to
      * @dev Only the minter role can call this
      */
     function mint(address to) external onlyRole(MINTER_ROLE) returns (uint) {
         require(locked, "settings not locked");
+        require(!paused, "minting paused");
         require(availableArt.length() > 0, "all tokens minted");
         uint randomness = coreContract.getRandomness(availableArt.length(), block.timestamp);
         uint randIndex = randomness % availableArt.length();
@@ -207,6 +225,7 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
      */
     function mintBonus(address to, uint infiniteId) external onlyRole(MINTER_ROLE) returns (uint bonusId) {
         require(locked, "settings not locked");
+        require(!paused, "minting paused");
         bonusId = 10000 + infiniteId;
         require(!_exists(bonusId), "Token already minted");
         _safeMint(to, bonusId);
