@@ -17,7 +17,7 @@ contract FineCore is AccessControl {
     mapping(uint => address) public projects;
     mapping(address => bool) public allowlist;
 
-    address payable public FINE_TREASURY = payable(0x7A832c86002323a5de3a317b3281Eb88EC3b2C00);
+    address payable public FINE_TREASURY = payable(0x5C0153E663532b19F0344dB97C6feFB47a2C1b7F);
     uint256 public platformPercentage = 1000;
     uint256 public platformRoyalty = 1000;
     
