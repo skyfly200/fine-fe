@@ -16,13 +16,16 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
     using Counters for Counters.Counter;
     using EnumerableSet for EnumerableSet.UintSet;
 
-    uint public TOKEN_LIMIT = 8888; // not including bonus
+    
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     FineCoreInterface coreContract;
-    Counters.Counter private _tokenIdCounter;
-    EnumerableSet.UintSet private availableArt;
+    
     bool public locked = false;
     bool public paused = false;
+
+    uint public TOKEN_LIMIT = 8888; // not including bonus
+    uint256 public remaining;
+    mapping(uint256 => uint256) public cache;
 
     address payable public artistAddress = payable(0x70F2D7fA5fAE142E1AF7A95B4d48A9C8e417813D);
     address payable public additionalPayee = payable(0x0000000000000000000000000000000000000000);
@@ -44,6 +47,7 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
         coreContract = FineCoreInterface(coreAddress);
         // set deafault royalty
         _setDefaultRoyalty(address(this), royaltyPercent);
+        remaining = TOKEN_LIMIT; // start with max tokens
     }
 
     /**
@@ -72,24 +76,6 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
             if (partB > 0) additionalPayee.transfer(partB);
             artistAddress.transfer((amount - partA) - partB);
         }
-    }
-
-    /**
-     * @dev init set with art IDs
-     */
-    function initPool(uint start, uint end) external {
-        require(!locked, "settings already locked");
-        require(start <= end, "start must come before or equal end");
-        uint toAdd = end - start;
-        require(availableArt.length() + toAdd <= TOKEN_LIMIT, "cant add more than token limit");
-        for (uint i = start; i < end; i++) availableArt.add(i);
-    }
-
-    /**
-     * @dev init set with art IDs
-     */
-    function checkPool() external view returns (uint) {
-        return availableArt.length();
     }
 
     /**
@@ -201,6 +187,23 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
     }
 
     /**
+     * @dev Draw a token from the remaining ids
+     */
+    function drawIndex() internal returns (uint256 index) {
+        //RNG
+        uint randomness = coreContract.getRandomness(remaining, block.timestamp);
+        uint256 i = randomness % remaining;
+
+        // if there's a cache at cache[i] then use it
+        // otherwise use i itself
+        index = cache[i] == 0 ? i : cache[i];
+
+        // grab a number from the tail
+        cache[i] = cache[remaining - 1] == 0 ? remaining - 1 : cache[remaining - 1];
+        remaining = remaining - 1;
+    }
+
+    /**
      * @dev Mint a token 
      * @param to address to mint the token to
      * @dev Only the minter role can call this
@@ -208,14 +211,10 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
     function mint(address to) external onlyRole(MINTER_ROLE) returns (uint) {
         require(locked, "settings not locked");
         require(!paused, "minting paused");
-        require(availableArt.length() > 0, "all tokens minted");
-        // TODO: change this logic for the more gass efficient option
-        uint randomness = coreContract.getRandomness(availableArt.length(), block.timestamp);
-        uint randIndex = randomness % availableArt.length();
-        uint artId = availableArt.at(randIndex);
-        availableArt.remove(artId);
-        _safeMint(to, artId);
-        return artId;
+        require(remaining > 0, "all tokens minted");
+        uint id = drawIndex();
+        _safeMint(to, id);
+        return id;
     }
 
     /**
