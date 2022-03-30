@@ -1,4 +1,4 @@
-Token ID,Dim,Size,Skylight,Entrance,Openings,Legs,Background,Archetype,Skin
+ID,Dim,Size,Skylight,Entrance,Openings,Legs,Background,Archetype,Skin
 0,19.936789,Super,Skylight,Ground,0,None,Purple,SOLID,Purple Rain
 1,25.964593,Standard,Skylight,Ramp,2,Black Legs,Silver,SOLID,Silver
 2,21.293561,Standard,Skylight,Ground,5,None,Silver,SOLID,Static

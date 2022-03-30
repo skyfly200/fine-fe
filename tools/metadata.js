@@ -1,10 +1,10 @@
 const csv = require('csv-parser');
 const fs = require('fs');
 
-let folder = "json";
+let folder = "metadata";
 
 let imagesBaseURI = "ipfs://QmXhR4K8GrRjcsgv1kVWZdUSRMrMEspWpFqMSbThMdzSPG";
-let modelsBaseURI = "https://solidsnft.s3.amazonaws.com/SOLIDS+GLB+1/";
+let modelsBaseURI = "https://solidsnft.s3.amazonaws.com/SOLIDS+GLB+1";
 
 let description = "SOLIDS is a generative architecture NFT project created by FAR. There are 8,888 + 512 unique buildings generated algorithmically, enabling utility in the Metaverse.";
 
@@ -45,8 +45,16 @@ fs.createReadStream('./solids.csv')
                 value: row.Legs,
             },
             {
-                trait_type: "Texture",
-                value: row.Texture,
+                trait_type: "Background",
+                value: row.Background,
+            },
+            {
+                trait_type: "Archetype",
+                value: row.Archetype,
+            },
+            {
+                trait_type: "Skin",
+                value: row.Skin,
             },
         ],
     };
