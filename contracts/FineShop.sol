@@ -384,7 +384,9 @@ contract FineShop is AccessControl {
         require(projectPhase[_projectId] != SalePhase.Owner, "Must redeem after owner mint");
         BasicNFTInterface allowToken = BasicNFTInterface(projectGateTokens[_projectId][contractId]);
         require(nftContract.checkPool() > 0, "Sold out");
-        require(allowToken.ownerOf(redeemId) == msg.sender, "Only token owner can redeem pass");
+        require(
+            allowToken.ownerOf(redeemId) == msg.sender || allowToken.ownerOf(redeemId) == to,
+            "Only token owner can redeem pass");
         require(!redeemed[_projectId][contractId][redeemId], "already redeemed for ID");
         redeemed[_projectId][contractId][redeemId] = true;
         uint tokenId = nftContract.mint(to);
