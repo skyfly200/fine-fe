@@ -20,7 +20,6 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     FineCoreInterface coreContract;
     Counters.Counter private _tokenIdCounter;
-    mapping(uint256 => string) public scripts;
     EnumerableSet.UintSet private availableArt;
     bool public locked = false;
     bool public paused = false;
@@ -210,6 +209,7 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
         require(locked, "settings not locked");
         require(!paused, "minting paused");
         require(availableArt.length() > 0, "all tokens minted");
+        // TODO: change this logic for the more gass efficient option
         uint randomness = coreContract.getRandomness(availableArt.length(), block.timestamp);
         uint randIndex = randomness % availableArt.length();
         uint artId = availableArt.at(randIndex);
