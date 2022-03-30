@@ -31,7 +31,7 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
     uint256 public additionalPayeeRoyaltyPercentage = 0;
     uint96 public royaltyPercent = 4500;
 
-    string public _contractURI = "ipfs://Qmchn1kBhZv43jxPsPE4ijQuKxuSBuK2DyWJ8av5NXkQgt";
+    string public _contractURI = "ipfs://QmPmtPqQff6nnyvv8LNEpSnLqeARVus8Q5SbUfWSLAw126";
     string public baseURI = "ipfs://QmQEJ389wv6hTotejokxqyURh3Ew1Ej2VfU4GRX9J37x7t";
     string public artist = "FAR";
     string public description = "a sample NFT for FINE";
