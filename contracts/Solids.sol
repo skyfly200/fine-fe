@@ -42,6 +42,7 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
     event recievedFunds(address _from, uint _amount);
     
     constructor(address coreAddress, address shopAddress) ERC721("SOLIDS", "SOLID") {
+        _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(MINTER_ROLE, shopAddress);
         coreContract = FineCoreInterface(coreAddress);
         // set deafault royalty
