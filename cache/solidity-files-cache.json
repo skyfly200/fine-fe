@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/FineCore.sol": {
-      "lastModificationDate": 1647560953279,
-      "contentHash": "fb37ce8301842b5a8b11874ca33b4b71",
+      "lastModificationDate": 1648702615084,
+      "contentHash": "dbe1387c2f784b0200754a8da63167c5",
       "sourceName": "contracts/FineCore.sol",
       "solcConfig": {
         "version": "0.8.12",
@@ -786,8 +786,8 @@
       "artifacts": []
     },
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/FineShop.sol": {
-      "lastModificationDate": 1648067656233,
-      "contentHash": "aed320ebc9cd784a316b5d53aac80eac",
+      "lastModificationDate": 1648702629461,
+      "contentHash": "5fe9224510f066260df71f3d29c1378e",
       "sourceName": "contracts/FineShop.sol",
       "solcConfig": {
         "version": "0.8.12",
@@ -1188,8 +1188,8 @@
       ]
     },
     "/mnt/c/Users/skyfl/Documents/GitHub/fine-fe/contracts/Solids.sol": {
-      "lastModificationDate": 1648066878203,
-      "contentHash": "af5b28ea7d64e712ad4bc3d2f4f8d869",
+      "lastModificationDate": 1648702642218,
+      "contentHash": "5599c7141ab198989bfb39888e56f5a7",
       "sourceName": "contracts/Solids.sol",
       "solcConfig": {
         "version": "0.8.12",
