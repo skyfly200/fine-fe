@@ -20,7 +20,6 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     FineCoreInterface coreContract;
     
-    bool public locked = false;
     bool public paused = false;
 
     uint public TOKEN_LIMIT = 8888; // not including bonus
@@ -87,15 +86,6 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
     }
 
     // On-chain Data
-
-    /**
-     * @dev lock settings (artwork pool)
-     * @dev Only the admin can call this
-     */
-    function lock() onlyOwner external {
-        require(!locked, "settings already locked");
-        locked = true;
-    }
 
     /**
      * @dev Update the base URI field
@@ -206,7 +196,6 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
      * @dev Only the minter role can call this
      */
     function mint(address to) external onlyRole(MINTER_ROLE) returns (uint) {
-        require(locked, "settings not locked");
         require(!paused, "minting paused");
         require(remaining > 0, "all tokens minted");
         uint id = drawIndex();
@@ -220,7 +209,6 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
      * @dev Only the minter role can call this
      */
     function mintBonus(address to, uint infiniteId) external onlyRole(MINTER_ROLE) returns (uint bonusId) {
-        require(locked, "settings not locked");
         require(!paused, "minting paused");
         bonusId = 10000 + infiniteId;
         require(!_exists(bonusId), "Token already minted");
