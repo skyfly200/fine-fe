@@ -30,6 +30,11 @@ module.exports = {
   },
   networks:  {
     rinkeby: {
+      url: secrets.rinkeby_url,
+      accounts: [secrets.key]
+    },
+    mainnet: {
+      chainId: 1,
       url: secrets.url,
       accounts: [secrets.key]
     }
