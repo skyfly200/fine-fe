@@ -98,16 +98,6 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
     }
 
     /**
-     * @dev Store a script
-     * @param index in the array of scripts
-     * @param script to store
-     * @dev Only the admin can call this
-     */
-    function setScript(uint index, string calldata script) onlyOwner external {
-        scripts[index] = script;
-    }
-
-    /**
      * @dev Update the base URI field
      * @param _uri base for all tokens 
      * @dev Only the admin can call this
