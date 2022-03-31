@@ -177,6 +177,13 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
     }
 
     /**
+     * @dev checkPool -maintain interface compatibility
+     */
+    function checkPool() external view returns (uint256) {
+        return remaining;
+    }
+
+    /**
      * @dev Draw a token from the remaining ids
      */
     function drawIndex() internal returns (uint256 index) {
