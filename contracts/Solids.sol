@@ -33,7 +33,7 @@ contract Solids is ERC721Enumerable, ERC721Burnable, ERC721Royalty, AccessContro
     uint96 public royaltyPercent = 4500;
 
     string public _contractURI = "ipfs://QmPmtPqQff6nnyvv8LNEpSnLqeARVus8Q5SbUfWSLAw126";
-    string public baseURI = "ipfs://QmQEJ389wv6hTotejokxqyURh3Ew1Ej2VfU4GRX9J37x7t";
+    string public baseURI = "ipfs://QmSBiKg2u4YvEB8rQrJisAvBxCR4L9QYFvFdibkk1kBDby";
     string public artist = "FAR";
     string public description = "SOLIDS is a generative architecture NFT project created by FAR. There are 8,888 + 512 unique buildings generated algorithmically, enabling utility in the Metaverse.";
     string public website = "https://fine.digital";
