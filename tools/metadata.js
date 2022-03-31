@@ -22,7 +22,7 @@ fs.createReadStream('./solids.csv')
         attributes: [
             {
                 trait_type: "Dimension",
-                value: int(row.Dim),
+                value: Number(row.Dim),
             },
             {
                 trait_type: "Size",
@@ -39,7 +39,7 @@ fs.createReadStream('./solids.csv')
             {
                 trait_type: "Openings",
                 display_type: "number", 
-                value: int(row.Openings),
+                value: Number(row.Openings),
             },
             {
                 trait_type: "Legs",
