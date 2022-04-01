@@ -3,7 +3,7 @@ const fs = require('fs');
 
 let folder = "metadata";
 
-let imagesBaseURI = "ipfs://QmXhR4K8GrRjcsgv1kVWZdUSRMrMEspWpFqMSbThMdzSPG";
+let imagesBaseURI = "ipfs://Qmc8nRgTjD45kJnBYDg3qG837JXz3mz3wCqFkgzuJV1Cn8";
 let modelsBaseURI = "https://solidsnft.s3.amazonaws.com/SOLIDS+GLB+1";
 
 let description = "SOLIDS is a generative architecture NFT project created by FAR. There are 8,888 + 512 unique buildings generated algorithmically, enabling utility in the Metaverse.";
