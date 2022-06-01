@@ -151,7 +151,7 @@ const Home: NextPage = () => {
           </ProjectCard>
 
           {/* SLIMES */}
-          <div className={s.slime}>
+          {/* <div className={s.slime}>
             <ProjectCard title="SLIMES" artist="Adam Ferriss">
               <div className={s.bottom}>
                 <Image
@@ -181,12 +181,12 @@ const Home: NextPage = () => {
                 </div>
               </div>
             </ProjectCard>
-          </div>
+          </div> */}
 
           {/* CHUNKY MOUSE */}
-          <div className={s.chunkyMouse}>
+          {/* <div className={s.chunkyMouse}>
             <ProjectCard title="Chunky Mouse" artist="William Virgil">
-              {/* <div className={s.mouseBottom}>
+              <div className={s.mouseBottom}>
                 <Image
                   alt="chunky mouse"
                   src="https://res.cloudinary.com/dhrwv7wvb/image/upload/v1646146839/fine/chunky_f22c4q.webp"
@@ -215,9 +215,9 @@ const Home: NextPage = () => {
                     chubby whiteface?
                   </p>
                 </div>
-              </div> */}
+              </div>
             </ProjectCard>
-          </div>
+          </div> */}
         </section>
 
         <section ref={joinUsRef} id={menu[2]} className={s.join}>
